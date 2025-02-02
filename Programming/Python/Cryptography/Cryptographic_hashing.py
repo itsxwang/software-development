@@ -60,10 +60,10 @@ hash_object = hashlib.sha256()
 # or you can also do in this way: 
 # hash_object = hashlib.new('SHA256')
 
-# Update the hash object with the input data (must be bytes) , that's why we use `encode()`
+# Update the hash object with the input data (input_data must be bytes or should be converted to bytes , that is why we use encode('utf-8'))     
 hash_object.update(input_data.encode('utf-8'))
 
-# give us bytes of hash.
+# give us hash(of the input that we provided in hash object) in bytes.
 # hash_object.digest() 
 
 # `hexdigest` gives us hexadecimal representation of bytes , recommended way to do hashing is to use `hexdigest()` . 
@@ -72,7 +72,7 @@ print(f"Input: {input_data}")
 print(f"SHA-256 Hash: {hash_value}")
 
 
-# file_digest() method , this method direct digest the file , and then we can simply use `digest()` / `hexdigest()` method on it , to get hash . 
+# file_digest() method , this method directly digest the file , and then we can simply use `digest()` / `hexdigest()` method on it , to get hash of that file . 
 # with open (r'file_path_here' , 'rb') as f:
 #     hash_object = hashlib.file_digest(f,'sha256')
 #     print(hash_object.hexdigest())

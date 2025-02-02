@@ -84,7 +84,7 @@ The path specifies the location of the resource on the server. It is a hierarchi
 
 The query component contains additional parameters for the resource, usually in the form of key-value pairs separated by `&`. It starts with a `?` and follows the path.***(This topic is also explained in depth in other file (named:Query_n_Fragment.md))***
 
-**Example**: `?search=query&sort=asc`
+**Example**: `?search=query(thing-you-wanna-search)&sort=asc` *( in this URL , there are two query parameters separated by the `&` symbol `search` and `sort` )*
 
 ---
 
@@ -147,7 +147,7 @@ A URL slug is a human-readable, SEO-friendly part of the URL that identifies a s
 4. **Avoid Special Characters**: Use URL encoding for special characters.
 5. **Use Lowercase Letters**: URLs are case-sensitive, so using lowercase letters avoids confusion.
 6. **Avoid Dynamic Parameters When Possible**: Use static paths instead of dynamic query parameters for better readability and SEO.
-7. **Use Canonical URLs**: Specify a canonical URL to avoid duplicate content issues.
+7. **Use Canonical URLs**: Specify a canonical URL to avoid duplicate content issues.(This is also explained deeply in Canonical_urls.md)
 8. **Implement HTTPS**: Use HTTPS to ensure secure communication.
 9. **Avoid Stop Words**: Remove unnecessary words like "and," "the," and "of" from URLs.
 10. **Use Consistent URL Structure**: Maintain a consistent structure across your website.

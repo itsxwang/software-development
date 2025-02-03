@@ -67,7 +67,7 @@ In this example:
    - Use URL encoding to handle special characters, spaces, and non-ASCII characters.
    - Example: A space is encoded as `%20`: `https://www.example.com/search?q=url%20encoding`.
 
-5. **Canonicalization**:
+5. **Canonicalization**: (This topic is also explained deeply in Canonical_urls.md)
    - Use canonical URLs to avoid duplicate content issues caused by different query strings pointing to the same resource.
    - Example: Specify `https://www.example.com/products` as the canonical URL for `https://www.example.com/products?sort=asc`.
 
@@ -118,7 +118,7 @@ In this example:
 
 4. **State Management**:
    - Fragments can be used to store application state in the URL without affecting server-side routing.
-   - Example: `https://www.example.com/game#level=3&score=1000`
+   - Example: `https://www.example.com/game#level=3&score=1000` (Here `&` is just used to separate multiple values inside the fragment. Don't confuse it with query , Everything after `#` is fragment . The query string (if present) would be after `?` and before `#` (but there is none here).)
      - **What Happens?**: The game application reads the fragment to initialize the game at level 3 with a score of 1000.
      - **Output**: The game starts at the specified level and score.
 
@@ -161,7 +161,7 @@ In this example:
 #### 3. **Hashbang (`#!`)**
    - Historically, Google used the `#!` syntax (hashbang) to crawl AJAX-based SPAs. Modern SPAs now use the History API for cleaner URLs.
    - Example: `https://www.example.com/app#!/dashboard`.
-     - **What Happens?**: The SPA's router interprets the hashbang and loads the dashboard view.
+     - **What Happens?**: The SPA's router interprets the hashbang and loads the dashboard view.(Router/Routing explained in detail in another file named:`router-routing.md`)
      - **Output**: The dashboard view is displayed.
 
 #### 4. **Fragment and SEO**

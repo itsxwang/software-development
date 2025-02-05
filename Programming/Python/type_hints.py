@@ -27,6 +27,9 @@ tup1 : tuple[str,str,int,int] = ('s','r',1,2) # Success: no issues found in 1 so
 
 
 # 1 example with functions 
+# it saying that a and b should be int and return type should be also int
+def sum(a:int,b:int)->int:
+    return a+b
 
+sum(1,2) # Success: no issues found in 1 source file
 
-# file in progress ...

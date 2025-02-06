@@ -94,12 +94,12 @@ sr = phone.replace(phPatt , '$<first>$<areacode>$<second>XXX$<third>XXXX')
 console.log(sr)
 
 // Program to replace every markdown file link to html anchor tag link
-let mdToHtmlinPatt = /!\[(.*)\]\((https?:\/\/\w+.\.[a-zA-Z].*)\)/g
+let mdToHtmlinPatt = /\[(.*)\]\((https?:\/\/\w+.\.[a-zA-Z].*)\)/g
 let mdLinks = `
-![google](https://google.us) 
-![reddit](https://reddit.eu)
-![discord](https://discord.com)
-![amazon](https://amazon.de)
+[google](https://google.us) 
+[reddit](https://reddit.eu)
+[discord](https://discord.com)
+[amazon](https://amazon.de)
 `
 htmlLinks = mdLinks.replace(mdToHtmlinPatt,'<a href="$2">$1</a>')
 console.log(htmlLinks)

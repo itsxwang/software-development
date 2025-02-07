@@ -218,9 +218,6 @@ Even though the server sends the **image in binary format**, the `Blob` object i
   - **Reading as Data URL** (`FileReader.readAsDataURL(blob)`) → Converts the blob into a format (`base64`) that can be embedded in HTML.
   - **Saving Files Locally** → You can download or manipulate blobs as real files.
 
-#### **5. `Blob` Helps with Security & CORS Handling**
-- If the server sends binary data directly **without using a blob**, browsers may block it due to **CORS restrictions**.
-
 #### **Alternative Way to Display the Image**
 Instead of converting the blob into a Data URL using `FileReader`, we can also do:
 
@@ -230,6 +227,36 @@ img.src = URL.createObjectURL(blob);
 
 This method is **faster and more efficient** because it creates a temporary URL for the blob without converting it to base64.
 
+
+## Is the Server Sending a Blob or Are We Converting It Into a Blob?  
+
+The server **is not** directly sending a `Blob`. Instead, the server sends **raw binary data**, and we are instructing the browser to **interpret it as a Blob** by setting `xhr.responseType = 'blob'`.  
+
+---
+
+#### **Breaking It Down:**
+1. **Server Sends Raw Binary Data**  
+   - The server sends the image **as raw bytes** (binary data).  
+   - This is how all media files (images, videos, PDFs) are transmitted over HTTP.  
+
+2. **We Convert It Into a Blob in JavaScript**  
+   - When we set `xhr.responseType = 'blob'`, we **tell the browser** to wrap the received binary data inside a `Blob` object.  
+   - The browser does this automatically and assigns it to `xhr.response`.  
+
+3. **Why Do We Need `xhr.responseType = 'blob'`?**  
+   - If we don’t set this, the browser might try to interpret the response as **text**, which can **corrupt** binary data.  
+   - Setting it to `'blob'` ensures that the binary data is **preserved in its original form** inside a `Blob` object.  
+
+---
+
+#### **Conclusion**  
+✅ **The server sends raw binary data** (not a `Blob`).  
+✅ **We are converting it into a `Blob`** in JavaScript by setting `xhr.responseType = 'blob'`.  
+
+This allows us to handle the binary data properly in JavaScript and use it in various ways (like displaying an image or downloading a file). 🚀
+
+
+
 ### Summary
 This example demonstrates how to:
 - Fetch an image as a `blob` using `XMLHttpRequest`.
@@ -238,3 +265,4 @@ This example demonstrates how to:
 - Alternatively, use `URL.createObjectURL(blob)` to display the image efficiently.
 
 This approach is useful for working with binary files efficiently in JavaScript applications.
+

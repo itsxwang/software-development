@@ -107,7 +107,7 @@ console.log(htmlLinks)
 
 // you can learn about word boundaries (\b) by seeing this video `https://youtu.be/0ORBOTYPANA?si=iRuPxGNrGmVA59wf` by `Deeecode The Web` , and non word boundary(\B) is opposite of (\b) word boundary
 
-// leanr about `matchAll()` from this video https://youtu.be/5iR2zgGNu1I?si=XdF7rZawOclxEMX1&t=153 by `Code Explained` , its not very different from `match()`
+// learn about `matchAll()` from this video https://youtu.be/5iR2zgGNu1I?si=XdF7rZawOclxEMX1&t=153 by `Code Explained` , its not very different from `match()`
 
 // fast revison of match, exec and test methods , see this video `https://youtu.be/vDCPteAb4hE?si=NoWDbSlYmbOPNxY3` by `Leela Web Dev`
 

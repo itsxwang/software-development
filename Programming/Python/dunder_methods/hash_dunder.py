@@ -95,3 +95,14 @@ print(f"People in the dictionary: {people_dict}")  # Output: {Person(name=Alice,
 
 # Therefore, it's important to ensure that objects used as keys in hash-based collections are immutable
 # or that their attributes are not modified after being added to the collection.
+
+"""
+And in this way , the tuples in memory are differentiate by python interpreter. If we comapring two tuples by identity (using `is`)  the interpreter 
+will compare the hash values of the tuples internally . Ex : 
+tup1 = (1,2,3,4) 
+tup2 = (1,2,3,4)
+
+print(hash(tup1) is hash(tup2)) # true , as both values are same so their hash value will be same 
+internally in python interpreter . print(hash(tup1) == hash(tup2)) , if yes then true else false
+
+"""

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Callback-Based Approach</title>
+</head>
+<body>
+    <h1>Traditional Callback-Based Approach</h1>
+    <p>This example demonstrates how asynchronous operations were handled using callbacks before Promises and async/await were introduced.</p>
+
+    <script>
+        // Simulating an asynchronous operation with a callback
+        function fetchData(callback) {
+            setTimeout(() => {
+                const data = { id: 1, name: "John Doe" };
+                callback(null, data); // No error, pass data
+            }, 1000);
+        }
+
+        // Simulating another asynchronous operation that depends on the first one
+        function processData(data, callback) {
+            setTimeout(() => {
+                if (data) {
+                    data.age = 30; // Add a new property to the data
+                    callback(null, data); // No error, pass processed data
+                } else {
+                    callback("Data is missing!", null); // Error case
+                }
+            }, 1000);
+        }
+
+        // Simulating a third asynchronous operation that depends on the second one
+        function saveData(data, callback) {
+            setTimeout(() => {
+                if (data) {
+                    console.log("Data saved successfully:", data);
+                    callback(null, "Data saved!"); // No error, pass success message
+                } else {
+                    callback("Failed to save data!", null); // Error case
+                }
+            }, 1000);
+        }
+
+        // Using the callback-based approach
+        fetchData((error, data) => {
+            if (error) {
+                console.error("Error fetching data:", error);   
+            } else {
+                console.log("Data fetched successfully:", data);
+
+                // Process the fetched data
+                processData(data, (error, processedData) => {
+                    if (error) {
+                        console.error("Error processing data:", error);
+                    } else {
+                        console.log("Data processed successfully:", processedData);
+
+                        // Save the processed data
+                        saveData(processedData, (error, message) => {
+                            if (error) {
+                                console.error("Error saving data:", error);
+                            } else {
+                                console.log("Save result:", message);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+    
+    </script>
+    <b>Same thing can be done using this code by using async/await and you can also use Promises</b>
+    <code>
+        <pre>
+        async function main() {
+            try {
+                const data = await fetchData();
+                const processedData = await processData(data);
+                const message = await saveData(processedData);
+                console.log("Save result:", message);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+        
+        main();
+    </pre>
+    </code>
+</body>
+</html>

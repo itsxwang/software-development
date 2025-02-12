@@ -3,6 +3,7 @@ This module provides a reference for understanding iterators and generators in P
 It explains how objects can be made iterable, how iteration works internally, and how `yield from` simplifies generator functions.
 """
 
+
 # Custom Iterator Class
 class cu_type:
     def __init__(self, *args):
@@ -41,7 +42,13 @@ Understanding Iterables & Iterators:
   Example:
   - A list is iterable but not an iterator because calling `next()` directly on a list will fail.
   - `iter(list)` returns an list_iterator, which supports `next()`.
+    so in background when we do : for i in []:
+                                    print(i)
+    python interprets it as : for i in iter([]):
+                                print(i)
 
+                                
+** - So if You want iterator of string, set, dictionary, list, tuple,  etc ..., you can do this : ** iter(<type>) , it will give iterator form of given object . 
 """
 
 # Sentence Iterator Class
@@ -58,7 +65,7 @@ class Sentence:
     """
     
     def __next__(self):
-        if not self.words:
+        if not self.words: # yeahh , empty iterables like list , tuple , set , dictionary etc ... considered falsy values in python . 
             raise StopIteration  # Stop iteration when words list is empty
         return self.words.pop(0)  # Return and remove first word
 
@@ -72,12 +79,13 @@ Using Generators for Iteration:
 -------------------------------
 - Generators are a more concise way to create iterators.
 - They automatically implement `__iter__` and `__next__`.
-- The `yield` keyword produces values one by one without storing all in memory.
-- `yield from` simplifies delegation when yielding from another iterable.
+- The `yield` keyword produces values one by one without storing all in memory , so generators are memory efficient
+(as they don't store all values unlike lists,tuples,etc...) instead they generate values on the fly.
+- `yield from` statement simplifies delegation when yielding from another iterable.
 """
 
 def sentence(string):
-    yield from string.split()  # Delegates iteration over split words
+    yield from string.split()  # Delegates iteration over split words(list elements)
 
 # Equivalent to:
 # def sentence(string):

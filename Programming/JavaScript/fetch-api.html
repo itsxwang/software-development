@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the Fetch API in JavaScript</title>
+</head>
+<body>
+    <h1>Understanding the Fetch API in JavaScript</h1>
+    <p>The <code>fetch</code> method is a modern way to make HTTP requests in JavaScript. It returns a Promise that resolves(when response comes from server) to the <code>Response</code> object representing the response to the request.</p>
+
+    <h2>Basic Syntax</h2>
+    <pre>
+        fetch(url, options)
+            .then(response => response.json()) // Parse(return) response as JSON , basically in JavaScript Object notation that we use in our regular JS code <b>(not JSON string)</b>
+            .then(data => console.log(data))  // Handle the data , basically in first parameter of callback of <b>second then</b> that value comes that return by <b>first then</b> callback , <em>here response.json()</em>
+            .catch(error => console.error(error)); // Handle errors
+    </pre>
+    <p>Here:</p>
+    <ul>
+        <li><code>url</code>: The URL (we can say authority also) to which the request is made.</li>
+        <li><code>options</code>: An optional object containing settings like method, headers, body, etc.</li>
+        <li><code>response.json()</code>: Parses the response body as JSON.</li>
+        <li><code>catch</code>: Handles any errors that occur during the request.</li>
+    </ul>
+
+    <h2>Example 1: GET Request</h2>
+    <p>Fetch data from a public API (e.g., JSONPlaceholder).</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/posts/1') // Here fetch will return promise that will resolve to response when response comes
+            .then(response => response.json())   // after resolving of first promise , second promise is created by this <em>first then </em>method that will resolve when all response data will converted to json
+            .then(data => console.log(data)) // after resolving of second promise , third promise is created by this <em>second then </em>method that will resolve when full operation on converted response data completes
+            .catch(error => console.error(error)); // if any error com 
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        {
+            userId: 1,
+            id: 1,
+            title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            body: "quia et suscipit..."
+        }
+    </pre>
+
+    <h2>Example 2: POST Request</h2>
+    <p>Send data to a server using a POST request.</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: 'foo',
+                body: 'bar',
+                userId: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        {
+            id: 101, // The server returns the newly created resource
+            title: "foo",
+            body: "bar",
+            userId: 1
+        }
+    </pre>
+
+    <h2>Example 3: PUT Request</h2>
+    <p>Update an existing resource using a PUT request.</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 1,
+                title: 'updated title',
+                body: 'updated body',
+                userId: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        {
+            id: 1,
+            title: "updated title",
+            body: "updated body",
+            userId: 1
+        }
+    </pre>
+
+    <h2>Example 4: DELETE Request</h2>
+    <p>Delete a resource using a DELETE request.</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Post deleted successfully!");
+            } else {
+                console.error("Failed to delete post.");
+            }
+        })
+        .catch(error => console.error(error));
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Post deleted successfully!
+    </pre>
+
+    <h2>Example 5: Handling Errors</h2>
+    <p>Fetch API does not reject the Promise on HTTP errors (e.g., 404, 500). You need to check the <code>response.ok</code> property to handle such errors.</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/invalid-url')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Error: HTTP error! Status: 404
+    </pre>
+
+    <h2>Example 6: Using <code>async/await</code> with Fetch</h2>
+    <p>You can use <code>async/await</code> to make the code more readable.</p>
+    <pre>
+        async function fetchData() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        {
+            userId: 1,
+            id: 1,
+            title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            body: "quia et suscipit..."
+        }
+    </pre>
+
+    <h2>Example 7: Fetch with Headers</h2>
+    <p>You can add custom headers to your request.</p>
+    <pre>
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            headers: {
+                'Authorization': 'Bearer token',
+                'Custom-Header': 'value'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        {
+            userId: 1,
+            id: 1,
+            title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            body: "quia et suscipit..."
+        }
+    </pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>fetch</code> API is a powerful and flexible way to make HTTP requests in JavaScript. It supports all HTTP methods (GET, POST, PUT, DELETE, etc.) and allows you to handle responses and errors effectively. By combining <code>fetch</code> with <code>async/await</code>, you can write clean and readable asynchronous code.</p>
+
+    <script>
+        // Example 1: GET Request
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(response => response.json())
+            .then((data) => console.log("GET Request Result:", data))
+            .catch(error => console.error(error));
+
+        // Example 2: POST Request
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: 'foo',
+                body: 'bar',
+                userId: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log("POST Request Result:", data))
+        .catch(error => console.error(error));
+
+        // Example 3: PUT Request
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 1,
+                title: 'updated title',
+                body: 'updated body',
+                userId: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log("PUT Request Result:", data))
+        .catch(error => console.error(error));
+
+        // Example 4: DELETE Request
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("DELETE Request Result: Post deleted successfully!");
+            } else {
+                console.error("Failed to delete post.");
+            }
+        })
+        .catch(error => console.error(error));
+
+        // Example 5: Handling Errors
+        fetch('https://jsonplaceholder.typicode.com/invalid-url')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error("Error Handling Example:", error));
+
+        // Example 6: Using async/await with Fetch
+        async function fetchData() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log("async/await Example:", data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
+
+        // Example 7: Fetch with Headers
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            headers: {
+                'Authorization': 'Bearer token',
+                'Custom-Header': 'value'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log("Fetch with Headers Example:", data))
+        .catch(error => console.error(error));
+    </script>
+</body>
+</html>

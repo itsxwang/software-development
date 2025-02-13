@@ -20,6 +20,11 @@
     <h2>Creating a Promise</h2>
     <p>A Promise is created using the <code>Promise</code> constructor, which takes a function (called the executor) as an argument. This function has two parameters: <code>resolve</code> and <code>reject</code>, which are functions themselves.</p>
     <pre>
+       <strong> // Basically the code of `then` blocks will only executed if promise resolved(Basically , if that promise callback , calls a function in that is in first parameter) 
+        , otherwise if its callback call reject(function in its 2nd param) `then` blocks code will not be executed and that promise will throw error , and that error can be catched using catch method of promise or try and catch block
+        there is also a third possibility if its callback neither call reject nor resolve then that promise will be settled to pending state and code in `then` or `catch` blocks 
+    of that promise , will never be executed </strong>
+        
         const myPromise = new Promise((resolve, reject) => {
             // Asynchronous operation
             let success = true;
@@ -35,6 +40,7 @@
     <h2>Handling Promises with <code>then()</code> and <code>catch()</code></h2>
     <p>Once a Promise is created, you can handle its result using the <code>then()</code> method for success and the <code>catch()</code> method for errors.</p>
     <pre>
+        // and we can make chain of `then` , example: <code>.then((res)=>{return `${res} from first then`}).then((return_val_of_1st_then)=>{console.log(return_val_of_1st_then)}) ... </code> , that will execute in order , 
         myPromise.then(result => {
             console.log("Success:", result);
         }).catch(error => {
@@ -59,7 +65,9 @@
     <p>In this example, <code>Promise.all()</code> waits for both <code>promise1</code> and <code>promise2</code> to resolve. Once both are resolved, the <code>then()</code> method is called with an array of results.</p>
 
     <h3>Promise.race()</h3>
-    <p>The <code>Promise.race()</code> method takes an array of Promises and returns a single Promise that resolves or rejects as soon as one of the Promises in the array resolves or rejects.</p>
+    <p>The <code>Promise.race()</code> method takes an array of Promises and returns a single Promise that resolves or rejects as soon as one of the Promises in the array resolves or rejects.And in case of resolve , the promise which resolves first that resolve value is taken as resolve value of <code>Promise.race()</code> and comes in callback first parameter of <code>Promise.race().then()</code> method
+        , instead of array of results of all results like <code>Promise.all()</code> , and its obvious to think
+    how it can give us resolve values of all promises if it suddenly resolves by any one of them</p>
     <pre>
         Promise.race([promise1, promise2]).then(result => {
             console.log("Promise.race result:", result);
@@ -97,7 +105,7 @@
     <p>Promises are a powerful feature in JavaScript for handling asynchronous operations. They provide a cleaner and more manageable way to work with asynchronous code compared to traditional callbacks. By understanding the different states of a Promise and the various methods available (<code>then()</code>, <code>catch()</code>, <code>Promise.all()</code>, <code>Promise.race()</code>, <code>Promise.allSettled()</code>, and <code>Promise.any()</code>), you can write more efficient and readable asynchronous code.</p>
 
     <script>
-        // Creating a Promise
+        // Creating a Promise , so here we creating a Promise object and store it in myPromise variable , for use then and catch on this promise
         const myPromise = new Promise((resolve, reject) => {
             let success = true;
             setTimeout(() => {
@@ -107,18 +115,20 @@
                     reject("Promise Rejected!");
                 }
             }, 2000);
-        });
-
-        // Handling the Promise
+        }); 
+        
+        // Handling the Promise , here in `result` parameter that values comes that is resolved by promise 
         myPromise.then(result => {
             console.log("Success:", result);
-        }).catch(error => {
+            return 'its a second then'; // this return value will goes in `red` parameter
+        }).then((red) => {console.log(red)}) // and we can create a chain of `then` operations 
+        .catch(error => {  // here in `error` parameter that values comes that is rejected by promise 
             console.log("Error:", error);
         });
-
         // Promise.all() Example
         const promise1 = new Promise(resolve => setTimeout(() => resolve("First Done"), 1000));
         const promise2 = new Promise(resolve => setTimeout(() => resolve("Second Done"), 2000));
+        
         
         Promise.all([promise1, promise2]).then(results => {
             console.log("Promise.all results:", results);
@@ -141,7 +151,7 @@
         });
 
         // Promise.any() Example
-        const promise4 = new Promise((_, reject) => setTimeout(() => reject("Fourth Failed"), 500));
+        const promise4 = new Promise((_, reject) => setTimeout(() => reject("Fourth Failed"), 500) );
         
         Promise.any([promise3, promise4, promise1]).then(result => {
             console.log("Promise.any result:", result);

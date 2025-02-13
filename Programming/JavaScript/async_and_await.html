@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Understanding async/await in JavaScript</title>
+    
+    <style>
+        :root {
+            --gray-highlighter: rgba(134, 134, 134, 0.519);
+        }
+        .highlight {
+            background-color: var(--gray-highlighter);
+        }
+    </style>
+
 </head>
 <body>
     <h1>Understanding async/await in JavaScript</h1>
@@ -25,9 +35,20 @@
 
     <h2>Basic Syntax</h2>
     <pre>
+        function someAsyncOperation() {
+            return new Promsie(resolve,reject) {
+                setTimeout(() => {
+                    resolve("Data fetched successfully!");
+                },1000);
+            }
+         }
+
         async function myFunction() {
             try {
-                const result = await someAsyncOperation();
+                const result = await someAsyncOperation(); /* so here by writing `await`(before calling someAsyncOperation)  , below code(of this `myFunction` async function ) will only run after 
+                the promise (return by `someAsyncOperation()`) is resolved , if it reject the flow of function will go straight to `catch` block , and there is also a third possibility if it neither 
+                call reject nor resolve then that promise will be settled to pending state and code below `await` (in `myFunction`)  will never be executed 
+                means <code>console.log(result);</code> this line will never be executed if that case happens*/
                 console.log(result);
             } catch (error) {
                 console.error(error);
@@ -37,21 +58,21 @@
     <p>In this example:</p>
     <ul>
         <li><code>async</code> declares the function as asynchronous.</li>
-        <li><code>await</code> pauses the function execution until <code>someAsyncOperation()</code> completes.</li>
-        <li><code>try/catch</code> is used to handle errors.</li>
+        <li><code>await</code> pauses the function execution until promise returned by <code class="highlight">someAsyncOperation</code> completes.(resolve or reject)</li>
+        <li><code class="highlight">try/catch</code> is used to handle errors.</li>
     </ul>
 
     <h2>Example 1: Basic <code>async/await</code></h2>
     <p>Let's simulate an asynchronous operation using <code>setTimeout</code> and handle it with <code>async/await</code>.</p>
     <pre>
-        async function fetchData() {
+        function fetchData() {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve("Data fetched successfully!");
                 }, 2000);
             });
         }
-
+        // basically we have to make this async function because in browser js `await` can only be used inside async functions
         async function main() {
             console.log("Fetching data...");
             const result = await fetchData();
@@ -69,6 +90,8 @@
     <h2>Example 2: Error Handling with <code>try/catch</code></h2>
     <p>Let's simulate an error in an asynchronous operation and handle it using <code>try/catch</code>.</p>
     <pre>
+        /*Here, async is not strictly necessary for fetchData() because we're manually returning a Promise. But marking it as async could help with
+         readability and ensure that it always returns a Promise.*/
         async function fetchData() {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
@@ -87,7 +110,12 @@
                 console.log("Fetching data...");
                 const result = await fetchData();
                 console.log(result);
-            } catch (error) {
+            }
+
+                /* basically the parameter `error`(first param of <span class="highlight">catch()</span> we can say) , contains error message that throw manually by us (using <span class="highlight">throw new Error('Error message')</span>)
+                or that throw my promises (reject  (we can say when we call 2nd param of callback of specific promsise)) */
+
+            catch (error) { 
                 console.error(error);
             }
         }
@@ -140,7 +168,7 @@
                 const message = await saveData(processedData);
                 console.log(message);
             } catch (error) {
-                console.error("Error:", error);
+                console.error(error);
             }
         }
 
@@ -148,10 +176,10 @@
     </pre>
     <p><strong>Output:</strong></p>
     <pre>
-        Data fetched: { id: 1, name: "John Doe" }
+        (After 1 second of process start(execution of a program is also said to be process)) Data fetched: { id: 1, name: "John Doe" }
         (After 1 second) Data processed: { id: 1, name: "John Doe", age: 30 }
         (After 1 second) Data saved successfully: { id: 1, name: "John Doe", age: 30 }
-        (After 1 second) Data saved!
+        Data saved!
     </pre>
 
     <h2>Example 4: Parallel Execution with <code>Promise.all</code></h2>
@@ -196,8 +224,8 @@
     <p><code>async/await</code> is a powerful feature in JavaScript that simplifies asynchronous programming. It makes your code more readable, easier to debug, and allows you to handle errors more effectively using <code>try/catch</code>. By combining <code>async/await</code> with Promises, you can write clean and efficient asynchronous code.</p>
 
     <script>
-        // Example 1: Basic async/await
-        async function fetchData() {
+        // Example 1: Basic async/await , basically in this function you have to return a promise , because the thing that actually await is promise return by the function(that you await) not that function itself
+        function fetchData() {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve("Data fetched successfully!");
@@ -270,7 +298,6 @@
             try {
                 const data = await fetchDataChain();
                 console.log("Data fetched:", data);
-
                 const processedData = await processData(data);
                 console.log("Data processed:", processedData);
 
@@ -302,7 +329,7 @@
 
         async function main4() {
             try {
-                const [user, posts] = await Promise.all([fetchUser(), fetchPosts()]);
+                let [user, posts] = await Promise.all([fetchUser(), fetchPosts()]);
                 console.log("User:", user);
                 console.log("Posts:", posts);
             } catch (error) {

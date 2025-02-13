@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Understanding the Fetch API in JavaScript</h1>
-    <p>The <code>fetch</code> method is a modern way to make HTTP requests in JavaScript. It returns a Promise that resolves(when response comes from server) to the <code>Response</code> object representing the response to the request.</p>
+    <p>The <code>fetch</code> method is a modern way to make HTTP requests in JavaScript. It returns a Promise that resolves(when response comes from server) to the <code>Response</code> object(or any data that send by server) representing the response to the request.</p>
 
     <h2>Basic Syntax</h2>
     <pre>
@@ -27,10 +27,11 @@
     <h2>Example 1: GET Request</h2>
     <p>Fetch data from a public API (e.g., JSONPlaceholder).</p>
     <pre>
-        fetch('https://jsonplaceholder.typicode.com/posts/1') // Here fetch will return promise that will resolve to response when response comes
-            .then(response => response.json())   // after resolving of first promise , second promise is created by this <em>first then </em>method that will resolve when all response data will converted to json
-            .then(data => console.log(data)) // after resolving of second promise , third promise is created by this <em>second then </em>method that will resolve when full operation on converted response data completes
-            .catch(error => console.error(error)); // if any error com 
+        Note :By default fetch will make a GET request so we don't need to mention method in by creating options object
+        fetch('https://jsonplaceholder.typicode.com/posts/1') // Here fetch will return promise that will resolve to response when response comes 
+            .then(response => response.json())   // after resolving of first promise(the promise that created by fetch) , the code inside first `then` will be executed
+            .then(data => console.log(data)) // after executing the code inside first `then` , the code inside second `then` will be executed , and this chain of `then` will be execute in order and can be further extended
+            .catch(error => console.error(error)); // if any error comes then code inside `catch` will be executed 
     </pre>
     <p><strong>Output:</strong></p>
     <pre>
@@ -102,6 +103,8 @@
     <h2>Example 4: DELETE Request</h2>
     <p>Delete a resource using a DELETE request.</p>
     <pre>
+        // so basically we can make check also using `respnse.ok` , its value true : if status code is 200-299 and false : if status code is not 200-299 
+        // btw in python - `response.ok` returns True if status_code is less than 400, otherwise False
         fetch('https://jsonplaceholder.typicode.com/posts/1', {
             method: 'DELETE'
         })
@@ -236,7 +239,7 @@
             method: 'DELETE'
         })
         .then(response => {
-            if (response.ok) {
+            if (response.ok) { 
                 console.log("DELETE Request Result: Post deleted successfully!");
             } else {
                 console.error("Failed to delete post.");

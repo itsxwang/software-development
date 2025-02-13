@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the URL Class in JavaScript</title>
+</head>
+<body>
+    <h1>Understanding the URL Class in JavaScript</h1>
+    <p>The <code>URL</code> class in JavaScript provides a way to parse, manipulate, and construct URLs. It is part of the Web API and is supported in all modern browsers.</p>
+
+    <h2>Basic Syntax</h2>
+    <pre>
+        const url = new URL(urlString, [base]);
+    </pre>
+    <p>Here:</p>
+    <ul>
+        <li><code>urlString</code>: The URL string to be parsed.</li>
+        <li><code>base</code> (optional): A base URL to resolve the <code>urlString</code> against(if base (second param) is provided then urlString will resolve to relative url as a part of full url). If not provided, the <code>urlString</code> must be an absolute URL.</li>
+    </ul>
+
+    <h2>Properties of the URL Class</h2>
+    <p>The <code>URL</code> object has several properties that allow you to access different parts of the URL:</p>
+    <ul>
+        <li><code>href</code>: The full URL.</li>
+        <li><code>protocol</code>: The protocol scheme (e.g., <code>http:</code>, <code>https:</code>).</li>
+        <li><code>host</code>: The hostname and port (e.g., <code>example.com:8080</code>).</li>
+        <li><code>hostname</code>: The hostname (e.g., <code>example.com</code>).</li>
+        <li><code>port</code>: The port number (e.g., <code>8080</code>).</li>
+        <li><code>pathname</code>: The path (e.g., <code>/path/to/resource</code>).</li>
+        <li><code>search</code>: The query string(we can also say it query parameter or search parameter) including the <code>?</code> (e.g., <code>?key=value</code>).</li>
+        <li><code>searchParams</code>: A <code>URLSearchParams</code> object representing the query parameters. (e.g.,|>URLSearchParams {size: n})  (where n is the number of query parameters)</li> 
+        <li><code>hash</code>: The fragment identifier including the <code>#</code> (e.g., <code>#section1</code>).</li>
+        <li><code>origin</code>: The origin of the URL (e.g., <code>https://example.com</code>).</li>
+    </ul>
+
+    <h2>Example 1: Parsing a URL</h2>
+    <p>Parse a URL and access its properties.</p>
+    <pre>
+        const url = new URL('https://example.com:8080/path/to/resource?key=value#section1');
+
+        console.log("href:", url.href);
+        console.log("protocol:", url.protocol);
+        console.log("host:", url.host);
+        console.log("hostname:", url.hostname);
+        console.log("port:", url.port);
+        console.log("pathname:", url.pathname);
+        console.log("search:", url.search);
+        console.log("searchParams:", url.searchParams);
+        console.log("hash:", url.hash);
+        console.log("origin:", url.origin);
+        console.log("toString:", url.toString());
+        console.log(new URL(window.location))
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        href: https://example.com:8080/path/to/resource?key=value#section1
+        protocol: https:
+        host: example.com:8080
+        hostname: example.com
+        port: 8080
+        pathname: /path/to/resource
+        search: ?key=value
+        searchParams: URLSearchParams { size: 1 }
+        hash: #section1
+        origin: https://example.com:8080
+        toString: 'https://example.com:8080/path/to/resource?key=value#section1'
+        will give us URL object in which window url properties like pathname , host ..., etc. can be accessed
+    </pre>
+
+    <h2>Example 2: Constructing a URL</h2>
+    <p>Construct a URL using a base URL and a relative path.</p>
+    <pre>
+        const baseUrl = 'https://example.com';
+        const relativePath = '/path/to/resource?key=value#section1';
+        const url = new URL(relativePath, baseUrl);
+
+        console.log("Constructed URL:", url.href);
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Constructed URL: https://example.com/path/to/resource?key=value#section1
+    </pre>
+
+    <h2>Example 3: Manipulating Query Parameters</h2>
+    <p>Use the <code>URLSearchParams</code> object to manipulate query parameters.</p>
+    <pre>
+        const url = new URL('https://example.com/path/to/resource?key1=value1&key2=value2');
+
+        // Add a new query parameter
+        url.searchParams.append('key3', 'value3');
+
+        // Update an existing query parameter
+        url.searchParams.set('key1', 'updatedValue');
+
+        // Delete a query parameter
+        url.searchParams.delete('key2');
+
+        console.log("Updated URL:", url.href);
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Updated URL: https://example.com/path/to/resource?key1=updatedValue&key3=value3
+    </pre>
+
+    <h2>Example 4: Iterating Over Query Parameters</h2>
+    <p>Iterate over query parameters using the <code>URLSearchParams</code> object.</p>
+    <pre>
+        const url = new URL('https://example.com/path/to/resource?key1=value1&key2=value2');
+
+        for (const [key, value] of url.searchParams) {
+            console.log(`${key}: ${value}`);
+        }
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        key1: value1
+        key2: value2
+    </pre>
+
+    <h2>Example 5: Working with Hash</h2>
+    <p>Access and modify the hash (fragment identifier) of a URL.</p>
+    <pre>
+        const url = new URL('https://example.com/path/to/resource#section1');
+
+        console.log("Original hash:", url.hash);
+
+        // Update the hash
+        url.hash = 'newSection';
+
+        console.log("Updated URL:", url.href);
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Original hash: #section1
+        Updated URL: https://example.com/path/to/resource#newSection
+    </pre>
+
+    <h2>Example 6: Resolving Relative URLs</h2>
+    <p>Resolve a relative URL against a base URL.</p>
+    <pre>
+        const baseUrl = 'https://example.com/base/path';
+        const relativeUrl = '../relative/path';
+        const resolvedUrl = new URL(relativeUrl, baseUrl);
+
+        console.log("Resolved URL:", resolvedUrl.href);
+    </pre>
+    <p><strong>Output:</strong></p>
+    <pre>
+        Resolved URL: https://example.com/relative/path
+    </pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>URL</code> class in JavaScript is a powerful tool for working with URLs. It allows you to parse, manipulate, and construct URLs with ease. By using the <code>URLSearchParams</code> object, you can also work with query parameters in a convenient way.</p>
+
+    <script>
+        // Example 1: Parsing a URL
+        const url1 = new URL('https://example.com:8080/path/to/resource?key=value#section1');
+
+        console.log("Example 1: Parsing a URL");
+        console.log("href:", url1.href);
+        console.log("protocol:", url1.protocol);
+        console.log("host:", url1.host);
+        console.log("hostname:", url1.hostname);
+        console.log("port:", url1.port);
+        console.log("pathname:", url1.pathname);
+        console.log("search:", url1.search);
+        console.log("searchParams:", url1.searchParams);
+        console.log("hash:", url1.hash);
+        console.log("origin:", url1.origin);
+
+        // Example 2: Constructing a URL
+        const baseUrl = 'https://example.com';
+        const relativePath = '/path/to/resource?key=value#section1';
+        const url2 = new URL(relativePath, baseUrl);
+
+        console.log("\nExample 2: Constructing a URL");
+        console.log("Constructed URL:", url2.href);
+
+        // Example 3: Manipulating Query Parameters
+        const url3 = new URL('https://example.com/path/to/resource?key1=value1&key2=value2');
+
+        url3.searchParams.append('key3', 'value3');
+        url3.searchParams.set('key1', 'updatedValue');
+        url3.searchParams.delete('key2');
+
+        console.log("\nExample 3: Manipulating Query Parameters");
+        console.log("Updated URL:", url3.href);
+
+        // Example 4: Iterating Over Query Parameters
+        const url4 = new URL('https://example.com/path/to/resource?key1=value1&key2=value2');
+
+        console.log("\nExample 4: Iterating Over Query Parameters");
+        for (const [key, value] of url4.searchParams) {
+            console.log(`${key}: ${value}`);
+        }
+
+        // Example 5: Working with Hash
+        const url5 = new URL('https://example.com/path/to/resource#section1');
+
+        console.log("\nExample 5: Working with Hash");
+        console.log("Original hash:", url5.hash);
+
+        url5.hash = 'newSection';
+        console.log("Updated URL:", url5.href);
+
+        // Example 6: Resolving Relative URLs
+        const baseUrl2 = 'https://example.com/base/path';
+        const relativeUrl = '../relative/path';
+        const resolvedUrl = new URL(relativeUrl, baseUrl2);
+
+        console.log("\nExample 6: Resolving Relative URLs");
+        console.log("Resolved URL:", resolvedUrl.href);
+    </script>
+</body>
+</html>

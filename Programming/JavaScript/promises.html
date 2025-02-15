@@ -66,8 +66,8 @@
 
     <h3>Promise.race()</h3>
     <p>The <code>Promise.race()</code> method takes an array of Promises and returns a single Promise that resolves or rejects as soon as one of the Promises in the array resolves or rejects.And in case of resolve , the promise which resolves first that resolve value is taken as resolve value of <code>Promise.race()</code> and comes in callback first parameter of <code>Promise.race().then()</code> method
-        , instead of array of results of all results like <code>Promise.all()</code> , and its obvious to think
-    how it can give us resolve values of all promises if it suddenly resolves by any one of them</p>
+        , instead of array of results of all promises resolve values like <code>Promise.all()</code> , and its obvious to think
+    how it can give us resolve values of all promises if it suddenly resolves by any one of them , and other promises are still in pending state</p>
     <pre>
         Promise.race([promise1, promise2]).then(result => {
             console.log("Promise.race result:", result);

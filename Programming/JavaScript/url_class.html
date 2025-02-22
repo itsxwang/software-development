@@ -97,10 +97,15 @@
         url.searchParams.delete('key2');
 
         console.log("Updated URL:", url.href);
+
+        // to get a particular query parameter value
+        console.log(url.searchParams.get('key1'));
     </pre>
     <p><strong>Output:</strong></p>
     <pre>
         Updated URL: https://example.com/path/to/resource?key1=updatedValue&key3=value3
+        updatedValue
+
     </pre>
 
     <h2>Example 4: Iterating Over Query Parameters</h2>

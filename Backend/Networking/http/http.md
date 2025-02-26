@@ -4,6 +4,10 @@
 
 [Directly go to Http Methods](https://youtu.be/qgZiUvV41TI?si=Wldu_7axZN0Tj3pW&t=870)
 
+- **Hop in Networking Context**: In networking, a "hop" refers to a step in the journey of a data packet from its source to its destination. Each hop represents a point where the packet is received, processed, and then forwarded to the next hop. For example, in a network, a data packet might travel from a sender's computer to a router, then to another router, and finally to the receiver's computer, with each leg of the journey counting as a hop.
+
+    - **Data Packet**: A data packet is a small unit of data formatted for internet transfer, acting like a digital envelope that carries bits of information from one point to another. This concept is crucial in understanding how data travels over the internet, as it ensures efficient and reliable communication across networks by breaking down larger files into more manageable pieces. Each packet contains not only the data being transmitted but also metadata such as the source and destination IP addresses, sequence numbers, and other routing information.
+
 [Directly go to Status Codes](https://youtu.be/qgZiUvV41TI?si=RXsp31HcAl_Be4c6&t=1128)
 
 

@@ -27,11 +27,13 @@
     <h2>Example 1: GET Request</h2>
     <p>Fetch data from a public API (e.g., JSONPlaceholder).</p>
     <pre>
+        
         Note :By default fetch will make a GET request so we don't need to mention method in by creating options object
         fetch('https://jsonplaceholder.typicode.com/posts/1') // Here fetch will return promise that will resolve to response when response comes 
-            .then(response => response.json())   // after resolving of first promise(the promise that created by fetch) , the code inside first `then` will be executed
-            .then(data => console.log(data)) // after executing the code inside first `then` , the code inside second `then` will be executed , and this chain of `then` will be execute in order and can be further extended
-            .catch(error => console.error(error)); // if any error comes then code inside `catch` will be executed 
+        .then(response => response.json())   // after resolving of first promise(the promise that created by fetch) , the code inside first `then` will be executed
+        .then(data => console.log(data)) // after executing the code inside first `then` , the code inside second `then` will be executed , and this chain of `then` will be execute in order and can be further extended
+        .catch(error => console.error(error)); // if any error comes then code inside `catch` will be executed 
+        Note : The `response.json()` method also returns a Promise(as you can also see we are able to use `then` on it) because parsing JSON might take some time.
     </pre>
     <p><strong>Output:</strong></p>
     <pre>
@@ -157,6 +159,10 @@
         }
 
         fetchData();
+    Here : 
+    fetch() → returns a Promise resolving to Response
+    response.json() → returns another Promise resolving to parsed JSON
+    await ensures we get the resolved values before proceeding.
     </pre>
     <p><strong>Output:</strong></p>
     <pre>

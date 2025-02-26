@@ -33,3 +33,4 @@ class Singleton {
 // --> Managing a single database connection.
 // --> Implementing global configurations.
 // --> Creating a shared caching system.
+console.log(Singleton.instance)

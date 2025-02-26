@@ -40,7 +40,7 @@ class Singleton:
 
 # Example usage of the Singleton class
 # Creating instances of the Singleton class
-singleton1 = Singleton(10)
+singleton1 = Singleton(10)  # Indirectly we are saying this : Singleton.__new__(Singleton) 
 singleton2 = Singleton(20)
 
 # both instances Singleton(10) and Singleton(20) pointing to the same object in the memory , because of our logic we write in __new__ above

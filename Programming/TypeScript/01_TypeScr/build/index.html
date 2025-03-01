@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>What is Ts?</h1>
+
+    <div>TypeScript is a superset of JavaScript that adds static typing and additional features to JavaScript.</div>
+
+    <div>Oue basic folder Structure when using typescript
+        <ul>
+            <li>src
+                <ul>
+                    <li>main.ts (and all other ts files)</li>
+                </ul>
+            </li>
+
+            <li>build 
+                <ul>
+                    <li>index.html</li>
+                    <li>js(so we have to change tsconfig file to point to build folder , basically to tell typescript to compile js to build/js)
+                        <ul>
+                            <li>main.js</li>
+                            --- other js files (that are compiled from ts)
+                        </ul>
+                    </li>
+                    
+                    <li>Any other build files(like css file or etc)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>
+            
+            To make this folder structure and know about tsconfig file more 
+            <a href="https://youtu.be/gieEQFIfgYc?si=cuN2419Ah1Xg1NCL&t=692">Watch this clip by dave gray</a>
+        </p>
+    </div>
+    <script src="./js/main.js"></script>
+    <script src="./js/typesInTypeScript.js"></script>
+    <!-- So this javascript is compiled from our typescript and then we use it in our html -->
+
+
+</body>
+
+</html>

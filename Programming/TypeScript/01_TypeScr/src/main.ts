@@ -3,7 +3,8 @@ let username= "John Doe";
 console.log("Hello " + username);
 
 /* tsc ./main.ts --outFile ./main.js
-now if you run this command , it will create a main.js file , so basically when we run this  command typescript compiler will convert our main.ts file to main.js */
+/* or just run `tsc` , it also does the same thing but it work only if in tsconfig file we specified rootDir*/
+// now if you run this command , it will create a main.js file , so basically when we run this  command typescript compiler will convert our main.ts file to main.js */
 
 username = 'dcd';
 console.log("Hello " + username);
@@ -12,4 +13,3 @@ console.log("Hello " + username);
  */
 
 // console.log(7/'7'); type coercion not allowed in typescript , however it is allowed in javascript
-

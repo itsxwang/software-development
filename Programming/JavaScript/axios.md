@@ -142,6 +142,18 @@ Any other request-specific properties (like request body for POST requests)
 }, error => {
   console.error("❌ Request Error:", error);
   return Promise.reject(error);
+
+/*    error object mostly contains validation errors or config modification failures.
+  use this to catch and fix request config issues before they even reach the server! 
+  The error in request.use(config, error) only happens(means second callback only called) if the interceptor throws an error.
+  error object will typically contain:
+  - message :	Error message (e.g., "Missing Authorization Token").
+  - stack :	Stack trace (shows where the error happened).
+  - config : The Axios request config object (if available).
+  - code : Axios error code (e.g., "ERR_BAD_OPTION" in some cases)
+  
+Use this to catch and fix request config issues before they even reach the server!
+  */
 });
 
 // 🛠️ **Response Interceptor**
@@ -152,6 +164,14 @@ apiClient.interceptors.response.use(response => {
   console.error("❌ Axios Error:", error);
 
   // Handle Unauthorized (401) globally
+
+  /* 
+  What error.response includes?
+  When a request fails after reaching the server, Axios provides the error.response object, which includes detailed information about the server's response.
+
+💡 This means error.response is only available if the server actually responded with an error status (e.g., 4xx or 5xx).
+
+If the request never reached the server (e.g., network failure), then error.response will be undefined. */
   if (error.response && error.response.status === 401) {
     console.warn("🔒 Unauthorized! Redirecting to login...");
     window.location.href = "/login";  // Example: Redirect to login page
@@ -228,6 +248,12 @@ async function fetchInterceptor(url, options = {}) {
   } catch (error) {
     console.error("Fetch Interceptor Error:", error);
     throw error; // Re-throw error to mimic Axios's `Promise.reject`
+    //  In JavaScript, throw error inside an async function automatically rejects the returned promise.
+    /* 
+    This means the following two lines are equivalent:
+throw error;         // Automatically rejects the promise in an async function
+return Promise.reject(error);  // Explicitly rejecting the promise
+    */
   }
 }
 

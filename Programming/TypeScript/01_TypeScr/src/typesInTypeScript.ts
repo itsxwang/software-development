@@ -13,7 +13,7 @@ function Message(message: string) {
  */
 
 
-// Explicitely define types , when we explicitly define types we called that type annotation
+// Explicitely define types , when we explicitly define types we called that `type annotation`
 // ------------------------------------------------------------
 // number: All numeric values (integers and floating point)
 let age: number = 30;
@@ -38,18 +38,70 @@ console.log(greet(userName));
 
 // Function type annotation with arrow syntax , basically this is for function expression
 // (parameter: type) => returnType
-let functionName: (parameterType: string) => string  = function(parameters) {
+
+// so we make parameter `parameterType` optional  , so now parameterType can be string | undefined , and in ts optional params must be at last of all required parameters(if exist)
+let functionName: (parameterType?: string) => string  = function(parameters = 'default_value') {
     return parameters;
 };
+
+functionName('string_value');  // functionName(1); , gives error as this is not a string type
+
+
 /*
 can also be done like this   
 let functionName = (parameterType: string) : string => { 
     return parameters;
 }
 */
+// ------------------------------------------------------------
+/* 
+Interfaces can also be used for make function type annotation , so yeah TypeScript, interfaces can also define function types using call signatures ,
+when an interface has only a function signature, it behaves like a function type alias.
+In an interface, when you define a function signature like (parameter: string): string;, it means any function assigned to this interface must match this signature.
+Here The function(that assigned to the interface) must accept a string and return a string.
+---- Example ----
+
+interface FunctionType {
+    (parameter: string): string;
+    }
+
+- Note : When implementing an interface with function overloads, the function must explicitly handle all cases. Like in below example 
+means the function implementation must explicitly define a parameter types and return types that includes all possible cases (string | number in this example) in the case of overloading , although using function overloads directly (without an interface) is often a better approach for defining multiple function signatures , using Union.
+
+*/
+
+// overloading example 
+interface FunctionType {
+    (parameter: string): string;
+    (parameter: number): number;
+}
+
+// means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
+function takesYourFunction(f: FunctionType) {
+    if (Math.random() > 0.5) return "1";
+    return 1;
+}
 
 
-functionName('string_value');  // functionName(1); , gives error as this is not a string type
+// here we do function declaration 
+function weirdFunction(x: string): string;
+function weirdFunction(x: number): number; // here we do function overloading , that takes both string and number type and can return both string and number type value , hover on this function to see that
+// Note : Just after the function declaration we can not write any code , we first have to implement that function that we declared above , otherwise it will throw error `Function implementation is missing or not immediately following the declaration.`
+// here we do function implementation
+function weirdFunction(x: string| number): string | number {
+    if (Math.random() > 0.5) return "1"; // random logic 
+    return 1;
+}
+
+takesYourFunction(weirdFunction);
+
+// ------------------------------------------------------------
+/* 
+type aliases can also be use for make function type annotation 
+---- Example ----
+type FunctionType = (parameter: string) => string;
+*/
+
 
 // Array Types
 // ------------------------------------------------------------
@@ -75,7 +127,7 @@ let myObj: {
 // any: Opt-out of type checking
 let myAny: any = "Hello";  // Can be assigned any type
 
-// void: Absence of any type, commonly used as function return type
+// void: Absence of any type, commonly used as function return type , Basically we can say the function that returns nothing ts infers implicitly that it returns void , until we explicitly define the return type
 function logMessage(message: string): void {
     console.log(message);  // No return value
 }
@@ -148,11 +200,16 @@ type guitarist = {
     instrument: String
 };
 
+
 let guitaristobj : guitarist = {
     name: "John Doe",
     // age: 30, still work fine
     instrument: "Guitar"
 };
+
+// let's make type for some function 
+type logMessage = (message: string) => void;
+
 
 // define custom types using interface keyword
 // -------------------------------------------------------------
@@ -162,6 +219,7 @@ interface brainyEnginner {
     instrument: String
 };
 // so both are same 
+
 
 function sayBye(message: brainyEnginner){
     // now if we do this 
@@ -174,3 +232,73 @@ function sayBye(message: brainyEnginner){
    so that's one way it helps you eliminate errors in your code at compile time(development time) rather at run time(when the app runs) unlike in JavaScript  */
 }
 
+// ------------------- Note -----------------------
+const sumAll = (a:number=10,b:number,c:number = 9 ) => a + b + c;
+console.log(sumAll(undefined,1,undefined)); // in js and ts both if param is given undefined it use default value(but only if default value is specfied for that param)
+// Note : you can't give default values in function signature(type aliases / interface) direct , you have to give them in function implementation
+
+// type annotation with rest operator
+// -------------------------------------------------------------
+const factorial = (...args:number[]) => args.reduce((a,b) => a * b);
+console.log(factorial(1,2,3,4,5));
+
+
+
+// -------------------- Note -----------------------
+/*
+ this will gives error , 
+ ```Function lacks ending return statement and return type does not include 'undefined'```
+TypeScript requires all code paths to return a value if the function has a return type.
+TypeScript expects a guaranteed return value in all possible cases.
+Here, we have if statements, but no default return outside the conditions.
+TypeScript does not assume that value is always number | string. In some cases, TypeScript may think that execution could fall through without returning anything, resulting in an implicit undefined.
+
+So to solve this error first , you can do , Simply You can use else instead of if statement , which handle all paths
+or you can just add 3rd return statement outside of both if statements
+
+Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type 
+Its bacause : 
+1️⃣ Understanding never in TypeScript
+In TypeScript, never is a special type that represents a value that will never be observed. This happens in two main cases:
+
+1. A function that never returns (e.g., throw or while(true))
+2. A function that has unreachable code paths
+
+Since throw always terminates execution, TypeScript treats throwError() as returning never.
+
+2️⃣ Why Doesn’t Your Function Throw a Type Error?
+So Below is our function: So Why Does It Work Without an Error?
+
+1. TypeScript sees throw as an "exit"
+
+- The function return type is string.
+- When throw new Error() is encountered, execution stops. That guarantees undefined never be return.
+- The throw statement has a never type because the function does not proceed past this point.
+
+
+2. TypeScript does not require unreachable code to match the function's return type
+
+- The function always returns string OR throws an error.
+- Since throw means the function will never reach an invalid state, TypeScript does not complain.
+- In TypeScript, never is compatible with all return types, because execution is halted.
+
+3️⃣ Final Answer
+👉 TypeScript does not throw an error because throw new Error() effectively ends execution, and never is considered compatible with string.
+🚀 This means that any function that throws an error is "safe" in TypeScript's eyes because it will never return an incorrect value!
+
+4️⃣ Conclusion : 
+So from here what we conclude is : 
+Ts more focus on not returning the type (that is not specified as return type) as compare to returning the type (that is specified)
+
+*/
+const numOrString =  (value : number | string) :string => { 
+    
+    if (typeof value === 'number'){
+        return 'number'
+    }
+
+    if (typeof value === 'string'){
+        return 'string'
+    }
+    throw new Error('value must be number or string') 
+};

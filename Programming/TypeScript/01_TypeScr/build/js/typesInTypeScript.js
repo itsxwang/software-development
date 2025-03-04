@@ -10,7 +10,7 @@ function Message(message) {
 /*  ts automatically inferred that what function going to return based on the information it knows about that funtion
     like here it inferred that this function going to return string type value based on the parameter type it knows
  */
-// Explicitely define types , when we explicitly define types we called that type annotation
+// Explicitely define types , when we explicitly define types we called that `type annotation`
 // ------------------------------------------------------------
 // number: All numeric values (integers and floating point)
 let age = 30;
@@ -30,16 +30,31 @@ let userName = "Alice";
 console.log(greet(userName));
 // Function type annotation with arrow syntax , basically this is for function expression
 // (parameter: type) => returnType
-let functionName = function (parameters) {
+// so we make parameter `parameterType` optional  , so now parameterType can be string | undefined , and in ts optional params must be at last of all required parameters(if exist)
+let functionName = function (parameters = 'default_value') {
     return parameters;
 };
-/*
-can also be done like this
-let functionName = (parameterType: string) : string => {
-    return parameters;
-}
-*/
 functionName('string_value'); // functionName(1); , gives error as this is not a string type
+// means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
+function takesYourFunction(f) {
+    if (Math.random() > 0.5)
+        return "1";
+    return 1;
+}
+// Note : Just after the function declaration we can not write any code , we first have to implement that function that we declared above , otherwise it will throw error `Function implementation is missing or not immediately following the declaration.`
+// here we do function implementation
+function weirdFunction(x) {
+    if (Math.random() > 0.5)
+        return "1"; // random logic 
+    return 1;
+}
+takesYourFunction(weirdFunction);
+// ------------------------------------------------------------
+/*
+type aliases can also be use for make function type annotation
+---- Example ----
+type FunctionType = (parameter: string) => string;
+*/
 // Array Types
 // ------------------------------------------------------------
 // Two ways to declare array types:
@@ -58,7 +73,7 @@ let myObj = {
 // ------------------------------------------------------------
 // any: Opt-out of type checking
 let myAny = "Hello"; // Can be assigned any type
-// void: Absence of any type, commonly used as function return type
+// void: Absence of any type, commonly used as function return type , Basically we can say the function that returns nothing ts infers implicitly that it returns void , until we explicitly define the return type
 function logMessage(message) {
     console.log(message); // No return value
 }
@@ -129,3 +144,67 @@ function sayBye(message) {
     /*  so typescript realize in advance that message.name can also be undefined and upperCase() can cause error because of that,
     so that's one way it helps you eliminate errors in your code at compile time(development time) rather at run time(when the app runs) unlike in JavaScript  */
 }
+// ------------------- Note -----------------------
+const sumAll = (a = 10, b, c = 9) => a + b + c;
+console.log(sumAll(undefined, 1, undefined)); // in js and ts both if param is given undefined it use default value(but only if default value is specfied for that param)
+// Note : you can't give default values in function signature(type aliases / interface) direct , you have to give them in function implementation
+// type annotation with rest operator
+// -------------------------------------------------------------
+const factorial = (...args) => args.reduce((a, b) => a * b);
+console.log(factorial(1, 2, 3, 4, 5));
+// -------------------- Note -----------------------
+/*
+ this will gives error ,
+ ```Function lacks ending return statement and return type does not include 'undefined'```
+TypeScript requires all code paths to return a value if the function has a return type.
+TypeScript expects a guaranteed return value in all possible cases.
+Here, we have if statements, but no default return outside the conditions.
+TypeScript does not assume that value is always number | string. In some cases, TypeScript may think that execution could fall through without returning anything, resulting in an implicit undefined.
+
+So to solve this error first , you can do , Simply You can use else instead of if statement , which handle all paths
+or you can just add 3rd return statement outside of both if statements
+
+Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type
+Its bacause :
+1️⃣ Understanding never in TypeScript
+In TypeScript, never is a special type that represents a value that will never be observed. This happens in two main cases:
+
+1. A function that never returns (e.g., throw or while(true))
+2. A function that has unreachable code paths
+
+Since throw always terminates execution, TypeScript treats throwError() as returning never.
+
+2️⃣ Why Doesn’t Your Function Throw a Type Error?
+So Below is our function: So Why Does It Work Without an Error?
+
+1. TypeScript sees throw as an "exit"
+
+- The function return type is string.
+- When throw new Error() is encountered, execution stops. That guarantees undefined never be return.
+- The throw statement has a never type because the function does not proceed past this point.
+
+
+2. TypeScript does not require unreachable code to match the function's return type
+
+- The function always returns string OR throws an error.
+- Since throw means the function will never reach an invalid state, TypeScript does not complain.
+- In TypeScript, never is compatible with all return types, because execution is halted.
+
+3️⃣ Final Answer
+👉 TypeScript does not throw an error because throw new Error() effectively ends execution, and never is considered compatible with string.
+🚀 This means that any function that throws an error is "safe" in TypeScript's eyes because it will never return an incorrect value!
+
+4️⃣ Conclusion :
+So from here what we conclude is :
+Ts more focus on not returning the type (that is not specified as return type) as compare to returning the type (that is specified)
+
+*/
+const numOrString = (value) => {
+    if (typeof value === 'number') {
+        return 'number';
+    }
+    if (typeof value === 'string') {
+        return 'string';
+    }
+    throw new Error('value must be number or string');
+};

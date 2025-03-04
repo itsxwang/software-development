@@ -23,7 +23,6 @@ interface User {
   
   // Type aliases use intersections (`&`) for extension:
   type EmployeeType = User & { salary: number };
-  
   // Interfaces are generally preferred for extending.
   
   // 3. Merging & Declaration Merging
@@ -35,7 +34,6 @@ interface User {
   interface MergedUser {
     age: number;
   }
-  
   // Now, `MergedUser` has both `name` and `age`
   const person: MergedUser = { name: "Alice", age: 25 };
   

@@ -79,7 +79,7 @@ interface FunctionType {
 // means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
 function takesYourFunction(f: FunctionType) {
     if (Math.random() > 0.5) return "1";
-    return 1;
+    return f("");
 }
 
 
@@ -109,7 +109,7 @@ type FunctionType = (parameter: string) => string;
 // 1. Using square brackets: type[]
 // 2. Using generic Array<type>
 let myNums: (number | string)[] = [1, 2, 3,'string'];
-let genericArray: Array<number>  = [1, 2, 3];
+let genericArray: Array<number>  = [1, 2, 3]; // will explore this soon in detailed
 
 // Object Types
 // ------------------------------------------------------------
@@ -177,7 +177,7 @@ myUnion = 1;  // Valid
 // Specific string/number/any values as types
 let myLiteral: 'hello' = "hello";  // Can only be assigned "hello"
 
-// We can also specify that a variable can be object of a specific class
+// We can also specify a variable that can be object of a specific class
 // ------------------------------------------------------------
 class User {
     name: string;
@@ -188,6 +188,7 @@ class User {
     }
 }
 
+// so here userobj can accept only object of User class
 let userobj : User = new User("John Doe", 30);
 
 // Define a custom types , using type keyword , these are also called type aliases
@@ -253,10 +254,11 @@ TypeScript expects a guaranteed return value in all possible cases.
 Here, we have if statements, but no default return outside the conditions.
 TypeScript does not assume that value is always number | string. In some cases, TypeScript may think that execution could fall through without returning anything, resulting in an implicit undefined.
 
-So to solve this error first , you can do , Simply You can use else instead of if statement , which handle all paths
-or you can just add 3rd return statement outside of both if statements
+So to solve this error first , you can do , - Simply You can use else instead of if statement , which handle all paths
 
-Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type 
+- Or you can just add 3rd return statement outside of both if statements
+
+- Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type 
 Its bacause : 
 1️⃣ Understanding never in TypeScript
 In TypeScript, never is a special type that represents a value that will never be observed. This happens in two main cases:

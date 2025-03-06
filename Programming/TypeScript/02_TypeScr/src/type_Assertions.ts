@@ -68,7 +68,25 @@ Key Takeaways
 - Type assertions (as) override TypeScript's checks but do not validate correctness.
 - let c = a as three; does not raise an error because TypeScript assumes you know what you're doing.
 - The error only appears when you later assign a value ('string other than hello') that does not match the literal type ('hello').
-- If you want stricter checking, avoid using as too loosely. Instead, use proper type guards or narrowing.
+- If you want stricter checking, avoid using as too loosely. Instead, use proper type guards(basically if-else statements for make check on types) or narrowing (basically narrowing also refers to same thing:
+In TypeScript, narrowing means refining a broader type into a more specific one based on runtime checks.
+Think of it as "narrowing down the possibilities" of what a variable can be.
+
+Narrowing can be done in many ways: 
+
+📌 Example of Narrowing using if-else
+Let's say we have a variable that can be a string or a number:
+
+
+function printLength(x: string | number) {
+    if (typeof x === "string") {
+        console.log(x.length); // ✅ Here, TypeScript knows `x` is a string
+    } else {
+        console.log(x.toFixed(2)); // ✅ Here, TypeScript knows `x` is a number
+    }
+}
+
+)
 
 Why does let c = true as three; give an error?
 let c = true as three; // ❌ ERROR
@@ -132,3 +150,80 @@ so it also gives an error if we do not explicitly tell the TypeScript compiler t
 
 // so as we know ts automatically infers either its a HtmlElement or null, so if we wanna assert that this element actually exist (means not null) , we can put `!` at last of statement , it also called non-null assertion
 const canvasElement  = document.getElementById('#canvas')! ;
+
+function isString(x: any) {
+    return typeof x === "string";
+}
+
+function test(x: string | number) {
+    if (isString(x)) {
+        console.log(x.toUpperCase()); // ❌ ERROR! TypeScript still thinks x might be a number
+    }
+}
+
+
+
+// -------------------------------------------
+/* Using type predicates (is) 
+
+1. The is keyword creates a "type guard" → It tells TypeScript to narrow the type inside an if block.
+2. Without is, TypeScript in some cases won’t trust your function to properly check the type. However in newer version of TypeScript, compile able to infer that also.
+3. It does NOT return a string. It just tells TypeScript:
+"If this function returns true, then treat the variable as this type." where `as` is a parameterName of that function signature.
+
+Using type predicates
+We’ve worked with existing JavaScript constructs to handle narrowing so far, however sometimes you want more direct control over how types change throughout your code.
+
+To define a user-defined type guard, we simply need to define a function whose return type is a type predicate:
+```
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+```
+Try
+pet is Fish is our type predicate in this example. A predicate takes the form parameterName is Type, where parameterName must be the name of a parameter from the current function signature.
+
+Any time isFish is called with some variable, TypeScript will narrow that variable to that specific type if the original type is compatible.
+
+Both calls to 'swim' and 'fly' are now okay.
+```
+let pet = getSmallPet();
+ 
+if (isFish(pet)) {
+  pet.swim();
+} else {
+  pet.fly();
+}
+```
+Try
+Notice that TypeScript not only knows that pet is a Fish in the if branch; it also knows that in the else branch, you don’t have a Fish, so you must have a Bird.
+
+You may use the type guard isFish to filter an array of Fish | Bird and obtain an array of Fish:
+```
+const zoo: (Fish | Bird)[] = [getSmallPet(), getSmallPet(), getSmallPet()];
+const underWater1: Fish[] = zoo.filter(isFish);
+or, equivalently
+const underWater2: Fish[] = zoo.filter(isFish) as Fish[];
+ 
+The predicate may need repeating for more complex examples
+const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
+  if (pet.name === "sharkey") return false;
+  return isFish(pet);
+});
+```
+Try
+In addition, classes can use this is Type to narrow their type.
+
+
+*/
+
+// assertion funcions 
+// ------------------------------------------------------------
+// read about assetrion functions for assertion here : https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
+function assert(condition: any, msg?: string): asserts condition {
+    if (!condition) {
+      throw new Error(msg);
+    }
+  }
+
+//  asserts condition says that whatever gets passed into the condition parameter must be true if the assert returns (because otherwise it would throw an error)

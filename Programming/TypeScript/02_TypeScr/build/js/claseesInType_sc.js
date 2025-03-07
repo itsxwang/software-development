@@ -25,6 +25,7 @@ class Coder {
                    and assignments in the body of the constructor are not required here
          */ this.name = name;
         this.lang = lang;
+        this.id = id;
     }
     code(language) {
         console.log(`${this.name} is coding in ${language}`);
@@ -51,3 +52,37 @@ class WebCoder extends Coder {
 }
 const webCoder = new WebCoder('Johny', 'TypeScript', 30, 'Angular');
 console.log(webCoder.getDecoratedId());
+// in this way we can implement interface to some class , implements means Codere class must have all properties of ICoder , if it not ts compile gives error
+class Codere {
+    // name: string;
+    // lang: string;
+    constructor(name, lang) {
+        this.name = name;
+        this.lang = lang;
+        this.name = name;
+        this.lang = lang;
+    }
+    code(language) {
+        throw new Error("Method not implemented.");
+    }
+}
+const coder1 = new Codere('John Doe', 'TypeScript');
+// coder1.code('TypeScript') throws error
+// -----------------------------------------------------------
+class Peeps {
+    // private data = 0 , so we can also use visibility modifiers outside the constructor
+    constructor(name, age, collection) {
+        this.name = name;
+        this.age = age;
+        this.collection = collection;
+    }
+    get my_collection() {
+        return this.collection;
+    }
+    set my_collection(new_collection) {
+        this.collection = new_collection;
+    }
+}
+const peeps = new Peeps('John Doe', 30, ['js', 'python']);
+peeps.my_collection = [...peeps.my_collection, 'TypeScript'];
+console.log(peeps.my_collection);

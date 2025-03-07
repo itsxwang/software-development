@@ -35,20 +35,28 @@ let functionName = function (parameters = 'default_value') {
     return parameters;
 };
 functionName('string_value'); // functionName(1); , gives error as this is not a string type
-// means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
-function takesYourFunction(f) {
-    if (Math.random() > 0.5)
-        return "1";
-    return 1;
+/*
+can also be done like this
+let functionName = (parameterType: string) : string => {
+    return parameters;
 }
-// Note : Just after the function declaration we can not write any code , we first have to implement that function that we declared above , otherwise it will throw error `Function implementation is missing or not immediately following the declaration.`
-// here we do function implementation
-function weirdFunction(x) {
-    if (Math.random() > 0.5)
-        return "1"; // random logic 
-    return 1;
-}
-takesYourFunction(weirdFunction);
+*/
+// ------------------------------------------------------------
+/*
+Interfaces can also be used for make function type annotation , so yeah TypeScript, interfaces can also define function types using call signatures ,
+when an interface has only a function signature, it behaves like a function type alias.
+In an interface, when you define a function signature like (parameter: string): string;, it means any function assigned to this interface must match this signature.
+Here The function(that assigned to the interface) must accept a string and return a string.
+---- Example ----
+
+interface FunctionType {
+    (parameter: string): string;
+    }
+
+- Note : When implementing an interface with function overloads, the function must explicitly handle all cases. Like in example that i give in another file of named : function_overloading.ts
+means the function implementation must explicitly define a parameter types and return types that includes all possible cases (string | number in that example) in the case of overloading , although using function overloads directly (without an interface) is often a better approach for defining multiple function signatures , using Union.
+
+*/
 // ------------------------------------------------------------
 /*
 type aliases can also be use for make function type annotation
@@ -61,7 +69,7 @@ type FunctionType = (parameter: string) => string;
 // 1. Using square brackets: type[]
 // 2. Using generic Array<type>
 let myNums = [1, 2, 3, 'string'];
-let genericArray = [1, 2, 3];
+let genericArray = [1, 2, 3]; // will explore this soon in detailed
 // Object Types
 // ------------------------------------------------------------
 // Objects with specific property types
@@ -117,7 +125,7 @@ myUnion = 1; // Valid
 // ------------------------------------------------------------
 // Specific string/number/any values as types
 let myLiteral = "hello"; // Can only be assigned "hello"
-// We can also specify that a variable can be object of a specific class
+// We can also specify a variable that can be object of a specific class
 // ------------------------------------------------------------
 class User {
     constructor(name, age) {
@@ -125,6 +133,7 @@ class User {
         this.age = age;
     }
 }
+// so here userobj can accept only object of User class
 let userobj = new User("John Doe", 30);
 let guitaristobj = {
     name: "John Doe",
@@ -161,10 +170,11 @@ TypeScript expects a guaranteed return value in all possible cases.
 Here, we have if statements, but no default return outside the conditions.
 TypeScript does not assume that value is always number | string. In some cases, TypeScript may think that execution could fall through without returning anything, resulting in an implicit undefined.
 
-So to solve this error first , you can do , Simply You can use else instead of if statement , which handle all paths
-or you can just add 3rd return statement outside of both if statements
+So to solve this error first , you can do , - Simply You can use else instead of if statement , which handle all paths
 
-Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type
+- Or you can just add 3rd return statement outside of both if statements
+
+- Or last that is a motive of this example : throw a error, or call a function that has never type, now you have question why if our function has string return type, it should only return string, so how can we return never type
 Its bacause :
 1️⃣ Understanding never in TypeScript
 In TypeScript, never is a special type that represents a value that will never be observed. This happens in two main cases:

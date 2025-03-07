@@ -65,35 +65,11 @@ interface FunctionType {
     (parameter: string): string;
     }
 
-- Note : When implementing an interface with function overloads, the function must explicitly handle all cases. Like in below example 
-means the function implementation must explicitly define a parameter types and return types that includes all possible cases (string | number in this example) in the case of overloading , although using function overloads directly (without an interface) is often a better approach for defining multiple function signatures , using Union.
+- Note : When implementing an interface with function overloads, the function must explicitly handle all cases. Like in example that i give in another file of named : function_overloading.ts 
+means the function implementation must explicitly define a parameter types and return types that includes all possible cases (string | number in that example) in the case of overloading , although using function overloads directly (without an interface) is often a better approach for defining multiple function signatures , using Union.
 
 */
 
-// overloading example 
-interface FunctionType {
-    (parameter: string): string;
-    (parameter: number): number;
-}
-
-// means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
-function takesYourFunction(f: FunctionType) {
-    if (Math.random() > 0.5) return "1";
-    return f("");
-}
-
-
-// here we do function declaration 
-function weirdFunction(x: string): string;
-function weirdFunction(x: number): number; // here we do function overloading , that takes both string and number type and can return both string and number type value , hover on this function to see that
-// Note : Just after the function declaration we can not write any code , we first have to implement that function that we declared above , otherwise it will throw error `Function implementation is missing or not immediately following the declaration.`
-// here we do function implementation
-function weirdFunction(x: string| number): string | number {
-    if (Math.random() > 0.5) return "1"; // random logic 
-    return 1;
-}
-
-takesYourFunction(weirdFunction);
 
 // ------------------------------------------------------------
 /* 

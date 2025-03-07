@@ -7,6 +7,6 @@ console.log("Hello " + username);
 username = 'dcd';
 console.log("Hello " + username);
 /* so everytime we make a change in ts we have to recompile our ts file to make those same changes in js file , but we can use
-`tsc ./main.ts -w`, now if we make changes in ts file it will automatically recompile our js file
+`tsc ./main.ts -w`, now if we make changes in main.ts file it will automatically recompile our js file
  */
 // console.log(7/'7'); type coercion not allowed in typescript , however it is allowed in javascript

@@ -38,7 +38,7 @@ class Coder {
     }
 
     public getId() {
-        return this.id
+        return `${this.id} Only`
     }
     // 
 }
@@ -63,7 +63,7 @@ class WebCoder extends Coder {
 
     }
     public getDecoratedId() {
-        return `#${this.id}`
+        return `#${super.getId()}`
     }
 
 }
@@ -100,13 +100,15 @@ const coder1 = new Codere('John Doe', 'TypeScript')
 // -----------------------------------------------------------
 
 class Peeps {
-    // private data = 0 , so we can also use visibility modifiers outside the constructor
+    private data  = 0 //, so we can also use visibility modifiers outside the constructor
 
 
     constructor
-    (public name: string,
+    (
+        public name: string,
         private age: number,
-        private collection : string[]
+        private collection : string[],
+        data = 'sample_data'
     ) {
 
     }

@@ -1,8 +1,19 @@
 // Function overloading example 
+
 interface FunctionType {
     (parameter: string): string;
     (parameter: number): number;
 }
+
+
+/* Same thing using type alias
+
+type FunctionType =  {
+    (parameter: string): string;
+    (parameter: number): number;
+}
+
+*/
 
 // means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
 function takesYourFunction(f: FunctionType) {

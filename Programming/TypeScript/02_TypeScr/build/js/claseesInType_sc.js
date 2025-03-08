@@ -31,7 +31,7 @@ class Coder {
         console.log(`${this.name} is coding in ${language}`);
     }
     getId() {
-        return this.id;
+        return `${this.id} Only`;
     }
 }
 const coder = new Coder('John Doe', 'TypeScript', 30, 1); // now we already know like python , now if you not give any value to any required argument it will give error 
@@ -47,7 +47,7 @@ class WebCoder extends Coder {
         this.framework = framework;
     }
     getDecoratedId() {
-        return `#${this.id}`;
+        return `#${super.getId()}`;
     }
 }
 const webCoder = new WebCoder('Johny', 'TypeScript', 30, 'Angular');
@@ -70,11 +70,11 @@ const coder1 = new Codere('John Doe', 'TypeScript');
 // coder1.code('TypeScript') throws error
 // -----------------------------------------------------------
 class Peeps {
-    // private data = 0 , so we can also use visibility modifiers outside the constructor
-    constructor(name, age, collection) {
+    constructor(name, age, collection, data = 'sample_data') {
         this.name = name;
         this.age = age;
         this.collection = collection;
+        this.data = 0; //, so we can also use visibility modifiers outside the constructor
     }
     get my_collection() {
         return this.collection;

@@ -97,5 +97,6 @@ let user6 = {
     name: 'John',
     age: 30
 };
+// so this syntax is handy if you not wanna specify a specific type for specific property and not wanna make index signatures
 // ---------------------------------------------
 // And Note : An index signature parameter type cannot be a literal type or generic type. Consider using a mapped object type instead.

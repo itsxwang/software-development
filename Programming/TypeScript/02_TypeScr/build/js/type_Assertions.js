@@ -128,7 +128,7 @@ function test(x) {
 1. The is keyword creates a "type guard" → It tells TypeScript to narrow the type inside an if block.
 2. Without is, TypeScript in some cases won’t trust your function to properly check the type. However in newer version of TypeScript, compile able to infer that also.
 3. It does NOT return a string. It just tells TypeScript:
-"If this function returns true, then treat the variable as this type." where `as` is a parameterName of that function signature.
+"If this function returns true, then treat the variable as this type.
 
 Using type predicates
 We’ve worked with existing JavaScript constructs to handle narrowing so far, however sometimes you want more direct control over how types change throughout your code.

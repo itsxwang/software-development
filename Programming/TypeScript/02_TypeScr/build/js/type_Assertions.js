@@ -32,7 +32,7 @@ Now, c is already declared as three ('hello').
 At this point, TypeScript enforces strict type checking, and an error is raised.
 
 Shouldn't It Have Raised an Error Earlier?
-Technically, yes, but TypeScript's type assertion mechanism does not check whether the asserted type is correct—it only allows you to override the type system.
+Technically, yes, but TypeScript's type assertion mechanism does not check whether the asserted type is correct. It only allows you to override the type system.
 Type assertions (as someType) do not perform runtime validation.
 They are only checked when you actually try to assign an invalid value without an assertion.
 
@@ -119,7 +119,7 @@ function isString(x) {
 }
 function test(x) {
     if (isString(x)) {
-        console.log(x.toUpperCase()); // ❌ ERROR! TypeScript still thinks x might be a number
+        console.log(x.toUpperCase());
     }
 }
 // -------------------------------------------
@@ -127,7 +127,7 @@ function test(x) {
 
 1. The is keyword creates a "type guard" → It tells TypeScript to narrow the type inside an if block.
 2. Without is, TypeScript in some cases won’t trust your function to properly check the type. However in newer version of TypeScript, compile able to infer that also.
-3. It does NOT return a string. It just tells TypeScript:
+3. It does NOT return a pet here. It just tells TypeScript:
 "If this function returns true, then treat the variable as this type.
 
 Using type predicates

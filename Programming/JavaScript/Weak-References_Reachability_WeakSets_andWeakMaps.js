@@ -52,8 +52,9 @@ wm.set(obj2, 'value');
 // Create a new reference for this { name: 'John' } object
 newReferenceToObj = obj2;
 obj2 = null 
-
+newReferenceToObj = null
 console.log(wm) // WeakMap { <items unknown> }
 console.log(wm.has(obj2)); // false , because obj2 is null and wm don't have reference to null(obviously it is primitive type also , so how it can have reference also)
 console.log(wm.has(newReferenceToObj)); // true beacause(btw its obvious because `newReferenceToObj` just a reference to the object that we store in `wm` WeakMap) - https://youtu.be/8B514jlvkqE?si=l_oCd6rEOqT--P4_&t=857
 console.log(wm.get(newReferenceToObj)); // 'value'
+

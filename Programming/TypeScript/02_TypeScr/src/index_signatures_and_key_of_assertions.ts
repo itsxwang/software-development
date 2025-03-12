@@ -58,7 +58,7 @@ console.log(user3[id1_User3])
 // And one more thing , if we do :
 
 console.log(user3['random_property'])  /* undefined , now you may thought isn't ts should throw error as `random_property` is not in user3 object, so why it not throw? The reason is simple ts think user3 may have this property and
-ts not know the names of properties could be , it only knows that keys can be string | Symbol type, and their values could be string | number type, so ts thinks it going to return string | */
+ts not know the names of properties could be , it only knows that keys can be string | Symbol type, and their values could be string | number type, so ts thinks it going to return string | number */
 
 // ------------------------------------------------------
 // We can also combine index signatures with specific properties name like this :
@@ -157,8 +157,7 @@ let logkey = (obj: User5, key: keyof User5) => {
 
 logkey(user5, 'name') // no error 
 logkey(user5, 'height') // no error 
-// logkey(user5 , 'heights') // error
-
+// logkey(user5 , 'heights') // error , as heights not define in User5 type annotation
 // ---------------------------------------------
 // Record Utility type
 // https://youtu.be/gieEQFIfgYc?si=TtoYAJRDURcoC4pr&t=10640 see this clip by Dave Gray to understand Record utility type
@@ -191,6 +190,10 @@ let user6: User6 = {
     age: 30
 }
 // so this syntax is handy if you not wanna specify a specific type for specific property and not wanna make index signatures
+
+// if we want that Object can take property with anyname , we can do this:
+// type User6 = Record<string, string | number> means Object with User6 type can take any property with type string
+
 
 // ---------------------------------------------
 // And Note : An index signature parameter type cannot be a literal type or generic type. Consider using a mapped object type instead.

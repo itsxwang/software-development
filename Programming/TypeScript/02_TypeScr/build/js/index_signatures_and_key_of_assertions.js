@@ -27,7 +27,7 @@ console.log(user3[id1_User3]);
 // user3[id1_User3] = 20 Error !!  `Index signature in type 'User3' only permits reading.`
 // And one more thing , if we do :
 console.log(user3['random_property']); /* undefined , now you may thought isn't ts should throw error as `random_property` is not in user3 object, so why it not throw? The reason is simple ts think user3 may have this property and
-ts not know the names of properties could be , it only knows that keys can be string | Symbol type, and their values could be string | number type, so ts thinks it going to return string | */
+ts not know the names of properties could be , it only knows that keys can be string | Symbol type, and their values could be string | number type, so ts thinks it going to return string | number */
 let user4 = {
     name: "John",
     age: 30,
@@ -98,5 +98,7 @@ let user6 = {
     age: 30
 };
 // so this syntax is handy if you not wanna specify a specific type for specific property and not wanna make index signatures
+// if we want that Object can take property with anyname , we can do this:
+// type User6 = Record<string, string | number> means Object with User6 type can take any property with type string
 // ---------------------------------------------
 // And Note : An index signature parameter type cannot be a literal type or generic type. Consider using a mapped object type instead.

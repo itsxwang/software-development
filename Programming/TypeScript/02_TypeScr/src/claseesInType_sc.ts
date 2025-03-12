@@ -5,11 +5,12 @@
     1. for initailaize any property we first have to declare it outside a constructor
     2. after declare some property , we have to initialize it 
     constructor(name: string) {
-        this.name = name;
+        this.name = name; // if we not initialize these properties here, we get error `Property 'name' has no initializer and is not definitely assigned in the constructor.`
         this.lang = lang;
     }
 
 } */
+
 // Now to keeps things dry (do not repeat yourself) we can use visibility modifiers like public , private , protected , etc. they are also be called data/access modifiers
 
 class Coder {
@@ -129,4 +130,3 @@ class Peeps {
 const peeps = new Peeps('John Doe', 30,['js','python']);
 peeps.my_collection = [...peeps.my_collection , 'TypeScript']
 console.log(peeps.my_collection)
-

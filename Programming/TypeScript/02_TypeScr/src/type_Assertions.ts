@@ -24,9 +24,9 @@ And note : mistakes can be made using assertions , if you not set up them correc
 
 // example of type assertions using as 
 
-type one = string;
-type two = string | number; 
-type three = 'hello';
+type one = string; // specific
+type two = string | number; // lesser specific than one and three
+type three = 'hello'; // most specific than two 
 
 // convert to less specific type
 let a: one = 'welcome';
@@ -60,7 +60,7 @@ Now, c is already declared as three ('hello').
 At this point, TypeScript enforces strict type checking, and an error is raised.
 
 Shouldn't It Have Raised an Error Earlier?
-Technically, yes, but TypeScript's type assertion mechanism does not check whether the asserted type is correct—it only allows you to override the type system.
+Technically, yes, but TypeScript's type assertion mechanism does not check whether the asserted type is correct. It only allows you to override the type system.
 Type assertions (as someType) do not perform runtime validation.
 They are only checked when you actually try to assign an invalid value without an assertion.
 
@@ -157,7 +157,7 @@ function isString(x: any) {
 
 function test(x: string | number) {
     if (isString(x)) {
-        console.log(x.toUpperCase()); // ❌ ERROR! TypeScript still thinks x might be a number
+        console.log(x.toUpperCase());
     }
 }
 
@@ -168,7 +168,7 @@ function test(x: string | number) {
 
 1. The is keyword creates a "type guard" → It tells TypeScript to narrow the type inside an if block.
 2. Without is, TypeScript in some cases won’t trust your function to properly check the type. However in newer version of TypeScript, compile able to infer that also.
-3. It does NOT return a string. It just tells TypeScript:
+3. It does NOT return a pet here. It just tells TypeScript:
 "If this function returns true, then treat the variable as this type. 
 
 Using type predicates

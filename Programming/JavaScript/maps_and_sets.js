@@ -166,3 +166,7 @@ console.log(parsObj)
 
 
 // So when you should object vs map , and set vs array - https://youtu.be/hubQQ3F337A?si=frJKKMDHjz6Hu56K&t=298
+
+
+var foo = 3;
+foo = false;

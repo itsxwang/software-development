@@ -46,18 +46,18 @@ type User3 = {
     [key: string]: string | number
     readonly [key: symbol]: string | number // so we can also make properties read only
 }
-let id1_User3 = Symbol('User3-Id1')
+/* let id1_User3 = Symbol('User3-Id1')
 let user3: User3 = {
     name: "John",
     age: 30,
     [id1_User3]: 7
 }
-console.log(user3[id1_User3])
+console.log(user3[id1_User3]) */
 // user3[id1_User3] = 20 Error !!  `Index signature in type 'User3' only permits reading.`
 
 // And one more thing , if we do :
 
-console.log(user3['random_property'])  /* undefined , now you may thought isn't ts should throw error as `random_property` is not in user3 object, so why it not throw? The reason is simple ts think user3 may have this property and
+/* console.log(user3['random_property']) */  /* undefined , now you may thought isn't ts should throw error as `random_property` is not in user3 object, so why it not throw? The reason is simple ts think user3 may have this property and
 ts not know the names of properties could be , it only knows that keys can be string | Symbol type, and their values could be string | number type, so ts thinks it going to return string | number */
 
 // ------------------------------------------------------

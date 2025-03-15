@@ -113,4 +113,6 @@ by seeing this we came to know that we can also make inference happen
 between the arguments of a function with the help of generics (see last seconds of this video clip, to see what im trying to say)
 */
 /* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries, see how by seeing this video clip -
-https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901 */ 
+https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901
+This is explained in separate file(zodLibrary)
+*/ 

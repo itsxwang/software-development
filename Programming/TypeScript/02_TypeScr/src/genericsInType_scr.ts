@@ -220,4 +220,6 @@ between the arguments of a function with the help of generics (see last seconds 
 */
 
 /* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries, see how by seeing this video clip -
-https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901 */
+https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901 
+This is explained in separate file(zodLibrary)
+*/ 

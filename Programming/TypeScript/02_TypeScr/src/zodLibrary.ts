@@ -14,15 +14,26 @@
 // ---------------------------
 import { z } from 'zod';
 
-const something = ['s', 'sk'] as const; // as const means it readonly array and we can't change it 
+const something = ['s', 'sk'] as const; // `as const` means it readonly array and we can't change it 
 type SomethingType = typeof something;
 // something.push('sdsd'); // will throw error
 
-// first example
+// first example, define schema that only will accept string
 const mySchema = z.string();
 const result = mySchema.safeParse('Some_string');
 
 
+// if success it return object  : 
+// {
+//   success: true,
+//   data: 'Some_string'
+// }
+
+// if failed it return object  : 
+// {
+//   success: false,
+//   error: ZodError
+// }
 
 if (!result.success) {
   console.error(result.error);  // This logs the Zod validation error
@@ -58,20 +69,18 @@ const user:UserType= {
 }
 console.log("UserSchema", UserSchema.parse(user));  // {name: 'Alice', age: 25, email: 'alice@gmail.com', hobby: 'Programming'}
 
-
-// So we can also access particular element of the schema like this
-console.log(UserSchema.shape.hobby.Enum)  
-
-
 // Object has really cool things to do with 
 console.log("UserSchema.shape",UserSchema.shape);  // it will give us the shape of the object and we can use it to create a new object
+
+// So we can also access particular element of the schema like this
+console.log('UserSchema.shape.hobby.Enum',UserSchema.shape.hobby.Enum)  
 
 const UserSchema2 = z.object({
   ...UserSchema.shape,
   // we can also make custom validation like this 
   likes: z.custom<SomethingType>((val) => 
     Array.isArray(val) && 
-    val.length === 2 && 
+  val.length === 2 && 
     val[0] === 's' && 
     val[1] === 'sk'
   )
@@ -148,19 +157,106 @@ const grocery:GroceryType = {
   juice: 6,
   // juices: 6
 }
-console.log("GrocerySchema",GrocerySchema.parse(grocery));  // {apple: 1, banana: 2, tomato: 3, potato: 4}
+console.log("GrocerySchema",GrocerySchema.parse(grocery));  // {apple: 1, banana: 2, tomato: 3, potato: 4, water: 5, juice: 6}
 
 // passthrough is used to pass the value to the next schema
 const UserSchema6 = z.object({
   name: z.string(),
-  age: z.number()
+  age: z.number(),
+  coordinates: z.tuple([z.number(), z.number()]), // we can also pass array of tuples,
+  id:z.union([z.string(), z.number()])  // union type is used to combine multiple types, or method can also be used instead of union type , z.string().or(z.number()).or(z.boolean())
 }).passthrough()
 type UserType6 = z.infer<typeof UserSchema6>
 const user7:UserType6 = {
   name: "Alice",  
   age: 25,
-  email: "alice@gmail.com"
+  email: "alice@gmail.com",
+  coordinates: [1,2],
+  id:1
 }
+// 
+
 console.log("UserSchema6",UserSchema6.parse(user7));  // {name: 'Alice', age: 25, email: 'alice@gmail.com'}
 
+const tupleSchema = z.tuple([z.string(), z.number()]).rest(z.boolean())
+type TupleType = z.infer<typeof tupleSchema>
+const tuple:TupleType = ['Alice', 25, true, false]
+console.log("tupleSchema",tupleSchema.parse(tuple));  // {0: 'Alice', 1: 25, 2: true, 3: false}
 
+
+// discriminated union is same as union but difference is that it ensure that all types must have some same property
+const DiscriminatedUnionSchema = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('user'), name: z.string() }),
+  z.object({ type: z.literal('post'), title: z.string(), author: z.string()})
+])
+
+type DiscriminatedUnionType = z.infer<typeof DiscriminatedUnionSchema>
+const discriminatedUnion:DiscriminatedUnionType = { type: 'user', name: 'Alice' }
+console.log("DiscriminatedUnionSchema",DiscriminatedUnionSchema.parse(discriminatedUnion));  // {type: 'user', name: 'Alice'}
+
+
+// record type in zod is used to create a map of key value pairs
+const RecordSchema = z.record(z.string(), z.number()) // but if you pass only 1 type in z.record it will be considered as type of value and key can be of any type
+type RecordType = z.infer<typeof RecordSchema>
+const record:RecordType = { 'Alice': 1, 'Bob': 2 }
+console.log("RecordSchema",RecordSchema.parse(record));  // {Alice: 1, Bob: 2}
+
+// we also have z.map(), same like map in ts
+
+// we can also make promise schema
+const promiseSchema = z.promise(z.string())
+type PromiseType = z.infer<typeof promiseSchema>
+const promise:PromiseType = new Promise((resolve) => resolve('Alice'))
+console.log("promiseSchema",promiseSchema.parse(promise));  // {Alice: 1, Bob: 2}
+
+// we can also make custom validation like this
+const customValidationSchema = z.string().refine((val) => val.length > 5, {
+  message: 'String must be longer than 5 characters'
+})
+type CustomValidationType = z.infer<typeof customValidationSchema>
+const customValidation:CustomValidationType = 'Alices'
+console.log("customValidationSchema",customValidationSchema.parse(customValidation));  // {Alice: 1, Bob: 2}
+
+
+// superRefine example
+const schema = z.object({
+  password: z.string(),
+  confirmPassword: z.string(),
+}).superRefine((data, context) => {
+  if (data.password !== data.confirmPassword) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Passwords do not match',
+      path: ['confirmPassword'],
+    });
+  }
+});
+
+type SchemaType = z.infer<typeof schema>
+const schema2:SchemaType = {
+  password: 'Alice',
+  confirmPassword: 'Alice'
+}
+console.log("SuperRefineSchema",schema.parse(schema2));  // {Alice: 1, Bob: 2}
+
+// Error handling - https://youtu.be/L6BE-U3oy80?si=8vWR8Yg2x8XLDZFZ&t=1727
+
+
+// we also have async schema for async validation
+
+/* const asyncSchema = z.object({
+  email: z.string().email(),
+}).superRefine(async (data, context) => {
+  const isEmailTaken = await checkEmailInDB(data.email); // Simulating DB check
+  if (isEmailTaken) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Email is already in use',
+    });
+  }
+});
+
+asyncSchema.parseAsync({ email: 'test@example.com' })
+  .then((result) => console.log(result)) // ✅ If valid
+  .catch((error) => console.error(error)); // ❌ If validation fails
+ */

@@ -18,9 +18,9 @@ function getFirstElement<T>(array: T[]): T {
 array must be array of string or number */
 
 // hover and see the in the place of T 
-getFirstElement([1,2,3])
-getFirstElement(['a','b','c'])
-getFirstElement(['a','b','c'])
+getFirstElement([1, 2, 3])
+getFirstElement(['a', 'b', 'c'])
+getFirstElement(['a', 'b', 'c'])
 
 /* So what we observe here is that the T is changing dynamically according to the type of the array that we are passing
 because with the help of generics ts can infer the param , return value if not been set explicitly */
@@ -28,7 +28,7 @@ because with the help of generics ts can infer the param , return value if not b
 // If ts not automatically infer or not infer correctly, you can do this , to tell it explicitly , and this is what we called assertion:
 
 // So now in the place of T (means where we have written T) in place of that number will come
-getFirstElement<number>([1,2,3]) 
+getFirstElement<number>([1, 2, 3])
 
 // The way how its work is - https://youtu.be/EcCTIExsqmI?si=rtH06nH0Qt1uoXGp&t=227
 
@@ -46,7 +46,7 @@ const image = document.querySelector<HTMLImageElement>('img');
 
 
 // getElementById not takes generic type but still we can define it after assignment operator
-const input = <HTMLInputElement>document.getElementById('exammple-input'); 
+const input = <HTMLInputElement>document.getElementById('exammple-input');
 
 // Maps and sets are deeply explained in separate js files
 
@@ -56,16 +56,16 @@ means now map can only contain key of type string and value of type number
 */
 
 // so map take two generic types, first type for key and second type for value
-const map = new Map<string,number>([['xyProperty',5]])
-map.set('a',1)
+const map = new Map<string, number>([['xyProperty', 5]])
+map.set('a', 1)
 
 console.log(map);
 
 // Now its obvious to tell that generics can be pass to genrics(nested generics) :
-const newMap = new Map<string,Map<string,number>>()
+const newMap = new Map<string, Map<string, number>>()
 
 // Sets
-const mySet  = new Set<number>([1,2,3,77,88]) // if we want our Set will be only of Number type values
+const mySet = new Set<number>([1, 2, 3, 77, 88]) // if we want our Set will be only of Number type values
 
 
 // Making a type that takes two generics, and its obvious to tell that we can 
@@ -87,42 +87,42 @@ const obj: genricTypeExample<string, number> = {
 /* so here if we not pass arguments for generic type here, generic type will default hold {text:'some_data'} , basically it is a default type argument, you can think of it as default runtime(that we pass for function params)argument but it is for default argument for generic type parameter instead of runtime parameter*/
 // extends object means the value we pass to this generic param must be object , so extends keyword use to add a constraint to genric types
 
-type APIResponse<Data extends object = {text:'some_data'}> = {
-        data : Data
-        isError:boolean
+type APIResponse<Data extends object = { text: 'some_data' }> = {
+        data: Data
+        isError: boolean
 }
 
 // One more extends example:  type APIResponse<Data extends Record<string,number> > = {} , means Data generic type can accept any object , with n number of properties as of type string and values as number 
 
-type userResponse = {status_code:number,text:string,CORS:boolean}
+type userResponse = { status_code: number, text: string, CORS: boolean }
 
 // We can also do like this, means blogresponse type takes APIResponse type and pass arg {text:blogResponse} to its generic
-type blogResponse = APIResponse<{text:blogResponse}>
+type blogResponse = APIResponse<{ text: blogResponse }>
 // so now we can directly specify that this variable type is blogResponse
 
-const res : blogResponse = {
-        data : {
-                text:'Some blog data' as unknown as blogResponse
+const res: blogResponse = {
+        data: {
+                text: 'Some blog data' as unknown as blogResponse
         },
-        isError:false
+        isError: false
 }
 
 /* NOTE:You don't have to specify every single time which argument should be pass in generics , in most of the cases Ts automatically figure out that type
 based on which the function take as a input or of which type of output it is returning */
 
-const response : APIResponse<userResponse> = {
-        data : {
-                status_code:200,
-                text:'Some response text',
-                CORS:true
+const response: APIResponse<userResponse> = {
+        data: {
+                status_code: 200,
+                text: 'Some response text',
+                CORS: true
         },
-        isError:false
+        isError: false
 }
-const defaultResponse : APIResponse = {
-        data : {
-                text:'some_data',
+const defaultResponse: APIResponse = {
+        data: {
+                text: 'some_data',
         },
-        isError:false
+        isError: false
 }
 
 // Example of generics with interface
@@ -144,7 +144,7 @@ type Result = Awaited<Promise<number>> // so ts infers that in Result variable n
 // But if we only do:  type Result = Promise<number>, now it will infer that in Result variable Promise will come(as promises have to be awaited in order to return resolve values)
 
 // ReturnType<> , does the same thing for functions, it returns that value, that function returns(that we pass in ReturnType generic type argument)
-type Result1 = ReturnType<() => number >
+type Result1 = ReturnType<() => number>
 
 // When you combined the two(Awaited and ReturnType), you get a type helper - https://youtu.be/dLPgQRbVquo?si=WXdabrFLbP-RLRZa&t=395 or see below example
 
@@ -201,16 +201,16 @@ type ErrorLine = GetPromiseReturnType<string>; // Type 'string' does not satisfy
 
 /* TypeScript understands that makeFetch returns a Promise<Data>, and since fetch(url).then(res => res.json()) is returning a Promise<Data>, TypeScript
 infers that then will be called only when the promise resolves. But by default res.json() returns `Promise<any>` */
-const makeFetch = <Data> (url:string) :Promise<Data> => {
+const makeFetch = <Data>(url: string): Promise<Data> => {
         return fetch(url).then(res => res.json())
-}       
+}
 
-makeFetch<{title:string}>('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res))
-
-
+makeFetch<{ title: string }>('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res))
 
 
-// Another example - https://youtu.be/dLPgQRbVquo?si=SbIHzBM0W--T2VMm&t=265 
+
+
+// Another example - https://youtu.be/dLPgQRbVquo?si=SbIHzBM0W--T2VMm&t=265
 
 // Another example(constraint in functions) - https://youtu.be/dLPgQRbVquo?si=f5iZId3RvySc2jp0&t=507 // this is about extends keyword
 
@@ -219,7 +219,27 @@ by seeing this we came to know that we can also make inference happen
 between the arguments of a function with the help of generics (see last seconds of this video clip, to see what im trying to say)
 */
 
-/* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries, see how by seeing this video clip -
-https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901 
-This is explained in separate file(zodLibrary)
-*/ 
+/* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries -
+- Zod is explained in separate file(zodLibrary), and its example is with generics is here */
+
+/* import { z } from 'zod';
+const makeZodSafeFetch = <TData>(
+        url: string,
+        schema: z.Schema<TData>
+      ): Promise<TData> => {
+        return fetch(url)
+          .then((res) => res.json())
+          .then((res) => schema.parseAsync(res)); // ✅ Use parseAsync to properly return a Promise
+      };
+      
+      
+makeZodSafeFetch("/api/endpoint", z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        id: z.string()
+      })).then((res) => {
+        console.log(res); // ✅ Correctly logs validated data
+      }).catch((err) => {
+        console.error("Validation failed:", err); // ✅ Catches validation errors properly
+      });
+       */

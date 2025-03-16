@@ -86,6 +86,10 @@ type FunctionType = (parameter: string) => string;
 // 2. Using generic Array<type>
 let myNums: (number | string)[] = [1, 2, 3,'string'];
 let genericArray: Array<number>  = [1, 2, 3]; // will explore this soon in detailed
+// We can also do this
+type specifyLiterals = ['s' | 'd'] // instead of do this : ('s' | 'd')[]
+const a:specifyLiterals = ['s']
+
 
 // Object Types
 // ------------------------------------------------------------

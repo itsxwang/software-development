@@ -1,4 +1,3 @@
-"use strict";
 // Generics in TypeScript allow you to create reusable components or functions that can work with multiple data types 
 /*
 A central idea of understanding generics is to understand that they can infer(in many cases)the type arguments you pass them(maybe through return statatement or parameters values , etc...)without actually needing to pass any type arguments, this is the source of lot of the magic that you can do with generics
@@ -106,13 +105,33 @@ const makeFetch = (url) => {
     return fetch(url).then(res => res.json());
 };
 makeFetch('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res));
-// Another example - https://youtu.be/dLPgQRbVquo?si=SbIHzBM0W--T2VMm&t=265 
+export {};
+// Another example - https://youtu.be/dLPgQRbVquo?si=SbIHzBM0W--T2VMm&t=265
 // Another example(constraint in functions) - https://youtu.be/dLPgQRbVquo?si=f5iZId3RvySc2jp0&t=507 // this is about extends keyword
 /* One more, Multiple type arguments example -  https://youtu.be/dLPgQRbVquo?si=G3RhLBwZ8tjzuta0&t=685
 by seeing this we came to know that we can also make inference happen
 between the arguments of a function with the help of generics (see last seconds of this video clip, to see what im trying to say)
 */
-/* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries, see how by seeing this video clip -
-https://youtu.be/dLPgQRbVquo?si=L7Z5H0ZEhmYYYomX&t=901
-This is explained in separate file(zodLibrary)
-*/ 
+/* One of the most powerful thing you can do in ts is to use generics to link up amazing inference from external libraries -
+- Zod is explained in separate file(zodLibrary), and its example is with generics is here */
+/* import { z } from 'zod';
+const makeZodSafeFetch = <TData>(
+        url: string,
+        schema: z.Schema<TData>
+      ): Promise<TData> => {
+        return fetch(url)
+          .then((res) => res.json())
+          .then((res) => schema.parseAsync(res)); // ✅ Use parseAsync to properly return a Promise
+      };
+      
+      
+makeZodSafeFetch("/api/endpoint", z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        id: z.string()
+      })).then((res) => {
+        console.log(res); // ✅ Correctly logs validated data
+      }).catch((err) => {
+        console.error("Validation failed:", err); // ✅ Catches validation errors properly
+      });
+       */ 

@@ -1,4 +1,13 @@
 "use strict";
+// Function overloading example 
+/* Same thing using type alias
+
+type FunctionType =  {
+    (parameter: string): string;
+    (parameter: number): number;
+}
+
+*/
 // means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
 function takesYourFunction(f) {
     if (Math.random() > 0.5)

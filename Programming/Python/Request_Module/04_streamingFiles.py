@@ -98,39 +98,103 @@ Explanation of tqdm parameters used:
 # unit_divisor=1000 → Uses metric standard (1KB = 1000B).
 
 
-
-
-
 -------------------------------------------------------------------------------------
 
+# 🔹 stream parameter in the requests library in Python
+The stream parameter in the requests library in Python is an optional argument that you can pass to various request methods like get, post, put, delete, etc.
+ When set to True, it alters the way the response is handled by the library.
+
+By default, when you make a request with requests.get() or similar methods, the requests library will immediately download the entire content of the response from 
+the server before it returns the Response object. This is because stream defaults to False.
+
+However, when you're dealing with large files or slow connections, you might want to download the content in chunks rather than all at once. 
+This is where the stream parameter comes in. Setting stream=True means that requests will not download the whole response immediately. 
+Instead, it will provide a Response object and you can iterate over the response data in chunks as needed.
+"""
+
+# 🔹 .iter_lines() is different from .iter_content(), and it is specifically designed for handling text-based responses line by line.
+# ------------------------------------------------------------------------------
+"""
+Differences:
+Method	Purpose	Data Handling
+.iter_content(chunk_size=...)	Reads binary data in chunks	Returns raw bytes
+.iter_lines()	Reads text data line by line	Returns decoded text lines (if decode_unicode=True, otherwise returns bytes just like .iter_content())
+
+---- When to Use .iter_lines()?
+
+When handling text-based responses like logs, JSONL (JSON Lines, where each line is a separate JSON object, commonly used for streaming data, logs, and machine learning datasets.), or streaming APIs that return data line by line.
+- As It avoids reading partial lines, which might happen if you use .iter_content() on text data.
+
+Example of Using .iter_lines()
+
+import requests
+
+url = "https://example.com/streaming-api"
+response = requests.get(url, stream=True)
+
+# Process response line by line
+for line in response.iter_lines():
+    if line:  # Avoid empty keep-alive newlines
+        print(line.decode("utf-8"))  # Decoding required if response is in bytes
+
+Key Differences from .iter_content():
+.iter_lines() automatically splits lines, while .iter_content() does not.
+.iter_lines() handles text responses more efficiently, avoiding broken lines across chunks.
+.iter_content(chunk_size=...) is better for binary files (like images, videos, and archives).
+TL;DR:
+Use .iter_content() for binary file downloads.
+Use .iter_lines() for streaming text data efficiently.
 
 
-How `requests.get(url, stream=True)` and `response.iter_content()` Work Together
+                              BY THE WAY
+# ------------------------------------------------------------------------------
+.iter_content() can still be used to process text line by line, but it requires additional handling because it does not automatically split lines like .iter_lines().
 
-1. `requests.get(url, stream=True)` is called
-   - This sends a request to the server.
-   - Unlike `stream=False`, it **does not download the full response body immediately**.
-   - Instead, it **only downloads the response headers** (like `content-length`, status, etc.).
-   - The actual file content is **not yet received** in full.
+Why .iter_lines() is Better for Text?
+.iter_lines() handles line boundaries properly, ensuring you don't get half a line due to chunking.
+.iter_lines() filters out keep-alive newlines, which can occur in streaming APIs.
+Using .iter_content() to Process Lines:
+You can achieve the same behavior as .iter_lines() with .iter_content() like this:
 
-2. `response.iter_content(chunk_size=1024)` starts iterating
-   - This **fetches the first chunk (1024 bytes)** from the server.
-   - The first chunk is **processed and written to the file immediately**.
-   - Then, it **requests the next chunk**, processes it, writes it, and repeats until the file is fully downloaded.
+import requests
 
-✅ Key Understanding
-- `requests.get(url, stream=True)` **does NOT fetch even the first chunk immediately**.  
-- It just **opens the connection** and **waits** until you start iterating over `iter_content()`.  
-- `response.iter_content(chunk_size=1024)` then **controls the fetching process**, one chunk at a time.
+url = "https://example.com/streaming-api"
+response = requests.get(url, stream=True)
 
-❌ Incorrect Understanding
-> *"`requests.get(url, stream=True)` fetches the first chunk, and then `iter_content()` fetches the rest."*  
-**Wrong!** `requests.get(url, stream=True)` does **not fetch any part of the file until** `iter_content()` is called.
+# Manually handling lines using iter_content()
 
-🎯 Correct Analogy
-Imagine downloading a book:
-- **`requests.get(url, stream=True)`** = Opening the book cover (but not reading yet).
-- **`response.iter_content(chunk_size=1024)`** = Reading one page at a time (downloading each page when needed).
+```
+import requests
 
-This approach is useful for downloading large files efficiently.
+url = "https://example.com/streaming-data"
+response = requests.get(url, stream=True)  # Fetch data in streaming mode
+
+buffer = b""  # Initialize an empty byte buffer
+
+for chunk in response.iter_content(chunk_size=1024):  # Read data in chunks (1024 bytes each)
+    buffer += chunk  # Add the chunk to the buffer
+
+    while b"\n" in buffer:  # Check if the buffer contains a full line (new line character `\n`)
+        line, buffer = buffer.split(b"\n", 1)  # Extract one complete line, keep the remaining in buffer
+        print(line.decode("utf-8"))  # Convert bytes to string and print the line
+
+```
+
+Why Use .iter_lines() Instead?
+It automatically handles line buffering.
+It avoids accumulating unnecessary data.
+It filters out keep-alive newlines for streaming APIs.
+TL;DR:
+.iter_lines() is optimized for text streams (handles lines efficiently).
+.iter_content() works but requires manual handling to split lines properly.
+
+ 
+                                Buffering
+# ------------------------------------------------------------------------------
+- Buffer: A buffer is a temporary memory storage area used to hold data before processing or transferring it further. It helps manage data efficiently, especially when dealing with
+large files, streaming, or network communication.
+
+- Buffer in Networking & Streaming
+When receiving data from a network (e.g., using requests in Python), data often comes in chunks. Instead of processing each small piece immediately, a buffer accumulates the data
+until a complete unit (e.g., a full line of text or a JSON object) is ready
 """

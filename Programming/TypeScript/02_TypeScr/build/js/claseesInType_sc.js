@@ -1,4 +1,3 @@
-"use strict";
 /* class Coder {
     name: string
     lang: string
@@ -99,3 +98,4 @@ class Peeps {
 const peeps = new Peeps('John Doe', 30, ['js', 'python']);
 peeps.my_collection = [...peeps.my_collection, 'TypeScript'];
 console.log(peeps.my_collection);
+export {};

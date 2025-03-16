@@ -1,4 +1,3 @@
-"use strict";
 // type assertions are also called Typescript casting
 // What is type assertions
 // https://youtu.be/lOuaE3nGS4g?si=ElgBPc1myX1Pairq&t=10
@@ -183,4 +182,5 @@ function assert(condition, msg) {
         throw new Error(msg);
     }
 }
+export {};
 //  asserts condition says that whatever gets passed into the condition parameter must be true if the assert returns (because otherwise it would throw an error)

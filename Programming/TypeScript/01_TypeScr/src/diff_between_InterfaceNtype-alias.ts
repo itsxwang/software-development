@@ -56,3 +56,4 @@ interface User {
   // When to Use What?
   // - Use `interface` for objects, class structures, and when you need declaration merging.
   // - Use `type alias` for unions, tuples, and other types.
+

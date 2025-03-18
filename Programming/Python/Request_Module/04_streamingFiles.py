@@ -104,12 +104,20 @@ Explanation of tqdm parameters used:
 The stream parameter in the requests library in Python is an optional argument that you can pass to various request methods like get, post, put, delete, etc.
  When set to True, it alters the way the response is handled by the library.
 
-By default, when you make a request with requests.get() or similar methods, the requests library will immediately download the entire content of the response from 
-the server before it returns the Response object. This is because stream defaults to False.
+By default, when you make a request with requests.get() or similar methods, the requests library will immediately download the entire content of the response from the server before it returns the Response object. This is because stream defaults to False.
 
 However, when you're dealing with large files or slow connections, you might want to download the content in chunks rather than all at once. 
 This is where the stream parameter comes in. Setting stream=True means that requests will not download the whole response immediately. 
 Instead, it will provide a Response object and you can iterate over the response data in chunks as needed.
+
+But What Stores the Data Between Requests and Your Code🤔, if it not stored in memory?
+Answer is The HTTP `Socket Buffer`(a low-level I/O buffer managed by the OS)
+When you use stream=True, Python’s requests library does not store the entire response in memory.
+Instead, the data is stored in a TCP socket buffer (managed by the OS).
+When you call iter_content() or iter_lines(), Python reads from the socket buffer chunk by chunk.
+So:
+✅ requests.get(url, stream=True) makes only one request to the server.
+✅ The server sends data in chunks, which gets stored in a temporary network buffer (not in memory)
 """
 
 # 🔹 .iter_lines() is different from .iter_content(), and it is specifically designed for handling text-based responses line by line.
@@ -195,6 +203,6 @@ TL;DR:
 large files, streaming, or network communication.
 
 - Buffer in Networking & Streaming
-When receiving data from a network (e.g., using requests in Python), data often comes in chunks. Instead of processing each small piece immediately, a buffer accumulates the data
-until a complete unit (e.g., a full line of text or a JSON object) is ready
+When receiving data from a network (e.g., using requests in Python), data often comes in chunks. Instead of processing each small piece
+immediately, a buffer accumulates the data until a complete unit (e.g., a full line of text or a JSON object) is ready
 """

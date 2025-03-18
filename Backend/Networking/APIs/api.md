@@ -28,7 +28,9 @@ In simple terms:
    - A popular type of web API that follows REST (Representational State Transfer) principles.
    - Uses standard HTTP methods like GET, POST, PUT, DELETE.
    - Example: Fetching weather data from a weather service.
-      - More detailed: A REST API (Representational State Transfer API) is an architectural style for building web services that uses HTTP methods and URIs to represent and manipulate resources. It is designed to take advantage of existing protocols, most commonly over HTTP for web APIs, and it emphasizes a uniform interface, independent deployment of components, scalability, and a layered system architecture to promote caching and reduce latency.
+      - More detailed: A REST API (Representational State Transfer API) is an architectural style
+      (***architectural style is a set of principles that guide the organization of a software system, dictating how components and modules within the system interact and communicate.***) 
+      for building web services that uses HTTP methods and URIs to represent and manipulate resources. It is designed to take advantage of existing protocols, most commonly over HTTP for web APIs, and it emphasizes a uniform interface, independent deployment of components, scalability, and a layered system architecture to promote caching and reduce latency.
 
    REST APIs are built to be lightweight and flexible, allowing them to handle multiple types of calls and return different data formats, such as JSON, which is the most popular format used in web services. RESTful APIs enable client-service interactions based on a request/response design, where the client sends requests to the server and receives responses containing resources in various formats like HTML, XML, or JSON.
 
@@ -44,6 +46,8 @@ The REST architectural style defines constraints that, when applied, enhance the
    - A modern alternative to REST.
    - Allows clients to request only the data they need, reducing over-fetching.
    - Example: Facebook uses GraphQL for its APIs.
+   
+   ***GraphQl*** is explained in detail in separate file
 
 5. **Library/Internal APIs**:
    - APIs used within a software application or library.

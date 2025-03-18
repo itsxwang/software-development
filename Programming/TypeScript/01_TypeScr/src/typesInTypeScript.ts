@@ -8,7 +8,7 @@
 // Read about Types for tooling in TypeScript : https://www.typescriptlang.org/docs/handbook/2/basic-types.html#types-for-tooling, that helps to prevent bugs in first place
 
 interface Point {
-    x: number;
+    x: number; // so you can also use ; instead of comma
     y: number;
   }
    
@@ -69,6 +69,8 @@ function Message(message: string) {
  */
 
 
+
+
 // Explicitely define types , when we explicitly define types we called that `type annotation`
 // ------------------------------------------------------------
 // number: All numeric values (integers and floating point)
@@ -76,6 +78,10 @@ let age: number = 30;
 
 // boolean: true or false values
 let isLogedIn: boolean = true;
+// ------------------------------------------------- // Note: The type names String, Number, and Boolean (starting with capital letters) are
+// legal, but refer to some special built-in types that will very rarely appear in your code. Always use string, number, or boolean for types.
+
+
 
 // Regex Type
 // ------------------------------------------------------------
@@ -160,6 +166,7 @@ let myObj: {
 
 // Special Types
 // ------------------------------------------------------------
+/* When a value is of type any, you can access any properties of it (which will in turn be of type any), call it like a function, assign it to (or from) a value of any type, or pretty much anything else that’s syntactically legal: */
 // any: Opt-out of type checking
 let myAny: any = "Hello";  // Can be assigned any type
 
@@ -207,6 +214,33 @@ myUnknown = true;
 let myUnion: string | number = "Hello";
 myUnion = 1;  // Valid
 // myUnion = true;  // Invalid: boolean not allowed
+
+
+// The separator of the union members is allowed before the first element, so you could also write this:
+
+function printTextOrNumberOrBool(
+  textOrNumberOrBool:
+    | string
+    | number
+    | boolean
+) {
+  console.log(textOrNumberOrBool);
+}
+
+
+// Working with Union Types
+/* TypeScript will only allow an operation if it is valid for every member of the union. For example, if you have the union string | number, you can’t use methods that are only available on string:
+
+function printId(id: number | string) {
+  console.log(id.toUpperCase());
+Property 'toUpperCase' does not exist on type 'string | number'.
+  Property 'toUpperCase' does not exist on type 'number'.
+}
+
+
+----- The solution is to narrow the union by making checks(type guards) that are specific to the union members. -----
+ */
+
 
 // Literal Types
 // ------------------------------------------------------------
@@ -365,3 +399,10 @@ declare const backpack: Backpack<string>; // because we can't declare with const
 // ! This comparison appears to be unintentional because the types '"a"' and '"b"' have no overlap.
   // Oops, unreachable
 // } 
+
+// ------------------------------------------------------------
+// TypeScript has several type-checking strictness flags that can be turned on or off
+// NoImplicitAny : https://www.typescriptlang.org/docs/handbook/2/basic-types.html#noimplicitany
+
+    //   - Turning on the noImplicitAny flag will issue an error on any variables whose type is implicitly inferred as any
+// strictNullChecks : https://www.typescriptlang.org/tsconfig/#strictNullChecks

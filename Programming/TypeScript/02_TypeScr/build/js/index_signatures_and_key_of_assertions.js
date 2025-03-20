@@ -1,3 +1,4 @@
+"use strict";
 // Index Signatures
 // Index signatures are useful when you creating a objects but you not know the exact name of the object keys , but you know the shape of a object and you declare the type of keys and values
 // but there is another reason they are also useful because ts requires index signatures if you attempt to access object properties dynamically 
@@ -85,7 +86,6 @@ let user6 = {
     name: 'John',
     age: 30
 };
-export {};
 // so this syntax is handy if you not wanna specify a specific type for specific property and not wanna make index signatures
 // if we want that Object can take property with anyname , we can do this:
 // type User6 = Record<string, string | number> means Object with User6 type can take any property with type string

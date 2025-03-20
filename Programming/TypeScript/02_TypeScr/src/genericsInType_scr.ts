@@ -96,13 +96,17 @@ type APIResponse<Data extends object = { text: 'some_data' }> = {
 
 type userResponse = { status_code: number, text: string, CORS: boolean }
 
-// We can also do like this, means blogresponse type takes APIResponse type and pass arg {text:blogResponse} to its generic
-type blogResponse = APIResponse<{ text: blogResponse }>
+// We can also do like this, means blogresponse type takes APIResponse type and pass arg {text:userResponse} to its generic
+type blogResponse = APIResponse<{ text: userResponse }>
 // so now we can directly specify that this variable type is blogResponse
 
 const res: blogResponse = {
         data: {
-                text: 'Some blog data' as unknown as blogResponse
+                text: {
+                        status_code: 200,
+                        text: 'Some blog data',
+                        CORS: true
+                }
         },
         isError: false
 }
@@ -243,3 +247,5 @@ makeZodSafeFetch("/api/endpoint", z.object({
         console.error("Validation failed:", err); // ✅ Catches validation errors properly
       });
        */
+
+      const constantString = "Hello World";

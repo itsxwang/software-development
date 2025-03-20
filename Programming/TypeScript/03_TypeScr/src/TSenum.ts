@@ -1,7 +1,8 @@
 //* ___________________________________________________________
 
 //* Enums in TS
-
+// enums enbales developers to define a set of named constants(enumerators), which are a set of related values
+// enums detailed explanation: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums
 //* ___________________________________________________________
 
 // //? Enums in TypeScript are commonly used when you want to represent a set of related values
@@ -101,9 +102,17 @@ function getEnumValue(value: pojoenum) {
 
 getEnumValue(PojoEnum.Up); // Output: Up, But since getEnumValue function param not take enum type, so its not compulsory to pass value like this `enumName.key`
 getEnumValue('Right'); // Output: Right, so this also works and this is the advantage of using Pojo over enums
+enum Size {
+  Small = 'Small',
+  Medium = 'Medium',
+  Large = 'Large'
+}
 
+function getSizeValue(size: keyof typeof Size) {
+  return Size[size];
+}
 
-
-
-
-
+console.log(Size)
+  // console.log(getSizeValue('Small')); 
+// console.log(getSizeValue(0)); 
+console.log(getSizeValue('Small')); 

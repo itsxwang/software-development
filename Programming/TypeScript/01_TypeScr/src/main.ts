@@ -13,3 +13,6 @@ console.log("Hello " + username);
  */
 
 // console.log(7/'7'); type coercion not allowed in typescript , however it is allowed in javascript
+
+// we can also make project setup with vite(this is recommended approach)(see here) - https://youtu.be/iJkaAJUzeWQ?si=FSaswL6oqZ7LPupO&t=1807
+// npm init vite@latest project -- --template vanilla-ts

@@ -95,6 +95,14 @@ function greet(user: string): undefined {
     return undefined;
 }
 
+// One unique example of function type annotation, with destructuring
+function createUser({ name, isPaid }: { name: string; isPaid: boolean }) {}
+
+createUser({ name: "Johnyy", isPaid: false });
+
+
+
+
 let userName = "Alice";
 console.log(greet(userName));
 
@@ -193,6 +201,8 @@ let myArray: (number | string)[] = [1,'s'];
 
 // Enum Types
 // ------------------------------------------------------------
+// more about enums : https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#enums
+
 // A way to give friendly names to numeric values
 enum Color {
     a = 1,    // Starts from 1 , default start from 0
@@ -204,6 +214,7 @@ let myColor: Color = 2; // so myColor can only contain 1,2,3
 // Unknown Type
 // ------------------------------------------------------------
 // Similar to any, but more type-safe as operations require type checking
+
 let myUnknown: unknown = "Hello";
 myUnknown = 1;
 myUnknown = true;
@@ -238,7 +249,7 @@ Property 'toUpperCase' does not exist on type 'string | number'.
 }
 
 
------ The solution is to narrow the union by making checks(type guards) that are specific to the union members. -----
+----- The solution is to narrow the union by making checks(type guards) that are specific to the union members. -----   
  */
 
 
@@ -249,17 +260,29 @@ let myLiteral: 'hello' = "hello";  // Can only be assigned "hello"
 
 // We can also specify a variable that can be object of a specific class
 // ------------------------------------------------------------
-class User {
-    name: string;
-    age: number;
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-}
+/* Literal Types
+In addition to the general types string and number, we can refer to specific strings and numbers in type positions.
 
-// so here userobj can accept only object of User class
-let userobj : User = new User("John Doe", 30);
+One way to think about this is to consider how JavaScript comes with different ways to declare a variable. Both var and let allow for changing what is held inside the variable, and const does not. This is reflected in how TypeScript creates types for literals */
+
+let changingString = "Hello World";
+changingString = "Olá Mundo"; 
+// Because `changingString` can represent any possible string, that
+// is how TypeScript describes it in the type system
+changingString; // hover it, let changingString: string, so see here ts inferred that changingString is a string type,
+// (that is correct also because we can assign different values(string) to changingString as it is a let variable)
+ 
+const constantString = "Hello World";
+// Because `constantString` can only represent 1 possible string, it
+// has a literal type representation
+constantString; // hover it,  const constantString: "Hello World", so see here ts inferred that constantString is a literal type "Hello World"
+//  (that is correct also because we can't reassign to constant variable)
+      
+// const constantString: "Hello World" error because we can't assign different string to constantString
+
+// We can also explicitly define the literal type of a variable like this
+let literalVar: 'hello' = "hello";  // Can only be assigned "hello"
+
 
 // Define a custom types , using type keyword , these are also called type aliases
 // ------------------------------------------------------------ 
@@ -377,15 +400,31 @@ const numOrString =  (value : number | string) :string => {
 
 
 // -------------------------------------------------------------
-// we can also declare a const variable like this 
+// declare keyword
+// What Does declare Do?
+// The declare keyword is used to tell TypeScript that a function (or variable, class, etc.) exists somewhere else 
+// (e.g., in another file or an external library), but we are not providing its implementation here.
+
+// So, when you write:
+// `declare function create(o: object | null): void;`
+// TypeScript treats this as a declaration only, meaning it assumes create already exists somewhere else (like in a .d.ts file or external library).
+// And its worth to note: declare const variables and functions are not allowed to be implemented in same file. 
+
 interface Backpack<Type> {
     add: (obj: Type) => void;
     get: () => Type;
   }
   
- // This line is a shortcut to tell TypeScript there is a
- // constant called `backpack`, and to not worry about where it came from.  
+
 declare const backpack: Backpack<string>; // because we can't declare with const directly, that's why ts provide us declare keyword to do that thing 
+
+// We can also declare a function if we don't wanna implement it
+// declare function create(o: object | null): void;
+// // implement it later
+// function create(o: object | null) {
+//     return o;
+// }
+
 
 // const object = backpack.get(); // but this throw error, at runtime
 
@@ -406,3 +445,98 @@ declare const backpack: Backpack<string>; // because we can't declare with const
 
     //   - Turning on the noImplicitAny flag will issue an error on any variables whose type is implicitly inferred as any
 // strictNullChecks : https://www.typescriptlang.org/tsconfig/#strictNullChecks
+
+
+// ------------------------------------------------------------
+// Literal Inference
+
+/* 
+When you initialize a variable with an object, TypeScript assumes that the properties of that object might change values later. For example, if you wrote code like this:
+ */
+const obj = { counter : 0 };
+// if (someCondition) {
+//   obj.counter = 1;
+// }
+
+/*
+TypeScript doesn’t assume the assignment of 1 to a field which previously had 0 is an error. Another way of saying this is that obj.counter must have the type number, not 0, because types are used to determine both reading and writing behavior.
+
+The same applies to strings: */
+
+// we declare it because we just giving demo, we not need to implement it
+declare function handleRequest(url: string, method: "GET" | "POST"): void;
+
+
+const req = { url: "https://example.com", method: "GET"};
+// handleRequest(req.url, req.method); //!Error : Argument of type 'string' is not assignable to parameter of type '"GET" | "POST"'.
+
+/* In the above example req.method is inferred to be string, not "GET". Because code can be evaluated between the creation of req and the call of
+handleRequest which could assign a new string like "GUESS" to req.method, TypeScript considers this code to have an error. */
+
+
+// There are several ways to work around this.
+
+// 1. You can change the inference by adding a type assertion in either location:
+
+
+// ```
+/* Change 1:
+const req = { url: "https://example.com", method: "GET" as "GET" };
+
+or do this 
+Change 2
+handleRequest(req.url, req.method as "GET"); */
+// ```
+
+/* Change 1 means “I intend for req.method to always have the literal type "GET", preventing the possible assignment of "GUESS" to that field after.”
+Change 2 means “I know for other reasons that req.method has the value "GET"“.(So basically we do assertions here not much more)
+ */
+
+// 2. You can use as const to convert the entire object to be type literals:
+
+/* const req = { url: "https://example.com", method: "GET" } as const;
+handleRequest(req.url, req.method); */
+/* The as const suffix acts like const but for the type system, ensuring that all properties are assigned the literal type instead of a more general
+version like string or number. */
+
+// 2. Use as const(makes every property readonly) to convert the entire object to be type literals:
+
+const req2 = { url: "https://example.com", method: "GET" } as const;
+// handleRequest(req2.url, req2.method);
+
+/* So the as const suffix acts like const but for the type system, ensuring that all properties are assigned the literal type instead of a more general
+version like string or number.
+ */
+
+
+// --------------------------------------------------
+// Non-null Assertion Operator (Postfix !) (for compile time only)
+
+// null and undefined types in detail and how they behave corresponding to strictNullChecks flag : https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined
+// btw ts updates, made null and undefined system little but more strict 
+  
+/* TypeScript also has a special syntax for removing null and undefined from a type without doing any explicit checking. Writing ! after any expression is 
+effectively a type assertion that the value isn’t null or undefined: */
+
+function liveDangerously(x?: number | null) {
+  // No error
+  console.log(x!.toFixed());
+}
+/* Just like other type assertions, this doesn’t change the runtime behavior of your code, so it’s important to only use ! when you know that the value can’t
+be null or undefined or instead use optional chaining(?) to check if the value is null or undefined. */
+// liveDangerously(null); //! will throw error at runtime
+
+type Fish = { swim: () => 'void' };
+type Bird = { fly: () => void };
+ 
+function move(animal: Fish | Bird) {
+  if ("swim" in animal) {
+    return animal.swim();
+  }
+ else if ("fly" in animal) {
+
+   return animal.fly();
+ }
+}
+
+move({swim:()=>'void'})

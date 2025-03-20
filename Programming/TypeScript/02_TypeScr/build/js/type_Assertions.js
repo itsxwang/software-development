@@ -1,7 +1,9 @@
+"use strict";
 // type assertions are also called Typescript casting
 // What is type assertions
 // https://youtu.be/lOuaE3nGS4g?si=ElgBPc1myX1Pairq&t=10
 // So type assertion in ts is a way to tell the ts compiler that we know more about the type than the compiler does 
+var _a;
 // convert to less specific type
 let a = 'welcome';
 // so in this way we can assign the value of `a` to `b` at the same time making type of `b` less specific than `one`
@@ -121,59 +123,6 @@ function test(x) {
         console.log(x.toUpperCase());
     }
 }
-// -------------------------------------------
-/* Using type predicates (is)
-
-1. The is keyword creates a "type guard" → It tells TypeScript to narrow the type inside an if block.
-2. Without is, TypeScript in some cases won’t trust your function to properly check the type. However in newer version of TypeScript, compile able to infer that also.
-3. It does NOT return a pet here. It just tells TypeScript:
-"If this function returns true, then treat the variable as this type.
-
-Using type predicates
-We’ve worked with existing JavaScript constructs to handle narrowing so far, however sometimes you want more direct control over how types change throughout your code.
-
-To define a user-defined type guard, we simply need to define a function whose return type is a type predicate:
-```
-function isFish(pet: Fish | Bird): pet is Fish {
-  return (pet as Fish).swim !== undefined;
-}
-```
-Try
-pet is Fish is our type predicate in this example. A predicate takes the form parameterName is Type, where parameterName must be the name of a parameter from the current function signature.
-
-Any time isFish is called with some variable, TypeScript will narrow that variable to that specific type if the original type is compatible.
-
-Both calls to 'swim' and 'fly' are now okay.
-```
-let pet = getSmallPet();
- 
-if (isFish(pet)) {
-  pet.swim();
-} else {
-  pet.fly();
-}
-```
-Try
-Notice that TypeScript not only knows that pet is a Fish in the if branch; it also knows that in the else branch, you don’t have a Fish, so you must have a Bird.
-
-You may use the type guard isFish to filter an array of Fish | Bird and obtain an array of Fish:
-```
-const zoo: (Fish | Bird)[] = [getSmallPet(), getSmallPet(), getSmallPet()];
-const underWater1: Fish[] = zoo.filter(isFish);
-or, equivalently
-const underWater2: Fish[] = zoo.filter(isFish) as Fish[];
- 
-The predicate may need repeating for more complex examples
-const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
-  if (pet.name === "sharkey") return false;
-  return isFish(pet);
-});
-```
-Try
-In addition, classes can use this is Type to narrow their type.
-
-
-*/
 // assertion funcions 
 // ------------------------------------------------------------
 // read about assetrion functions for assertion here : https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
@@ -182,5 +131,39 @@ function assert(condition, msg) {
         throw new Error(msg);
     }
 }
-export {};
-//  asserts condition says that whatever gets passed into the condition parameter must be true if the assert returns (because otherwise it would throw an error)
+function move7(animal) {
+    if ("swim" in animal) {
+        animal;
+    }
+    else {
+        animal;
+    }
+}
+function getSmallPet() {
+    return Math.random() > 0.5 ? { swim: () => { return 'swim'; } } : { fly: () => { return 'fly'; } };
+}
+// ---cut---
+// this is saying if function isFish return true, then pet is Fish(means pet parameter contains Fish type value) otherwise its other way around
+function isFish(pet) {
+    return pet.swim !== undefined;
+}
+const pet = getSmallPet();
+if (isFish(pet)) {
+    console.log(pet.swim());
+}
+else {
+    // Use optional chaining to safely access fly() since it may be undefined
+    (_a = pet.fly) === null || _a === void 0 ? void 0 : _a.call(pet);
+}
+// Notice that TypeScript not only knows that pet is a Fish in the if branch; it also knows that in the else branch, you don't have a Fish, so you must have a Bird
+const zoo = [getSmallPet(), getSmallPet(), getSmallPet()];
+const underWater1 = zoo.filter(isFish);
+// or, equivalently
+const underWater2 = zoo.filter(isFish);
+// The predicate may need repeating for more complex examples, optional `pet is Fish`
+const underWater3 = zoo.filter((pet) => {
+    // Remove the name check since name property doesn't exist on Fish or Bird
+    return isFish(pet);
+});
+// In above examples, there's no need to explicitely mention that underWater Variables takes Fish[], Ts automatically infer that it takes Fish[] type value
+// In addition, classes can use this is Type to narrow their type.

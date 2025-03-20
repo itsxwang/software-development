@@ -1,3 +1,4 @@
+"use strict";
 // Generics in TypeScript allow you to create reusable components or functions that can work with multiple data types 
 /*
 A central idea of understanding generics is to understand that they can infer(in many cases)the type arguments you pass them(maybe through return statatement or parameters values , etc...)without actually needing to pass any type arguments, this is the source of lot of the magic that you can do with generics
@@ -49,7 +50,11 @@ const obj = {
 // so now we can directly specify that this variable type is blogResponse
 const res = {
     data: {
-        text: 'Some blog data'
+        text: {
+            status_code: 200,
+            text: 'Some blog data',
+            CORS: true
+        }
     },
     isError: false
 };
@@ -105,7 +110,6 @@ const makeFetch = (url) => {
     return fetch(url).then(res => res.json());
 };
 makeFetch('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res));
-export {};
 // Another example - https://youtu.be/dLPgQRbVquo?si=SbIHzBM0W--T2VMm&t=265
 // Another example(constraint in functions) - https://youtu.be/dLPgQRbVquo?si=f5iZId3RvySc2jp0&t=507 // this is about extends keyword
 /* One more, Multiple type arguments example -  https://youtu.be/dLPgQRbVquo?si=G3RhLBwZ8tjzuta0&t=685
@@ -134,4 +138,5 @@ makeZodSafeFetch("/api/endpoint", z.object({
       }).catch((err) => {
         console.error("Validation failed:", err); // ✅ Catches validation errors properly
       });
-       */ 
+       */
+const constantString = "Hello World";

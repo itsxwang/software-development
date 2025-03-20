@@ -1,3 +1,4 @@
+"use strict";
 /*
   TypeScript Directives Explanation
 */
@@ -23,7 +24,6 @@ const num3 = "hello"; // ❌ No TypeScript error, but this could be dangerous.
 // Useful if you don’t want TypeScript to flag errors in a file (e.g., when migrating a large JavaScript project to TypeScript).
 // @ts-nocheck
 const num4 = "hello"; // No error, even if TypeScript checking is enabled.
-export {};
 /*
   🔥 When to Use Each One?
   | Directive         | Use Case |

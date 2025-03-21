@@ -130,3 +130,29 @@ class Peeps {
 const peeps = new Peeps('John Doe', 30,['js','python']);
 peeps.my_collection = [...peeps.my_collection , 'TypeScript']
 console.log(peeps.my_collection)
+
+
+// ------------------------------------------------------------
+// Its also worth to tell, that if any class extends another class, and variable has a type of parent class, we can assign a child class instance to it.
+
+class Hello {
+  sayHello():void{
+    console.log('Hello');
+  }
+}
+
+class World extends Hello {
+  sayWorld():void{
+    console.log('World');
+  }
+}   
+
+const hi : Hello = new World();
+
+
+if (hi instanceof World){
+  hi.sayWorld();
+}
+else{
+  hi.sayHello();
+}

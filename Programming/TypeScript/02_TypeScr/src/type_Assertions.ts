@@ -239,8 +239,7 @@ const pet = getSmallPet();
 if (isFish(pet)) {
   console.log(pet.swim());
 } else {
-  // Use optional chaining to safely access fly() since it may be undefined
-  pet.fly?.();
+  pet.fly();
 }
 // Notice that TypeScript not only knows that pet is a Fish in the if branch; it also knows that in the else branch, you don't have a Fish, so you must have a Bird
 
@@ -257,4 +256,72 @@ const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
 
 // In above examples, there's no need to explicitely mention that underWater Variables takes Fish[], Ts automatically infer that it takes Fish[] type value
 
-// In addition, classes can use this is Type to narrow their type.
+// ------------------------------------------------------------
+// this based type guards
+
+/* You can use this is Type in the return position for methods in classes and interfaces. When mixed with a type narrowing (e.g. if
+statements) the type of the target object would be narrowed to the specified Type
+read this - https://www.typescriptlang.org/docs/handbook/2/classes.html#this-based-type-guards */
+
+// Example:
+
+class FileSystemObject {
+  isFile(): this is FileRep {
+    return this instanceof FileRep;
+  }
+  isDirectory(): this is Directory {
+    return this instanceof Directory;
+  }
+  isNetworked(): this is Networked {
+    return this.networked;
+  }
+  constructor(public path: string, private networked: boolean) {}
+}
+ 
+class FileRep extends FileSystemObject {
+  constructor(path: string, public content: string) {
+    super(path, false);
+  }
+}
+
+class Directory extends FileSystemObject {
+  children: FileSystemObject[];
+  constructor(path: string, children: FileSystemObject[]) {
+    super(path, false);
+    this.children = children;
+  }
+}
+
+interface Networked {
+  host: string;
+}
+
+const fso: FileSystemObject = new FileRep("foo/bar.txt", "foo");
+ 
+if (fso.isFile()) {
+  fso.content;
+}
+else if (fso.isDirectory()) {
+  fso.children;
+}
+else if (fso.isNetworked()) {
+  fso.host;
+  fso.path;
+}
+
+// Its worth to note that if object defined by type assertion or interface contains function signature along with object, you can call that type also
+
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
+};
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
+}
+ 
+function myFunc(someArg: number) {
+  return someArg > 3;
+}
+myFunc.description = "default description";
+ 
+doSomething(myFunc);

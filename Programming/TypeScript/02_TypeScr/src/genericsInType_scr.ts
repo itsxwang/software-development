@@ -247,5 +247,3 @@ makeZodSafeFetch("/api/endpoint", z.object({
         console.error("Validation failed:", err); // ✅ Catches validation errors properly
       });
        */
-
-      const constantString = "Hello World";

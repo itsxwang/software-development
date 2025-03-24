@@ -228,7 +228,7 @@ myUnion = 1;  // Valid
 
 
 // ---------
-// discriminated unions - These are the unions whose every type has some common property(also called discriminant property), as a result TS can narrow down that union type with the help of that common property
+// discriminated unions - These are the unions whose every type has some common property(also called discriminant property), as a result TS can narrow down that union type with the help of that common property (like using if-else or switch)
 
 type Animal = {
     name: string;

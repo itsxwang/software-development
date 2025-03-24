@@ -1,6 +1,10 @@
 // Generics in TypeScript allow you to create reusable components or functions that can work with multiple data types 
+// they are all about relating two or more values with the same type
+
 /* 
-A central idea of understanding generics is to understand that they can infer(in many cases)the type arguments you pass them(maybe through return statatement or parameters values , etc...)without actually needing to pass any type arguments, this is the source of lot of the magic that you can do with generics
+A central idea of understanding generics is to understand that they can infer(in many cases)the type arguments 
+you pass them(maybe through return statatement or parameters values , etc...)without actually needing to pass any type arguments, 
+this is the source of lot of the magic that you can do with generics
  */
 // What and when to use generics
 // https://youtu.be/EcCTIExsqmI?si=Ui1QlmcZkwHrXZuc&t=49 see this clip
@@ -15,7 +19,9 @@ function getFirstElement<T>(array: T[]): T {
 }
 /* Note: `function getFirstElement<1 | 2 | 3>(array: (1 | 2 | 3)[]): 1 | 2 | 3` , if you want this type of inference instead of this type of 
 `function getFirstElement<number>(array: number[]): number` , you should use this type of `extends string | number` , but it also add a constraint that 
-array must be array of string or number */
+array must be array of string or number 
+More about generics constraints - https://www.typescriptlang.org/docs/handbook/2/functions.html#constraints
+*/
 
 // hover and see the in the place of T 
 getFirstElement([1, 2, 3])
@@ -199,6 +205,39 @@ type ErrorLine = GetPromiseReturnType<string>; // Type 'string' does not satisfy
 
 
 
+
+
+// One more example of `extends`
+/* Let’s write a function that returns the longer of two values. To do this, we need a length property that’s a number. 
+We constrain the type parameter to that type by writing an extends clause: */
+
+function longest<Type extends { length: number }>(a: Type, b: Type) {
+        if (a.length >= b.length) {
+          return a;
+        } else {
+          return b;
+        }
+      }
+       
+      longest({length: 10}, {length: 100}) // this will work fine
+
+
+        /*  But this is also work fine : Because TypeScript uses structural typing, meaning a type is valid as long as it matches the expected structure.
+         It does not enforce class-based or nominal typing and both, arrays and strings object have length property and they extend that object with more 
+         properties, and that's also the reason why we write extends clause */
+      // longerArray is of type 'number[]'
+      const longerArray = longest([1, 2], [1, 2, 3]);
+      // longerString is of type 'alice' | 'bob'
+      const longerString = longest("alice", "bob");
+      // Error! Numbers don't have a 'length' property
+//       const notOK = longest(10, 100); - Error : Argument of type 'number' is not assignable to parameter of type '{ length: number; }'.
+
+
+
+
+
+
+
 // ------------------------------------------------------
 // Some more examples:
 // One more example of generics usecase - 'https://youtu.be/dLPgQRbVquo?si=xaOvLGW9WM2X9rjH&t=105' 
@@ -233,7 +272,7 @@ const makeZodSafeFetch = <TData>(
       ): Promise<TData> => {
         return fetch(url)
           .then((res) => res.json())
-          .then((res) => schema.parseAsync(res)); // ✅ Use parseAsync to properly return a Promise
+          .then((res) => schema.parse(res)); // here it returns promise (every .then returns promise)
       };
       
       
@@ -242,8 +281,8 @@ makeZodSafeFetch("/api/endpoint", z.object({
         lastName: z.string(),
         id: z.string()
       })).then((res) => {
-        console.log(res); // ✅ Correctly logs validated data
+        console.log(res); //  Correctly logs validated data
       }).catch((err) => {
-        console.error("Validation failed:", err); // ✅ Catches validation errors properly
+        console.error("Validation failed:", err); //  Catches validation errors properly
       });
        */

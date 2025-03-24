@@ -20,10 +20,16 @@
     <h2>Creating a Promise</h2>
     <p>A Promise is created using the <code>Promise</code> constructor, which takes a function (called the executor) as an argument. This function has two parameters: <code>resolve</code> and <code>reject</code>, which are functions themselves.</p>
     <pre>
-       <strong> // Basically the code of `then` blocks will only executed if promise resolved(Basically , if that promise callback , calls a function in that is in first parameter) 
-        , otherwise if its callback call reject(function in its 2nd param) `then` blocks code will not be executed and that promise will throw error , and that error can be catched using catch method of promise or try and catch block
-        there is also a third possibility if its callback neither call reject nor resolve then that promise will be settled to pending state and code in `then` or `catch` blocks 
-    of that promise , will never be executed </strong>
+        <h3>what is .then</h3>
+       <strong> demo().then(
+        (onResolved) => {
+            // Some task on success
+        },
+        (onRejected) => {
+            // Some task on failure
+        }
+    )
+    Note: demo is a function that returns a promise.And the values return by callbacks(1st or 2nd) of .then will become resolve value of second .then , and so on ..., because .then also returns promise</strong>
         
         const myPromise = new Promise((resolve, reject) => {
             // Asynchronous operation
@@ -34,6 +40,14 @@
                 reject("Promise Rejected!");
             }
         });
+
+        Parameters:
+
+        <ol>
+            <li><i>resolve:</i> This is a function that is called upon to the success of the promise. This is an optional parameter.</li>
+            <li><i>onRejected:</i> This is a function that is called upon the rejection of the promise. This is an optional parameter.</li>
+        </ol>
+
     </pre>
     <p>In this example, the Promise is resolved if <code>success</code> is <code>true</code>, otherwise it is rejected.</p>
 
@@ -45,7 +59,8 @@
             console.log("Success:", result);
         }).catch(error => {
             console.log("Error:", error);
-        });
+        }); 
+        <strong>like .then , .catch also returns promise</strong>
     </pre>
     <p>In this example, if the Promise is resolved, the <code>then()</code> method is called with the result. If the Promise is rejected, the <code>catch()</code> method is called with the error.</p>
 
@@ -97,7 +112,7 @@
             console.log("Promise.any result:", result);
         }).catch(error => {
             console.log("Promise.any error:", error);
-        });
+        }).finally(()=>{console.log('runs always in resolve or reject')});
     </pre>
     <p>In this example, <code>Promise.any()</code> will resolve as soon as any of the Promises fulfills. If all Promises are rejected, the <code>catch()</code> method is called with an <code>AggregateError</code>.</p>
 
@@ -157,7 +172,7 @@
             console.log("Promise.any result:", result);
         }).catch(error => {
             console.log("Promise.any error:", error);
-        });
+        }).finally(()=>{console.log('runs always in resolve or reject')});
     </script>
 </body>
 </html>

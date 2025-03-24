@@ -18,7 +18,7 @@ type FunctionType =  {
 // means `takesYourFunction` takes that function in its param `f` , that can take string or number type parameter and return string or number type value
 function takesYourFunction(f: FunctionType) {
     if (Math.random() > 0.5) return "1";
-    return f("");
+    return f('1');
 }
 
 // Here we do function declaration 
@@ -29,12 +29,19 @@ function weirdFunction(x: number): number; // Here we do function overloading , 
 // Note : Just after the function declaration we can not write any code , we first have to implement that function that we declared above , otherwise it will throw error `Function implementation is missing or not immediately following the declaration.`
 
 // Here we do function implementation
-function weirdFunction(x: string | number): string | number {
+function weirdFunction(x: unknown ): string | number { // or like this: function weirdFunction(x: unknown): unknown  (or any) 
     if (Math.random() > 0.5) return "1"; // random logic 
     return 1;
 }
 
+//  ------------------------------------------------------------
+/* What the point of overloading is that, ts automatically infers(to see that hover on `f()`) on the function call that it returns string or number type value based on the parameter type, 
+but note: your implementation should align with ts inferation, ts will not throw error if your function returns different type value than the inferred type(see above example) */
+// ------------------------------------------------------------
+
 takesYourFunction(weirdFunction);
+
+// More about function overloading - https://youtu.be/iJkaAJUzeWQ?si=nCKOdhSDUadhe3JU&t=6180 
 
 // ------------------------------------------------------------
 /* 
@@ -130,3 +137,124 @@ They force TypeScript to treat weirdFunction as separate function signatures, ma
 ✔ Without them, TypeScript only sees the general (string | number) → (string | number), which does not match FunctionType.
 ✔ Function overloading ensures better type safety by making sure the function always returns the correct type based on its input.
 */
+
+// ------------------------------------------------------------
+
+/* Its worth to note that if object defined by type assertion or interface contains function signature along with object,
+you can call that type also */
+
+type DescribableFunction = {
+    description: string;
+    (someArg: number): boolean;
+  };
+  function doSomething(fn: DescribableFunction) {
+    console.log(fn.description + " returned " + fn(6));
+  }
+   
+  function myFunc(someArg: number) {
+    return someArg > 3;
+  }
+  myFunc.description = "default description";
+   
+  doSomething(myFunc);
+
+
+// ------------------------------------------------------------
+//  Construct Signatures
+/* So we already know JavaScript functions can also be invoked with the new operator. TypeScript refers to these as constructors because 
+they usually create a new object. You can write a constructor signature by adding the new keyword in front of a call(function) signature: */
+
+// What is a Constructor Signature?
+// A constructor signature means we defining what constructor will return
+// SomeConstructor is a type that represents a constructor.
+// It expects a new call with a string argument and returns an object `{ name: string }`
+
+
+interface SomeConstructor  {
+  new (s: string): { name: string };
+};
+
+// fn is a function that expects a constructor function (ctor) as its parameter.
+// It calls that constructor that we pass in ctor argument(here person class)
+function fn(ctor: SomeConstructor) {
+  return new ctor("hello");
+}
+
+
+
+
+
+
+
+
+
+// so here we define that constructor 
+class Person {
+  name: string
+  constructor(s: string) {
+    this.name = s; 
+  }  // so here constructor takes s takes a argument of type string and returns an object { name: string }
+}
+
+fn(Person);
+// Person is a class that matches the constructor signature (new (s: string): { name: string }).
+
+// fn(Person) works because Person has a constructor that takes a string and returns an object { name: string }
+
+
+
+
+// Some objects, like JavaScript’s Date object, can be called with or without new. You can combine call and construct signatures in the same type arbitrarily:
+
+interface CallOrConstruct {
+  (n?: number): string;
+  new (s: number | string): Date;
+}
+ 
+function fnn(ctor: CallOrConstruct) {
+  // Passing an argument of type `number` to `ctor` matches it against
+  // the first definition in the `CallOrConstruct` interface.
+  console.log(ctor(10));
+
+ // Similarly, passing an argument of type `string` to `ctor` matches it
+  // against the second definition in the `CallOrConstruct` interface.
+  console.log(new ctor("10"));
+}
+fnn(Date);
+
+
+
+
+
+
+// to refer to the class constructor type. For example:
+
+class Animals {
+  constructor() {}
+}
+
+class Zoo {
+  AnimalClass: typeof Animals;
+
+  constructor(AnimalClass: typeof Animals, public animal: Animals) {
+    this.AnimalClass = AnimalClass;
+    this.animal = animal;
+  }
+}
+// This ensures that AnimalClass can only be a constructor of a class that extends Animal.
+
+/* Some objects, like JavaScript’s Date object, can be called with or without new. You can combine call and construct signatures in the same type arbitrarily: -
+see this example - https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures
+ */
+
+// For more complex scenarios, such as dynamically loading subclasses of a given class, you can use generics to define the constructor type:
+class Zoos<T> {
+  constructor(public readonly AnimalClass: new () => T) { // new () => T is a constructor signature, manas AnimalClass takes a constructor signature that returns object of T(here Animals)
+    this.AnimalClass = AnimalClass;
+  }
+}
+
+const zoo = new Zoos<Animals>(Animals); 
+console.log(zoo.AnimalClass) 
+
+// This allows you to specify the type of the object that the constructor will create.

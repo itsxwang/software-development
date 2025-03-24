@@ -160,7 +160,6 @@ myUnknown = true;
 // Variable can hold more than one type
 let myUnion = "Hello";
 myUnion = 1; // Valid
-// myUnion = true;  // Invalid: boolean not allowed
 // The separator of the union members is allowed before the first element, so you could also write this:
 function printTextOrNumberOrBool(textOrNumberOrBool) {
     console.log(textOrNumberOrBool);
@@ -339,17 +338,21 @@ const req2 = { url: "https://example.com", method: "GET" };
 version like string or number.
  */
 // --------------------------------------------------
-// Non-null Assertion Operator (Postfix !) (for compile time only)
+// Non-null Assertion Operator (Postfix !), to tell TS compiler that we are sure that the value is not null or undefined, ! also called as bang operator
 // null and undefined types in detail and how they behave corresponding to strictNullChecks flag : https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined
 // btw ts updates, made null and undefined system little but more strict 
 /* TypeScript also has a special syntax for removing null and undefined from a type without doing any explicit checking. Writing ! after any expression is
 effectively a type assertion that the value isn’t null or undefined: */
 function liveDangerously(x) {
     // No error
-    console.log(x.toFixed());
+    console.log(x.toFixed()); // saying x i difinitely not null, so TS infers that then it will must be a number, so we can use toFixed() method on it
 }
-/* Just like other type assertions, this doesn’t change the runtime behavior of your code, so it’s important to only use ! when you know that the value can’t
-be null or undefined or instead use optional chaining(?) to check if the value is null or undefined. */
-// liveDangerously(null); //! will throw error at runtime
-function createUser({ name, isPaid }) { }
-createUser({ name: "hitesh", isPaid: false });
+function move(animal) {
+    if ("swim" in animal) {
+        return animal.swim();
+    }
+    else if ("fly" in animal) {
+        return animal.fly();
+    }
+}
+move({ swim: () => 'void' });

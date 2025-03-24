@@ -82,7 +82,7 @@ interface ICoder {
     code(language: string): void;
 }
 
-// in this way we can implement interface to some class , implements means Codere class must have all properties of ICoder , if it not ts compile gives error
+// in this way we can implement interface to some class, implements means Codere class must have all properties of ICoder, in addition it can also have some extra properties, if it not ts compiler gives error
 class Codere implements ICoder {
 
     // name: string;
@@ -96,7 +96,14 @@ class Codere implements ICoder {
     }
 }
 const coder1 = new Codere('John Doe', 'TypeScript')
-// coder1.code('TypeScript') throws error
+coder1.code('TypeScript') // throws error
+
+// Now printCoder only take object of a class that implement ICoder interface
+function printCoder(coder: ICoder) {
+    console.log(coder.name, coder.lang)
+}
+
+printCoder(coder1)
 
 // -----------------------------------------------------------
 

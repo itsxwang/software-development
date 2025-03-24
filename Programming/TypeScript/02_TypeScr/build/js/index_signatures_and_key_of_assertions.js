@@ -5,6 +5,7 @@
 /* basically we see before how to create basic objects using interface and type alias , now let's see how to create object signatures so we can create properties and values dynamically
 without explicitely defined each property name and its corresponding value
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 // but there could come times when we not know the names of properties could be 
 // if we instansiate this object :
 const g = {

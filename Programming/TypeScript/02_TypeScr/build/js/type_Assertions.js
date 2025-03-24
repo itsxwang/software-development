@@ -3,7 +3,7 @@
 // What is type assertions
 // https://youtu.be/lOuaE3nGS4g?si=ElgBPc1myX1Pairq&t=10
 // So type assertion in ts is a way to tell the ts compiler that we know more about the type than the compiler does 
-var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
 // convert to less specific type
 let a = 'welcome';
 // so in this way we can assign the value of `a` to `b` at the same time making type of `b` less specific than `one`
@@ -152,8 +152,7 @@ if (isFish(pet)) {
     console.log(pet.swim());
 }
 else {
-    // Use optional chaining to safely access fly() since it may be undefined
-    (_a = pet.fly) === null || _a === void 0 ? void 0 : _a.call(pet);
+    pet.fly();
 }
 // Notice that TypeScript not only knows that pet is a Fish in the if branch; it also knows that in the else branch, you don't have a Fish, so you must have a Bird
 const zoo = [getSmallPet(), getSmallPet(), getSmallPet()];
@@ -166,4 +165,51 @@ const underWater3 = zoo.filter((pet) => {
     return isFish(pet);
 });
 // In above examples, there's no need to explicitely mention that underWater Variables takes Fish[], Ts automatically infer that it takes Fish[] type value
-// In addition, classes can use this is Type to narrow their type.
+// ------------------------------------------------------------
+// this based type guards
+/* You can use this is Type in the return position for methods in classes and interfaces. When mixed with a type narrowing (e.g. if
+statements) the type of the target object would be narrowed to the specified Type
+read this - https://www.typescriptlang.org/docs/handbook/2/classes.html#this-based-type-guards */
+// Example:
+class FileSystemObject {
+    path;
+    networked;
+    isFile() {
+        return this instanceof FileRep;
+    }
+    isDirectory() {
+        return this instanceof Directory;
+    }
+    isNetworked() {
+        return this.networked;
+    }
+    constructor(path, networked) {
+        this.path = path;
+        this.networked = networked;
+    }
+}
+class FileRep extends FileSystemObject {
+    content;
+    constructor(path, content) {
+        super(path, false);
+        this.content = content;
+    }
+}
+class Directory extends FileSystemObject {
+    children;
+    constructor(path, children) {
+        super(path, false);
+        this.children = children;
+    }
+}
+const fso = new FileRep("foo/bar.txt", "foo");
+if (fso.isFile()) {
+    fso.content;
+}
+else if (fso.isDirectory()) {
+    fso.children;
+}
+else if (fso.isNetworked()) {
+    fso.host;
+    fso.path;
+}

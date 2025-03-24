@@ -308,20 +308,3 @@ else if (fso.isNetworked()) {
   fso.host;
   fso.path;
 }
-
-// Its worth to note that if object defined by type assertion or interface contains function signature along with object, you can call that type also
-
-type DescribableFunction = {
-  description: string;
-  (someArg: number): boolean;
-};
-function doSomething(fn: DescribableFunction) {
-  console.log(fn.description + " returned " + fn(6));
-}
- 
-function myFunc(someArg: number) {
-  return someArg > 3;
-}
-myFunc.description = "default description";
- 
-doSomething(myFunc);

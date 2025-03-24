@@ -11,8 +11,16 @@
     }
 
 } */
+Object.defineProperty(exports, "__esModule", { value: true });
 // Now to keeps things dry (do not repeat yourself) we can use visibility modifiers like public , private , protected , etc. they are also be called data/access modifiers
 class Coder {
+    name;
+    lang;
+    age;
+    id;
+    // #name : string  , our js way to create a private property 
+    // and if we wanna just declare a property without initializing it , we can use `!` to declare it like this: 
+    secLang;
     // by default all properties and method of a class is public , we also have readonly modifier that makes property readonly
     constructor(name, lang, age, 
     // means it can also be access in sub classs but not outside the class
@@ -41,6 +49,7 @@ coder.code('TypeScript');
 // console.log(coder.id) // Property 'id' is protected and only accessible within class 'Coder' and its subclasses.
 console.log(coder.getId()); // instead use method
 class WebCoder extends Coder {
+    framework;
     constructor(name, lang, age, framework) {
         super(name, lang, age);
         this.framework = framework;
@@ -54,6 +63,8 @@ const webCoder = new WebCoder('Johny', 'TypeScript', 30, 'Angular');
 console.log(webCoder.getDecoratedId());
 // in this way we can implement interface to some class , implements means Codere class must have all properties of ICoder , if it not ts compile gives error
 class Codere {
+    name;
+    lang;
     // name: string;
     // lang: string;
     constructor(name, lang) {
@@ -70,11 +81,14 @@ const coder1 = new Codere('John Doe', 'TypeScript');
 // coder1.code('TypeScript') throws error
 // -----------------------------------------------------------
 class Peeps {
+    name;
+    age;
+    collection;
+    data = 0; //, so we can also use visibility modifiers outside the constructor
     constructor(name, age, collection, data = 'sample_data') {
         this.name = name;
         this.age = age;
         this.collection = collection;
-        this.data = 0; //, so we can also use visibility modifiers outside the constructor
     }
     get my_collection() {
         return this.collection;
@@ -86,3 +100,22 @@ class Peeps {
 const peeps = new Peeps('John Doe', 30, ['js', 'python']);
 peeps.my_collection = [...peeps.my_collection, 'TypeScript'];
 console.log(peeps.my_collection);
+// ------------------------------------------------------------
+// Its also worth to tell, that if any class extends another class, and variable has a type of parent class, we can assign a child class instance to it.
+class Hello {
+    sayHello() {
+        console.log('Hello');
+    }
+}
+class World extends Hello {
+    sayWorld() {
+        console.log('World');
+    }
+}
+const hi = new World();
+if (hi instanceof World) {
+    hi.sayWorld();
+}
+else {
+    hi.sayHello();
+}

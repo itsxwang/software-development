@@ -5,6 +5,7 @@ A central idea of understanding generics is to understand that they can infer(in
  */
 // What and when to use generics
 // https://youtu.be/EcCTIExsqmI?si=Ui1QlmcZkwHrXZuc&t=49 see this clip
+Object.defineProperty(exports, "__esModule", { value: true });
 // So let's create generic function, before that it worth to tell that generic function is a normal function with a type helper mapped top of it
 // So we can give any name to our generic , as its functionality is not depend on names 
 function getFirstElement(array) {
@@ -138,5 +139,4 @@ makeZodSafeFetch("/api/endpoint", z.object({
       }).catch((err) => {
         console.error("Validation failed:", err); // ✅ Catches validation errors properly
       });
-       */
-const constantString = "Hello World";
+       */ 

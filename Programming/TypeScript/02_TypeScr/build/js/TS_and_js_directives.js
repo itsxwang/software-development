@@ -2,6 +2,7 @@
 /*
   TypeScript Directives Explanation
 */
+Object.defineProperty(exports, "__esModule", { value: true });
 // 1. @ts-check - Enables TypeScript type checking in JavaScript files.
 // Useful when working with JSDoc-based type checking in .js files.
 // Without this, TypeScript might not check types in JavaScript files.

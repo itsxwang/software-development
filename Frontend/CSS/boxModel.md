@@ -6,3 +6,5 @@
     - ***The width and height is set by the content of the element***
 - [Block level sizing guidance](https://youtu.be/-G-zic_LS0A?si=A881Daalfh5nqAPh&t=17088)
 - [Inline level sizing guidance(width and height can be apply on some elements but not others)](https://youtu.be/-G-zic_LS0A?si=1y922vKnoOf4b7vK&t=17235)
+- [Main Container](https://youtu.be/-G-zic_LS0A?si=bdoHEHPTdBf5slFu&t=25087)
+- [The `auto` value, why we need and how its works](https://youtu.be/-G-zic_LS0A?si=L1Rq1ZHXkzJLZ0kd&t=25247)

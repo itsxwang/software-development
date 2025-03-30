@@ -1,0 +1,1 @@
+[Overflow Property Control what happens to content that overflow the element box](https://youtu.be/-G-zic_LS0A?si=PsvpKafOcN4W4Jhl&t=28067)

@@ -184,10 +184,6 @@ function fn(ctor: SomeConstructor) {
 
 
 
-
-
-
-
 // so here we define that constructor 
 class Person {
   name: string
@@ -208,7 +204,7 @@ fn(Person);
 
 interface CallOrConstruct {
   (n?: number): string;
-  new (s: number | string): Date;
+  new (s: string): Date;
 }
  
 function fnn(ctor: CallOrConstruct) {
@@ -219,12 +215,87 @@ function fnn(ctor: CallOrConstruct) {
  // Similarly, passing an argument of type `string` to `ctor` matches it
   // against the second definition in the `CallOrConstruct` interface.
   console.log(new ctor("10"));
+  // console.log(new ctor(10)); //! Argument of type 'number' is not assignable to parameter of type 'string', because constructor signature expects string as argument 
 }
+
+
+
 fnn(Date);
 
 
+/* 
+Note: TypeScript has special handling for certain global objects like Date, Array, Promise, etc. These objects have well-known,
+pre-defined types built into TypeScript's standard library (lib.es5.d.ts, lib.es6.d.ts, etc.).
+
+When TypeScript sees Date, it doesn’t strictly enforce the function signature that you declared in the interface—it
+assumes Date behaves as defined in the standard library, which has its own call and constructor signatures, it just check types when you call that function
+
+That's why we can write any signature, if fn takes Date as argument becaue Date is a global object, but that signature should align with how you call it 
+*/
 
 
+
+
+// ----------------------------
+// Custom implementation of function that satisfy CallOrConstruct interface
+
+// TypeScript has a rule that the `this` parameter must be the first argument in a function signature.
+
+/*
+And, When called with new, a new instance is created, and this refers to the new object.
+When called without new, this refers to the global object (in non-strict mode) or undefined (in strict mode). 
+*/
+
+
+
+ 
+function MyFunc(this: any, value?: number | string): any {
+  console.log('this',this)
+  if (!(this instanceof MyFunc)) {
+    // If called as a normal function
+    return `Called without new: ${value}`;
+  }
+  // If called with 'new'
+  return new Date();
+}
+
+// Assign the function to a variable of the interface type
+const func: CallOrConstruct = MyFunc as CallOrConstruct;
+// we above do assertion because, TypeScript doesn't automatically infer that MyFunc can be used as both a function and a constructor.
+
+// But we can do this also, and this way not require even type assertion
+// -------------------------------------------------------------------------------
+/* 
+interface CallOrConstruct {
+  (n?: number): string;
+  new (s: string): Date;
+}
+
+class MyFuncClass {
+  constructor(s: string) {
+    return new Date();
+  }
+  static call(n?: number) {
+    return `Called without new: ${n}`;
+  }
+}
+
+✅ Assigning a function that satisfies both signatures
+const func = Object.assign(MyFuncClass.call, MyFuncClass) as CallOrConstruct;
+
+✅ Now works
+console.log(func(10)); // Called without new: 10
+console.log(new func("Hello")); // Outputs a Date object
+
+*/
+// So this is also possible
+
+// -------------------------------------------------------------------------------
+
+
+// Usage
+// console.log(func(10)); // ✅ Called without new: 10
+console.log(new func("Hello")); // ✅ Outputs a Date object
 
 
 // to refer to the class constructor type. For example:
@@ -255,6 +326,6 @@ class Zoos<T> {
 }
 
 const zoo = new Zoos<Animals>(Animals); 
-console.log(zoo.AnimalClass) 
+console.log(new zoo.AnimalClass()) 
 
 // This allows you to specify the type of the object that the constructor will create.

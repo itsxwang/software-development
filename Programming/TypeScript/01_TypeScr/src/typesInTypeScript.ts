@@ -49,7 +49,7 @@ class VirtualPoint {
 }
  
 const newVPoint = new VirtualPoint(13, 56);
-logPoint(newVPoint); // logs "13, 56"
+logPoint(newVPoint); // logs { x: 13, y: 56 }
 
 // If the object or class has all the required properties, TypeScript will say they match, regardless of the implementation details.
 

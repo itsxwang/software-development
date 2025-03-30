@@ -28,3 +28,15 @@
     - [Pseudo Elements for text styling](https://youtu.be/-G-zic_LS0A?si=kV-jUQ-1agXx7AaA&t=15067)
     - [Pseudo elements for selection(like customizing on selection of text)](https://youtu.be/-G-zic_LS0A?si=7vKXBLOflvqkxGh4&t=15193)
     - [Pseudo elements for content insertion(::before and ::after)](https://youtu.be/-G-zic_LS0A?si=bIPgrVOjYjwZH6yt&t=15239)
+
+- [Padding Guidance, (horizontal padding value typically double than vertical padding)](https://youtu.be/-G-zic_LS0A?si=4Qunnkj10YjvUGzP&t=18291)
+- [All things and guidance about border](https://youtu.be/-G-zic_LS0A?si=_c9iyQJ4qGYYgfVu&t=18817)
+- [All about Border radius](https://youtu.be/-G-zic_LS0A?si=URk0jeSjDkOI-FG5&t=19879)
+   - [Pills](https://youtu.be/-G-zic_LS0A?si=awqt41hZJtGEkER7&t=20061)
+
+- [All about Box sizing](https://youtu.be/-G-zic_LS0A?si=FLKRSHn8cgYmpX0j&t=20461)
+
+- [Margin Guidance](https://youtu.be/-G-zic_LS0A?si=XMuoyAZeztw3oOao&t=21357)
+    - [Margin Guidance](https://youtu.be/-G-zic_LS0A?si=3x5d6OPkyIuoDss6&t=21845)
+         - [Spacing System(for deciding consistent margin values)](https://youtu.be/-G-zic_LS0A?si=wyfphZssbjIFgO4k&t=22091)
+

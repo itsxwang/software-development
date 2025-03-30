@@ -1,0 +1,3 @@
+- [all about display property](https://youtu.be/-G-zic_LS0A?si=chSzFFrM-HDmJclR&t=22727)
+   - [Inline elements do not follow the box model rules so applying some properties not work as expected, see the clip for more](https://youtu.be/-G-zic_LS0A?si=bftyCpG_R-3qQE2S&t=22967)
+   - [display property all values including ***inline-block***](https://youtu.be/-G-zic_LS0A?si=6RyIbZb0EUw_JgxM&t=23153)

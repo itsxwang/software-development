@@ -19,3 +19,6 @@ New way:
 }
 ```
 - [Css  Calculations](https://youtu.be/-G-zic_LS0A?si=kwXihT8cVtk_toP8&t=33627)
+
+- [Variables and Calculations](https://youtu.be/-G-zic_LS0A?si=ZGWfmOqKmFKwCnX5&t=33778)
+

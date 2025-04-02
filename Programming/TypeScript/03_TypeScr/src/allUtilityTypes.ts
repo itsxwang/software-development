@@ -56,7 +56,7 @@ type B = "banana" | "cherry";
 
 type Excluded = Exclude<A, B>; // "apple"
 // ✅ Explanation: "banana" and "cherry" are removed from A because they are in B. And only values in A will be assignable to Excluded Type
-const exampleExcluded : Excluded = 'apple'  
+const exampleExcluded : Excluded = 'apple'
 
 
 // Another example with built-in types:

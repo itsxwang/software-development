@@ -1,0 +1,5 @@
+[How Css Units relate to real world piexels](https://youtu.be/1ra4yeyjFFc?si=_MtHCdh51lu0_Qt0&t=16020)
+- [What is Pixel](https://youtu.be/1ra4yeyjFFc?si=H5degGqil6zulpim&t=16031)
+- [Physical Pixel](https://youtu.be/1ra4yeyjFFc?si=z8d7OnKa23mGdEib&t=16069)
+- [Css Pixel](https://youtu.be/1ra4yeyjFFc?si=OYtQGYtm5yGhyztj&t=16217)
+- [Pixel in dev tools vs in devices](https://youtu.be/1ra4yeyjFFc?si=i9x7yuPspRMqB_EH&t=16350)

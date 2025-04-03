@@ -1,0 +1,15 @@
+[Positioning](https://youtu.be/1ra4yeyjFFc?si=xP5QtUWDdKNE6I0L&t=16690)
+- [Normal Flow](https://youtu.be/1ra4yeyjFFc?si=Uk_xmHEUYNn2aI-U&t=16727)
+- [Position property](https://youtu.be/1ra4yeyjFFc?si=XRBqcEeRawO_zgb6&t=16791)
+   - [Static positioning](https://youtu.be/1ra4yeyjFFc?si=WjYUnCmiMtzS5Vgn&t=16815)
+   - [Relative positioning](https://youtu.be/1ra4yeyjFFc?si=IodlC0e9EDJ4A7c2&t=16967)
+     - [Offset properties(top, right, bottom, left)](https://youtu.be/1ra4yeyjFFc?si=xKw4B7pgmyLnxluV&t=17027)
+    - [Absolute positioning](https://youtu.be/1ra4yeyjFFc?si=Ni4krM_WwfzDJoQz&t=17251)
+  - [Fixed and sticky positioning](https://youtu.be/1ra4yeyjFFc?si=p2dOB5eWxK00kR66&t=17661)
+     - [Sticky positioning](https://youtu.be/1ra4yeyjFFc?si=L7Q371zawLgFl_Cc&t=17787)
+- [Positioning guidance](https://youtu.be/1ra4yeyjFFc?si=O2mUMHkld5tMixit&t=17890)
+
+----
+- [z-index and stacking context](https://youtu.be/1ra4yeyjFFc?si=SgYyqQ5AyDarlVO_&t=18527)
+- [z-index](https://youtu.be/1ra4yeyjFFc?si=B09B_-BpcngMJ0DJ&t=18697)
+- [Concept of stacking context](https://youtu.be/1ra4yeyjFFc?si=j28IP3yd_6sfESlH&t=19017)

@@ -1,0 +1,3 @@
+- **React is a free and open source(anything that made available to public is called open source, means we can view, modify and distribute it) Js library designed for building user interfaces.**
+- React use something called **Components model**
+   - Component: **A component is a piece of the UI that has its own logic and appearance. A component can be as small as a button or as large as an entire page**

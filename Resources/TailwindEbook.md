@@ -1,0 +1,1 @@
+[Here is Tailwind Css Ebook. All credit goes to ***Javascript Mastery***, Thanks!](https://resource.jsmastery.pro/tailwind-starter-kit)

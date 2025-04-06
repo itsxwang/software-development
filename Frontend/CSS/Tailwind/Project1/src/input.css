@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .mainHeading {
+        @apply mb-8 text-center text-6xl font-extrabold drop-shadow-md portrait:text-4xl;
+    }
+    
+    .upperBox {
+        @apply flex h-20 w-40 items-center justify-center rounded-full border-2 border-amber-300 bg-white text-center transition-all hover:cursor-pointer hover:bg-amber-200 hover:text-white hover:shadow-md hover:shadow-amber-300 hover:ring-1;
+    }
+
+    .bottomBox {
+        @apply flex h-20 w-40 items-center justify-center rounded-full bg-amber-100 text-center md:hidden;
+    }
+}
+

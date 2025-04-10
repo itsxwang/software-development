@@ -44,7 +44,9 @@ export default App;
 - [Example of share state with other components(using props)](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 - [Example of share state with other components(using props)](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 - [Example of passing arrow function or normal function to `useState`](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
+     - [And it is useful becuase it only calls the function(that you pass in that `useState`) only the very first time your component first renders, unlike hardcoded value/function that runs everytime your component re-renders](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 
+ - [One another important thing to note is that `useState` works little bit differently for function and class components, when dealing with objects](https://youtu.be/O6P86uwfdR0?si=oJtb531WortKWAxC&t=677)    
 ----
 
 - [Hooks](https://youtu.be/M9O5AjEFzKw?si=U6Y-7LoSVisdDlCo&t=6487)

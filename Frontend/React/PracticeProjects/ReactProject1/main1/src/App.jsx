@@ -1,26 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import ShoppingList from './Components/ShoppingList'
+import './style.css'
 
 function App() {
-  const [name,setName] = useState(()=> {
-    const savedName = localStorage.getItem("name")
-    console.log(JSON.parse(savedName))
-    return savedName ? JSON.parse(savedName) : ""
-  }) 
+  const [items,setItems] = React.useState(() => {
+    return []
+  })
+return (
+    <div className='mainContainer'>
+  <h1 className='mainT'>Your Shopping List</h1>
 
-  function changeHnadler(e) {
-    setName(e.target.value)
-    // localStorage.setItem("name",JSON.stringify(e.target.value))
-  }
-  useEffect(() => {
-    console.log("useEffect")
-    localStorage.setItem("name",JSON.stringify(name))
-  }, [name])
-  return (
-    <div>
-          <h1>⚡:  {name}</h1>
-          <input type="text" value={name} onChange={changeHnadler} />
-    </div>
-  )
+  <div className='tableContainer scroll-container'>
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Item</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item, index) => (
+          <tr key={index}>
+            <td>{index + 1}.</td>
+            <td>{item.name}</td>
+            <td>{item.quantity}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <ShoppingList items={items} setItems={setItems} />
+</div>
+
+)
 }
 
-export default App;
+export default App

@@ -19,10 +19,8 @@ Welcome to my Software Development knowledge hub! This repo is my structured app
 │-- 📂 Deployment  # CI/CD, hosting, cloud, and DevOps
 │-- 📂 Design-Patterns  # Common patterns and best coding practices
 │-- 📂 Algorithms-DS  # Data structures and algorithms for efficient coding
-│-- 📂 Full-Stack  # Practical implementations , case studies and concepts that are related to both Frontend and Backend 
 │-- 📂 Resources  # Links to useful books, articles, and documentation
 │-- 📂 Programming - Languages , code , trendy/helpful syntactic sugar , library/modules/classes/functions/methods ..., etc.
-
 ```
 
 ## 🛠 Tech Stack & Tools

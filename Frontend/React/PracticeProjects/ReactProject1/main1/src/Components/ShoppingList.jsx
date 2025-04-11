@@ -19,12 +19,12 @@ function ShoppingList({items,setItems}) {
 
         <div className='nameOfItem'>
             <label htmlFor="nameOfItem">Enter the item you wanna add: </label>
-            <input type="text" name="name" id = "nameOfItem" />
+            <input type="text" name="name" id = "nameOfItem" onClick={(e) => {navigator.clipboard.readText().then(text => {e.target.value = text})}}/>
         </div>
 
         <div className='quantity'>
             <label htmlFor="quantity">Enter the quantity: </label>
-            <input type="number" name="quantity" id = "quantity"/>
+            <input type="number" name="quantity" id = "quantity" defaultValue={1} />
         </div>
         <button type="submit">Add</button>
         </form>

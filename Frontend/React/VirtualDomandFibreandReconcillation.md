@@ -1,0 +1,2 @@
+- [Understand Virtual DOM, Basic working and goals of fibre, Reconcillation](https://youtu.be/FxgM9k1rg0Q?si=8IygdXTt26vYodEN&t=10737)
+- [Primary goal of Fibre](https://youtu.be/FxgM9k1rg0Q?si=88bpjuPhNgl1J6di&t=11647)

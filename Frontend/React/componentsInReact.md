@@ -1,6 +1,6 @@
 Component: **A component is a piece of the UI that has its own logic and appearance. A component can be as small as a button or as large as an entire page.<br>Components are independent & reusable bits of code. They serve the same purpose as JS functions, but work in isolation and return HTML (or jsx to be precise).**
 
----
+----
 
 Components can be either **functional** or **class-based**.
 
@@ -46,3 +46,14 @@ root.render(<Car />);
 ---
 
 **React components** are **modular** and **can be composed together** to build complex UIs, ensuring **optimized performance** and **code reusability**
+
+----
+
+[Some rules to keep in mind while working with components and jsx](https://youtu.be/M9O5AjEFzKw?si=hG_kuGZcmdKV6RAn&t=2027)
+
+```
+<>
+<!-- Your js -->
+</>
+```
+```<> </>``` is called to be ***fragment***, when you don't want to enclose you html elements inside any tag(parent).

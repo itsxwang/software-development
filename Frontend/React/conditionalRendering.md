@@ -4,6 +4,14 @@
 ## Example:
 
 ```js
+  './App.jsx'
+  import { Password } from './Password';
+  const App = () => {
+    return <Password isValid={true} />;
+  };
+
+
+  './Password.jsx'
 const ValidPassword = () => <h1>Valid Password</h1>;
 
 const InvalidPassword = () => <h1>Invalid Password</h1>;
@@ -12,7 +20,5 @@ const Password = ({ isValid }) => {
   return isValid ? <ValidPassword /> : <InvalidPassword />;
 };
 
-const App = () => {
-  return <Password isValid={true} />;
-};
+
 ```

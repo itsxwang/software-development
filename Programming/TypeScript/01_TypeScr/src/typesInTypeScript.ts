@@ -320,7 +320,6 @@ let guitaristobj : guitarist = {
 // let's make type for some function 
 type logMessage = (message: string) => void;
 
-
 // define custom types using interface keyword
 // -------------------------------------------------------------
 interface brainyEnginner {
@@ -424,7 +423,7 @@ const numOrString =  (value : number | string) :string => {
 // So, when you write:
 // `declare function create(o: object | null): void;`
 // TypeScript treats this as a declaration only, meaning it assumes create already exists somewhere else (like in a .d.ts file or external library).
-// And its worth to note: declare const variables and functions are not allowed to be implemented in same file. 
+// And its worth to note: declare and implement const variables,functions,classes are not allowed to be implemented in same file. 
 
 interface Backpack<Type> {
     add: (obj: Type) => void;
@@ -436,7 +435,7 @@ declare const backpack: Backpack<string>; // because we can't declare with const
 
 // We can also declare a function if we don't wanna implement it
 // declare function create(o: object | null): void;
-// // implement it later
+// implement it later
 // function create(o: object | null) {
 //     return o;
 // }

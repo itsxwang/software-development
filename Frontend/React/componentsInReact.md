@@ -57,3 +57,8 @@ root.render(<Car />);
 </>
 ```
 ```<> </>``` is called to be ***fragment***, when you don't want to enclose you html elements inside any tag(parent).
+
+
+----
+
+***Component Mounts*** means when component renders the first time.

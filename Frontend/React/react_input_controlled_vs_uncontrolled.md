@@ -23,6 +23,7 @@ So, even if the user tries to type something else, React **re-renders and resets
   - Uses `value` prop.
   - Needs `onChange` to update the value.
   - React controls it entirely.
+  - When using controlled components, always initialize state to non-undefined values for all fields you will bind to value. Otherwise react can triggere warning and program can stop working. 
 
 - **Uncontrolled Input**:
   - Uses `defaultValue` (or no `value` at all).

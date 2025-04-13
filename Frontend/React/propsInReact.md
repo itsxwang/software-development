@@ -42,3 +42,8 @@ const App = () => {
 ----
 
 [**But in some situation we wanna pass data from parent component to child component,** through ***closing(pair) tag***, instead of ***self closing tag***, using `props.children`](https://youtu.be/M9O5AjEFzKw?si=9h19In3dwQk2zAFG&t=4447)
+
+
+-----
+
+We can pass children props to a component by wrapping the child component in a parent component that accepts children props

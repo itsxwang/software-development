@@ -1,10 +1,11 @@
 import React from 'react'
 
-function App() {
+function Timer() {
   return (
     <div>
+        
     </div>
   )
 }
 
-export default App
+export default Timer

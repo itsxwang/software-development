@@ -33,10 +33,44 @@ const App = () => {
     </div>
 };
 
-
-
 export default App;
 ```
+
+
+-----
+If you render the same component multiple times, each will get its own state. Click each button separately:
+
+```js
+import { useState } from 'react';
+
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton /> // Render MyButton component 1
+      <MyButton /> // Render MyButton component 2
+    </div>
+  );
+}
+
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count=> (count > 0 ? count+count : count+1 )  );
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+
+```
+
+-----
+
 
 - [Example of update Array](https://youtu.be/M9O5AjEFzKw?si=4l6GZmrxPC73sOrc&t=6907)
 - [Example of update Object](https://youtu.be/M9O5AjEFzKw?si=tJulkfVHU9JZsTiI&t=7177)
@@ -50,6 +84,6 @@ export default App;
 ----
 
 - [Hooks](https://youtu.be/M9O5AjEFzKw?si=U6Y-7LoSVisdDlCo&t=6487)
-   - **Hooks** are a new addition in React 16.8
+   - Functions starting with **use** are called ***Hooks***. They are a new addition in React 16.8
 They let you use state and other React features without writing a class.Means they allow you to manage your state in a function component
 - [Some important rules about Hooks](https://youtu.be/O6P86uwfdR0?si=N5PoI9Sv6L9lo8bl&t=137)

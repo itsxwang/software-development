@@ -97,7 +97,7 @@ function App() {
   );
 }
 ```
-- `useEffect` runs after the dom painted the updated UI to the screen.Cause of this, the `useEffect` callback function(***including `prevCount.current`*** updation) runs after the component rendered and that's why `<h2>Before: {prevCount.current}</h2>` shows previous value of `prevCount.current`, result in getting previous value of `count` 
+- `useEffect` runs after the dom painted the updated UI to the screen.Cause of this, the `useEffect` callback function(***including `prevCount.current`*** updation) runs after the component rendered and that's why `<h2>Before: {prevCount.current}</h2>` shows previous value of `prevCount.current`, that result in that it will render previous value of `previous.count` because first dom paint the updated Ui, after then only `useEffect` runs and update the `prevCount.current` value.
 
 
 ## ✅ Use Case #4: Accessing DOM elements(Assigning DOM elements to a `prevCount.current`)
@@ -116,5 +116,5 @@ function MyComponent() {
   return <input ref={inputRef} type="text" />;
 }
 ```
-In this example, `inputRef` is a ref object created by `useRef(null).` By assigning inputRef to the ref attribute of the **input** element, React will set `inputRef.current` to the corresponding DOM node when the component mounts(***first renders***). This allows you to directly access and manipulate the DOM element, such as focusing the input field.​
+In this example, `inputRef` is a ref object created by `useRef(null).` By assigning `inputRef` to the ref attribute of the **input** element, React will set `inputRef.current` to the corresponding DOM node when the component mounts(***first renders***). This allows you to directly access and manipulate the DOM element, such as focusing the input field.​
 

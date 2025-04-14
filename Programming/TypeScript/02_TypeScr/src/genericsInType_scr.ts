@@ -18,7 +18,7 @@ function getFirstElement<T>(array: T[]): T {
         return array[0]
 }
 /* Note: `function getFirstElement<1 | 2 | 3>(array: (1 | 2 | 3)[]): 1 | 2 | 3` , if you want this type of inference instead of this type of 
-`function getFirstElement<number>(array: number[]): number` , you should use this type of `extends string | number` , but it also add a constraint that 
+`function getFirstElement<number>(array: Number[]): number` , you should use this type of `extends string | number` , but it also add a constraint that 
 array must be array of string or number 
 More about generics constraints - https://www.typescriptlang.org/docs/handbook/2/functions.html#constraints
 */

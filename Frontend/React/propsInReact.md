@@ -47,3 +47,56 @@ const App = () => {
 -----
 
 We can pass children props to a component by wrapping the child component in a parent component that accepts children props
+Example code
+```js
+const User = (props) => {
+  return (
+    <div>
+      <h1>{props.name}</h1>
+      <h2>{props.age}</h2>
+      {props.children} // will put child components here
+    </div>
+  );
+}
+const App = () => {
+  return (
+    <div>
+      <User name="Alice" age={25}>
+        <h1>Child Component</h1>
+      </User>
+    </div>
+  );
+};
+```
+
+----
+#### Type Check your Props using `PropTypes` package
+
+#### Here is an example of how to use PropTypes in a class component:
+```js
+import PropTypes from 'prop-types';
+import React from 'react';
+
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      Hello, {this.props.name}
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+
+/* To ensure a prop is required, you can append `isRequired` to any PropTypes validator:
+
+Greeting.propTypes = {
+  name: PropTypes.string.isRequired
+};
+ */
+
+export default Greeting;
+```
+[To know about `PropTypes` package](https://youtu.be/lAFbKzO-fss?si=MQnzHrBzWRl1ubL7&t=3507)

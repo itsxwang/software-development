@@ -30,6 +30,30 @@ class Car extends Component {
 
 export default Car;
 ```
+----
+Components can render other components, but you must never nest their definitions:
+```js
+export default function Gallery() {
+  // 🔴 Never define a component inside another component!
+  function Profile() {
+    // ...
+  }
+  // ...
+}
+```
+The snippet above is very slow and causes bugs. Instead, define every component at the top level:
+
+```js
+export default function Gallery() {
+  // ...
+}
+
+// ✅ Declare components at the top level
+function Profile() {
+  // ...
+}
+```
+
 
 ----
 **To use a component in your application**(***main.jsx*** file by default), you **import it** and **render it** within the application's ***root element***. For instance:
@@ -62,3 +86,7 @@ root.render(<Car />);
 ----
 
 ***Component Mounts*** means when component renders the first time.
+
+----
+
+[You can also create component with `React.createElement()`, its how react underneath works when you write ```<></>```, but `React.createElement()` is a old way of creating components](https://youtu.be/lAFbKzO-fss?si=EDmybL5ezHuIFNav&t=2337)

@@ -6,7 +6,7 @@
 
 
 
-- [Project setup](https://youtu.be/M9O5AjEFzKw?si=O3KI2XGwhyLbQDWi&t=387)
+- [Project setup](https://youtuc.be/M9O5AjEFzKw?si=O3KI2XGwhyLbQDWi&t=387)
 - [Second way of Project setup](https://youtu.be/FxgM9k1rg0Q?si=H4Sq3-CuWholj-H9&t=2487)
 - [making react project through `npx create-react-app fileName` command Vs creating through `npm create vite@latest`(more lightweight as compare to with `npx create-react-app fileName`)](https://youtu.be/FxgM9k1rg0Q?si=1ltAipjlczyH7LTd&t=3287)
 - [Understand the react flow and structure](https://youtu.be/FxgM9k1rg0Q?si=dsYk8JQXqn4mHpzI&t=4057)

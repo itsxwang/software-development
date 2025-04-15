@@ -80,7 +80,8 @@ root.render(<Car />);
 <!-- Your js -->
 </>
 ```
-```<> </>``` is called to be ***fragment***, when you don't want to enclose you html elements inside any tag(parent).
+```<> </>``` or ```<React.Fragment></React.Fragment>``` is called to be ***fragment***, when you don't want to enclose you html elements inside any tag(parent).
+
 
 
 ----

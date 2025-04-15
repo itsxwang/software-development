@@ -100,3 +100,23 @@ Greeting.propTypes = {
 export default Greeting;
 ```
 [To know about `PropTypes` package](https://youtu.be/lAFbKzO-fss?si=MQnzHrBzWRl1ubL7&t=3507)
+
+**To validate props with TypeScript** in React, you can define the props interface and use it to type the component's props. Here's an example of how to do this:
+
+- The difference between validate with TypeScript vs PropTypes package is that PropTypes is used to validate on runtime, but TypeScript is used to validate on compile time only.
+
+-----
+
+```ts
+interface GreetingProps {
+  name: string;
+}
+
+const Greeting: React.FC<GreetingProps> = ({ name }) => {
+  return (
+    <div>Hello, {name}</div>
+  );
+};
+```
+
+[What is `FC`](https://youtu.be/ydkQlJhodio?si=3A9yQbBNKh0f-5Tl&t=247)

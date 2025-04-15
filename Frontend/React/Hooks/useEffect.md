@@ -1,9 +1,13 @@
 [`useEffect` hook](https://youtu.be/M9O5AjEFzKw?si=uyCqLtMNaJOehDaE&t=9931)
 - ***useEffect*** Hook allows you to perform side effects in your components. Some examples of side effects are: fetching data, directly updating the DOM etc.
 
+***If you add an value to dependency array, useEffect will run only when that value changes and when the component mounts(first render)***
+
 Note: The ***useEffect*** hook's callback function executes after the component has rendered and the browser has painted the updated UI to the screen. This means that any code inside useEffect runs post-render, not during the render phase.
 
+
 ***The effects run in the order they are declared, but the cleanup functions(functions return by `useEffect`) run in reverse order.***
+
 
 ### 🧠 Understanding useEffect Execution Timing
 

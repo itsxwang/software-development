@@ -312,6 +312,8 @@ class Zoo {
     this.animal = animal;
   }
 }
+
+let zooObj = new Zoo(Animals, new Animals());
 // This ensures that AnimalClass can only be a constructor of a class that extends Animal.
 
 /* Some objects, like JavaScript’s Date object, can be called with or without new. You can combine call and construct signatures in the same type arbitrarily: -
@@ -320,12 +322,12 @@ see this example - https://www.typescriptlang.org/docs/handbook/2/functions.html
 
 // For more complex scenarios, such as dynamically loading subclasses of a given class, you can use generics to define the constructor type:
 class Zoos<T> {
-  constructor(public readonly AnimalClass: new () => T) { // new () => T is a constructor signature, manas AnimalClass takes a constructor signature that returns object of T(here Animals)
+  constructor(public AnimalClass: new () => T) { // new () => T is a constructor signature, means AnimalClass takes a constructor signature that returns object of T(here Animals)
     this.AnimalClass = AnimalClass;
   }
 }
 
 const zoo = new Zoos<Animals>(Animals); 
-console.log(new zoo.AnimalClass()) 
+console.log(new zoo.AnimalClass())  // Outputs an Animals object
 
 // This allows you to specify the type of the object that the constructor will create.

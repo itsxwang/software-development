@@ -1,0 +1,13 @@
+$color: rgb(0, 0, 0);
+@function Selectcolor($color) {
+    @if lightness($color) > 87 {
+        @return (#978f8f);
+    } @else {
+        @return #fbbbbb;
+    }
+}
+
+
+.ody {
+    background-color: Selectcolor(hsl(0, 89%, 86%));
+}

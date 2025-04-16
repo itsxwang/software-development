@@ -1,7 +1,9 @@
 
 
 const App = () => {
-
+window.addEventListener('resize', (e) => {
+    console.log(window.innerWidth);
+});
     const mockUsers = [
         {
             id:1,
@@ -29,3 +31,4 @@ const App = () => {
 
 
 export default App
+

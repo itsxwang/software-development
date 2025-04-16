@@ -1,4 +1,4 @@
-[`useEffect` hook](https://youtu.be/M9O5AjEFzKw?si=uyCqLtMNaJOehDaE&t=9931)
+[`useEffect` hook](https://youtu.be/-4XpG5_Lj_o?si=MZVcIH39AcRWKzt8)
 - ***useEffect*** Hook allows you to perform side effects in your components. Some examples of side effects are: fetching data, directly updating the DOM etc.
 
 ***If you add an value to dependency array, useEffect will run only when that value changes and when the component mounts(first render)***
@@ -46,6 +46,8 @@ Returning a function from useEffect
 In React, when you return a function inside useEffect, you're telling React:
 > “Hey! When this component unmounts or before re-running this effect, please run this cleanup function!”
 
+***Note: If dependency array is empty the cleanup function runs only when the component unmounts, but if dependency array is not empty then the cleanup function when the dependency array value changes***
+
 ### Example: 
 ```js
 useEffect(() => {
@@ -64,9 +66,9 @@ useEffect(() => {
 - It sets up a setInterval, which updates the time every second.
 - The interval ID is stored in `intervalRef.current`.
 
-2. When your component unmounts (or re-renders again):
-- React automatically runs the cleanup function returned by useEffect.
-- This function clears the interval so it doesn't keep running in the background.
+2. When your component unmounts (or re-renders again here, ***but Note: re-renders means when your same component updates and unmount means when the component destroys(remove from dom or we can say becomes unexist from dom***)):
+- React automatically runs the cleanup function returned by useEffect, .
+- This function clears the interval so it(previous interval) doesn't keep running in the background.
 
 #### 🤔 Why is Cleanup Important?
 Without `clearInterval` in the cleanup:
@@ -78,6 +80,20 @@ Without `clearInterval` in the cleanup:
     - ❌ Performance issues
 
     - ❌ Unexpected behavior
+
+
+#### 🧪 Want to avoid effect running on every render?
+**You can add an empty dependency array like this:**
+```jsx
+useEffect(() => {
+  intervalRef.current = setInterval(() => {
+    setTime((time) => time + 1);
+  }, 1000);
+
+  return () => clearInterval(intervalRef.current);
+}, []); // ✅ Now runs only on first mount & cleanup on unmount
+```
+
 
 #### 🔄 How Cleanup Works in Lifecycle Terms
 In traditional class components, it's like this:

@@ -33,3 +33,15 @@ pairs = [('a', 1), ('b', 2)]
 letters, numbers = zip(*pairs)
 print(letters)  # ('a', 'b')
 print(numbers)  # (1, 2)
+
+# We can also zip dictionary keys with list values example
+dict1 = {
+    'name': None,
+    'age': None
+}
+
+dict2 = {
+    'name': 'John',
+    'age': 30
+}
+print(dict(zip(dict1, dict2.values()))) # dict2.values() -> ['John', 30] , btw if we not do .values() it will take by default .keys()

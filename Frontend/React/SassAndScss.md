@@ -89,7 +89,7 @@ nav:hover {
 ```scss
 $primary-color: #3498db;
 
-@mixin buttonPrimary($color) {
+@function buttonPrimary($color) {
     @if $color == $primary-color {
         background-color: $color;
         color: #fff;

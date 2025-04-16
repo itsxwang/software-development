@@ -15,3 +15,7 @@ return (
   />
 );
 ```
+
+[See how you can work with forms](https://youtu.be/lAFbKzO-fss?si=7dxPn1Py6Hcw8lMm&t=9987)
+
+[`resize` event listener](https://youtu.be/lAFbKzO-fss?si=zcQ9OsWp8saxmJcm&t=10327)

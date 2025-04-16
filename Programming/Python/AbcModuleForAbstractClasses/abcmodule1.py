@@ -31,6 +31,7 @@ class A(ABC):
 
     # abstract static method
     @staticmethod
+    @abstractmethod
     def staticMet():
         print('static method')
     

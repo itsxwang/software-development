@@ -6,14 +6,11 @@ function Timer() {
     const [time, setTime] = useState(()=>getFormattedTime());
 
     useEffect(() => {
-        console.log("Effect runs: Setting interval");
         const interval = setInterval(() => {
-          console.log("Interval running...");
           setTime(() => getFormattedTime());
         }, 1000);
       
         return () => {
-          console.log("Cleaning up: Clearing interval",interval);
           clearInterval(interval);
         }; /* this cleanup is because of React.StrictMode, because when <React.StrictMode> runs `useEffect` again, it ensures previous interval(that becomes on component mounts) is 
               cleared(by the cleanup) before new Interval(created when component re-renders by <React.StrictMode>) is set */ 

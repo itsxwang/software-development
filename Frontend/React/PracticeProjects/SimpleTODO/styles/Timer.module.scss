@@ -1,7 +1,11 @@
 .timer {
+    justify-self: stretch;
+    align-self: stretch;
     font-size: 12rem;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
-    text-align: stretch;
-    width: 70%;
+    margin: 0 auto;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 }

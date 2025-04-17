@@ -1,0 +1,82 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.7rem;
+
+  font-size: 1.7rem;
+
+
+  border: 2px solid rgb(247, 230, 230);
+  border-radius: 9px;
+  padding: 10px;
+}
+
+
+// ---------------------------------------------
+// select input styling
+// ---------------------------------------------
+.selectInput {
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: 3px solid #1e1e1e;
+  outline-offset: -3px;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+}
+
+
+
+
+// ---------------------------------------------
+// editBtn styling
+// ---------------------------------------------
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #181717;
+  outline: 3px #181717 solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  color: white;
+}
+
+.btns .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.btns svg path {
+  transition: 400ms;
+}
+
+.btns:hover {
+  background-color: transparent;
+}
+
+.btns:hover .text {
+  color: #181717;
+}
+
+.btns:hover svg path {
+  fill: #181717;
+}

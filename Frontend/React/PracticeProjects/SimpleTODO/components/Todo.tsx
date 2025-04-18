@@ -26,25 +26,29 @@ function Todo({ taskName, priority, taskDate, setTasks }:
     const handleSave = () => {
         setTasks(prevTasks => {
             if (deleteTask) {
-                return prevTasks.filter(task => (task.taskName !== taskName) || (task.Date !== taskDate));
+                return prevTasks.filter(task => !(task.taskName === taskName && task.Date === taskDate)); 
             }
+    
             return prevTasks.map(task => {
-                if ((task.taskName === taskName) && (task.Date === taskDate)) {
-                    return { ...task, taskName, priority, Date: taskDate };
+                if (task.taskName === taskName && task.Date === taskDate) {
+                    return {
+                        taskName: taskname,
+                        priority: taskpriority,
+                        Date: taskdate
+                    };
                 }
                 return task;
             });
-
-        }
-
-
-        );
+        });
         setEditing(false);
+        setDeleteTask(false); // reset the delete checkbox
     };
+    
 
-    const handleDelete = () => {
-        setDeleteTask(!deleteTask);
+    const handleDelete = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDeleteTask(e.target.checked);
     };
+    
 
     const handleTaskNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTaskName(e.target.value);
@@ -61,7 +65,16 @@ function Todo({ taskName, priority, taskDate, setTasks }:
     return (
         <div className={classes.todos}>
             {isEditing ? (
-                <input type="text" value={taskname} onChange={handleTaskNameChange} />
+                <div className={classes["wave-group"]}>
+                <input required type="text" className={classes["input"]} value={taskname} onChange={handleTaskNameChange}/>
+                <span className={classes["bar"]}></span>
+                <label className={classes["label"]}>
+                <span className={classes["label-char"]} style={{ "--index": 0 } as React.CSSProperties}>T</span>
+                <span className={classes["label-char"]} style={{ "--index": 1 } as React.CSSProperties}>a</span>
+                <span className={classes["label-char"]} style={{ "--index": 2 } as React.CSSProperties}>s</span>
+                <span className={classes["label-char"]} style={{ "--index": 3 } as React.CSSProperties}>k</span>
+                </label>
+              </div>
             ) : (
                 <div className='taskName'>{taskname}</div>
             )}
@@ -83,12 +96,26 @@ function Todo({ taskName, priority, taskDate, setTasks }:
             {isEditing && (
                 <>
                     <button onClick={handleSave} className={classes.btns}><p className={classes.text}>Save</p></button>
-                    <div className="checkbox">
-                        <input type="checkbox" id="check-24" name="check" value="" />
-                        <label htmlFor="check-24">
-                            <span>{/*<!-- This span is needed to create the "checkbox" element -->*/}</span>Done
-                        </label>
+
+                    <div className={classes["checkbox-wrapper-30"]}>
+                        <span className={classes.checkbox}>
+                        <input type="checkbox" onChange={handleDelete} checked={deleteTask} />
+                            <svg>
+                                <use xlinkHref="#checkbox-30" />
+                            </svg>
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+                            <symbol id="checkbox-30" viewBox="0 0 22 22">
+                                <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    d="M5.5,11.3L9,14.8L20.2,3.3l0,0c-0.5-1-1.5-1.8-2.7-1.8h-13c-1.7,0-3,1.3-3,3v13c0,1.7,1.3,3,3,3h13 c1.7,0,3-1.3,3-3v-13c0-0.4-0.1-0.8-0.3-1.2"
+                                />
+                            </symbol>
+                        </svg>
                     </div>
+
+
                 </>
             )
             }

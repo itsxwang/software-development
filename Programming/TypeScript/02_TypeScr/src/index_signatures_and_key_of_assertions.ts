@@ -1,13 +1,13 @@
 // Index Signatures
 // Index signatures are useful when you creating a objects but you not know the exact name of the object keys , but you know the shape of a object and you declare the type of keys and values
 // but there is another reason they are also useful because ts requires index signatures if you attempt to access object properties dynamically 
-/* basically we see before how to create basic objects using interface and type alias , now let's see how to create object signatures so we can create properties and values dynamically 
+/* basically we see before how to create basic objects using interface and type alias , now let's see how to create index signatures so we can create properties and values dynamically 
 without explicitely defined each property name and its corresponding value
  */
 
 // So basically what we see until is this : 
-/* This is not an index signature : We just explicitely define each property name and its corresponding value type , nut in
-object signatures we just define the type of keys and values instead of defining their names also */
+/* This is not an index signature : We just explicitely define each property name and its corresponding value type , in object signatures we just define the type of keys and values instead of defining their names also */
+
 interface user {
     name: string,
     age: number

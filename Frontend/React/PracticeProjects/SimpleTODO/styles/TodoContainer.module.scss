@@ -1,15 +1,21 @@
 .makeTodoHeading {
-  text-align: center;
   font-size: 5.5rem;
   font-family: 'Poppins';
   font-weight: 600;
   text-decoration: underline;
   color: greenyellow;
   text-shadow: 1px 1px 10px rgb(136, 174, 77);
+  word-wrap: no-wrap;
+  justify-self: flex-start  ;
 }
 
 .todoContainer {
-  max-height: 90%;
+  max-height: 37rem;
+  min-height: 37rem;
+  
+  min-width: 40rem;
+
+
   font-size: 1rem;
   border: 2px solid white;
   border-radius: 10px;
@@ -30,7 +36,6 @@
   row-gap: 2px;
 
 
-  width: 25%;
   /* 32 perecent of body */
 
   scroll-behavior: smooth;
@@ -66,4 +71,38 @@
 }
 
 
+// ---------------------------------------------
+// media queries
+// ---------------------------------------------
+// by width
+@media  (max-width: 43.75rem) {
+  .todoContainer {
+    max-height: 45rem;
+    min-height: 45rem;
+  }
+}
 
+
+// by height
+@media  (max-height: 50rem) {
+  .todoContainer {
+    margin-bottom: 4rem;
+  }
+  
+  .addBtn {
+    font-size: 15px;
+    margin-top: -3rem;
+  }
+}
+
+
+@media  (max-height: 37.5rem) {
+  .todoContainer {
+    margin-bottom: 2rem;
+  }
+  
+  .addBtn {
+    font-size: 15px;
+    margin-top: -9rem;
+  }
+}

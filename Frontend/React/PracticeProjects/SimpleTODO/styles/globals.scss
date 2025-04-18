@@ -1,3 +1,6 @@
+// ---------------------------------------------
+// Global styles
+// ---------------------------------------------
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +19,51 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2rem;
-    height: 95vh;
+    row-gap: 1rem;
+    height: 100vh;
+}
+
+// ---------------------------------------------
+// Media queries
+// ---------------------------------------------
+
+// By width
+@media (max-width: 53.125rem) { // 850px
+    html {
+        font-size: 50%;
+        // 50% * 16px = 8px
+    }
+}
+
+@media (max-width: 43.75rem) { // 700px
+    html {
+        font-size: 40%;
+        // 40% * 16px = 6.4px
+    }
+}
+
+@media (max-width: 32.8125rem) { // 525px
+    html {
+        font-size: 34.1%;
+        // 34% * 16px = 5.45
+    }
+}
+
+// By height
+@media (max-height: 50rem) { // 800px
+    body {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-height: 37.5rem) { // 600px
+    body {
+        row-gap: 0.5rem;
+    }
+}
+
+@media (max-height: 25rem) { // 400px
+    body {
+        align-items: flex-start;
+    }
 }

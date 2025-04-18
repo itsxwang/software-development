@@ -1,11 +1,39 @@
 .timer {
-    justify-self: stretch;
-    align-self: stretch;
     font-size: 12rem;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
-    margin: 0 auto;
+    margin: 0 auto 7rem auto;
     color: whitesmoke;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
+    text-align: center;
 }
+
+
+// ---------------------------------------------
+// media queries
+// ---------------------------------------------
+// by width
+@media (max-width: 50rem) {
+    .timer {
+        width: 70%;
+        font-size: 10rem;
+    }
+}
+
+@media (max-width: 45rem) {
+    .timer {
+        width: 45%;
+        font-size: 7rem;
+    }
+}
+
+
+
+// by height
+    
+@media (max-height: 50rem) {
+    .timer {
+        font-size: 7rem;
+    }
+}
+

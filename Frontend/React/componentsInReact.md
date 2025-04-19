@@ -91,3 +91,7 @@ root.render(<Car />);
 ----
 
 [You can also create component with `React.createElement()`, its how react underneath works when you write ```<></>```, but `React.createElement()` is a old way of creating components](https://youtu.be/lAFbKzO-fss?si=EDmybL5ezHuIFNav&t=2337)
+
+
+----
+[Various lifecycles of components](https://youtu.be/lAFbKzO-fss?si=D5UjhhRnn7B-ctDH&t=16007)

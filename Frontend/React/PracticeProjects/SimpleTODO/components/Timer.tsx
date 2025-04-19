@@ -18,7 +18,9 @@ function Timer() {
       
   return (
     <div className={classes.timer}>
-        {time}
+      <p>{time.slice(0,7)}</p>
+      <p>{time.slice(8)}</p>
+        
     </div>
   )
 }

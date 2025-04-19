@@ -39,7 +39,7 @@ function TodoContainer() {
     setTasks(tasks => {
       const inputTaskName = formData.get('taskName') as string;
       const inputTaskDate = formData.get('Date') as string;
-      const unique = tasks.filter(t => { (t.toLowerCase() === inputTaskName.toLowerCase() && t.Date === inputTaskDate) });
+      const unique = tasks.filter(t =>  (t.taskName.toLowerCase() === inputTaskName.toLowerCase() && t.Date === inputTaskDate) );
       if (unique.length !== 0) {
         // If task already exists, don't add it again.
         return tasks

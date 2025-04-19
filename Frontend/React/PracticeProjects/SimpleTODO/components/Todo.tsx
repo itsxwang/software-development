@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import classes from '../styles/Todos.module.scss'
 
 function Todo({ taskName, priority, taskDate, setTasks }:
@@ -26,29 +26,40 @@ function Todo({ taskName, priority, taskDate, setTasks }:
     const handleSave = () => {
         setTasks(prevTasks => {
             if (deleteTask) {
-                return prevTasks.filter(task => !(task.taskName === taskName && task.Date === taskDate)); 
+                return prevTasks.filter(task => !(task.taskName === taskName && task.Date === taskDate));
             }
-    
-            return prevTasks.map(task => {
-                if (task.taskName === taskName && task.Date === taskDate) {
-                    return {
-                        taskName: taskname,
-                        priority: taskpriority,
-                        Date: taskdate
-                    };
+
+            const unique = prevTasks.filter(t => (t.taskName.toLowerCase() === taskname.toLowerCase() && t.Date === taskdate));
+            if (unique.length !== 0) {
+                // If task already exists, don't add it again.
+                console.log("Task already exists.");
+                return prevTasks;
+            }
+            else {
+                return prevTasks.map(task => {
+                    console.log(task)
+                    if (task.taskName === taskName && task.Date === taskDate) {
+                        return {
+                            taskName: taskname,
+                            priority: taskpriority,
+                            Date: taskdate
+                        };
+                    }
+                    return task;
+
                 }
-                return task;
-            });
+                )
+            };
         });
         setEditing(false);
         setDeleteTask(false); // reset the delete checkbox
     };
-    
+
 
     const handleDelete = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDeleteTask(e.target.checked);
     };
-    
+
 
     const handleTaskNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTaskName(e.target.value);
@@ -66,22 +77,22 @@ function Todo({ taskName, priority, taskDate, setTasks }:
         <div className={classes.todos}>
             {isEditing ? (
                 <div className={classes["wave-group"]}>
-                <input required type="text" className={classes["input"]} value={taskname} onChange={handleTaskNameChange}/>
-                <span className={classes["bar"]}></span>
-                <label className={classes["label"]}>
-                <span className={classes["label-char"]} style={{ "--index": 0 } as React.CSSProperties}>T</span>
-                <span className={classes["label-char"]} style={{ "--index": 1 } as React.CSSProperties}>a</span>
-                <span className={classes["label-char"]} style={{ "--index": 2 } as React.CSSProperties}>s</span>
-                <span className={classes["label-char"]} style={{ "--index": 3 } as React.CSSProperties}>k</span>
-                </label>
-              </div>
+                    <input required type="text" className={classes["input"]} value={taskname} onChange={handleTaskNameChange} />
+                    <span className={classes["bar"]}></span>
+                    <label className={classes["label"]}>
+                        <span className={classes["label-char"]} style={{ "--index": 0 } as React.CSSProperties}>T</span>
+                        <span className={classes["label-char"]} style={{ "--index": 1 } as React.CSSProperties}>a</span>
+                        <span className={classes["label-char"]} style={{ "--index": 2 } as React.CSSProperties}>s</span>
+                        <span className={classes["label-char"]} style={{ "--index": 3 } as React.CSSProperties}>k</span>
+                    </label>
+                </div>
             ) : (
-                <div className='taskName'>{taskname}</div>
+                <div className={classes.taskname}>{taskname}</div>
             )}
             {isEditing ? (
                 <input type="datetime-local" value={taskdate} onChange={handleTaskDateChange} />
             ) : (
-                <div className='taskDate'>{formatDate(taskdate)}</div>
+                <div className={classes.taskdate}>{formatDate(taskdate)}</div>
             )}
             {isEditing ? (
                 <select value={taskpriority} onChange={handlePriorityChange} className={classes.selectInput}>
@@ -90,7 +101,7 @@ function Todo({ taskName, priority, taskDate, setTasks }:
                     <option value='Low🟡'>Low🟡</option>
                 </select>
             ) : (
-                <div>{taskpriority}</div>
+                <div className={classes.taskpriority}>{taskpriority}</div>
             )}
             <button className={classes.btns} onClick={handleEditToggle}><p className={classes.text}>Edit</p></button>
             {isEditing && (
@@ -99,7 +110,7 @@ function Todo({ taskName, priority, taskDate, setTasks }:
 
                     <div className={classes["checkbox-wrapper-30"]}>
                         <span className={classes.checkbox}>
-                        <input type="checkbox" onChange={handleDelete} checked={deleteTask} />
+                            <input type="checkbox" onChange={handleDelete} checked={deleteTask} />
                             <svg>
                                 <use xlinkHref="#checkbox-30" />
                             </svg>

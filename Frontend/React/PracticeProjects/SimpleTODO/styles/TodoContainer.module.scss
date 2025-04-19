@@ -1,108 +1,150 @@
-.makeTodoHeading {
-  font-size: 5.5rem;
-  font-family: 'Poppins';
-  font-weight: 600;
-  text-decoration: underline;
-  color: greenyellow;
-  text-shadow: 1px 1px 10px rgb(136, 174, 77);
-  word-wrap: no-wrap;
-  justify-self: flex-start  ;
-}
+// Variables
+$primary-border-color: rgb(48, 48, 48);
+$scrollbar-color: greenyellow;
+$scrollbar-background: transparent;
+$btn-bg-color: white;
+$btn-text-color: black;
+$btn-border-radius: 10em;
+$btn-font-size: 17px;
+$btn-font-weight: 600;
+$btn-padding: 1em 2em;
+$btn-border-color: black;
+$btn-box-shadow: 0 0 0 0 black;
+$btn-hover-transform: translateY(-4px) translateX(-2px);
+$btn-hover-box-shadow: 2px 5px 0 0 black;
+$btn-active-transform: scale(0.5);
+$btn-active-box-shadow: 0 0 0 0 black;
 
+// Todo Container Styles
 .todoContainer {
-  max-height: 37rem;
-  min-height: 37rem;
-  
-  min-width: 40rem;
+  max-height: 300px;
+  min-height: 35rem;
+  flex-grow: 1; // Allow the container to grow and fill available space
 
+  max-width: 40rem;
+  width: 40rem;
 
-  font-size: 1rem;
-  border: 2px solid white;
-  border-radius: 10px;
-
+  border-bottom: 2px solid $primary-border-color;
+  border-top: 2px solid $primary-border-color;
 
   padding: 2rem;
 
   overflow-y: auto;
-  scrollbar-width: 2px;
-  scrollbar-color: greenyellow transparent;
+  scrollbar-color: $scrollbar-color $scrollbar-background;
   scroll-padding: 10px;
-
-
 
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   row-gap: 2px;
 
-
-  /* 32 perecent of body */
-
   scroll-behavior: smooth;
+
+
+  // Responsive styles for medium screens
+  @media (max-width: 768px) {
+    width: 90%;
+    max-width: 50rem; // Ensure it doesn't span full width
+    margin: 0 auto; // Center horizontally
+    padding: 1rem;
+    min-height: 30rem; // Adjust minimum height for medium screens
+    height: 100vh; // Make it span the full viewport height
+  }
+
+  // Responsive styles for small screens
+  @media (max-width: 480px) {
+    min-height: 25rem;
+    padding: 0.5rem;
+    height: 100vh; // Make it span the full viewport height
+  }
+
+  // Styles for larger screens
+  @media (min-height: 900px) {
+    min-height: 50rem; // Increase minimum height for larger screens
+    justify-content: space-between; // Distribute items evenly
+  }
 }
 
-
-
-// Add .addBtn styling
-/* From Uiverse.io by sekaiking */
+// Add Button Styles
 .addBtn {
-  background-color: white;
-  color: black;
-  border-radius: 10em;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 1em 2em;
+  background-color: $btn-bg-color;
+  color: $btn-text-color;
+  border-radius: $btn-border-radius;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  padding: $btn-padding;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
+  border: 1px solid $btn-border-color;
+  box-shadow: $btn-box-shadow;
+  margin: 0 auto; // Center horizontally
+  display: block; // Ensure it behaves as a block element
+
+  // Responsive styles for medium screens
+  @media (max-width: 768px) {
+    font-size: 15px;
+    padding: 0.8em 1.5em;
+  }
+
+  // Responsive styles for small screens
+  @media (max-width: 480px) {
+    font-size: 14px;
+    padding: 0.6em 1em;
+  }
 }
 
+// Hover state for Add Button
 .addBtn:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
+  transform: $btn-hover-transform;
+  box-shadow: $btn-hover-box-shadow;
 }
 
-;
-
+// Active state for Add Button
 .addBtn:active {
-  transform: scale(0.5);
-  box-shadow: 0 0 0 0 black;
+  transform: $btn-active-transform;
+  box-shadow: $btn-active-box-shadow;
 }
 
+// Add styles for centering the heading
+.heading {
+  text-align: center; // Center the heading text
+  margin-bottom: 1rem; // Add spacing below the heading
+}
 
-// ---------------------------------------------
-// media queries
-// ---------------------------------------------
-// by width
-@media  (max-width: 43.75rem) {
-  .todoContainer {
-    max-height: 45rem;
-    min-height: 45rem;
+// Ensure the container spans the full height of the page
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Center content vertically
+  align-items: center; // Center content horizontally
+  min-height: 100vh; // Ensure it spans the full viewport height
+  margin: 0; // Remove default margin
+}
+
+// Todo Item Styles
+.todoItem {
+  width: 100%; // Ensure todos take up the full width of the container
+  max-width: 38rem; // Set a maximum width for todos
+  margin: 0 auto; // Center todos horizontally
+  padding: 1rem; // Add padding for better spacing
+  box-sizing: border-box; // Include padding and border in width calculation
+  border: 1px solid $primary-border-color; // Add a border for consistency
+  border-radius: 5px; // Slightly round the corners
+  background-color: white; // Set a background color
+  display: flex; // Use flexbox for layout
+  align-items: center; // Align items vertically
+  justify-content: space-between; // Space out content
+}
+
+// Responsive styles for todos
+@media (max-width: 768px) {
+  .todoItem {
+    max-width: 90%; // Adjust maximum width for medium screens
   }
 }
 
-
-// by height
-@media  (max-height: 50rem) {
-  .todoContainer {
-    margin-bottom: 4rem;
-  }
-  
-  .addBtn {
-    font-size: 15px;
-    margin-top: -3rem;
-  }
-}
-
-
-@media  (max-height: 37.5rem) {
-  .todoContainer {
-    margin-bottom: 2rem;
-  }
-  
-  .addBtn {
-    font-size: 15px;
-    margin-top: -9rem;
+@media (max-width: 480px) {
+  .todoItem {
+    max-width: 95%; // Adjust maximum width for small screens
   }
 }

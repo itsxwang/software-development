@@ -1,7 +1,7 @@
 - [`useRef` Hook](https://youtu.be/M9O5AjEFzKw?si=zm6vZcyqCRyGD4g6&t=13351) 
 
 - [`useRef` Example](https://youtu.be/M9O5AjEFzKw?si=RPKCxsdsnOmgOxSA&t=13367)
-    - ***useRef*** Hook provides a way to access and interact with DOM elements or to persist values across renders without causing a re-render.\
+    - ***useRef*** Hook provides a way to access and interact with DOM elements or to persist values(***useRefObject***) across renders without causing a re-render.\
 and `useRef` creates a mutable object that persists across component re-renders. This object has a `.current` property where you can store values that you want to retain between renders without causing a re-render when they change.
 
 useRef hook in React used to:

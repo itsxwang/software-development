@@ -100,14 +100,14 @@ const controller = new AbortController();
 const timeoutId = setTimeout(() => controller.abort(), 5000);
 fetch("https://api.example.com/data", { signal: controller.signal });
 /* Basically when we do controller.abort() , controller.signal will be set to true and fetch will abort the request , 
- and AbortController works because fetch is designed to listen to controller.signal. 
+ and AbortController works because fetch is designed to listen to `controller.signal`. 
  You cannot just use a regular variable like `let shouldAbort = true;` 
  to cancel a request, because fetch does not check arbitrary variables. */
 ```
 
 ### 4. Request Interception
 Interceptors for Global Request/Response Handling
-Axios allows intercepting requests/responses globally (useful for authentication, logging, etc). Interceptors are middleware-like functions that allow you to modify requests or responses globally before they are handled by `.then()` or `.catch()` 
+Axios allows intercepting requests/responses globally (useful for authentication, logging, etc). Interceptors are middleware-like functions that allow you to modify requests or responses globally before they are handled by `.then()` or `.catch()` .
 Fetch has no direct support for interceptors. 
 ```javascript
 // Axios interceptors example 

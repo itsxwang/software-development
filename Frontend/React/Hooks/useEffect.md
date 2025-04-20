@@ -7,6 +7,11 @@
 
 Note: The ***useEffect*** hook's callback function executes after the component has rendered and the browser has painted the updated UI to the screen. This means that any code inside useEffect runs post-render, not during the render phase.
 
+Note: The `useEffect` callback function should not be defined with `async` keyword. Because `useEffect` callbacks are synchronous to prevent race conditions. 
+
+
+
+
 
 ***The effects run in the order they are declared, but the cleanup functions(functions return by `useEffect`) run in reverse order.***
 
@@ -46,9 +51,11 @@ useEffect(
 Returning a function from useEffect 
 ## 🧠 Why We Return a Function from useEffect
 In React, when you return a function inside useEffect, you're telling React:
-> “Hey! When this component unmounts or before re-running this effect, please run this cleanup function!”
+> “Hey! When this component(the component in which that hook is located) unmounts or before re-running this effect, please run this cleanup function!”
+
 
 ***Note: If dependency array is empty the cleanup function runs only when the component unmounts, but if dependency array is not empty then the cleanup function when the dependency array value changes***
+- [Example of cleanup function runs when component unmounts](https://youtu.be/lAFbKzO-fss?si=HKRBWd4aipXeEibC&t=19837)
 
 ### Example: 
 ```js
@@ -124,7 +131,7 @@ useEffect(() => {
 1. #### Relative to Component Rendering
 - Cleanup runs after the component function executes but before:
     - The new effect callback (on updates)
-    - The component unmounts (on removal, re-render)
+    - The component unmounts (means when component removed from the dom)
 
 2. #### Relative to DOM Updates
 - Cleanup runs after React calculates the new DOM changes but before:

@@ -110,7 +110,7 @@ Explanations(only read if you not understand):
 
 **So first**,
 ## 🔁 Does useInterval(callback, delay) get called every time the component re-renders?
-- ✅ Yes, the useInterval function does get called again on every render of the component — because it's a normal JavaScript function defined inside your component (i.e., NewComp).
+- The useInterval function does get called again on every render of the component — because it's a normal JavaScript function defined inside your component (i.e., NewComp).
 
 **BUT…**
 That doesn’t mean the interval is reset on every render. Why? 
@@ -398,3 +398,61 @@ React guarantees that `useRef()` returns the **same object** across re-renders. 
 
 - Regular object: ❌ gets recreated each render → breaks closure
 - `useRef`: ✅ persists across renders → perfect for stable references
+
+----
+# 🧠 Does React Re-run `useEffect` If `useInterval()` Is Re-executed?
+
+## 🤔 The Question
+If `useInterval(callback, delay)` is **called again** on every render (since it's a function in the component), shouldn't the `useEffect` inside it be **considered new** and therefore re-run?
+
+---
+
+## ✅ Key Insight: React Tracks Hooks by Order, Not Identity
+
+Even though you're re-invoking `useInterval(...)`, React:
+
+- **Matches hooks by call order** (not by function identity).
+- Checks the **dependency array** to decide if the effect should re-run.
+
+So this code:
+
+```tsx
+useEffect(() => {
+  console.log("Effect runs");
+  const id = setInterval(tick, delay);
+  return () => clearInterval(id);
+}, [delay]);
+```
+
+is seen by React as **the same effect** every render — as long as it's called in the same position.
+
+---
+
+## 🧪 What Triggers Re-runs?
+
+React will re-run the effect **only if `delay` changes**, based on the `[delay]` dependency array.
+
+If `delay` hasn’t changed:
+- ❌ React will **not** clear or re-run the effect.
+- ✅ It will keep using the same interval.
+
+---
+
+## 💡 Why React Doesn't Re-run It Every Time
+
+Even if the outer function (`useInterval`) is "new" every render:
+
+- The `useEffect` inside is always in the same **hook slot**.
+- React tracks its dependency (`delay`), not whether the enclosing function changed.
+- So React does **not** treat the `useEffect` as new.
+
+---
+
+## ✅ TL;DR
+
+- Yes, `useInterval(callback, delay)` is re-executed every render.
+- But `useEffect(..., [delay])` inside it is **not re-run** unless `delay` changes.
+- React uses **hook order** + **dependency arrays** to control hook lifecycles — not JS function identity.
+
+-----
+- [See custom data fetching hook example](https://youtu.be/lAFbKzO-fss?si=qhLKmQ8tgdlT6EkO&t=22667) 

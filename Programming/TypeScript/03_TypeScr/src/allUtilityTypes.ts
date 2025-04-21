@@ -61,7 +61,7 @@ const exampleExcluded : Excluded = 'apple'
 
 // Another example with built-in types:
 type Primitive = string | number | boolean;
-type NotString = Exclude<Primitive, string>;  // number | boolean , Btw this is just for showing how Exclude
+type NotString = Exclude<Primitive, string>;  // number | boolean , Btw this is just for showing how Exclude works
 const x: NotString = 42  ;
 
 // Basically T(1st type argument) should be of union type when we use Exclude

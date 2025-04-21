@@ -1,7 +1,7 @@
 - [What is propdrilling, why should care about that](https://youtu.be/M9O5AjEFzKw?si=Qj9mnjsAtxUqof8B&t=11147)
  - [PropDrilling in action](https://youtu.be/M9O5AjEFzKw?si=fQnJAEWMgJZyfqvd&t=11237)
 
-- [What is Context API](https://youtu.be/M9O5AjEFzKw?si=R1z4HO2PMK4x_UJD&t=11367)
+- [What is Context API, and how to use it](https://youtu.be/lAFbKzO-fss?si=-Qmop0JUIfl2UcR0&t=21047)
 
 - [Context API in action](https://youtu.be/M9O5AjEFzKw?si=_B6f0uOiGmHboktH&t=11397)
 
@@ -11,7 +11,7 @@
     './App.jsx'
     import {createContext} from 'react';
     const App = () => {
-        const Data = createContext();
+      export const Data = createContext();
 
         return (
             <div>

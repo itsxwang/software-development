@@ -1,4 +1,4 @@
-- [**_Props/Properties_** in react are arguments passed into React components](https://youtu.be/M9O5AjEFzKw?si=ZWfz6_WmwFqcr4Io&t=3771)
+  - [**_Props/Properties_** in react are arguments passed into React components](https://youtu.be/M9O5AjEFzKw?si=ZWfz6_WmwFqcr4Io&t=3771)
 
   - **_Arguments passed into react components_** args are called props
   - Props allow us to pass the data from parent component to child component

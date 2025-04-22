@@ -1,33 +1,47 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
+import { Outlet,Link } from 'react-router-dom'
+
+
 function App() {
-  // use case for useMemo for reference equality
-  const [count,setCount] = useState(0) 
-  /* this count not cause useEffect to run when count changes, 
-  (cause re-render) */
+  const [num, setNum] = useState(0)
+  const [theme, setTheme] = useState('light')
 
-  const [obj, setObj] = useState(()=> ({ name: 'John', age: 30 }))  /* the new object only created(means new reference only created) when `name` state changes
-and therefore prevents below `useEffect` from running when `count` changes(because `count` changes, cause re-render and therefore new object is created 
-and means new reference is created(note: this all happens when not using `useMemo`)) 
- (and because `useEffect` depends on object(`myobject`), and object are compare by references instead of values, 
- and therefore so if we not use this `useMemo` it causes below `useEffect` runs every time the component re-renders(because of `count` state changes, new object is created))*/
+  const getitems = useMemo(() => {
+    return (i: number) => {
+      return [i + num, i + 1+ num, i +2+ num]
+    }
+  }, [num]) 
 
-  useEffect(() => {
-    console.log('myobject changed:', obj)
-  }
-  , [obj]) // only run when myobject changes
   return (
     <div>
-      <h1>useMemo Example for reference equality</h1>
-      <input type="text" value={obj.name} onChange={(e) => setObj(prevobj=> ({ ...prevobj, name: e.target.value }))} />
-      
-      <p>Current name: {obj.name}</p>
-      <button onClick={() => setObj({ name: 'John', age: 30 })}>Reset Name</button>
-      <p>Current count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment Count</button>
+
+    <Link to="/users">Users</Link>
+
+      <h1>{num}</h1>
+      <button onClick={() => setNum(num + 1)}>Increment</button>
+      <List getitems={getitems} />
+      <button onClick={() => setTheme(theme === 'light'? 'dark' : 'light')}>Toggle Theme ({theme})</button>
+    <Outlet/>
     </div>
   )
-  
+}
+
+function List({ getitems }: { getitems: (i: number) => number[] }) {
+  const [items, setItems] = useState<number[]>([])
+
+  useEffect(() => {
+    console.log('run')
+    setItems(getitems(1))
+    console.log(getitems(2))
+  }, [getitems])
+
+  return (
+    <div>
+      {items.map(item => (
+        <div key={item}>{item}</div>
+      ))}
+    </div>
+  )
 }
 
 export default App

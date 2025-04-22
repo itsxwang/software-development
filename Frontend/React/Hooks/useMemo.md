@@ -1,4 +1,4 @@
-[useMemo explain and example usecases(two explained in the video)](https://youtu.be/THL1OPn72vo?si=W5tZVdGjmITIXfAt)
+[`useMemo` explain and example usecases(two explained in the video)](https://youtu.be/THL1OPn72vo?si=W5tZVdGjmITIXfAt)
 - `useMemo` is used for memoization **which is the idea of caching a value so you don't have to recompute it every single time(when your component re-renders)** 
 [But why not memoize everything?](https://youtu.be/THL1OPn72vo?si=IYwnCKgSMPUqzhOq&t=337)
 

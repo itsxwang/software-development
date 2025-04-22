@@ -37,5 +37,5 @@
 - So the components you provide inside ```<Context.Provider> </Context.Provider>```, those components and its nested components will have access to the context value.
 
 
-- [Problem with this approach and `useContext` Hook, btw you can just write ```<h1>{Data}</h1>``` , so not need of `useContext` Hook but recommended](https://youtu.be/M9O5AjEFzKw?si=k5FNR1MmyNyYWF0z&t=11737)
+- [Problem with this approach and `useContext` Hook, btw you can just write `<h1>{Data}</h1>` , so not need of `useContext` Hook but recommended](https://youtu.be/M9O5AjEFzKw?si=k5FNR1MmyNyYWF0z&t=11737)
   - [`useContext` Example](https://youtu.be/M9O5AjEFzKw?si=-E3-0XxNGAd5MJ7K&t=11777)

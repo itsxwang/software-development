@@ -41,7 +41,7 @@ export default App;
 ## 🧠 Why this works:
 - `inputRef.current` refers to the actual DOM node.
 
-- It's like` document.querySelector()`, but React-friendly.
+- It's like `document.querySelector()`, but React-friendly.
 
 
 ## ✅ Use Case #2: Storing mutable values without re-rendering

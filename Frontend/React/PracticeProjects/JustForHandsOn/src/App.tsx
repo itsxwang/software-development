@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
-import { Outlet, Link, useNavigate } from 'react-router-dom'
-
+import { Outlet, Link } from 'react-router-dom'
+import GotoLink from './components/GotoLink'
+import Time from './components/timer'
 
 function App() {
   const [num, setNum] = useState(0)
@@ -12,32 +13,6 @@ function App() {
     }
   }, [num])
 
-  const navigate = useNavigate()
-  function handleclick(e: React.FormEvent<HTMLInputElement>): void {
-    const target = e.target as HTMLInputElement;
-
-    if (target.value.toLowerCase() === 'users') {
-      navigate('/users', {
-        state: {
-          users: target.value
-        }
-      })
-    } else if (target.value.toLowerCase() === 'about') {
-      navigate('/about')
-    } else if (target.value.toLowerCase() === 'home') {
-      navigate('/')
-    }
-    else if (target.value.toLowerCase() === 'joker') {
-      console.log('joker')
-      navigate('/joker',
-        {
-          state: {
-            joker: target.value,
-            animals: 'red'
-          }
-        })
-    }
-  }
   return (
     <div>
 
@@ -47,8 +22,10 @@ function App() {
       <button onClick={() => setNum(num + 1)}>Increment</button>
       <List getitems={getitems} />
       <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle Theme ({theme})</button>
-      <div><input type="text" onChange={handleclick} /></div>
+      <GotoLink />
       <Outlet />
+
+      <Time/>
     </div>
   )
 }

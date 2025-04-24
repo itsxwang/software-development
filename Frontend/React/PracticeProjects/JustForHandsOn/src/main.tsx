@@ -1,6 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import About from './components/about';
+
 
 import App from './App.tsx'
 import Joker from './components/Joker';
@@ -34,11 +36,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/about',
-    element: <h2>About</h2>
-  },
-  {
-    path: '/contact',
-    element: <h2>Contact</h2>
+    element: <About/>
   },
   {
     path: '/joker',

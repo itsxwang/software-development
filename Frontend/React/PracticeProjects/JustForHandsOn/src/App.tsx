@@ -15,7 +15,6 @@ function App() {
 
   return (
     <div>
-
       <Link to="/users">Users</Link>
 
       <h1>{num}</h1>

@@ -9,7 +9,6 @@ function Timer() {
         const previousInterval = setInterval(() => {
             const time = new Date().toLocaleTimeString()
             setTime(time)
-
         }, 1000);
 
         return () => {

@@ -7,9 +7,9 @@ This error was ocuured because: JSX elements directly inside a map() call always
 ```js
 const numbers = [1, 2, 3, 4, 5];
 
-const listItems = numbers.map((number) => (
-<ul key={Math.random()}>
-   <li>{number}</li>
+<ul >
+const listItems = numbers.map(number => (
+   <li key={Math.random()}>{number}</li>
 </ul>
 ));
 ```

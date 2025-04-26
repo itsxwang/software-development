@@ -37,6 +37,8 @@ export default App;
 ```
 
 
+
+
 -----
 If you render the same component multiple times, each will get its own state. Click each button separately:
 
@@ -69,6 +71,10 @@ function MyButton() {
 
 ```
 
+[State as a Snapshot(this is the reason of the above code example), in this docs you will learn, state behaves more like a snapshot, setting it does not change the state variable immediately, but **React prepares to change that state in ***next render*****, this docs create lot of things that will clear your lot of confusions you can face or facing related to state](https://react.dev/learn/state-as-a-snapshot)
+
+The most important is: **React keeps the state values “fixed” within one render’s event handlers**. You don’t need to worry whether the state has changed while the code is running.
+
 -----
 
 
@@ -87,3 +93,7 @@ function MyButton() {
    - Functions starting with **use** are called ***Hooks***. They are a new addition in React 16.8
 They let you use state and other React features without writing a class.Means they allow you to manage your state in a function component
 - [Some important rules about Hooks](https://youtu.be/O6P86uwfdR0?si=N5PoI9Sv6L9lo8bl&t=137)
+
+[How `useState` and other hooks work](https://react.dev/learn/state-a-components-memory#how-does-react-know-which-state-to-return)
+
+[Note: **State and other Hooks is isolated and private to each component** Means if `Gallery` a component, and if 2 `Gallery` are rendered, they will have their own state, its like each instance have its own methods and local variables, in this docs you will also see what's the best way other than `state` if you want to sync your all instances of a component](https://react.dev/learn/state-a-components-memory#how-does-react-know-which-state-to-return)

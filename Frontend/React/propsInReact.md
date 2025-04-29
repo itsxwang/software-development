@@ -182,3 +182,31 @@ const Greeting: React.FC<GreetingProps> = ({ name }) => {
 ```
 
 [What is `FC`](https://youtu.be/ydkQlJhodio?si=3A9yQbBNKh0f-5Tl&t=247)
+
+---- 
+## Note: Don’t mirror props in state 
+A common example of redundant state is code like this:
+```js
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+```
+Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the color state variable would not be updated! The state is only initialized during the first render.
+
+This is why **“mirroring”** some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+
+```js
+function Message({ messageColor }) {
+  const color = messageColor;
+}
+```
+
+This way it won’t get out of sync with the prop passed from the parent component.
+
+**”Mirroring”** props into state only makes sense when you want to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+
+```js
+function Message({ initialColor }) {
+  // The `color` state variable holds the *first* value of `initialColor`.
+  // Further changes to the `initialColor` prop are ignored.
+  const [color, setColor] = useState(initialColor);
+```

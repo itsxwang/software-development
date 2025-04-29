@@ -11,8 +11,8 @@
     './App.jsx'
     import {createContext} from 'react';
     const App = () => {
-      export const Data = createContext();
-
+      export const Data = createContext('default value');
+        let name = 'John';
         return (
             <div>
             <Data.Provider value= {name}>

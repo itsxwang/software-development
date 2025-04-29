@@ -71,16 +71,53 @@ function MyButton() {
 
 ```
 
-[State as a Snapshot(this is the reason of the above code example), in this docs you will learn, state behaves more like a snapshot, setting it does not change the state variable immediately, but **React prepares to change that state in ***next render*****, this docs create lot of things that will clear your lot of confusions you can face or facing related to state](https://react.dev/learn/state-as-a-snapshot)
 
 The most important is: **React keeps the state values “fixed” within one render’s event handlers**. You don’t need to worry whether the state has changed while the code is running.
+
+And one more thing :
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button onClick={() => {
+        setNumber(number + 1);
+        setNumber(number + 2);
+        setNumber(number + 1); /* this override 
+above statement, because react by default wait for 
+all code to run of event handler before updating state, and last 
+call it hears is `number + 1` */
+      }}>+3</button>
+    </>
+  )
+}
+```
+
+[State as a Snapshot(this is the reason of the above code example), in this docs you will learn, state behaves more like a snapshot, setting it does not change the state variable immediately, but **React prepares to change that state in ***next render*****, this docs create lot of things clear, will clear your lot of confusions you can face or facing related to state](https://react.dev/learn/state-as-a-snapshot)
+
+[And one other factor also playes here, **React batches state updates**, ***React waits until all code in the event handlers has run before processing your state updates***. This behaviour is also called batching, read this docs to know about batching](https://react.dev/learn/queueing-a-series-of-state-updates#react-batches-state-updates) 
+
+But Note: **React does not batch across multiple intentional events** like clicks—each click is handled separately. Rest assured that React only does batching when it’s generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
+
+
+And one more thing:\
+[What happens if you update state after replacing it](https://react.dev/learn/queueing-a-series-of-state-updates#what-happens-if-you-update-state-after-replacing-it)
 
 -----
 
 
 - [Example of update Array](https://youtu.be/M9O5AjEFzKw?si=4l6GZmrxPC73sOrc&t=6907)
-- [Example of update Object](https://youtu.be/M9O5AjEFzKw?si=tJulkfVHU9JZsTiI&t=7177)
-- [Example of update Array of Objects](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
+- [Or read this docs, for more detailed explanation, this docs is recommended as it tells you which array methods to use when working with Arrays, how to **remove**, **insert**, **update**, **replace** and all sort of changes of Arrays in state . Alternatively, you can use Immer which lets you use all Array methods](https://react.dev/learn/updating-arrays-in-state)
+
+
+- [Example of update Object in state](https://youtu.be/M9O5AjEFzKw?si=tJulkfVHU9JZsTiI&t=7177)
+- [This docs also tells in great way, how to change objects in state, with other things also, and this docs also tells you about `Immer`, which is module that let you copy object without mutating it(like saving you from `...` syntax, especially helpful if object is deeply neseted), and with immer you can update object like you mutating it, but in actual you will not mutate it, immer make copy of it](https://react.dev/learn/updating-objects-in-state)
+
+- [Example of update Array of Objects in state](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 - [Example of share state with other components(using props)](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 - [Example of share state with other components(using props)](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 - [Example of passing arrow function or normal function to `useState`](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)

@@ -1,51 +1,91 @@
-import { useEffect, useState, useMemo } from 'react'
-import { Outlet, Link } from 'react-router-dom'
-import GotoLink from './components/GotoLink'
-import Time from './components/timer'
+import { useState } from 'react';
+import { initialTravelPlan } from './places.js';
 
-function App() {
-  const [num, setNum] = useState(0)
-  const [theme, setTheme] = useState('light')
-
-  const getitems = useMemo(() => {
-    return (i: number) => {
-      return [i + num, i + 1 + num, i + 2 + num]
-    }
-  }, [num])
-
-  return (
-    <div>
-      <Link to="/users">Users</Link>
-
-      <h1>{num}</h1>
-      <button onClick={() => setNum(num + 1)}>Increment</button>
-      <List getitems={getitems} />
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle Theme ({theme})</button>
-      <GotoLink />
-      <Outlet />
-
-      <Time/>
-    </div>
-  )
+interface Place {
+  id: number;
+  title: string;
+  childIds: number[];
 }
 
-function List({ getitems }: { getitems: (i: number) => number[] }) {
-  const [items, setItems] = useState<number[]>([])
-
-  useEffect(() => {
-    console.log('run')
-    setItems(getitems(1))
-    console.log(getitems(2))
-  }, [getitems])
-
-  return (
-    <div>
-      {items.map(item => (
-        <div key={item}>{item}</div>
-      ))}
-    </div>
-  )
+interface PlacesById {
+  [key: string]: Place;
 }
 
+interface PlaceTreeProps {
+  id: number;
+  placesById: PlacesById;
+  setPlan: React.Dispatch<React.SetStateAction<PlacesById>>;
+  parentId: number;
+}
 
-export default App
+function PlaceTree({ id, placesById, setPlan, parentId }: PlaceTreeProps) {
+  const place = placesById[id];
+  const childIds = place.childIds;
+
+  return (
+    <li>
+      {place.title}{' '}
+      <button
+        onClick={() => {
+          const parentObj = placesById[parentId];
+          const newObj: PlacesById = {
+            ...placesById,
+            [parentId]: {
+              ...parentObj,
+              childIds: parentObj.childIds.filter((childId) => childId !== place.id),
+            },
+          };
+
+          deleteFromObject(place.id);
+          function deleteFromObject(id: number) {
+            const childIds = newObj[id].childIds;
+            childIds.forEach(deleteFromObject);
+            delete newObj[id];
+          }
+          setPlan(newObj);
+        }}
+      >
+        complete
+      </button>
+
+      <br />
+      <br />
+      {childIds.length > 0 && (
+        <ol>
+          {childIds.map((childId) => (
+            <PlaceTree
+              key={childId}
+              id={childId}
+              placesById={placesById}
+              setPlan={setPlan}
+              parentId={id}
+            />
+          ))}
+        </ol>
+      )}
+    </li>
+  );
+}
+
+export default function TravelPlan() {
+  const [plan, setPlan] = useState<PlacesById>(initialTravelPlan);
+  const root = plan[0]; // Assuming the root is the first key in the object
+
+  return (
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {root.childIds.map((childId) => (
+          <PlaceTree
+            key={childId}
+            id={childId}
+            placesById={plan}
+            setPlan={setPlan}
+            parentId={root.id}
+          />
+        ))}
+      </ol>
+    </>
+  );
+}
+

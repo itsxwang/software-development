@@ -1,11 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import About from './components/about';
 
 
 import App from './App.tsx'
-import Joker from './components/Joker';
 
 const router = createBrowserRouter([
   
@@ -36,11 +34,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/about',
-    element: <About/>
-  },
-  {
-    path: '/joker',
-    element: <Joker />
   },
   {
     path: '*',
@@ -49,7 +42,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+ 
     <RouterProvider router={router} />
-  </StrictMode>
+
 )

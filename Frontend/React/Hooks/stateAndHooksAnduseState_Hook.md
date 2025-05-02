@@ -124,6 +124,60 @@ And one more thing:\
      - [And it is useful becuase it only calls the function(that you pass in that `useState`) only the very first time your component first renders, unlike hardcoded value/function that runs everytime your component re-renders](https://youtu.be/M9O5AjEFzKw?si=_fmLDdyGeUJ-tGFB&t=7357)
 
  - [One another important thing to note is that `useState` works little bit differently for function and class components, when dealing with objects](https://youtu.be/O6P86uwfdR0?si=oJtb531WortKWAxC&t=677)    
+
+----
+
+1. State is tied to a position in the render tree
+2. Same component at the same position preserves state 
+3. Different components at the same position reset state(Also, when you render a different component in the same position, it resets the state of its entire subtree)
+
+4. Once component is removed from dom then that component state will also be removed, and if you render the same type of component again, new component with new state will be rendered 
+
+5. As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to “match up”** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
+
+----
+And This is why you **should not nest component function definitions.**
+
+Here, the `MyTextField` component function is defined inside `MyComponent`:
+```js
+import { useState } from 'react';
+
+export default function MyComponent() {
+  const [counter, setCounter] = useState(0);
+
+  function MyTextField() {
+    const [text, setText] = useState('');
+
+    return (
+      <input
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
+    );
+  }
+
+  return (
+    <>
+      <MyTextField />
+      <button onClick={() => {
+        setCounter(counter + 1)
+      }}>Clicked {counter} times</button>
+    </>
+  );
+}
+```
+Every time you click the button, the input state disappears! This is because a different `MyTextField` function is created for every render of `MyComponent`. And this absolutely means you’re rendering a different component in the same position, so React resets all state below. This leads to bugs and performance problems. To avoid this problem, **always declare component functions at the top level, and don’t nest their definitions.** 
+
+----
+
+
+
+6. Although, the same component(or we can say same type of component) at the same position(in the render tree) preserves state, [you can still reset state in that situation also](https://react.dev/learn/preserving-and-resetting-state#resetting-state-at-the-same-position)
+      - Option 1: Rendering a component in different positions
+      - Option 2: Option 2: Resetting state with a key
+
+[Know about this in detail(and more about state) here](https://react.dev/learn/preserving-and-resetting-state)
+
 ----
 
 - [Hooks](https://youtu.be/M9O5AjEFzKw?si=U6Y-7LoSVisdDlCo&t=6487)

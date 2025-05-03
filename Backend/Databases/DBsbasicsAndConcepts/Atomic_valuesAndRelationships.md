@@ -1,0 +1,112 @@
+# [Atomic values](https://youtu.be/ztHopE5Wnpc?si=mi91NHhu-KSEdED4&t=5937)
+
+## ✅ Atomic Value = Indivisible / Smallest Meaningful Unit of Data
+
+An **atomic value** is a value in a table cell that cannot or should not be broken down further according to the rules of the database.
+
+## 🔍 Why it's important:
+- Atomic values are a key part of First Normal Form (1NF) in database normalization.
+
+- 1NF requires each field (column) to contain only atomic (single) values — no sets, lists, or nested values.
+ 
+
+----
+
+# [Relationships](https://youtu.be/ztHopE5Wnpc?si=mCLXwDHx7Id1TX9-&t=6267)
+
+In databases, relationships describe how tables are connected to each other based on common data. Relationship is a logical association between two or more tables, typically formed through primary and foreign keys.
+
+### 🧱 Types of Relationships:
+
+
+### 1. One-to-One (1:1)
+- **Definition**: Each row in Table A matches exactly one row in Table B.
+- **Occurrence**: Rare in practice.
+- **✅ Example**: Each person has one passport.
+- [Designing 1:1 relationships](https://youtu.be/ztHopE5Wnpc?si=6RQIFRNsBm-C5VF7&t=7347)
+- [1:1 relationship in multiple tables](https://youtu.be/ztHopE5Wnpc?si=gNy_8AO0Y0tJMAxc&t=7597)
+
+
+### 2. One-to-Many (1:N)
+- **Definition**: One row in Table A can be related to many rows in Table B, but 1 row in Table B will only be related to one row in Table A.
+- **Occurrence**: Most common.
+- **✅ Example**: One customer can place many orders.
+- [Designing 1:N relationships](https://youtu.be/ztHopE5Wnpc?si=AaA-n7JmoGLOUoOe&t=8027)
+
+
+#### 📌 Example Table of 1 to many relationships:
+**Customers Table**:
+
+| CustomerID | Name  |
+| ---------- | ----- |
+| 1          | Alice |
+| 2          | Bob   |
+
+
+**Orders Table**:
+
+| OrderID | CustomerID | Product    |
+| ------- | ---------- | ---------- |
+| 101     | 1          | Laptop     |
+| 102     | 1          | Smartphone |
+| 103     | 2          | Headphones |
+
+
+
+Relationship:
+`Customers.CustomerID` → `Orders.CustomerID`\
+This is a One-to-Many relationship.
+
+
+### 3. Many-to-Many (M:N)
+- **Definition**: Rows in Table A can relate to many in Table B, and vice versa too (both ways).
+- **Implementation**: Achieved using a junction table.
+- **✅ Example**: Students enroll in many courses, and each course has many students. 
+
+- Note:  **Many-to-Many (M:N)** relationships do work in relational databases — but not directly.
+Relational databases do not support **M:N** relationships natively.
+Instead, you implement them indirectly using an intermediate ***(junction/bridge table)*** table.
+
+#### ❌ Not allowed directly:
+You cannot put a list of courses inside a single Student row or vice versa — that would violate First Normal Form (1NF) (atomic values only).
+
+**Example**: 
+
+***Students Table***
+
+#### ✅ Correct implementation using a junction table:
+| StudentID | Name  |
+| --------- | ----- |
+| 1         | Alice |
+| 2         | Bob   |
+
+
+***Courses Table***
+| CourseID | CourseName |
+| -------- | ---------- |
+| 101      | Math       |
+| 102      | Science    |
+
+
+***StudentCourses (junction table)***
+
+| StudentID | CourseID |
+| --------- | -------- |
+| 1         | 101      |
+| 1         | 102      |
+| 2         | 101      |
+
+**This breaks the M:N relationship into two 1:N relationships, which relational databases can handle easily.**
+
+
+
+
+
+---
+
+### ✅ In summary:
+> - A relationship in a database shows how rows in one table correspond to rows in another, enabling you to combine and query related data.
+
+
+
+

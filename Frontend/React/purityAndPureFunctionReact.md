@@ -20,7 +20,7 @@ React’s rendering process must always be pure. Components should only return t
 
 - [Where you can cause side effects(Changing the data—are called side effects. They’re things that happen “on the side”, not during rendering.) ](https://react.dev/learn/keeping-components-pure#where-you-_can_-cause-side-effects)
 
-In React, side effects usually belong inside **event handlers**. **Event handlers are functions that React runs when you perform some action**—for example, when you click a button. Even though event handlers are defined inside your component, **they don’t run during rendering**! So **event handlers don’t need to be pure**.
+In React, side effects(***operations that impact things outside the component***) usually belong inside **event handlers**. **Event handlers are functions that React runs when you perform some action**—for example, when you click a button. Even though event handlers are defined inside your component, **they don’t run during rendering**! So **event handlers don’t need to be pure**.
 
 
 [Why does React care about purity?](https://react.dev/learn/keeping-components-pure#why-does-react-care-about-purity)

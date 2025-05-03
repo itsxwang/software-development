@@ -11,11 +11,11 @@
 
 - [**NULL**, when we there is not any value in sepcific row and column, that receives Null as a value, Null means the particular rowXcolumn is empty](https://youtu.be/ztHopE5Wnpc?si=bcmIw-FfGGV1NsVW&t=4507)
 
-- [**Anonmalies**, errors within our data integrity ](https://youtu.be/ztHopE5Wnpc?si=5C25boes78XH3zQc&t=4577)
+- [**Anonmalies**, errors within our data integrity, basically it means may Entity integrity or referential integrity or domain integrity is violated](https://youtu.be/ztHopE5Wnpc?si=5C25boes78XH3zQc&t=4577)
 
 - [**Integrity**, refers to the accuracy, consistency, and reliability of data throughout its entire lifecycle, we implement database integrity, to protect dbs against anomalies](https://youtu.be/ztHopE5Wnpc?si=0b5EGKV-ht6jXUTu&t=4617)
     - ***Entity Integrity***: Each entity(row, within an table) should be unique
-    - ***Referential Integrity***: All tables should have foreign key constraints(and all tables should be connected with each other), means if one row is not in one table it should also not be in another table and vice-versa
+    - ***Referential Integrity***: All tables should have foreign key constraints(and all tables should be connected with each other), means if one row is updated in one table it should also be updated in other tables
     - ***Domain Integrity***: Each attribute(column) should contain only specific type of values
 
 -----
@@ -34,7 +34,6 @@
 - [**Rows** and **Columns**, within a table we have rows and columns](https://youtu.be/ztHopE5Wnpc?si=II38UyqlGrVN8we3&t=4887)
 
     - ***File***, another name for a table
-
     - ***Record***, another name for a row
     - ***field***, another name for a column
 
@@ -65,7 +64,7 @@ Some more Db Terms
 
     - [**SQL keywords**](https://youtu.be/ztHopE5Wnpc?si=uSvDZupiv-72JdrB&t=5387)
 
-- [**Frontend of an App**, especially explained about in realm of db, we program frontend so user not have to do sign-in and use SQL code to get, post, etc., data from db](https://youtu.be/ztHopE5Wnpc?si=VTTBIOXXcKnjBCir)
+- [**Frontend of an App**, especially explained about in realm of db, we program frontend so user not have to do sign-in to server and use SQL code to get, post, etc., data from db](https://youtu.be/ztHopE5Wnpc?si=VTTBIOXXcKnjBCir)
 
 - [**Backend of An App**, server side code, basically used to connect frontend to db](https://youtu.be/ztHopE5Wnpc?si=_ssuVrwhVGIPl7-R&t=5467)
 

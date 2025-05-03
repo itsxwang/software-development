@@ -13,6 +13,7 @@ Types of Data Integrity
 
 
 ----
+
 # [Practical Implementing data integrity](https://youtu.be/ztHopE5Wnpc?si=UYzLe9pdcr39XLxH&t=4207)
  
  - Common data types we used in RDBMS are numbers, text, and dates. And these data types allow us to implement **domain integrity**

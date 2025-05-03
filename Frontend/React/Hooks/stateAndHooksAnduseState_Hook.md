@@ -174,9 +174,66 @@ Every time you click the button, the input state disappears! This is because a d
 
 6. Although, the same component(or we can say same type of component) at the same position(in the render tree) preserves state, [you can still reset state in that situation also](https://react.dev/learn/preserving-and-resetting-state#resetting-state-at-the-same-position)
       - Option 1: Rendering a component in different positions
-      - Option 2: Option 2: Resetting state with a key
-
+      - Option 2: Option 2: Resetting state with a key(Because Specifying a key tells React to use the key itself as part of the position, instead of their order within the parent. So this is same as same component at different positions, and you can know more about in below docs, State is associated with the tree position. A key lets you specify a named position instead of relying on order.) cls
+      
 [Know about this in detail(and more about state) here](https://react.dev/learn/preserving-and-resetting-state)
+
+One More code example, related to key:
+We give a key to both `<Field>` components in both if and else branches. This tells React how to “match up” the correct state for either `<Field>` even if their order within the parent changes, and therefore react will match state of those components those have same key, so you can thought of like this, after giving key to components, React takes key as position of components instead of taking order of components in parent, keys override that:
+
+```js
+import { useState } from 'react';
+
+export default function App() {
+  const [reverse, setReverse] = useState(false);
+  let checkbox = (
+    <label>
+      <input
+        type="checkbox"
+        checked={reverse}
+        onChange={e => setReverse(e.target.checked)}
+      />
+      Reverse order
+    </label>
+  );
+  if (reverse) {
+    return (
+      <>
+        <Field key="lastName" label="Last name" /> 
+        <Field key="firstName" label="First name" />
+        {checkbox}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Field key="firstName" label="First name" /> 
+        <Field key="lastName" label="Last name" />
+        {checkbox}
+      </>
+    );    
+  }
+}
+
+function Field({ label }) {
+  const [text, setText] = useState('');
+  return (
+    <label>
+      {label}:{' '}
+      <input
+        type="text"
+        value={text}
+        placeholder={label}
+        onChange={e => setText(e.target.value)}
+      />
+    </label>
+  );
+}
+```
+
+
+7. [You can also preserve state of removed componets](https://react.dev/learn/preserving-and-resetting-state#preserving-state-for-removed-components)
+
 
 ----
 

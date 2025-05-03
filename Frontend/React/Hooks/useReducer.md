@@ -12,6 +12,7 @@ It's similar to useState, but instead of directly setting values, you dispatch a
 
 
 
+[If you wanna go more deep down, and want to read about ***useReducer*** more, consider this docs\](https://react.dev/learn/extracting-state-logic-into-a-reducer)
 
 
 ```js
@@ -26,6 +27,11 @@ const [state, dispatch] = useReducer(reducer, initialState,()=>initialState);
    - `initFunction` -> This is called ***lazy initialization***,  and it's React’s way of optimizing expensive state calculations.\
    This is a function that ***initializes the state only ONCE***, when the component is first mounted(***first renders***).
 It’s useful when initial state creation is expensive (like reading from localStorage, or computing from props).
+
+
+Note: 
+- keep in mind that action(the object you put in `dispatch` call) types should ideally describe “what the user did” rather than “how you want the state to change”. This makes it easier to later add more features.
+-  The reducer should be a pure function—it should only calculate the next state. It should not “do” anything, including displaying messages to the user. That should happen in the event handler. (To help catch mistakes like this, React will call your reducers multiple times in Strict Mode. This is why, if you put an alert in a reducer, it fires twice.)
 
 
 ## 📦 Example 1: Simple Counter
@@ -145,3 +151,8 @@ export default Form;
   </tr>
 
 </table>
+
+
+----
+
+# [Learn to Writing concise reducers with Immer, using `useImmerReducer`](https://react.dev/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer)

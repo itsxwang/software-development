@@ -5,7 +5,7 @@
 An **atomic value** is a value in a table cell that cannot or should not be broken down further according to the rules of the database.
 
 ## 🔍 Why it's important:
-- Atomic values are a key part of First Normal Form (1NF) in database normalization.
+- Atomic values are a key part of First Normal Form (1NF) in database normalization, they help maintain data integrity and simplify querying.
 
 - 1NF requires each field (column) to contain only atomic (single) values — no sets, lists, or nested values.
  
@@ -25,12 +25,12 @@ In databases, relationships describe how tables are connected to each other base
 - **✅ Example**: Each person has one passport.
 - [Designing 1:1 relationships](https://youtu.be/ztHopE5Wnpc?si=6RQIFRNsBm-C5VF7&t=7347)
 - [1:1 relationship in multiple tables](https://youtu.be/ztHopE5Wnpc?si=gNy_8AO0Y0tJMAxc&t=7597)
-
+- [And if we have 1:1 relationship, then its not required to make 2 separate tables, we can also make single table](https://youtu.be/ztHopE5Wnpc?si=9SEFiTZARK71VMP-&t=8697)
 
 ### 2. One-to-Many (1:N)
 - **Definition**: One row in Table A can be related to many rows in Table B, but 1 row in Table B will only be related to one row in Table A.
 - **Occurrence**: Most common.
-- **✅ Example**: One customer can place many orders.
+- **✅ Example**: One customer can place many orders, but 1 order can only be placed by one customer.
 - [Designing 1:N relationships](https://youtu.be/ztHopE5Wnpc?si=AaA-n7JmoGLOUoOe&t=8027)
 
 
@@ -57,6 +57,11 @@ Relationship:
 `Customers.CustomerID` → `Orders.CustomerID`\
 This is a One-to-Many relationship.
 
+-----
+[Parent Tables and Child Tables](https://youtu.be/ztHopE5Wnpc?si=6gqsKtSigol1Dx54&t=8627)
+
+-----
+
 
 ### 3. Many-to-Many (M:N)
 - **Definition**: Rows in Table A can relate to many in Table B, and vice versa too (both ways).
@@ -66,6 +71,7 @@ This is a One-to-Many relationship.
 - Note:  **Many-to-Many (M:N)** relationships do work in relational databases — but not directly.
 Relational databases do not support **M:N** relationships natively.
 Instead, you implement them indirectly using an intermediate ***(junction/bridge table)*** table.
+- [Designing M:N relationships](https://youtu.be/ztHopE5Wnpc?si=0uOkD_9UQeta8GDz&t=9087)
 
 #### ❌ Not allowed directly:
 You cannot put a list of courses inside a single Student row or vice versa — that would violate First Normal Form (1NF) (atomic values only).

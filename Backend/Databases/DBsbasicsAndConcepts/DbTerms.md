@@ -9,7 +9,7 @@
 - [**RDBMS**, Relational Database Management System, specific kind of DBMS, which is just used to control tables and values within RDB](https://youtu.be/ztHopE5Wnpc?si=WC3vUlwze6Zd2VMO&t=4482)
 
 
-- [**NULL**, when we there is not any value in sepcific row and column, that receives Null as a value, Null means the particular rowXcolumn is empty](https://youtu.be/ztHopE5Wnpc?si=bcmIw-FfGGV1NsVW&t=4507)
+- [**NULL**, when we there is not any value in sepcific row x    column, that receives Null as a value, Null means the particular rowXcolumn is empty](https://youtu.be/ztHopE5Wnpc?si=bcmIw-FfGGV1NsVW&t=4507)
 
 - [**Anonmalies**, errors within our data integrity, basically it means may Entity integrity or referential integrity or domain integrity is violated](https://youtu.be/ztHopE5Wnpc?si=5C25boes78XH3zQc&t=4577)
 

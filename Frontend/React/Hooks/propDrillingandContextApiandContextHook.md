@@ -1,9 +1,13 @@
 - [What is propdrilling, why should care about that](https://youtu.be/M9O5AjEFzKw?si=Qj9mnjsAtxUqof8B&t=11147)
- - [PropDrilling in action](https://youtu.be/M9O5AjEFzKw?si=fQnJAEWMgJZyfqvd&t=11237)
+- [More about prop-drilling and its solutions, using context is explained in very good way in this docs](https://react.dev/learn/passing-data-deeply-with-context)
+
+- [PropDrilling in action](https://youtu.be/M9O5AjEFzKw?si=fQnJAEWMgJZyfqvd&t=11237)
 
 - [What is Context API, and how to use it](https://youtu.be/lAFbKzO-fss?si=-Qmop0JUIfl2UcR0&t=21047)
 
 - [Context API in action](https://youtu.be/M9O5AjEFzKw?si=_B6f0uOiGmHboktH&t=11397)
+
+
 
 - Example code
 

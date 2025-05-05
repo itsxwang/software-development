@@ -16,8 +16,9 @@ An **atomic value** is a value in a table cell that cannot or should not be brok
 
 In databases, relationships describe how tables are connected to each other based on common data. Relationship is a logical association between two or more tables, typically formed through primary and foreign keys.
 
-### 🧱 Types of Relationships:
+### 🧱 Types of Relationships(Here we talking about types of Binary Relationships):
 
+***A binary relationship in a database refers to a relationship between two entities (or two tables). Most common in RDBs*** It can be 1:1, 1:N, or M:N — but always **between two tables only**.
 
 ### 1. One-to-One (1:1)
 - **Definition**: Each row in Table A matches exactly one row in Table B.
@@ -25,7 +26,7 @@ In databases, relationships describe how tables are connected to each other base
 - **✅ Example**: Each person has one passport.
 - [Designing 1:1 relationships](https://youtu.be/ztHopE5Wnpc?si=6RQIFRNsBm-C5VF7&t=7347)
 - [1:1 relationship in multiple tables](https://youtu.be/ztHopE5Wnpc?si=gNy_8AO0Y0tJMAxc&t=7597)
-- [And if we have 1:1 relationship, then its not required to make 2 separate tables, we can also make single table](https://youtu.be/ztHopE5Wnpc?si=9SEFiTZARK71VMP-&t=8697)
+- [And if we have 1:1 relationship, then its not required to make 2 separate tables, we can also make single table, because in 1:1 relationship the primary keys will not be duplicated](https://youtu.be/ztHopE5Wnpc?si=9SEFiTZARK71VMP-&t=8697)
 
 ### 2. One-to-Many (1:N)
 - **Definition**: One row in Table A can be related to many rows in Table B, but 1 row in Table B will only be related to one row in Table A.
@@ -70,7 +71,7 @@ This is a One-to-Many relationship.
 
 - Note:  **Many-to-Many (M:N)** relationships do work in relational databases — but not directly.
 Relational databases do not support **M:N** relationships natively.
-Instead, you implement them indirectly using an intermediate ***(junction/bridge table)*** table.
+Instead, you implement them indirectly using an intermediate ***(junction/bridge)*** table.
 - [Designing M:N relationships](https://youtu.be/ztHopE5Wnpc?si=0uOkD_9UQeta8GDz&t=9087)
 
 #### ❌ Not allowed directly:
@@ -105,14 +106,12 @@ You cannot put a list of courses inside a single Student row or vice versa — t
 **This breaks the M:N relationship into two 1:N relationships, which relational databases can handle easily.**
 
 
+- [Summary of Realationships](https://youtu.be/ztHopE5Wnpc?si=8-LBJRkYuNs6uqIp&t=9987)
 
-
+- [Understand Binary realtionship between tables](https://youtu.be/ztHopE5Wnpc?si=n5vBMSC2rIwmWs3-&t=10427)
 
 ---
 
 ### ✅ In summary:
 > - A relationship in a database shows how rows in one table correspond to rows in another, enabling you to combine and query related data.
-
-
-
 

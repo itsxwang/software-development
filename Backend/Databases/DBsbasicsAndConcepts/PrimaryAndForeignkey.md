@@ -1,3 +1,7 @@
+# [First, what are Keys in Databases, and some properties of keys](https://youtu.be/ztHopE5Wnpc?si=ayqsFEk_VjgPkQnT&t=10517)
+
+- [Primary key index, key is a type of index, so in this video key is referred to primary key](https://youtu.be/ztHopE5Wnpc?si=fKjgFN3w6I4oc8Fx&t=11277)
+
 # 🔑 Primary Key (PK)
 ## ✅ Definition:
 A **primary key** is a column (or a set of columns) that uniquely identifies each row in a table.
@@ -21,7 +25,7 @@ A **primary key** is a column (or a set of columns) that uniquely identifies eac
       enroll in a course only once.\
        **So what's important to understand here is** :\
         **In a composite primary key, it’s not about the uniqueness of
-        individual columns** — ***it’s about the uniqueness of the combination.*** Like for example 2 or more students Ids can take same course Id, because the combination we get will still be unique.
+        individual columns** — ***it’s about the uniqueness of the combination.*** Like for example, 2 or more students Ids can take same course Id, because the combination we get will still be unique.
   
 - Often named `id`, `UserID`, `OrderID`, etc.
 

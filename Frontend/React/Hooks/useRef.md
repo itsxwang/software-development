@@ -1,4 +1,5 @@
 - [`useRef` Hook](https://youtu.be/M9O5AjEFzKw?si=zm6vZcyqCRyGD4g6&t=13351) 
+- [Here is the full docs on `useRef` Hook](https://react.dev/learn/referencing-values-with-refs)
 
 - [`useRef` Example](https://youtu.be/M9O5AjEFzKw?si=RPKCxsdsnOmgOxSA&t=13367)
     - ***useRef*** Hook provides a way to access and interact with DOM elements or to persist values(***useRefObject***) across renders without causing a re-render.\

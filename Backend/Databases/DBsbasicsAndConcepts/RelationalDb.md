@@ -26,4 +26,3 @@
 - [The actual files in the Dbs are stored in Hard drive or SSD in the server, or home computer, it depends where you running Db from](https://youtu.be/ztHopE5Wnpc?si=7drw-CXFUX8LpuHM&t=2057)
 
 
-

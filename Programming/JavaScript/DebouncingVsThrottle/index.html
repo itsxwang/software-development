@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            background: lightgreen;
+            font-size: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .mainHeading  {
+            color: rgb(31, 31, 31);
+            font-family: monospace;
+        }
+        input {
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+            height: 2.7rem;
+            width: 17.7rem;
+            text-align: center;
+            vertical-align: middle;
+
+        }
+        .inputContainer {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .inputContainer>p {
+            font-family: monospace;
+            color: rgb(31, 31, 31);
+            background:white;
+            padding: 7px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="mainHeading">Default vs Debouncing vs Throttle</h1>
+    <div class="inputContainer">
+        <input type="text" placeholder="Input...">
+        <p >Default: <span id="Default"></span> </p>
+        <p >Debouncing: <span id="Debouncing"></span> </p>
+        <p >Throttle: <span id="Throttle"></span> </p>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

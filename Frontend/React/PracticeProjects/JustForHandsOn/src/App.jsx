@@ -1,33 +1,28 @@
-import { useReducer } from "react";
-import Chat from "./Chat";
-import ContactList from "./ContactList";
-import { messengerReducer } from "./messangerReducer";
+import { useState,useImperativeHandle,useRef,forwardRef } from "react";
 
-export default function Messenger() {
-  const [state, dispatch] = useReducer(messengerReducer, contacts);
-  const message = state.message;
-  const contact = state.find((c) => c.selected);
-  const selectedId = state.filter(s => s.selected)[0].id
-
+function MyComponent() {
+  const myRef = useRef();
   return (
-    <div>
-      <ContactList
-        contacts={contacts}
-        selectedId={selectedId}
-        dispatch={dispatch}
-      />
-      <Chat
-        key={contact.id}
-        message={state[selectedId].message}
-        contact={contact}
-        dispatch={dispatch}
-      />
-    </div>
+    <>
+      <ChildComponent ref={myRef} />
+      <button onClick={() => myRef.current.focusInput()}></button>
+    </>
   );
+  
 }
 
-const contacts = [
-  { id: 0, name: "Taylor", email: "taylor@mail.com", selected: true,message:'' },
-  { id: 1, name: "Alice", email: "alice@mail.com",selected: false,message:'' },
-  { id: 2, name: "Bob", email: "bob@mail.com",selected: false,message:'' },
-];
+const  ChildComponent = forwardRef( (props,ref) => {
+  useImperativeHandle(
+    ref,
+    () => ({
+      focusInput() {
+        myRef.current.focus();
+      },
+    }),
+    []
+  )
+
+  return <div>Child Component</div>;
+})
+
+export default MyComponent;

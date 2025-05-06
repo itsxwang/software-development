@@ -119,3 +119,53 @@ function MyComponent() {
 ```
 In this example, `inputRef` is a ref object created by `useRef(null).` By assigning `inputRef` to the ref attribute of the **input** element, React will set `inputRef.current` to the corresponding DOM node when the component mounts(***first renders***). This allows you to directly access and manipulate the DOM element, such as focusing the input field.​
 
+----
+## useRef callback 
+
+- ✅ What does ref={callback} mean?
+
+You're passing a function to the `ref` attribute.\
+This function is called by React:
+- with the DOM element as the first argument when it mounts
+- with `null` when it unmounts
+
+So: 
+
+```jsx
+ref={(node) => {
+  // node is the actual DOM element
+  if (node !== null) {
+    // mounted
+  } else {
+    // unmounted
+  }
+}}
+```
+
+
+- Example: 
+
+```jsx
+function MyComponent() {
+  const handleRef = (element) => {
+    if (element) {
+      console.log("Element mounted:", element);
+    } else {
+      console.log("Element unmounted");
+    }
+    return () => console.log('cleanup function'); // always called by the react when the component unmounts
+  };
+
+  return <div ref={handleRef}>Hello</div>;
+}
+```
+
+# 📦 Use cases for callback refs:
+- You want to perform actions when the element appears/disappears.
+- You want to set multiple refs dynamically.[This is a good example for this](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+- You need to imperatively control something on the DOM node (like focusing, measuring, animations).
+
+Note: **When Strict Mode is enabled, ref callbacks will run twice in development.** 
+
+
+

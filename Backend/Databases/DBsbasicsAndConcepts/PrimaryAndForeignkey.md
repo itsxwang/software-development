@@ -9,7 +9,7 @@ A **primary key** is a column (or a set of columns) that uniquely identifies eac
 ## ✅ Properties:
 - Must be unique
 - Cannot be NULL
-- Only one primary key(or composite primary key) per table for one row(***"Each row must have a unique value for the entire primary key column (whether it's one column or multiple columns of primary key)."***)
+- [Only one primary key(or composite primary key) per table for one row](https://youtu.be/ztHopE5Wnpc?si=o8X71qHjuSkrUpE0&t=15807)(***"Each row must have a unique value for the entire primary key column (whether it's one column or multiple columns of primary key)."***)
     - Example: 
       Composite Primary Key (Multiple Columns of primary key) ✅
         ```sql
@@ -46,12 +46,14 @@ Here, `StudentID` is the primary key — no two students can have the same `Stud
 # 🔗 Foreign Key (FK)
 ## ✅ Definition:
 
-A **foreign key** is a column (or a set of columns) that creates a relationship between two tables — it references the primary key in another table.
+A [**foreign key**](https://www.youtube.com/watch?v=ztHopE5Wnpc&t=16697s) is a column (or a set of columns) that creates a relationship between two tables — it references the primary key in another table. [But keep in mind that every foreign key column must only reference one table.](https://youtu.be/ztHopE5Wnpc?si=l1a_zRhySbaTftHi&t=15837)
+
 
 ## ✅ Properties:
-- Can be NULL (unless specified otherwise)
+- Can be NULL ([but you can explicitely defined that it can’t be NULL, that what we called **not null foreign key**](https://youtu.be/ztHopE5Wnpc?si=AazCTJLRANIkfWlV&t=15957))
 - Can have duplicate values
 - Ensures referential integrity (prevents invalid references)
+- [Foreign keys can update unlike primary keys, because references can change of primary keys(may primary key(of other table) pointing to some other value before, now pointing to some other value)](https://youtu.be/ztHopE5Wnpc?si=sFjjKaQCgZZL5F3z&t=16077)
 
 📌 Example:
 ```sql

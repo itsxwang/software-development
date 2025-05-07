@@ -5,3 +5,8 @@
 - [What is Relational Database](https://youtu.be/ztHopE5Wnpc?si=6x5i6h5vzj5P3bqB&t=617)
  
  
+So Db is collection of information organized for easy:
+- Storage
+- Management
+- Update
+- Retrieval

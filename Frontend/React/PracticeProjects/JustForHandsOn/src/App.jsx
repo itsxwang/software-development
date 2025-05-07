@@ -1,28 +1,30 @@
-import { useState,useImperativeHandle,useRef,forwardRef } from "react";
+import { useImperativeHandle,useRef} from "react";
 
 function MyComponent() {
   const myRef = useRef();
   return (
     <>
       <ChildComponent ref={myRef} />
-      <button onClick={() => myRef.current.focusInput()}></button>
+      <button onClick={() => myRef.current.focusInput()}>Toggle</button>
     </>
   );
   
 }
 
-const  ChildComponent = forwardRef( (props,ref) => {
+const  ChildComponent = ({ref}) => {
+  const tempRef = useRef();
+  
   useImperativeHandle(
     ref,
     () => ({
       focusInput() {
-        myRef.current.focus();
+        tempRef.current.focus();
       },
     }),
     []
   )
 
-  return <div>Child Component</div>;
-})
+  return <input ref={tempRef} />;
+}
 
 export default MyComponent;

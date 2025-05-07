@@ -71,5 +71,35 @@ export default App;
 - It only exposes `focus()` and `clear()` methods.
 - The `App` component calls those methods via the ref.
 
+---
+## Note: You not need `forwardRef` in React 19+, it explained in docs
+```jsx
+import { useRef, useImperativeHandle } from "react";
 
-Note: You not need `forwardRef` in React 19+, it explained in docs
+function MyInput({ ref }) {
+  const realInputRef = useRef(null);
+  useImperativeHandle(ref, () => ({
+    // Only expose focus and nothing else
+    focus() {
+      console.log('focused');
+      realInputRef.current.focus();
+    },
+  }));
+  return <input ref={realInputRef} />;
+};
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <MyInput ref={inputRef} />
+      <button onClick={handleClick}>Focus the input</button>
+    </>
+  );
+}
+```

@@ -2,6 +2,8 @@
 - ***useEffect*** Hook allows you to perform side effects(**operations that impact things outside the component**) in your components. Some examples of side effects are: fetching data, directly updating the DOM etc.
 - [What are side effect](https://youtu.be/lAFbKzO-fss?si=RWqnr78ckl2E0sn1&t=15707)
 
+- [Here's full detailed docs on effects](https://react.dev/learn/synchronizing-with-effects)
+
 
 ***If you add an value to dependency array, useEffect will run only when that value changes and when the component mounts(first render)***
 

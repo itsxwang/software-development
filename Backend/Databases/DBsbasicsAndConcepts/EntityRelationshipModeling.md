@@ -55,3 +55,36 @@ Steps for creating ERDs:
    - [Database need to keep track of relationship between things](https://youtu.be/LowjDtiNlk4?si=P2QA7LJFdaICzWB0&t=177)
 
 2. [Cardinality, means how many of one thing are associated with how many of another thing](https://youtu.be/LowjDtiNlk4?si=68yzWrzknd8hOuTz&t=247)
+
+---- 
+## Few differences between ER and Relational Model
+
+In Entity-Relationship (ER) modeling, an entity typically represents a real-world object or concept, and when implemented in a relational database, it becomes a table.
+
+## 🔄 Mapping ER Model to Relational Model:
+
+| ER Concept       | Relational Model Equivalent   |
+| ---------------- | ----------------------------- |
+| **Entity**       | **Table**                     |
+| **Attribute**    | **Column**                    |
+| **Entity Set**   | **Table rows (records)**      |
+| **Relationship** | **Foreign Key + Table Links** |
+
+## Example:
+### In ER Model:
+
+- Entity: `Student`
+   - Attributes: `StudentID`, `Name`, `Email`
+
+- Relationship: `enrolls in` between `Student` and `Course`
+
+### In Relational Model:
+
+- Table: `Students`
+   - Columns: `StudentID`, `Name`, `Email`
+
+- Table: `Courses`
+
+- Table: `Enrollments` (to manage the relationship, using foreign keys)
+
+So `entities` become `tables` when the ER model is converted to a database schema.

@@ -1,5 +1,10 @@
 [`useEffect` hook](https://youtu.be/-4XpG5_Lj_o?si=MZVcIH39AcRWKzt8)
+- So basically doing side effects(that impact things outside the component) during rendering are called `effects`.
+
+- Note: Effects are different from events, because events are triggered by user interaction(like clicking the button, or typing in input), and effects are triggered by state changes or props changes, and effects are part of the render output.
+
 - ***useEffect*** Hook allows you to perform side effects(**operations that impact things outside the component**) in your components. Some examples of side effects are: fetching data, directly updating the DOM etc.
+
 - [What are side effect](https://youtu.be/lAFbKzO-fss?si=RWqnr78ckl2E0sn1&t=15707)
 
 - [Here's full detailed docs on effects](https://react.dev/learn/synchronizing-with-effects)

@@ -50,11 +50,24 @@ Let’s say you want to model a university database:
 
 ----
 
-Steps for creating ERDs:
-1. [Extracting information requirements](https://youtu.be/LowjDtiNlk4?si=txISd48XPYi4yZtg&t=57)
-   - [Database need to keep track of relationship between things](https://youtu.be/LowjDtiNlk4?si=P2QA7LJFdaICzWB0&t=177)
+### Steps for creating ERDs:
 
-2. [Cardinality, means how many of one thing are associated with how many of another thing](https://youtu.be/LowjDtiNlk4?si=68yzWrzknd8hOuTz&t=247)
+1. [Write down your idea, like what your app going to do, how it will work, what it will allow users to do, and basically what you allowed your application to do](https://youtu.be/5RpUmDEsn1k?si=ZU6sQNIIbJYlnnzM&t=47)
+
+2. [find the Nouns(basically a object or thing)](https://youtu.be/5RpUmDEsn1k?si=d9R4OUt-ES3Pk_Gn&t=107)
+
+3. [Create tables out of those nouns](https://youtu.be/5RpUmDEsn1k?si=TIRowklPXz8rCzEO&t=137)
+
+4. [Add attributes(columns) to those tables](https://youtu.be/5RpUmDEsn1k?si=8sDUatWudQypM-qd&t=167)
+
+5. [Add Relationships to design, that allows those tables to be connected, in turn give many other advantages of RDBs](https://youtu.be/5RpUmDEsn1k?si=dlDZ6TAwIIFr2VfJ&t=367)
+
+6.  [Aseess tables,fields and adjust](https://youtu.be/5RpUmDEsn1k?si=7NYnN4QjVZ6kfhRQ&t=497)
+
+7. [Now normalization and next steps](https://youtu.be/5RpUmDEsn1k?si=FvrWJBX20qP55qZ6&t=555)
+
+----
+- [One example more, for desining DB of Instagram](https://youtu.be/i_1CbyzzlDk?si=XIycpmcIyk-i2bhu)
 
 ---- 
 ## Few differences between ER and Relational Model
@@ -87,4 +100,4 @@ In Entity-Relationship (ER) modeling, an entity typically represents a real-worl
 
 - Table: `Enrollments` (to manage the relationship, using foreign keys)
 
-So `entities` become `tables` when the ER model is converted to a database schema.
+So `entities` become `tables` when the ER model is converted to a database schema. 

@@ -58,4 +58,9 @@ So basically, here we break M:N to 1:N (`PlayerID` and `ItemType` are primary ke
 
 3. [3NF Third Normal form](https://youtu.be/GFQaEYEc8_8?si=hcDhAhvq56vTRWor&t=967) A non-key attribute should not depend on other non-key attribute. **Every non-key attribute(we can just say ***attribute*** too) in a table should depend on the key, the whole key, and nothing but the key.**
 
-4. [4NF Fourth Normal form](https://youtu.be/GFQaEYEc8_8?si=urJkVQsJ95qiEHy1&t=1227)  
+    -  **If we replace replace non-key attribute to attribute**, we get, ***Each attribute in the table must depend on the key, the whole key, and nothing but the key***, a stronger version of 3NF, called **Boyce-Codd Normal Form (BCNF)**
+
+
+4. [4NF Fourth Normal form](https://youtu.be/GFQaEYEc8_8?si=urJkVQsJ95qiEHy1&t=1227)  MultiValued dependencies on the table must be multivalues dependencies on the key. In other words, if there are multivalued dependencies, they must be stored in separate tables, and each table must have no more than one multivalued dependency.
+
+5. [5NF Fifth Normal form](https://youtu.be/GFQaEYEc8_8?si=P8Lo6ekKM3Uf9irN&t=1427) It must not be possible to describe the table(that is in 4NF) as being the logical result of joining some other tables together.

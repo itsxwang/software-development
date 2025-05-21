@@ -27,7 +27,6 @@ class Singleton:
             This ensures that the instance creation logic from the parent class is executed.
             The __new__ method of the parent class(<class 'object'>) is responsible for actually creating the instance of the class(here `Singleton` named class).  
             """
-
         return cls._instance  # Return the instance (new or existing)
 
     def __init__(self, value):

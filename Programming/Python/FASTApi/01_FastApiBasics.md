@@ -1,5 +1,5 @@
 - [What is an API](https://youtu.be/WJKsPchji0Q?si=X4Kx7qvOXXtnIEmc&t=527)
-Api are mechanisms that enable tow software componets **(such as frontend and backend of an application)** to communicate with each other using a predefined set of rules, protocols(e.g http) and data-formats(e.g json).
+Api are mechanisms that enable two software componets **(such as frontend and backend of an application)** to communicate with each other using a predefined set of rules, protocols(e.g http) and data-formats(e.g json).
 
 
 - [Need for APIs, and monothonic architecture explained](https://youtu.be/WJKsPchji0Q?si=gZ6yjygKsM-d3Zvz&t=857)

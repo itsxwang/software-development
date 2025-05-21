@@ -1,5 +1,7 @@
 [See how to create custom hooks with example](https://youtu.be/lAFbKzO-fss?si=OxNuZ6eidrwlxq85&t=20327w)
 
+[More on custom Hooks on this docs](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
 Note: Custom hooks are a powerful feature in React that allows you to extract and reuse logic across components. They are simply JavaScript functions that start with the word **"use"** and can call other hooks, unlike normal functions that can't call other hooks.
 
 -------------

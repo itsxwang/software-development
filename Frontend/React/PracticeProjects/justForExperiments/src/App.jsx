@@ -1,60 +1,53 @@
-import { useState, useOptimistic, useRef } from "react";
+import { useOptimistic, useState, useRef, startTransition } from "react";
+import { deliverMessage } from "./actions";
 
-export default function App() {
-  const [todo, setTodo] = useState([{ title: "todo", id: 0 }]);
-  const [optimisticTodo, setOptimisticTodo] = useOptimistic(todo, updaterFunc);
-
-  const [item, setItem] = useState("");
-  const id = useRef(1);
-
-  function updaterFunc(prev, newOptimisticState) {
-    return [...prev, newOptimisticState];
+function Thread({ messages, sendMessageAction }) {
+  const formRef = useRef();
+  function formAction(formData) {
+    console.log(formData.get("message"));
+    addOptimisticMessage(formData.get("message"));
+    formRef.current.reset();
+    startTransition(async () => {
+      await sendMessageAction(formData);
+    });
   }
-
-  function handleAdd() {
-    console.log("optimisticTodo", id);
-    const newItem = { title: item, id: id.current++ };
-    setOptimisticTodo(newItem);
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title: "todos",
-        body: item,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setTodo((prev) => [...prev, newItem]);
-        }
-      })
-      .catch((error) => console.error(error));
-  }
+  const [optimisticMessages, addOptimisticMessage] = useOptimistic(
+    messages,
+    (state, newMessage) => [
+      {
+        text: newMessage,
+        sending: true
+      },
+      ...state,
+    ]
+  );
 
   return (
     <>
-      <form>
-        <label htmlFor="todo">
-          New Todo:
-          <br />
-          <input
-            type="text"
-            id="todo"
-            value={item}
-            onInput={(e) => setItem(e.target.value)}
-          />
-        </label>
-        <hr />
-
-        <button formAction={handleAdd}>Add</button>
+      <form action={formAction} ref={formRef}>
+        <input type="text" name="message" placeholder="Hello!" />
+        <button type="submit">Send</button>
       </form>
-
-      <h2>Your TODOS:</h2>
-
-      {optimisticTodo.map((todo) => (
-        <div key={todo.id}>
-          <p>{todo.title}</p>
+      {optimisticMessages.map((message, index) => (
+        <div key={index}>
+          {message.text}
+          {message.sending && <small> (Sending...)</small>}
         </div>
       ))}
+      
     </>
   );
+}
+
+export default function App() {
+  const [messages, setMessages] = useState([
+    { text: "Hello there!", sending: false, key: 1 }
+  ]);
+  async function sendMessageAction(formData) {
+    const sentMessage = await deliverMessage(formData.get("message"));
+    startTransition(() => {
+      setMessages((messages) => [{ text: sentMessage }, ...messages]);
+    })
+  }
+  return <Thread messages={messages} sendMessageAction={sendMessageAction} />;
 }

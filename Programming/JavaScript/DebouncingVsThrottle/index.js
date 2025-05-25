@@ -38,17 +38,20 @@ function debounce(cb, delay = 1000) {
 // throttle logic
 function throttle(cb, delay = 2000) {
   let lastTime = 0;
-  let now;
-  return (...args) => {
-    // so in throttling we not reset timer, instead we only execute the function if the time gap becomes greater than the delay specified
-    now = Date.now();
-    if (now - lastTime < delay) {
-        let remainingChars = args;
-        console.log(remainingChars);
-        return;
-    }
-    lastTime = now;
-    cb(...args);
-};
-}
+  let timer = null;
 
+  return (...args) => {
+    const now = Date.now();
+
+    if (now - lastTime >= delay) {
+      lastTime = now;
+      cb(...args);
+    } else {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        lastTime = Date.now();
+        cb(...args);
+      }, delay - (now - lastTime));
+    }
+  };
+}

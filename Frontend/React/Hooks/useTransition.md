@@ -45,7 +45,7 @@ function SearchComponent({ items }) {
     setInputValue(value);
 
     startTransition(() => {
-      const filtered = items.filter((item) =>
+      const filtered = items.filter(item =>
         item.split(/\s+/).join("").toLowerCase().includes(value.split(/\s+/).join("").toLowerCase())
       );
       setFilteredItems(filtered);

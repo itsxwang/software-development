@@ -1,10 +1,10 @@
 [JS Runtime Environment](https://youtu.be/2WJL19wDH68?si=FQsIhOjDr3-loM2W) 
 - JS Runtime environment is like a big container which has all things to run JS code
     - [What are these things](https://youtu.be/2WJL19wDH68?si=VqpgY4fltkM9MTXr&t=35)
-        - First JS engine because to run any piece of JS code we obviously need JS engine
+        - First JS engine because to run any piece of JS code we obviously need JS engine, as it includes **Heap** and **call stack** that is necessay for execution.
         - Set of APIs to connect to the outer environment
         - Event loop, microtask queue, callback queue
-- And in fact Browser can run JS code because it has JS runtime environment inside it, and in fact every browser has JS Runtime environement that's why it able to run JS code
+- And in fact Browser can run JS code because it has JS runtime environment inside it, and in fact every browser has JS Runtime environement that's why it able to run JS code.
 
 - Node.js also has JS runtime environment, it is a open source JS runtime environment helps to execute JS code outside the browser.
 
@@ -27,7 +27,7 @@ So JS engine is a program that takes JS code and spits outs machine code, that c
     - These are the 3 things happening with your JS code in JS engine
         1. [PARSING](https://youtu.be/2WJL19wDH68?si=ELjP5q3Gwai3sDuK&t=537) ->  Code is broken down into tokens, there is also soemthing called **syntax parser** which basically takes the code and convert into [AST(Abstract Syntax Tree)](https://youtu.be/2WJL19wDH68?si=Cqnz8EvVppLuF5Mg&t=567)
        2. [Compilation](https://youtu.be/2WJL19wDH68?si=EZBur6_4udNuZ9H4&t=707) 
-           - JS has something called JIT(Just in time) compiler
+           - JS has something called **JIT(Just in time)** compiler
            - [Before talk about that, let's see the difference between intrepeted and compiled languages](https://youtu.be/2WJL19wDH68?si=kaKTYnyRMr13bdZq&t=747)
            - [Is js compiled or interpreted language](https://youtu.be/2WJL19wDH68?si=f8UoUcIglY1BJka7&t=847)
            - [JIT Compilation, and the reason JS said to be **Just in time compiled language** because modern browser versions can use both compiler along with interpreter, interpreter converts code to byte code and compiler converts byte code to machine code and perform optimizations](https://youtu.be/2WJL19wDH68?si=jpnmCQjuKaAvrTBY&t=887)
@@ -47,4 +47,4 @@ So JS engine is a program that takes JS code and spits outs machine code, that c
 
 ---
 
-## [JS Runtime environment revised](https://youtu.be/2WJL19wDH68?si=o4XsecOvhmIc6k-y&t=1481)
+    ## [JS Runtime environment revised](https://youtu.be/2WJL19wDH68?si=o4XsecOvhmIc6k-y&t=1481)

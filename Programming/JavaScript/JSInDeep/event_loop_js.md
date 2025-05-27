@@ -13,7 +13,7 @@
 
 - [But what if we have to wait for something? Answer is Web APIs](https://youtu.be/8zKuNo4ay8E?si=Q0WJJFyDB7ajae3e&t=227)
     - [What is global object(**window**)?](https://youtu.be/8zKuNo4ay8E?si=_HRPlTzEHBUIndTX&t=597)
-    - Basically global object gives us access to browser APIs and Node.js APIs inside JS code. Browser kind of wrap all superpowers (like setTimeout, setInterval, etc) in global object
+    - Basically global object gives us access to browser APIs and Node.js APIs inside JS code. Browser kind of wrap all superpowers (like setTimeout, setInterval, etc) in global object.
 
 
 
@@ -27,17 +27,17 @@
 
 ### How the Event Loop Works
 
-1. The program starts executing, and functions are pushed onto the call stack(GEC pushes it) as they are invoked.
+1. The program starts executing, and functions are pushed onto the call stack as they are invoked.
 2. If a function contains asynchronous code (e.g., `setTimeout`, Promises, or I/O operations), that code is delegated to browser APIs or Node.js APIs.
-3. Once the asynchronous operation completes, its callback is placed in the task queue.
+3. Once the asynchronous operation completes, its callback is placed in the task queue(callback queue) or microtask queue.
 4. The event loop continuously monitors the call stack:
-        - If the call stack is empty, the event loop takes the first callback from the task queue and pushes it onto the call stack for execution.
+        - If the call stack is empty, the event loop takes the first callback from the task queue or microtask queue and pushes it onto the call stack for execution.
 5. This cycle repeats, allowing JavaScript to process asynchronous tasks efficiently.
 
 > **Note:** This mechanism is what allows JavaScript to remain non-blocking and responsive, even when handling time-consuming operations.
 
 - [Full end to end example of program execution](https://youtu.be/8zKuNo4ay8E?si=E8AIUY5p3rsHR3AS&t=1137)
-- [program execution example that contains fetch api(asynchronous code)](https://youtu.be/8zKuNo4ay8E?si=KFwEVqTZO3BRw8Cc&t=1637)
+- [Program execution example that contains fetch api(asynchronous code)](https://youtu.be/8zKuNo4ay8E?si=KFwEVqTZO3BRw8Cc&t=1637)
     - [Microtask Queue](https://youtu.be/8zKuNo4ay8E?si=dS3_-MC58PrUVmtl&t=1827)
          - Basically in the case of promises(and network calls), when a promise is resolved, the callback inside the `.then` goes into microtask queue, which **is a queue that has more priority than normal ***callback queue*****. Means callbacks inside microtask queue will execute first(means take by **event loop** first into call stack). 
              - [What can come inside microtask queue](https://youtu.be/8zKuNo4ay8E?si=AoO-WjByWyUOmfu-&t=2177)

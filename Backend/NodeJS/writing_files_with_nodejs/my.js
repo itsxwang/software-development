@@ -1,18 +1,15 @@
-const fs = require('fs');
-
-
+const fs = require("fs");
 
 // for writing a file
 // ----------------------------------
 // fs.writeFile('test.txt', 'Hello World! ', 'utf8', function (err) {
 //     if (err) {
-        // return console.log(err);
-//     } 
+// return console.log(err);
+//     }
 //     else {
 //         console.log("The file was saved!");
-//     }   
+//     }
 // })
-
 
 // for reading a file
 // ----------------------------------
@@ -23,7 +20,6 @@ const fs = require('fs');
 //     console.log(data);
 // })
 
-
 // for deleting a file
 // ----------------------------------
 // fs.unlink('test.txt', function (err) {
@@ -32,16 +28,19 @@ const fs = require('fs');
 //     }
 // })
 
-
 // reading code of current js file and writing in another js file
 // ----------------------------------
-fs.readFile('D:\\software_dev\\Backend\\NodeJS\\writing_files_with_nodejs\\my.js', 'utf8', function (err, data) {
+fs.readFile(
+  "D:\\software_dev\\Backend\\NodeJS\\writing_files_with_nodejs\\my.js",
+  "utf8",
+  function (err, data) {
     if (err) {
-        return console.log(err);
+      return console.log(err);
     }
-    fs.writeFile('test.js', data, 'utf8', function (err) {
-    if (err) {
+    fs.writeFile("test.js", data, "utf8", function (err) {
+      if (err) {
         return console.log(err);
-    } 
-})
-})
+      }
+    });
+  }
+);

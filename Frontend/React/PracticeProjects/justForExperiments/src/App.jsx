@@ -1,27 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { Suspense } from 'react';
+const Profile = React.lazy(() => import('./Profile'));
 
 export default function App() {
   return (
-    <>
-      <Data />
-    </>
+    <div>
+      <h1>App Component</h1>
+      <Suspense fallback={<p>⏳ Loading profile...</p>}>
+        <Profile />
+      </Suspense>
+    </div>
   );
-}
-
-function Data() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

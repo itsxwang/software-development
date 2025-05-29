@@ -8,7 +8,8 @@ TCP and UDP are core protocols of the Internet Protocol Suite, enabling data tra
 
 ## TCP
 
-**Transmission Control Protocol (TCP)** is a connection-oriented protocol used for reliable, in order, and error-checked data transmission over the Internet.
+**Transmission Control Protocol (TCP)** is a connection-oriented protocol used for reliable, in order, and error-checked data transmission over the Internet.\
+TCP works with the Internet Protocol (IP) to establish and maintain a network conversation allowing applications to exchange data reliably.
 
 - **Connection-Oriented:** Establishes a connection using a three-way handshake before data transfer and and a four-step process to close connections properly.
 - **Reliability:** Guarantees delivery of data packets in the correct order, retransmitting lost packets as needed.
@@ -44,4 +45,4 @@ TCP and UDP are core protocols of the Internet Protocol Suite, enabling data tra
 | Overhead        | Higher                       | Lower                      |
 | Use Cases       | Web, email, file transfer   | Streaming, gaming, VoIP    |
 
-Choose TCP or UDP based on your application's requirements for reliability, speed, and data integrity.
+Choose TCP or UDP based on your application's requirements for reliability, speed, and data integrity. Like for example for Data Integrity and reliable data transmission TCP is better as it ensures relaiable transmsission of data packetsand ensure the packets which were lost during transmission are retransmitted .

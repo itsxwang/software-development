@@ -1,4 +1,4 @@
-- [What is an API](https://youtu.be/WJKsPchji0Q?si=X4Kx7qvOXXtnIEmc&t=527)
+- [What is an API](https://youtu.be/WJKsPchji0Q?si=X4Kx7qvOXXtnIEmc&t=527):
 Api are mechanisms that enable two software componets **(such as frontend and backend of an application)** to communicate with each other using a predefined set of rules, protocols(e.g http) and data-formats(e.g json).
 
 

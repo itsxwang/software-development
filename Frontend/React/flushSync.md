@@ -78,7 +78,7 @@ Note: If you do :
 //   items is still the old state from this closure
   console.log(items); // ❌ still ['A', 'B']
 ```
-you still get `['A', 'B']` instead of `['A', 'B', 'C']` , Because JS closures don’t auto-update with state, (then why `document.getElementById('C')` works? Because `flushSync` forces immediate DOM update before executing next line of code)
+you still get `['A', 'B']` instead of `['A', 'B', 'C']` , Because JS closures don’t auto-update with state, (then why `document.getElementById('C')` works? Because `flushSync` forces immediate DOM update before executing next line of code), and if you think `document` is object, and objects are shared by reference.
 
 So this behavior because, JavaScript closures don’t magically get re-evaluated. Even though the DOM is updated, the variables inside your current function (like `items`) still hold their old values.
 

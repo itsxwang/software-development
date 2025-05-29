@@ -8,6 +8,8 @@ In React, "suspend" means:
 
 React will temporarily stop rendering that part of the UI and show a fallback UI (like a spinner) until it becomes ready.
 
+
+
 ## 🔁 Why would React "suspend"?
 ### React suspends when:
 1. You lazy load a component
@@ -121,7 +123,7 @@ Summary:
 ### 🔷 1. "React does not preserve any state for renders that got suspended before they were able to mount for the first time."
 
 👉 **What it means:**:
-If a component is still loading (e.g., waiting for lazy loading or data) and it has not rendered for the first time, React won’t remember any state or effects from it. If it suspends, React will retry from scratch.
+If a component is still loading (e.g., waiting for lazy loading or data) and it has not rendered for the first time, React won’t remember any state or effects from it. If it suspends, React will retry from scratch once it’s ready.
 
 ```jsx
 const LazyComponent = React.lazy(() => import('./HeavyComponent'));

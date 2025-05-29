@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react';
+
 const Profile = React.lazy(() => import('./Profile'));
+
 
 export default function App() {
   return (
@@ -8,6 +10,7 @@ export default function App() {
       <Suspense fallback={<p>⏳ Loading profile...</p>}>
         <Profile />
       </Suspense>
+
     </div>
   );
 }

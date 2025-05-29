@@ -1,0 +1,1 @@
+- [`require` keyword in detail](https://youtu.be/nNihy9kZmIU?si=G5V9i4DiRUlD8GMb&t=1187) 

@@ -23,4 +23,5 @@ Finally, the recursive resolver queries the authoritative DNS server for the dom
 The recursive resolver returns the IP address to the client's browser, which can then initiate a connection to the web server to access the website.
 
 ---
+
 This process ensures that domain names are accurately translated into IP addresses, enabling users to access websites using human-readable addresses.

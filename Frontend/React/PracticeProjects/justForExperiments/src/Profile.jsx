@@ -1,27 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-let userPromise;
+let userResource = createProfileResource();
 
-function fetchProfile() {
-  console.log("🔄 Fetching profile...");
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("✅ Profile loaded");
-      resolve({ name: "John Doe", age: 30 });
-    }, 2000); // simulate 2 sec network delay
-  });
-}
-
-// This creates a resource that throws the promise when not ready (simulating a Suspense-based loader)
 function createProfileResource() {
   let status = "pending";
   let result;
-  const suspender = fetchProfile().then(
-    res => {
+  const suspender = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ name: "John Doe", age: 30 });
+    }, 2000);
+  }).then(
+    (res) => {
       status = "success";
       result = res;
     },
-    err => {
+    (err) => {
       status = "error";
       result = err;
     }
@@ -29,29 +22,23 @@ function createProfileResource() {
 
   return {
     read() {
-      if (status === "pending") {throw suspender};
+      if (status === "pending") throw suspender;
       if (status === "error") throw result;
       return result;
     },
   };
 }
 
-// if (!userPromise) {
-//   userPromise = createProfileResource();
-// }
+if (!userResource.read) {
+  userResource = createProfileResource();
+}
 
 export default function Profile() {
-   throw new Promise(resolve => {
-  setTimeout(() => {
-    resolve();
-  }, 2000);
-});// ⛔ Suspends here until data is loaded
-  const user = {name: "John Doe", age: 30};
+  const profile = userResource.read();
   return (
-    <div>
-      <h2>👤 Profile Component</h2>
-      <p>Name: {user.name}</p>
-      <p>Age: {user.age}</p>
-    </div>
+    <>
+      <div>{profile.name}</div>
+      <div>{profile.age}</div>
+    </>
   );
 }

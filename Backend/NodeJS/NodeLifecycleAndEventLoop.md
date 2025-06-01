@@ -1,0 +1,3 @@
+- [Node Lifecyle and Event Loop](https://youtu.be/9HYAaXwS7I4?si=yOvXakKP-B7gOkNo&t=177)
+   - Node.js is the single threaded, we all know
+   - 

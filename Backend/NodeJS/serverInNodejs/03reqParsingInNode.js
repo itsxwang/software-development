@@ -49,11 +49,7 @@ const server = http.createServer((req, res) => {
       res.end("<h1>Details submitted successfully</h1>");
       const bufferString = Buffer.concat(body).toString();
       const params = new URLSearchParams(bufferString); // [[key1,value1],[key2,value2]] , of form
-    const object = {}
-      for (const [key,value] of params) {
-          object[key] = value
-          
-      }
+    const object = Object.fromEntries(params)
       arrayToAdd.push(object)
       fs.writeFileSync("data.json", JSON.stringify(arrayToAdd,null,2), (err) => {
               if (err) {

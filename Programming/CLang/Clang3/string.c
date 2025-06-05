@@ -92,7 +92,6 @@ int main()
     strcat(name, " concatenated string");
     printf("New Name: %s\n", name);
     
-
     // More about `fgets` in fgetsAndstrcspn file
 
     // 🧠 Bonus Tip -> If you want a pointer that can point to different strings:

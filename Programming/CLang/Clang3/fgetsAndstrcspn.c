@@ -35,6 +35,6 @@ int main()
     name[strcspn(name, "\n")] = '\0'; 
     printf("%s", name);
     printf("This line print in same line");
-    
+    printf("Length of string: %zu", strlen(name));
     return 0;
 }

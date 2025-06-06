@@ -11,7 +11,7 @@
 | `strlen(s)`         | Length of string (excluding `'\0'`)  |
 | `strcpy(dest, src)` | Copy string                          |
 | `strcat(dest, src)` | Concatenate strings                  |
-| `strcmp(s1, s2)`    | Compare strings (returns 0 if equal) |
+| `strcmp(s1, s2)`    | Compare strings (returns 0 if equal, and compare by ascii values , and if left string is greater than right string it will return 1, else -1) |
 | `strchr(s, c)`      | Find first occurrence of char `c`    |
 | `strstr(s1, s2)`    | Find substring `s2` in `s1`          |
 

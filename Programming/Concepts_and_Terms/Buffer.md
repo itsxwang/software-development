@@ -35,15 +35,9 @@ scanf("%d", &a);
 
 4. If it's a valid integer, a gets 123
 
-> Key point: The data is NOT immediately given to scanf() — it waits in the buffer until scanf() pulls it.
+> Key point: The data is NOT immediately given to `scanf()` — it waits in the buffer until `scanf()` pulls it.
 
 
-# 🧼 Types of Buffers in C
-
-```c
-int a;
-scanf("%d", &a);
-```
 # 🧼 Types of Buffers in C
 1. Input buffer:
 - Where typed input (keyboard or file) is temporarily held

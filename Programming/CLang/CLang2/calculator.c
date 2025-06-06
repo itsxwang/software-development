@@ -9,7 +9,6 @@ int main()
     float a, b; // declaring variables
     char op[3];
 
-
     printf("First No: ");
     scanf("%f", &a);
         

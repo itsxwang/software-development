@@ -6,7 +6,6 @@
     // stream → From where to read (e.g., stdin for keyboard input)
 
 
-
 #include <stdio.h>
 #include <string.h>
 
@@ -18,11 +17,12 @@ int main()
 
     // Reads up to 19 characters into name (leaves space for the null character \0)
     // Reads from the keyboard (stdin) standard input stream
-    // Stores the newline character (\n) if you press Enter before 19 chars(or if the characters are less than size-1 at the end)
+    // Stores the newline character (\n) if you press Enter before 19 chars(means if the characters are less than size-1 at the end)
     // Automatically null-terminates the string
     
-    printf("You entered: %s", name);
-    printf("This line print in new line");
+    name[strcspn(name, "\n")] = '\0';
+    printf("You entered: `%s`\n", name);
+    printf("This line print in new line.");
     // 🧹 Optional: Remove trailing \n
     // If you want to strip the newline from fgets, do this:
 
@@ -33,8 +33,7 @@ int main()
     // it returns size of string(strlen(string)) if there is no match from str2(in this case "\n")
 
     name[strcspn(name, "\n")] = '\0'; 
-    printf("%s", name);
-    printf("This line print in same line");
+    printf(" This line print in same line.\n");
     printf("Length of string: %zu", strlen(name));
     return 0;
 }

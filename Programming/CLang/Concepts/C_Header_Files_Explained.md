@@ -1,4 +1,3 @@
-
 # [Understanding Header Files in C](https://www.youtube.com/live/89cbCbWrM4U?si=jPD3LmCkHvYVcEub&t=1541)
 
 Header files in C are an essential part of modular programming. They enable better code organization, reuse, and readability. Let’s dive deep into the concept of header files, exploring their role, usage, structure, and best practices.

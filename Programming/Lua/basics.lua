@@ -65,15 +65,90 @@ end)
 
 decoratedfunc()
 
+-----------------------------------------------------------------------
 -- lua only data structure(Tables) https://youtu.be/CuWfgiwI73Q?si=L4OgN9U-NlZEGUcr&t=257
 
-local table = {1, 2, 3, 4, 5}
-table[1] = 10
+-- lua list can be heterogenous
+local mytable = {1, 2,'string_val', 3, 4, 5, function () print("Hello") end}
+mytable[1] = 10 
 
-
-print(table[1]) -- only give us address where the value is stored
+print(mytable[1]) 
 -- to see array items we can iterate over it 
 
-for i = 1, #table do
-    print(table[i])
+-- it simply going from 1 to #mytable(length of mytable, 6 here) no (n-1) thing like python
+-- for i=1, #mytable do 
+--     print(mytable[i])
+-- end
+
+print(#mytable) -- #mytable gives us the length of the mytable, note: we get length of that table only that act as a array only
+
+-- the above we see is table as list, but we also have table as maps
+f = function () print("Hello") end
+local t = {
+    literal_key = "a string",
+    [1] = "a number key value",
+    ["a string"] = "another string",
+    [f] = "a function key value"
+}
+
+print(t[1])
+print(t["a string"])
+print(t.literal_key)
+print(t[f])
+
+-------------------------------------------------------------------------------
+-- Control flow in lua
+
+-- for loop 
+-- There are 2 types of for loops in lua
+-- 1️⃣ Numeric for loop 
+    -- Syntax
+
+    --[[
+        for var = start, stop [, step] do
+            -- body
+        end
+    ]]
+        
+-- 2️⃣ Generic for loop
+    -- Syntax
+
+    --[[   
+    for key, value in pairs(table) do
+    -- body
+end
+]]
+
+-- Example (Numeric for loop)
+-- in this initialization is required 
+for i = 1, 10  do
+    print(i)
+end
+
+-- Example (Generic for loop)
+-- for key, value in pairs(t) do
+--     print(key, value)
+-- end
+-- `ipair` function returns index and value, note ipair stop iterating when it hits first nil(means encounter first non array item in table)  -> 
+for ind,val in ipairs(mytable) do
+    print([[index-]] .. ind .. [[=]] .. tostring(val)) -- this is just string concatenation
+    print("and type of val is: "..type(val))
+end
+
+local table1 = {1,2,3,
+he= "hello",
+5,6
+
+}
+print(#table1) -- 5, as it only consider array part of a table
+
+-- `if` in lua  (https://youtu.be/CuWfgiwI73Q?si=hTfEqOUASPyfWwSF&t=567)
+-- note: in lua there are `nil` and `false` are falsey values
+
+if false then
+    print("true")
+elseif nil then
+    print("nil")
+else 
+    print("else block")
 end

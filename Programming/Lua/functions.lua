@@ -114,3 +114,5 @@ k:greet()
 - : means → Lua automatically passes the table as self
 - . means → you pass all arguments manually 
 ]]
+
+-- we can also create anonymous functions -> `function () end`

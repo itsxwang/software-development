@@ -134,3 +134,4 @@ print(feb[5])
 print(feb[7])
 print(feb[5])
 -- so what we just do is : we make table who generate febannoci numbers, and catched febannoci sequence to the largest number table index with !!
+

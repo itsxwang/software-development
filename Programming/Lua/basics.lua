@@ -1,3 +1,5 @@
+-- Learn lua in minutes, sort of revision kind of (https://learnxinyminutes.com/lua/)
+
 -- This clip tells about lua in detail -> https://youtu.be/CuWfgiwI73Q?si=E2OuJNHccV--A_2M
 
 

@@ -67,7 +67,7 @@ print(t) -- so when we print `t` the string method going to invoke
 -- 3️⃣ __add metamethod 
 local vec_mt = {}
 vec_mt.__add = function(a, b) 
-     return setmetatable({a[1] + b[1], a[2] + b[2], a[3]+b[3]},vec_mt)
+     return setmetatable({a[1] + b[1], a[2] + b[2], a[3]+b[3]},vec_mt) -- setmetatable returns new table which has 2nd arg as metatable
 end
 
 local vec1 = setmetatable({7,5,7},vec_mt)
@@ -114,9 +114,23 @@ function Person:new(name)
 end
 
 function Person:greet()
+    print(self.name)
     print("Hello, my name is " .. self.name)
 end
 
-local p1 = Person:new("John")
-p1:greet()  --> Hello, my name is John
 
+-- let's make catched febannoci with metatables
+local feb_mt = {
+    __index = function(self, key)
+       print('key: ', key)
+       if key == 1 then return 1 elseif key == 0 then return 0  end
+       self[key] = self[key-1] + self[key-2] 
+       return self[key]
+    end
+}
+
+local feb = setmetatable({}, feb_mt)
+print(feb[5])
+print(feb[7])
+print(feb[5])
+-- so what we just do is : we make table who generate febannoci numbers, and catched febannoci sequence to the largest number table index with !!

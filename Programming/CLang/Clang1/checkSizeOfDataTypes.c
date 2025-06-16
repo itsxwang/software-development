@@ -1,6 +1,6 @@
 #include <stdio.h>
 // total data types in C (https://youtu.be/p0QUmC2WJwM?si=SLr5xju10P9ZXuCo)
-
+// sizeof is a unary operator that returns the size of a data type, variable, expression, or function in bytes, it is not function but it can be treated that way 
 int main(void) {
     int a = 7; // as generally int take 4 bytes in memory, a will be 4 bytes in memory
     printf("Size of int is %zu bytes\n", sizeof(a)); 

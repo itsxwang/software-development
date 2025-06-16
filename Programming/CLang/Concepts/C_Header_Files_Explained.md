@@ -129,8 +129,8 @@ Both prevent multiple inclusion, but `#pragma once` is non-standard (though wide
 
 To remember what goes in a header file, remember **HDTV**:
 - **H** - **Header guards**
-- **D** - **Declarations** of functions
-- **T** - **Type definitions** (struct, typedef)
+- **D** - **Declarations** of functions (Decalartion simply means announcing the properties of varibable or functions to the compiler)
+- **T** - **Type definitions** (struct, typedef) (Definition means allocationg memory)
 - **V** - **Value macros** (`#define`, `const`)
 
 ---
@@ -168,7 +168,3 @@ If you ever wonder *"should this go in a header?"* — ask: **"Do I want others 
 
 - [Libraries in C](https://www.youtube.com/live/89cbCbWrM4U?si=sHnBQLXxDNCgpU3U&t=1627)
       - Basically library is a Collection of code someone else wrote for you !
-
-
-
-

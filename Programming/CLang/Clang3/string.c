@@ -14,6 +14,8 @@
 | `strcmp(s1, s2)`    | Compare strings (returns 0 if equal, and compare by ascii values , and if left string is greater than right string it will return 1, else -1) |
 | `strchr(s, c)`      | Find first occurrence of char `c`    |
 | `strstr(s1, s2)`    | Find substring `s2` in `s1`          |
+| `strcspn(s1, s2)`   | The strcspn function in C is used to find the length of the initial segment of a string `s1` that does not contain any of the characters from another string `s2` . 
+It returns the number of characters from the start of s1 until the first occurrence of a character that is present in s2. If no such character is found, it returns the length of s1
 
  */
 
@@ -49,7 +51,7 @@ int main()
 
     // ✅ Example 1: Character Array
     // here each character is stored in 8 bits, means 1byte for every char, so if you do `sizeof(str)` you will get 6 bytes
-    char str[6] = {'H', ' ', 'l', 'l', 'o', '\0'};
+    char str[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
 
     printf("%s\n", str);
     printf("%zu\n", sizeof(str)); // 6 bytes in memory
@@ -64,7 +66,7 @@ int main()
 
     // 📥 Reading a String
     printf("Enter your name: ");
-    char name[20];
+    char name[100]; // Increased buffer size to safely hold concatenated string
     // ⚠️ scanf("%s", str) reads up to the first whitespace
     // scanf("%s", name);  // input: "John Doe" → reads only "John"
     // printf("Name: %s\n", name);

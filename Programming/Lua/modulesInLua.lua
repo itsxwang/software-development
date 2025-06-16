@@ -46,4 +46,3 @@ print(f())             -- runs the compiled function => prints 5
 
      ]] 
     -- load() returns nil and error message if there was a syntax error.
-

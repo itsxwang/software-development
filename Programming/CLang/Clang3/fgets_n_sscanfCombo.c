@@ -41,9 +41,12 @@ int main()
      */
 
     int age;
-    sscanf(input, "%d", &age); // pulls number from the input string
-    printf("Your age is: %d\n", age);
-    // 🧠 What happens if user types:
+    char n[2];
+    char k[2];
+    // the number we wrote before string format specifier, telling `sscanf` to prevent buffer overflow(read only 1 char), as sscanf not automatically knows how many maximum chars to read in variable
+    sscanf(input, "%d %1s %1s", &age,n,k); // pulls number from the input string
+    printf("Your age is: %d\n Example String:`%s` `%s`\n ", age,n,k);
+    // 🧠 Example of What happens if user types:
     /*
     - fgets() captures "18\n" (\n or any other arbitrary string, but it should be after any integer)
     - sscanf() extracts 18 from that string and stores it in age

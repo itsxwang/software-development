@@ -16,7 +16,7 @@ int main()
     printf("Second No: ");
     scanf("%f", &b);
 
-    printf("Operation: ");
+    printf("Operation (`add` or `mul`) : ");
     scanf("%s", op);
 
     // lowercasing choice of operation

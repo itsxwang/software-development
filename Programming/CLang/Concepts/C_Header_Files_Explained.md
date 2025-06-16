@@ -3,13 +3,13 @@
 Header files in C are an essential part of modular programming. They enable better code organization, reuse, and readability. Let’s dive deep into the concept of header files, exploring their role, usage, structure, and best practices.
 
 ---
-
+[text](C_Header_Files_Explained.md)
 ## 🧠 What is a Header File?
 
-A **header file** in C is a file with a `.h` extension that contains C declarations and macro definitions to be shared between several source files.
+`A **header file** in C is a file with a `.h` extension that contains C declarations and macro definitions to be shared between several source files.
 
 Think of it like a **menu in a restaurant**: it tells you what is available (**functions**, **constants**, **macros**), but the actual meal (function implementation) comes from the kitchen (source file).
-
+<!-- Note -->
 ---
 
 ## 📦 What Can Be Inside a Header File?

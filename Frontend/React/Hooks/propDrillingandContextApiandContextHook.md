@@ -10,7 +10,7 @@
 - Example code
 
 ```js
-"./App.jsx";
+// "./App.jsx";
 import { createContext } from "react";
 const App = () => {
   export const Data = createContext("default value");
@@ -25,7 +25,7 @@ const App = () => {
 };
 export default App;
 
-("./ComponentA.jsx");
+// "./ComponentA.jsx"
 import { Data } from "./App.jsx";
 const ComponentA = () => {
   const name = useContext(Data);

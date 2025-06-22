@@ -6,7 +6,7 @@ Code to writefile with node
 const fs = require('fs');
 
 
-fs.writeFile('test.txt', 'Hello World!', function (err) {
+fs.writeFile('test.txt', 'Hello World!', "utf8", function (err) {
     if (err) {
         return console.log(err);
     } 
@@ -19,6 +19,7 @@ fs.writeFile('test.txt', 'Hello World!', function (err) {
 const fs = require('fs');
 
 
+// by default the function (3rd argument) return data, and the value return by this function is return value of fs.readFile
 fs.readFile('test.txt', 'utf8', function (err, data) {
     if (err) {
         return console.log(err);

@@ -4,12 +4,11 @@
         - First JS engine because to run any piece of JS code we obviously need JS engine, as it includes **Heap** and **call stack** that is necessay for execution.
         - Set of APIs to connect to the outer environment
         - Event loop, microtask queue, callback queue
-- And in fact Browser can run JS code because it has JS runtime environment inside it, and in fact every browser has JS Runtime environement that's why it able to run JS code.
+- And in fact Browser can run JS code because it has JS runtime environment inside it
 
 - Node.js also has JS runtime environment, it is a open source JS runtime environment helps to execute JS code outside the browser.
 
 - For example, we have to run JS code in our Water cooler, we need some JS runtime environment inside the water cooler to run JS code.
-
 - [APIs in JS runtime environment](https://youtu.be/2WJL19wDH68?si=M2pvjzaIPGWw7Cgf&t=177)
    - APIs are kind of superpowers we can use in our JS code, different JS runtime environment can have different set of APIs, basically APIs gives JS Code access to the outside environment. 
 
@@ -47,4 +46,4 @@ So JS engine is a program that takes JS code and spits outs machine code, that c
 
 ---
 
-    ## [JS Runtime environment revised](https://youtu.be/2WJL19wDH68?si=o4XsecOvhmIc6k-y&t=1481)
+## [JS Runtime environment revised](https://youtu.be/2WJL19wDH68?si=o4XsecOvhmIc6k-y&t=1481)

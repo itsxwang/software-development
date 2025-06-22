@@ -158,7 +158,7 @@ function requestHandler(req, res) {
         return res.end();
     }
 
-    if (req.url === '/calculate-result' && req.method === 'POST') {
+    else if (req.url === '/calculate-result' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => {
             body += chunk.toString();

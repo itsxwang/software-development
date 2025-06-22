@@ -10,7 +10,7 @@
     - **Error Handling**: It is important to handle errors in a server-side application to prevent a user from experiencing a broken experience or a server crash.
     - **Security Measures** - Implement **protocols to protect data from unauthorized access** and attacks such as **SQL injection**(this is also prevented by input validation), **cross-site scripting**(XSS). 
     - **Data Encryption** - **Secure sensitive information** by encrypting data stored in DBs and during transmission.
-    - **Logging and monitoring** - Keeps records of system activity to **diagnose issue and sysyem health** and security.
+    - **Logging and monitoring** - Keeps records of system activity to **diagnose issue and system health** and security.
 
 - [Client Code vs Server code](https://youtu.be/AZzV3wZCvI4?si=76lFW9fkk0poeymt&t=2037)
 

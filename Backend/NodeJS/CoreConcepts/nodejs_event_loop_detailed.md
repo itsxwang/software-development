@@ -140,3 +140,6 @@ setImmediate(() => {
 
 - Think of the event loop as a **queue processor**: each phase is like a section of the queue where only certain types of tasks are processed.
 - If you’re building high-performance servers in Node.js, understanding this order helps you avoid delays and bottlenecks.
+
+---
+[Example](https://youtu.be/Pk9J0SvNXUs?si=eZO7LaUOCId5hRDZ&t=2797)

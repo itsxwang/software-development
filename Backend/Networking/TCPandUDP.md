@@ -45,4 +45,4 @@ TCP works with the Internet Protocol (IP) to establish and maintain a network co
 | Overhead        | Higher                       | Lower                      |
 | Use Cases       | Web, email, file transfer   | Streaming, gaming, VoIP    |
 
-Choose TCP or UDP based on your application's requirements for reliability, speed, and data integrity. Like for example for Data Integrity and reliable data transmission TCP is better as it ensures relaiable transmsission of data packetsand ensure the packets which were lost during transmission are retransmitted .
+Choose TCP or UDP based on your application's requirements for reliability, speed, and data integrity. Like for example for Data Integrity and reliable data transmission TCP is better as it ensures relaiable transmsission of data packets and ensure the packets which were lost during transmission are retransmitted .

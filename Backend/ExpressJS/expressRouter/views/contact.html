@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Reset & base styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            padding: 20px;
+        }
+
+        .form-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 12px 12px 0;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            font-size: 1rem;
+            background: transparent;
+            transition: border-color .3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom-color: #007BFF;
+        }
+
+        label {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            font-size: 1rem;
+            color: #666;
+            pointer-events: none;
+            transition: all .2s ease-out;
+        }
+
+        input:focus+label,
+        input:not(:placeholder-shown)+label {
+            transform: translateY(-20px);
+            font-size: .85rem;
+            color: #007BFF;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #007BFF;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background .3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            color: #D8000C;
+            font-size: .9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-card">
+        <h2>Contact Us</h2>
+        <form id="contactForm" action="/choice" method="POST">
+            <div class="group">
+                <input type="text" id="name" name="name" placeholder=" " required>
+                <label for="name">Name</label>
+            </div>
+            <div class="group">
+                <input type="number" id="age" name="age" min="1" placeholder=" " required>
+                <label for="age">Age</label>
+            </div>
+            <div class="group">
+                <input type="text" id="hobby" name="hobby" placeholder=" ">
+                <label for="hobby">Hobby</label>
+            </div>
+            <div class="group">
+                <input type="text" id="dream" name="dream" placeholder=" ">
+                <label for="dream">Dream place to live</label>
+            </div>
+            <button type="submit">Submit</button>
+            <div class="message" id="msg"></div>
+        </form>
+    </div>
+
+    <script>
+        // Basic client-side validation and delayed redirect
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.name.value.trim();
+            const age = form.age.value.trim();
+            const hobbyValue = form.hobby.value;
+            const dreamValue = form.dream.value;
+            const msg = document.getElementById('msg');
+
+            if (!name) return msg.textContent = 'Please enter your name.';
+            if (!age || age <= 0) return msg.textContent = 'Please enter a valid age.';
+
+            msg.style.color = 'green';
+            msg.textContent = 'Thank you, ' + name + '! We received your info.';
+
+            setTimeout(() => {
+                // Create a form and submit it to /choice as POST
+                const tempForm = document.createElement('form');
+                tempForm.method = 'POST';
+                tempForm.action = '/choice';
+
+                const fields = { name, age, hobby: hobbyValue, dream: dreamValue };
+                for (const key in fields) {
+                    const input = document.createElement('input');
+                    input.type ='hidden';
+                    input.name = key;
+                    input.value = fields[key];
+                    tempForm.appendChild(input);
+                }
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

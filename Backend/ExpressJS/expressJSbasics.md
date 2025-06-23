@@ -28,3 +28,5 @@
 - [Handling routes based on method of request](https://youtu.be/J-QgmSzyA_A?si=pwYUfbWxpLxl5-6S&t=2317)
 
 - One more thing if we give path in ```app.use``` then it will used as wildcard, i.e. it will match all routes start with that path.  But if we give path in ```app.get``` or any other method then it will only match that path exactly.
+
+- [Serving static files, basically serving html,css,js combinely (but make separately) from server using express with the help of `express.static(path)`](https://youtu.be/GNTDLqKWknw?si=8IGCPJrFprloxW0h&t=87)

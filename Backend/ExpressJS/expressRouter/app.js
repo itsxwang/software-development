@@ -24,7 +24,7 @@ app.use(contactRouter);
 app.use(choiceRouter)
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
+  res.status(404).sendFile(path.join(pathUtil, "views", "404.html"));
 })
 
 app.listen(3001, () => {

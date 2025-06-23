@@ -30,3 +30,5 @@
 - One more thing if we give path in ```app.use``` then it will used as wildcard, i.e. it will match all routes start with that path.  But if we give path in ```app.get``` or any other method then it will only match that path exactly.
 
 - [Serving static files, basically serving html,css,js combinely (but make separately) from server using express with the help of `express.static(path)`](https://youtu.be/GNTDLqKWknw?si=8IGCPJrFprloxW0h&t=87)
+
+- [Set up and use tailwind in express project](https://youtu.be/GNTDLqKWknw?si=4fNd_cFMEGReimNT&t=1267)

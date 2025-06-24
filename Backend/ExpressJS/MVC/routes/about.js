@@ -1,9 +1,10 @@
 const express = require('express');
+const { getAbout } = require('../controllers/about');
 
 const router = express.Router();
 
 router.get('/about', (req, res) => {
-    res.render('about', {currentPage: 'about', pageTitle: 'About'});
+    getAbout(req, res);
 })
 
 module.exports = router;

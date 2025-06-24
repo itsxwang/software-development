@@ -1,9 +1,10 @@
 const express = require('express');
+const { addListingRouter } = require('../controllers/addListingRouter');
 
 const router = express.Router();
 
 router.get('/add', (req, res) => {
-    res.render('addListing', {currentPage: 'addListing',pageTitle: 'Add Listing'});
+   addListingRouter(req, res);  
 })
 
 module.exports = router;

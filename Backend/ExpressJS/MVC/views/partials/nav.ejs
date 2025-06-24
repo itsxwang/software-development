@@ -1,0 +1,62 @@
+<style>
+  @keyframes fade-in-menu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-menu {
+    animation: fade-in-menu 0.3s ease-out;
+  }
+</style>
+
+<nav class="bg-white shadow sticky top-0 z-10 animate-slide-down">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-bold text-blue-600">MyStay</a>
+
+    <!-- Hamburger Button (visible below sm) -->
+    <button id="menu-toggle" class="sm:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none">
+      <span class="block w-6 h-0.5 bg-gray-800"></span>
+      <span class="block w-6 h-0.5 bg-gray-800"></span>
+      <span class="block w-6 h-0.5 bg-gray-800"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <ul id="menu"
+      class="sm:flex sm:space-x-4 hidden flex-col sm:flex-row absolute sm:static top-16 left-0 w-full sm:w-auto bg-white sm:bg-transparent p-4 sm:p-0 space-y-3 sm:space-y-0 sm:items-center">
+      <li>
+        <a href="/home"
+          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'home' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Home</a>
+      </li>
+      <li>
+        <a href="/add"
+          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'addListing' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Add
+          Listing</a>
+      </li>
+      <li>
+        <a href="/about"
+          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'about' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script defer>
+   document.addEventListener("DOMContentLoaded", function() {
+    const menuButton = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    menuButton.addEventListener("click", () => {
+      if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
+        menu.classList.add("animate-fade-in-menu");
+
+        // Remove the animation class after it's done
+        setTimeout(() => {
+          menu.classList.remove("animate-fade-in-menu");
+        }, 300);
+      } else {
+        menu.classList.add("hidden");
+      }
+    });
+  });
+</script>

@@ -1,17 +1,26 @@
 {
-  "name": "mvc",
+  "name": "dynamichtmlinexpress",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js & postcss public/css/input.css -o public/css/output.css --watch",
+    "build:css": "postcss public/css/input.css -o public/css/output.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "multer": "^2.0.1",
+    "nodemon": "^3.1.10"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
     "tailwindcss": "^3.4.17"
   }
 }

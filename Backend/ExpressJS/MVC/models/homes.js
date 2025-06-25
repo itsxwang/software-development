@@ -1,4 +1,12 @@
-const homes = [];
+const fs = require('fs');
+const path = require('path');
+const { rootDir } = require('../utils/pathUtil');
+
+const homes = JSON.parse(fs.readFileSync(
+  path.join(rootDir, 'data', 'homes.json'),
+  'utf8'
+));
+
 
 module.exports = class Home {
   constructor(aboutHome, homeAddress, contactinfo, homePrice, homeImage) {
@@ -11,6 +19,10 @@ module.exports = class Home {
 
   save() {
     homes.push(this);
+    fs.writeFileSync(
+      path.join(rootDir, 'data', 'homes.json'),
+      JSON.stringify(homes, null, 2)
+    );
   }
 
   static fetchAll() {

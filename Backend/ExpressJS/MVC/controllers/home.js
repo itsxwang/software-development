@@ -1,5 +1,5 @@
 const Home = require('../models/homes');
-
+const fs = require('fs');
 exports.getAddHome = (req, res) => {
     const homes = Home.fetchAll();    
     res.render('home', { homes: homes, currentPage: 'home', pageTitle: 'Home' });
@@ -11,6 +11,7 @@ exports.postAddHome = (req, res,homes) => {
 
     const home = new Home(aboutHome, homeAddress, contactinfo, homePrice, homeImage);
     home.save();
+
     res.redirect('/home');
 };
 

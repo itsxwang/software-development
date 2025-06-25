@@ -23,6 +23,6 @@ app.use((req, res)=> {
 });
 
 
-app.listen(3001, () => {
-    console.log('Server started on port http://localhost:3001');
+app.listen(3000, () => {
+    console.log('Server started on port http://localhost:3000');
 });

@@ -3,13 +3,13 @@ const path = require('path');
 // 
 const Home = require('../models/homes');
 const fs = require('fs');
-exports.getAddHome = (req, res) => {
+exports.getIndex = (req, res) => {
     Home.fetchAll(homes=>{
         res.render(path.join('store', 'home-list'), { homes: homes, currentPage: 'home', pageTitle: 'Home' });
     });    
 };
 
-exports.postAddHome = (req, res,homes) => {
+exports.postIndex = (req, res,homes) => {
     const { aboutHome, homeAddress, contactinfo, homePrice } = req.body;
     const homeImage = req.file ? "/uploads/" + req.file.filename : "";
 
@@ -20,8 +20,8 @@ exports.postAddHome = (req, res,homes) => {
 };
 
 
-exports.getaddListing = (req, res) => {
-    res.render(path.join('host', 'addListing'), {currentPage: 'addListing', pageTitle: 'Add Listing'});
+exports.getaddHome = (req, res) => {
+    res.render(path.join('host', 'addHome'), {currentPage: 'addHome', pageTitle: 'Add Home'});
 }
 
 
@@ -31,4 +31,8 @@ exports.getAbout = (req, res) => {
 
 exports.getfavourites = (req, res) => {
  res.render(path.join('store', 'favourites'), {currentPage: 'favourites', pageTitle: 'Favourites'});   
+}
+
+exports.getbookings = (req, res) => {
+    res.render(path.join('store', 'bookings'), {currentPage: 'bookings', pageTitle: 'Bookings'});
 }

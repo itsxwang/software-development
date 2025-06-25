@@ -26,5 +26,40 @@
     "contactinfo": "777111",
     "homePrice": "5000",
     "homeImage": "/uploads/1750867113463.jpg"
+  },
+  {
+    "aboutHome": "Cozy rooms with modern AI",
+    "homeAddress": "123 block A , switzerland",
+    "contactinfo": "11",
+    "homePrice": "75121",
+    "homeImage": "/uploads/1750867965279.jpg"
+  },
+  {
+    "aboutHome": "Cozy",
+    "homeAddress": "123",
+    "contactinfo": "11",
+    "homePrice": "2500",
+    "homeImage": "/uploads/1750870509211.jpg"
+  },
+  {
+    "aboutHome": "Cozy",
+    "homeAddress": "123 block A , switzerland",
+    "contactinfo": "777111",
+    "homePrice": "2500",
+    "homeImage": "/uploads/1750870708569.jpg"
+  },
+  {
+    "aboutHome": "Cozy xxx",
+    "homeAddress": "123 block A , switzerland",
+    "contactinfo": "777111",
+    "homePrice": "2500",
+    "homeImage": "/uploads/1750870765050.jpg"
+  },
+  {
+    "aboutHome": "Cozy cp ",
+    "homeAddress": "123 block A , switzerland",
+    "contactinfo": "777111",
+    "homePrice": "72500",
+    "homeImage": "/uploads/1750871534657.jpg"
   }
 ]

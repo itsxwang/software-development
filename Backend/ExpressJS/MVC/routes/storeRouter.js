@@ -1,10 +1,13 @@
 const express = require("express");
-const router = express.Router();
 const fs = require("fs");
-const multer = require("multer");
 const path = require("path");
-const { getAddHome, postAddHome } = require("../controllers/home");
 
+const multer = require("multer");
+
+const { getAddHome, postAddHome,getAbout, getfavourites } = require("../controllers/storeController");
+
+
+const router = express.Router();
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
@@ -18,17 +21,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/home", (req, res) => {
-  getAddHome(req, res);
-});
 
+// handle store routes
 router.get("/", (req, res) => {
   getAddHome(req, res);
 });
 
 // now upload.single() will add the file to the destination folder, with the specified name - that we specified in multer.diskStorage({})
-router.post("/home", upload.single("homeImage"), (req, res) => {
+router.post("/", upload.single("homeImage"), (req, res) => {
   postAddHome(req, res);
 });
+
+router.get("/about", (req, res) => {
+  getAbout(req, res);
+});
+
+router.get("/favourites", (req, res) => {
+  getfavourites(req, res);
+});
+
 
 module.exports = router;

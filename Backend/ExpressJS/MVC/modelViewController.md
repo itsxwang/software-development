@@ -9,3 +9,5 @@
 - [Writing data to files](https://youtu.be/N3rkdpBjmH8?si=t5Y43IP7Kx_P0wcF&t=2567)
 
 - [Nodemon causing problems and nodemon explicit configuration](https://youtu.be/N3rkdpBjmH8?si=aAN86oCECtR8cxoW&t=2937)
+
+- [Reading data from files](https://youtu.be/N3rkdpBjmH8?si=ordXlGfWICPXQc7a&t=3187)

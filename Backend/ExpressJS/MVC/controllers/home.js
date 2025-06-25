@@ -1,8 +1,9 @@
 const Home = require('../models/homes');
 const fs = require('fs');
 exports.getAddHome = (req, res) => {
-    const homes = Home.fetchAll();    
-    res.render('home', { homes: homes, currentPage: 'home', pageTitle: 'Home' });
+    Home.fetchAll(homes=>{
+        res.render('home', { homes: homes, currentPage: 'home', pageTitle: 'Home' });
+    });    
 };
 
 exports.postAddHome = (req, res,homes) => {

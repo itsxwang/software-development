@@ -1,12 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const { rootDir } = require('../utils/pathUtil');
-
-const homes = JSON.parse(fs.readFileSync(
-  path.join(rootDir, 'data', 'homes.json'),
-  'utf8'
-));
-
+const fs = require("fs");
+const path = require("path");
+const { rootDir } = require("../utils/pathUtil");
 
 module.exports = class Home {
   constructor(aboutHome, homeAddress, contactinfo, homePrice, homeImage) {
@@ -18,14 +12,26 @@ module.exports = class Home {
   }
 
   save() {
-    homes.push(this);
-    fs.writeFileSync(
-      path.join(rootDir, 'data', 'homes.json'),
-      JSON.stringify(homes, null, 2)
-    );
+    Home.fetchAll((homes) => {
+      homes.push(this);
+
+      fs.writeFile(
+        path.join(rootDir, "data", "homes.json"),
+        JSON.stringify(homes, null, 2),
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
   }
 
-  static fetchAll() {
-    return homes;
+  // NOTE: When you have to empty data of homes.json, remove all objects inside the array, don't remove array itself otherwise JSON.parse will cause error
+  static fetchAll(callback) {
+    fs.readFile(
+      path.join(rootDir, "data", "homes.json"),
+      (err, fileContent) => {
+        callback(!err ? JSON.parse(fileContent) : []);
+      }
+    );
   }
-}
+};

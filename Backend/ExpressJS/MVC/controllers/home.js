@@ -1,8 +1,10 @@
+const path = require('path');
+
 const Home = require('../models/homes');
 const fs = require('fs');
 exports.getAddHome = (req, res) => {
     Home.fetchAll(homes=>{
-        res.render('home', { homes: homes, currentPage: 'home', pageTitle: 'Home' });
+        res.render(path.join('store', 'home'), { homes: homes, currentPage: 'home', pageTitle: 'Home' });
     });    
 };
 

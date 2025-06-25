@@ -1,0 +1,1 @@
+- [What are dynamic paths, query and path parameters](https://youtu.be/qbHmaHjOKPE?si=aY8lASuVtIU4hm4s&t=77)

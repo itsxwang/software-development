@@ -24,6 +24,6 @@ app.use((req, res)=> {
     res.status(404).render('404', {pageTitle: 'Page Not Found'});
 });
 
-app.listen(3000, () => {
-    console.log('Server started on port http://localhost:3000');
+app.listen(3001, () => {
+    console.log('Server started on port http://localhost:3001');
 });

@@ -1,16 +1,30 @@
 [
   {
-    "aboutHome": "Cozy xxx",
+    "aboutHome": "Cozy",
     "homeAddress": "123 block A , switzerland",
     "contactinfo": "777111",
     "homePrice": "2500",
-    "homeImage": "/uploads/1750837911545.jpg"
+    "homeImage": "/uploads/1750856874179.jpg"
   },
   {
-    "aboutHome": "Cozy with cats",
+    "aboutHome": "Cozy rooms with modern AI",
+    "homeAddress": "7 waterfalls Village, switzerland",
+    "contactinfo": "991",
+    "homePrice": "7777",
+    "homeImage": "/uploads/1750856904266.jpg"
+  },
+  {
+    "aboutHome": "Cozy xxx",
+    "homeAddress": "123",
+    "contactinfo": "777111",
+    "homePrice": "1111",
+    "homeImage": "/uploads/1750860002183.jpg"
+  },
+  {
+    "aboutHome": "Cozy xxx",
     "homeAddress": "123 block A , switzerland",
     "contactinfo": "777111",
-    "homePrice": "72700",
-    "homeImage": "/uploads/1750837938979.jpg"
+    "homePrice": "5000",
+    "homeImage": "/uploads/1750867113463.jpg"
   }
 ]

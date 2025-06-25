@@ -1,0 +1,111 @@
+<%- include('../partials/head'); %>
+    <style>
+        .card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideFadeIn 0.5s ease forwards;
+        }
+
+        @keyframes slideFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    </head>
+
+    <body class="bg-gray-100 text-gray-800 font-sans">
+
+        <!-- Navigation menu-->
+        <%- include('../partials/nav'); %>
+
+            <main class="max-w-6xl mx-auto p-4">
+                <% if (homes.length===0) { %>
+                    <p class="text-center mt-4 text-gray-600">No homes available right now. Check back later!</p>
+                    <% } else { %>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                            <% homes.forEach(home=> { %>
+                                <div
+                                    class="card bg-white rounded-lg shadow hover:shadow-lg transform hover:-translate-y-1 transition p-4 flex flex-col justify-between relative">
+
+                                    <!-- Image -->
+                                    <div class="h-48 rounded overflow-hidden">
+                                        <img src="<%= home.homeImage %>" alt="<%= home.aboutHome %>"
+                                            class="w-full h-full object-cover">
+                                    </div>
+
+                                    <!-- Text Info -->
+                                    <div class="mt-4 flex-1">
+                                        <h2 class="text-xl font-semibold text-gray-800">
+                                            <%= home.aboutHome %>
+                                        </h2>
+                                        <p class="text-gray-600 mt-1"><span class="font-medium">Address:</span>
+                                            <%= home.homeAddress %>
+                                        </p>
+                                        <p class="text-gray-600 mt-1"><span class="font-medium">Contact:</span>
+                                            <%= home.contactinfo %>
+                                        </p>
+                                        <p class="text-gray-800 font-bold mt-2">₹<%= home.homePrice %> / night</p>
+                                    </div>
+
+                                    <!-- Book Button -->
+                                    <div class="flex justify-start mt-4">
+                                        <button
+                                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition active:scale-95">
+                                            Book
+                                        </button>
+                                    </div>
+
+                                    <!-- Like Button -->
+                                    <div class="absolute bottom-4 right-4">
+                                        <button
+                                            class="like-button active:scale-95 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+                                            id="main-like-button" aria-label="Like">
+                                            <!-- Heart Icon (Filled) -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="heart w-6 h-6 text-gray-500">
+                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+               2 5.42 4.42 3 7.5 3 
+               c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 
+               19.58 3 22 5.42 22 8.5 
+               c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <% } %>
+            </main>
+
+            <script>
+                const likeButtons = document.querySelectorAll('.like-button');
+                likeButtons.forEach(button => {
+                    const heart = button.querySelector('.heart');
+
+                    button.addEventListener('click', () => {
+                        const liked = heart.classList.contains('text-gray-500');
+
+                        if (liked) {
+                            // Liking
+                            heart.classList.remove('text-gray-500');
+                            heart.classList.add('text-red-500');
+                            button.classList.remove('hover:bg-gray-200');
+                            button.classList.add('hover:bg-red-200');
+                        } else {
+                            // Unliking
+                            heart.classList.remove('text-red-500');
+                            heart.classList.add('text-gray-500');
+                            button.classList.remove('hover:bg-red-200');
+                            button.classList.add('hover:bg-gray-200');
+                        }
+                    });
+                });
+            </script>
+
+
+
+    </body>
+
+    </html>

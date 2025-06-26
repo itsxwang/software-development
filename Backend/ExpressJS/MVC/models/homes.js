@@ -1,14 +1,17 @@
+
 const fs = require("fs");
 const path = require("path");
 const { rootDir } = require("../utils/pathUtil");
 
 module.exports = class Home {
-  constructor(aboutHome, homeAddress, contactinfo, homePrice, homeImage) {
+  constructor(aboutHome, homeAddress, contactinfo, homePrice, homeImage, id) {
+    this.id = id;
     this.aboutHome = aboutHome;
     this.homeAddress = homeAddress;
     this.contactinfo = contactinfo;
     this.homePrice = homePrice;
     this.homeImage = homeImage;
+
   }
 
   save() {
@@ -19,7 +22,7 @@ module.exports = class Home {
         path.join(rootDir, "data", "homes.json"),
         JSON.stringify(homes, null, 2),
         (err) => {
-          console.log(err);
+          console.log(err); 
         }
       );
     });
@@ -33,5 +36,12 @@ module.exports = class Home {
         callback(!err ? JSON.parse(fileContent) : []);
       }
     );
+  }
+
+  static findById(id, callback) {
+    Home.fetchAll((homes) => {
+      const home = homes.find((home) => home.id === id);
+      callback(home);
+    });
   }
 };

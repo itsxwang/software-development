@@ -26,8 +26,9 @@
                     <% } else { %>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                             <% homes.forEach(home=> { %>
-                                <div
-                                    class="card bg-white rounded-lg shadow hover:shadow-lg transform hover:-translate-y-1 transition p-4 flex flex-col justify-between relative">
+                                <a
+                                    href="/home/<%= home.id %>"
+                                    class="cursor-pointer card bg-white rounded-lg shadow hover:shadow-lg transform hover:-translate-y-1 transition p-4 flex flex-col justify-between relative">
 
                                     <!-- Image -->
                                     <div class="h-48 rounded overflow-hidden">
@@ -50,7 +51,7 @@
                                     </div>
 
                                     <!-- Book Button -->
-                                    <div class="flex justify-start mt-4">
+                                    <div class="bookBtn flex justify-start mt-4">
                                         <button
                                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition active:scale-95">
                                             Book
@@ -61,7 +62,7 @@
                                     <div class="absolute bottom-4 right-4">
                                         <button
                                             class="like-button active:scale-95 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition"
-                                            id="main-like-button" aria-label="Like">
+                                            id="<%= home.id %>" aria-label="Like">
                                             <!-- Heart Icon (Filled) -->
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 fill="currentColor" class="heart w-6 h-6 text-gray-500">
@@ -73,7 +74,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                                </div>
+                                </a>
                                 <% }); %>
                         </div>
                         <% } %>
@@ -84,7 +85,8 @@
                 likeButtons.forEach(button => {
                     const heart = button.querySelector('.heart');
 
-                    button.addEventListener('click', () => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
                         const liked = heart.classList.contains('text-gray-500');
 
                         if (liked) {
@@ -93,13 +95,45 @@
                             heart.classList.add('text-red-500');
                             button.classList.remove('hover:bg-gray-200');
                             button.classList.add('hover:bg-red-200');
+                            
+                            // Send a request to the like route to tell modify the data of particular listing
+                            fetch('/favourites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: button.id,
+                                    like: true
+                                })
+                            })
                         } else {
                             // Unliking
                             heart.classList.remove('text-red-500');
                             heart.classList.add('text-gray-500');
                             button.classList.remove('hover:bg-red-200');
                             button.classList.add('hover:bg-gray-200');
+
+                            fetch('/favourites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: button.id,
+                                    like: false
+                                })
+                            })
+
                         }
+                    });
+                });
+
+                // Book Btn functionality
+                const bookBtn = document.querySelectorAll('.bookBtn');
+                bookBtn.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
                     });
                 });
             </script>

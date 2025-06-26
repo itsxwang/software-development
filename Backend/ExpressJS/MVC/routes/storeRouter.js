@@ -4,7 +4,7 @@ const path = require("path");
 
 const multer = require("multer");
 
-const { getIndex, postIndex, getAbout, getfavourites, getbookings } = require("../controllers/storeController");
+const { getIndex, postIndex, getAbout, getfavourites, postfavourites, getbookings, getHomeDetails } = require("../controllers/storeController");
 
 
 const router = express.Router();
@@ -32,12 +32,20 @@ router.post("/", upload.single("homeImage"), (req, res) => {
   postIndex(req, res);
 });
 
+router.get("/home/:homeId", (req, res) => {
+  getHomeDetails(req, res);
+});
+
 router.get("/about", (req, res) => {
   getAbout(req, res);
 });
 
 router.get("/favourites", (req, res) => {
   getfavourites(req, res);
+});
+
+router.post("/favourites", (req, res) => {
+  postfavourites(req, res);
 });
 
 router.get("/bookings", (req, res) => {

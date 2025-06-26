@@ -1,16 +1,18 @@
 [
   {
-    "aboutHome": "Cozy rooms with modern AI",
+    "id": "6b04cfcf-4587-41d6-abf7-c82b3c7f8311",
+    "aboutHome": "Cozy",
     "homeAddress": "123 block A , switzerland",
-    "contactinfo": "777111",
-    "homePrice": "72000",
-    "homeImage": "/uploads/1750876812904.jpg"
+    "contactinfo": "11",
+    "homePrice": "7777",
+    "homeImage": "/uploads/1750926496630.jpg"
   },
   {
-    "aboutHome": "Cozy rooms with modern AI",
-    "homeAddress": "123 block A , switzerland",
+    "id": "f0737621-5ae9-4480-8ef5-9f491cf0c392",
+    "aboutHome": "Lakeside cottage | Cozy llama",
+    "homeAddress": "7 waterfalls Village, switzerland aside YELLOW wood jungle ",
     "contactinfo": "777111",
-    "homePrice": "7777",
-    "homeImage": "/uploads/1750878950420.jpg"
+    "homePrice": "750",
+    "homeImage": "/uploads/1750926947766.jpg"
   }
 ]

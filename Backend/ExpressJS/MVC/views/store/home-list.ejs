@@ -26,8 +26,7 @@
                     <% } else { %>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                             <% homes.forEach(home=> { %>
-                                <a
-                                    href="/home/<%= home.id %>"
+                                <a href="/home/<%= home.id %>"
                                     class="cursor-pointer card bg-white rounded-lg shadow hover:shadow-lg transform hover:-translate-y-1 transition p-4 flex flex-col justify-between relative">
 
                                     <!-- Image -->
@@ -61,11 +60,12 @@
                                     <!-- Like Button -->
                                     <div class="absolute bottom-4 right-4">
                                         <button
-                                            class="like-button active:scale-95 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+                                            class="like-button active:scale-95 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 <%= favourites.includes(home.id) ? 'hover:bg-red-200' : 'hover:bg-gray-200' %> transition"
                                             id="<%= home.id %>" aria-label="Like">
                                             <!-- Heart Icon (Filled) -->
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="heart w-6 h-6 text-gray-500">
+                                                fill="currentColor"
+                                                class="heart w-6 h-6 <%= favourites.includes(home.id) ? 'text-red-500' : 'text-gray-500' %>">
                                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
                2 5.42 4.42 3 7.5 3 
                c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 
@@ -90,12 +90,7 @@
                         const liked = heart.classList.contains('text-gray-500');
 
                         if (liked) {
-                            // Liking
-                            heart.classList.remove('text-gray-500');
-                            heart.classList.add('text-red-500');
-                            button.classList.remove('hover:bg-gray-200');
-                            button.classList.add('hover:bg-red-200');
-                            
+
                             // Send a request to the like route to tell modify the data of particular listing
                             fetch('/favourites', {
                                 method: 'POST',
@@ -104,15 +99,15 @@
                                 },
                                 body: JSON.stringify({
                                     id: button.id,
-                                    like: true
                                 })
                             })
+
+                            // Liking
+                            heart.classList.remove('text-gray-500');
+                            heart.classList.add('text-red-500');
+                            button.classList.remove('hover:bg-gray-200');
+                            button.classList.add('hover:bg-red-200');
                         } else {
-                            // Unliking
-                            heart.classList.remove('text-red-500');
-                            heart.classList.add('text-gray-500');
-                            button.classList.remove('hover:bg-red-200');
-                            button.classList.add('hover:bg-gray-200');
 
                             fetch('/favourites', {
                                 method: 'POST',
@@ -121,9 +116,14 @@
                                 },
                                 body: JSON.stringify({
                                     id: button.id,
-                                    like: false
                                 })
                             })
+                            
+                            // Unliking
+                            heart.classList.remove('text-red-500');
+                            heart.classList.add('text-gray-500');
+                            button.classList.remove('hover:bg-red-200');
+                            button.classList.add('hover:bg-gray-200');
 
                         }
                     });

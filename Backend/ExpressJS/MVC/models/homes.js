@@ -22,7 +22,7 @@ module.exports = class Home {
         path.join(rootDir, "data", "homes.json"),
         JSON.stringify(homes, null, 2),
         (err) => {
-          console.log(err); 
+          console.log(err);
         }
       );
     });

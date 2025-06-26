@@ -37,7 +37,7 @@
                     <a id="favourites"
                         data-id="<%= home.id %>"
                         class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95">
-                        Add to Favourites
+                        <%= favourites.includes(home.id) ? 'Added to Favourites' : 'Add to Favourites' %>
                     </a>
 
                 </div>
@@ -53,35 +53,35 @@
                         favButton.textContent = 'Added to Favourites';
 
 
+                        fetch('/favourites', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: favButton.dataset.id,
+                            })
+                        })
                         setTimeout(() => {
                             favButton.classList.remove('scale-105');
-                            fetch('/favourites', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    id: favButton.dataset.id,
-                                    like: true
-                                })
-                            })
                         }, 600);
                     } else {
                         favButton.classList.add('scale-105');
                         favButton.textContent = 'Add to Favourites';
+
+                        fetch('/favourites', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: favButton.dataset.id,
+                            })
+                        })
+
                         setTimeout(() => {
 
                             favButton.classList.remove('scale-105');
-                            fetch('/favourites', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    id: favButton.dataset.id,
-                                    like: false
-                                })
-                            })
 
                         }, 300);
                     }

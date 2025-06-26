@@ -14,5 +14,13 @@
     "contactinfo": "777111",
     "homePrice": "750",
     "homeImage": "/uploads/1750926947766.jpg"
+  },
+  {
+    "id": "5c02c931-d0c4-42c0-8b80-7f766bd3b4b8",
+    "aboutHome": "Cozy rooms with modern AI",
+    "homeAddress": "123",
+    "contactinfo": "991",
+    "homePrice": "7171",
+    "homeImage": "/uploads/1750943236296.jpg"
   }
 ]

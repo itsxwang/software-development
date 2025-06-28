@@ -72,12 +72,91 @@ After disconnecting, your prompt will switch back to your local machine's termin
         `sytemctl stop ssh.socket` also stop listening on port 22 for any ssh connection attempt, and not start ssh connection even on ssh attempt.  
         So even if you stop the ssh.service(using ```systemctl stop ssh``` or ```systemctl stop ssh.service```) but not close the **ssh.socket**, the ssh.socket is still listening on port 22 and will re-activate ssh.service on demand.
 
-This is a systemd feature called "socket activation", which helps save resources by only running services when needed.
+        *This is a systemd feature called "socket activation", which helps save resources by only running services when needed.*
 
 - [using gitbash terminal](https://youtu.be/5q6_w5Dk4UE?si=4N4zv-JlJ-OHB2An&t=577)
 
 - [Through mobaXterm multitab terminal](https://youtu.be/5q6_w5Dk4UE?si=45Y0-SUo0vfSNt07&t=617)
 
+---
+To connect via SSH or use scp(secure copy protocol) without entering a password every time.
+This is achieved using SSH key-based authentication.
 
+## ✅ 1. `ssh-keygen -t ed25519`
+`-t` specify the type of key to generate.\
+This command generates a **new SSH key pair** on your system.
+**What it does**:
+- Creates two files:
+    - Private key → `~/.ssh/id_ed25519`
+    - Public key → `~/.ssh/id_ed25519.pub`
+- The private key stays secret on your machine.
+- The public key is something you can share with others (or remote servers).
 
+Why **ed25519** type key?
+- It’s faster and more secure than older RSA keys.
+- Shorter in size but strong in encryption. 
 
+Output example:
+```shell
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/yourname/.ssh/id_ed25519): [Press Enter]
+Enter passphrase (optional): [Press Enter or type one]
+```
+- What is passphrase? \
+    - A passphrase is like a password for your private key.
+    - It adds an extra layer of security on top of your key pair.
+    - ✅ If you type a passphrase:
+      - Your private key (in `~/.ssh/id_ed25519`) gets encrypted with that passphrase. 
+      - Every time you use this key (e.g., to SSH or SCP), you'll be asked to type the passphrase to decrypt it and use it.
+    - 💡 This protects your key even if someone steals your file (`id_ed25519`). They can’t use it without your passphrase.
+    - 🚫 If you press Enter (leave it empty):
+        - The key is not protected by a passphrase.
+
+        - SSH will not prompt for anything — it will just use the key.
+
+        - It’s more convenient, but less secure.
+    - This is OK if:
+        - You’re the only user on the machine.
+
+        - You have disk encryption.
+
+        - It’s for automation/scripts where typing a passphrase every time isn't practical.
+    - So if you enter a passphrase, you should remember it. As it will ask everytime you will do ssh or scp. You can use `ssh-agent` to cache the passphrase, ask gpt how to do that. 
+
+## ✅ 2. `ssh-copy-id username@remoteMachineIp`
+This command installs your public key on the remote machine (192.168.29.75) under the xion user. Only if you have ssh access to the remote machine. And that's why you should always secure your username and password, so only trusted users can use `ssh-copy-id`.
+
+What it does:
+- Copies your public key (`~/.ssh/id_ed25519.pub)` to the remote machine.
+- Adds it to `~xion/.ssh/authorized_keys` on the remote system.
+- This means the remote SSH server now trusts your private key to log in.
+
+What happens on the remote machine:
+```bash
+cat ~/.ssh/id_ed25519.pub >> /home/xion/.ssh/authorized_keys
+```
+✅ Now what?
+After this setup:
+
+- When you do:
+```bash
+ssh username@remoteMachineIp
+```
+- Instead of asking for a password, your system sends the private key.
+
+- The remote machine verifies it using the authorized public key.
+
+- If it matches, you're in — no password needed!
+
+### 🧠 How It Works Internally (Simplified)
+1. SSH client tries to connect to ex: 192.168.29.75.
+
+2. Server says: "Do you have a key I recognize?"
+
+3. Client sends a signature made using your private key(`~/.ssh/id_ed25519`).
+
+4. Server uses the stored public key to verify it.
+
+5. If valid → access granted. ✅
+
+`authorized_keys` -> Is a file in `~/.ssh/` on the remote machine, that lists trusted public keys(one public key per line)(when you use `ssh-copy-id` command you add your public key to this file in remote machine). 

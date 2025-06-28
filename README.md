@@ -14,6 +14,7 @@ Welcome to my Software Development knowledge hub! This repo is my structured app
 ```
 📂 Software-Dev-Learning
 │-- 📜 README.md   # Overview of this repository
+│-- 📂 Computer-Science-Core # Cover CS core and low level concepts
 │-- 📂 Frontend  # Covers UI development, frameworks, and best practices
 │-- 📂 Backend  # Server-side programming, APIs, databases
 │-- 📂 Deployment  # CI/CD, hosting, cloud, and DevOps

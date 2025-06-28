@@ -1,5 +1,6 @@
 const path = require("path");
 const Home = require("../models/homes");
+const Favourite = require("../models/favourites");
 
 const fs = require("fs");
 const { rootDir } = require("../utils/pathUtil");
@@ -96,10 +97,22 @@ exports.posteditHome = (req, res) => {
   });
 };
 
-exports.deleteHomeConfirmation = (req, res) => {
-    res.render(path.join("host", "delete-home-confirmation"), {
-      homeId: req.params.id,
-      currentPage: "deleteHome",
-      pageTitle: "Delete Home",
+exports.deleteListingConfirmation = (req, res) => {
+  res.render(path.join("host", "delete-home-confirmation"), {
+    id: req.params.id,
+    currentPage: "deleteHome",
+    pageTitle: "Delete Home",
+  });
+};
+
+exports.deleteHome = (req, res) => {
+  
+  Home.deleteById(req.params.id, () => {
+    
+    Favourite.deleteFromFavourites(req.params.id, () => {
+      res.redirect("/host/host-homes");
     });
-}
+    
+  });
+  
+};

@@ -1,11 +1,33 @@
 <%- include('partials/head') -%>
+  <style>
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out;
+    }
+  </style>
+
   </head>
 
   <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen text-center p-4">
-    <h1 class="text-6xl font-bold text-gray-800">404</h1>
-    <p class="text-2xl text-gray-600 mt-4">Oops! The page you're looking for doesn’t exist.</p>
-    <a href="/" class="mt-6 inline-block rounded-lg bg-blue-600 text-white py-2 px-4 hover:bg-blue-700 transition duration-500">
-      Go Home
-    </a>
+    <div class="animate-fade-in">
+      <h1 class="text-6xl font-bold text-gray-800">404</h1>
+      <p class="text-2xl text-gray-600 mt-4">Oops! The page you're looking for doesn’t exist.</p>
+      <a href="/"
+        class="mt-6 inline-block rounded-lg bg-blue-600 text-white py-2 px-4 hover:bg-blue-700 transition duration-500">
+        Go Home
+      </a>
+    </div>
   </body>
-</html>
+
+  </html>

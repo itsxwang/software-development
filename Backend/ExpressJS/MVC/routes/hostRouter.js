@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 
-const { getaddHome, postAddHome, gethostHomes, geteditHome, posteditHome, deleteHomeConfirmation } = require('../controllers/hostController');
+const { getaddHome, postAddHome, gethostHomes, geteditHome, posteditHome, deleteListingConfirmation, deleteHome } = require('../controllers/hostController');
 
 
 const router = express.Router();
@@ -34,6 +34,10 @@ router.get('/edit-home/:id', (req, res) => {
 
 router.post('/edit-home/:id',upload.single("homeImage"), posteditHome)
 
-router.get('/delete-home-confirmation/:id', deleteHomeConfirmation)
+router.get('/delete-home-confirmation/:id', deleteListingConfirmation)
+
+router.get('/delete-home/:id', deleteHome)
+
+
 
 module.exports = router;

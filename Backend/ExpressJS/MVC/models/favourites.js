@@ -41,6 +41,20 @@ module.exports = class Favourite {
       } catch (e) {
         callback([]);
       }
+    }); 
+  }
+
+  static deleteFromFavourites(homeId,callback) {
+    Favourite.getFavourites((favourites) => {
+      fs.writeFile(
+        favouriteDataPath,
+        JSON.stringify(favourites.filter((favourite) => favourite !== homeId), null, 2),
+        (err) => {
+          if (!err && typeof callback === "function") {
+            callback();
+          }
+        }
+      );
     });
   }
 };

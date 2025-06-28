@@ -34,7 +34,6 @@ module.exports = class Home {
           }
         }
       );
-
     });
   }
 
@@ -52,6 +51,32 @@ module.exports = class Home {
     Home.fetchAll((homes) => {
       const home = homes.find((home) => home.id === id);
       callback(home);
+    });
+  }
+
+  static deleteById(id, callback) {
+    Home.fetchAll((homes) => {
+      const updatedHomes = homes.filter((home) => {
+        if (home.id === id) {
+          fs.unlink(path.join(rootDir, "public", home.homeImage), (err) => {
+            if (err) {
+              console.log("failed to delete image after deleting home: ", err);
+            }
+          });
+          return false;
+        }
+        return true;
+      });
+
+      fs.writeFile(
+        path.join(rootDir, "data", "homes.json"),
+        JSON.stringify(updatedHomes, null, 2),
+        (err) => {
+          if (!err) {
+            callback();
+          }
+        }
+      );
     });
   }
 };

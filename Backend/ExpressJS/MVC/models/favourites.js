@@ -16,12 +16,14 @@ module.exports = class Favourite {
           favouriteDataPath,
           JSON.stringify(favourites.filter((favourite) => favourite !== homeId), null , 2),
           (err) => {  
+            if (err)
             console.log(err);
           }
         );
       } else {
         favourites.push(homeId);
         fs.writeFile(favouriteDataPath, JSON.stringify(favourites, null, 2), (err) => {
+          if (err)
           console.log(err);
         });
       }

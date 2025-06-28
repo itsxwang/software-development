@@ -1,7 +1,7 @@
-
 const fs = require("fs");
 const path = require("path");
 const { rootDir } = require("../utils/pathUtil");
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = class Home {
   constructor(aboutHome, homeAddress, contactinfo, homePrice, homeImage, id) {
@@ -11,20 +11,30 @@ module.exports = class Home {
     this.contactinfo = contactinfo;
     this.homePrice = homePrice;
     this.homeImage = homeImage;
-
   }
 
-  save() {
+  save(callback) {
     Home.fetchAll((homes) => {
-      homes.push(this);
+      if (this.id) {
+        const existingHomeIndex = homes.findIndex(
+          (home) => home.id === this.id
+        );
+        homes[existingHomeIndex] = this;
+      } else {
+        this.id = uuidv4();
+        homes.push(this);
+      }
 
       fs.writeFile(
         path.join(rootDir, "data", "homes.json"),
         JSON.stringify(homes, null, 2),
         (err) => {
-          console.log(err);
+          if (!err) {
+            callback();
+          }
         }
       );
+
     });
   }
 

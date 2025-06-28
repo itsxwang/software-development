@@ -1,26 +1,18 @@
 [
   {
-    "id": "6b04cfcf-4587-41d6-abf7-c82b3c7f8311",
-    "aboutHome": "Cozy",
-    "homeAddress": "123 block A , switzerland",
-    "contactinfo": "11",
-    "homePrice": "7777",
-    "homeImage": "/uploads/1750926496630.jpg"
-  },
-  {
-    "id": "f0737621-5ae9-4480-8ef5-9f491cf0c392",
+    "id": "fe0d2c60-2983-43d2-ac01-29ae7e0fe3bc",
     "aboutHome": "Lakeside cottage | Cozy llama",
-    "homeAddress": "7 waterfalls Village, switzerland aside YELLOW wood jungle ",
-    "contactinfo": "777111",
-    "homePrice": "750",
-    "homeImage": "/uploads/1750926947766.jpg"
+    "homeAddress": "123 block A , switzerland",
+    "contactinfo": "xion.dev@gmail.com",
+    "homePrice": "7757",
+    "homeImage": "/uploads/1751078318589.jpg"
   },
   {
-    "id": "5c02c931-d0c4-42c0-8b80-7f766bd3b4b8",
-    "aboutHome": "Cozy rooms with modern AI",
-    "homeAddress": "123",
-    "contactinfo": "991",
-    "homePrice": "7171",
-    "homeImage": "/uploads/1750943236296.jpg"
+    "id": "41ffb09d-be6c-4a81-b0b0-1afd39767164",
+    "aboutHome": "Cozy spring home",
+    "homeAddress": "Switz canal,  near 7 waterfalls village ",
+    "contactinfo": "7991",
+    "homePrice": "7777",
+    "homeImage": "/uploads/1751078473066.jpg"
   }
 ]

@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());    
 
 
-app.use(hostRouter);
+app.use('/host', hostRouter);
 app.use(storeRouter);
 
 app.use((req, res)=> {
@@ -24,6 +24,6 @@ app.use((req, res)=> {
 });
 
 
-app.listen(7001, () => {
-    console.log('Server started on port http://localhost:7001');
+app.listen(3007, () => {
+    console.log('Server started on port http://localhost:3007');
 });

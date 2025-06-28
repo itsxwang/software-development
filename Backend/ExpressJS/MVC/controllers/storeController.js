@@ -19,23 +19,6 @@ exports.getIndex = (req, res) => {
   });
 };
 
-exports.postIndex = (req, res, homes) => {
-  const { aboutHome, homeAddress, contactinfo, homePrice } = req.body;
-  const homeImage = req.file ? "/uploads/" + req.file.filename : "";
-  const id = uuidv4();
-
-  const home = new Home(
-    aboutHome,
-    homeAddress,
-    contactinfo,
-    homePrice,
-    homeImage,
-    id
-  );
-  home.save();
-
-  res.redirect("/");
-};
 
 exports.getHomeDetails = (req, res) => {
   Home.findById(req.params.homeId, (home) => {

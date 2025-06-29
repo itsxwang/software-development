@@ -12,3 +12,6 @@ if you wanna scp from local system to same local system then `127.0.0.1`(localho
 
 - To transfer directory: \
 ```scp -r [source_directory] [username]@[destination_host]:[destination_directory]```
+
+To copy directory from remote os to local os: \
+```scp -r [username]@[source_host]:/[source_directory] /[destination_directory] .(location where you want to copy, like here current directory)```

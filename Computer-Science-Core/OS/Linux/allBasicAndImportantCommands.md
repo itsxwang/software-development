@@ -80,3 +80,12 @@
             - r = See what's inside
             - x = Go inside
             - w = Make changes inside
+
+- working with file system
+   - Less: open editor to read file content and search things, basically use vim commands. 
+   - more: read file one page at a time.
+   - `cd -` : go to previous directory (from where you last time use cd) , its same as `cd $OLDPWD`
+
+- cp: copy file, or make copy of file, like `cp report.txt report_copy.txt`
+- mv: move file
+

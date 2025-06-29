@@ -1,0 +1,4 @@
+- [Intro to NoSQL(Not only SQL) DBs](https://youtu.be/-6xGHdkwx_M?si=gnSRaZPmNNC0k1tP&t=927)
+    - Its like all SQL DBs have many things in coomon 
+    - But NoSQL DBs atmost only one thing in common that they have different from SQL DBs
+    - All records in NoSQl DBs can have any number of columns

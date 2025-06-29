@@ -11,8 +11,8 @@
     - VMs are isolated from each other(independent of host OS) 
     
 - [Types of Hypervisor](https://youtu.be/BNTFJJMh2eU?si=-JchBW-SVVvyHGUk&t=327): 
-    - Type1 (Bare Metal) : runs directly on physical hardware.  
-      Example of this is oracle virtual box
-
-    - Type2 (Hosted) : runs on top of host OS, this type of hypervisor act as mini software, means all basic requirements(for setupping hypervisor on OS) already provide by bare metal hypervisor. \
-    Example of this is cloud providers like AWS, Azure, GCP. 
+    - Type1 (Bare Metal) : runs directly on physical hardware. This type of hypervisor act as mini software that means all basic requirements(for setupping hypervisor on OS) already provide by bare metal hypervisor. \
+    Example: VMware, Cloud services: AWS, Azure, GCP, etc.
+      
+    - Type2 (Hosted) : runs on top of host OS, this type of hypervisor share resources of host os to VMs.\
+    Example: VirtualBox, Oracle VM, etc.

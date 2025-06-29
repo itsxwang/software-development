@@ -7,3 +7,8 @@ if you wanna scp from local system to same local system then `127.0.0.1`(localho
 
 ```scp file.txt username@127.0.0.1:/home/username/
 ```
+
+- [Copying files from remote server to your system](https://youtu.be/J1-hSlxsDVo?si=9_Rflt_keoahb_RM&t=397)
+
+- To transfer directory: \
+```scp -r [source_directory] [username]@[destination_host]:[destination_directory]```

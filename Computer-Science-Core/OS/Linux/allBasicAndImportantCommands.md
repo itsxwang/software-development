@@ -87,5 +87,19 @@
    - `cd -` : go to previous directory (from where you last time use cd) , its same as `cd $OLDPWD`
 
 - cp: copy file, or make copy of file, like `cp report.txt report_copy.txt`
-- mv: move file
+- mv: move file (used for cut-paste, rename file/folder, move dir(also comes in cut-paste))
 
+- head and tail: read first and last few lines of file, ex: `head -7 report.txt` will print first 7 lines of file, `tail -n 7 report.txt` will print last 7 lines of file
+
+- [sort the content of the file](https://youtu.be/Byx4sgLR88E?si=uLBZKnLyetvd_9nY&t=1997)
+
+- only unique lines: `uniq report.txt` or `sort -u report.txt` or using this command [`sort(or any file read command) report.txt | uniq`](https://youtu.be/Byx4sgLR88E?si=9bZ3JO12zyJm-lZg&t=2137)
+The pipe way explanation: the output of the `sort` command is piped to the `uniq` command, means become input for `uniq`.
+And this pipe way `|` can be used to combine multiple commands
+
+- [split file in linux](https://youtu.be/Byx4sgLR88E?si=we5MHjGmEtMjbGBc&t=2207)
+
+- [search word and show matching content(show line in which pattern is present) from a file](https://youtu.be/Byx4sgLR88E?si=f6yQUC1hCcfV5lQP&t=2307)
+    - use `egrep` command, for more complex regex patterns, like for search multiple words in file
+
+- [use wild card in linux, basically * and ?, can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)

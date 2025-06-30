@@ -85,6 +85,7 @@
    - Less: open editor to read file content and search things, basically use vim commands. 
    - more: read file one page at a time.
    - `cd -` : go to previous directory (from where you last time use cd) , its same as `cd $OLDPWD`
+   - `cd<enter>`: go to home directory
 
 - cp: copy file, or make copy of file, like `cp report.txt report_copy.txt`
 - mv: move file (used for cut-paste, rename file/folder, move dir(also comes in cut-paste))
@@ -94,7 +95,7 @@
 - [sort the content of the file](https://youtu.be/Byx4sgLR88E?si=uLBZKnLyetvd_9nY&t=1997)
 
 - only unique lines: `uniq report.txt` or `sort -u report.txt` or using this command [`sort(or any file read command) report.txt | uniq`](https://youtu.be/Byx4sgLR88E?si=9bZ3JO12zyJm-lZg&t=2137)
-The pipe way explanation: the output of the `sort` command is piped to the `uniq` command, means become input for `uniq`.
+The pipe way explanation: the output of the `sort` command is piped to the `uniq` command, means become input for `uniq` command.
 And this pipe way `|` can be used to combine multiple commands
 
 - [split file in linux](https://youtu.be/Byx4sgLR88E?si=we5MHjGmEtMjbGBc&t=2207)
@@ -104,5 +105,61 @@ And this pipe way `|` can be used to combine multiple commands
 
 - [use wild card in linux, basically *, ?, {n..n} , can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
     - `touch file{1..7}` create 7 files, 
+    - ls x* show all folders/files start with `x`
 
 - [shuffle content of the file](https://youtu.be/Byx4sgLR88E?si=K5AQoMEJmHBqRB7-&t=2707)
+
+- [Count no.of lines in file](https://youtu.be/Byx4sgLR88E?si=aCUSM6V5QliKBwMY&t=2747)
+
+- [Compare two files](https://youtu.be/Byx4sgLR88E?si=CSGdTZM_4eIEBoXM&t=2817)(identical or not, it answer like boolean): `cmp file1.txt file2.txt` 
+   - `diff fileA fileB` or use `-u` flag also for unified diff 
+
+- [find file in linux using `find` command](https://youtu.be/Byx4sgLR88E?si=cQr2CdxgDeY5aaL6&t=2957)
+        `file /path/from/where/it/start/searching -type f  -name "*.md"` 
+    - [find with `locate` command](https://youtu.be/Byx4sgLR88E?si=n0VUzEyrSMbkO0pY&t=3117)
+
+- Utility commands
+    - [history command](https://youtu.be/Byx4sgLR88E?si=LGcLDEV4c-0LD5DQ&t=3247)
+    - [see syntax and options for command](https://youtu.be/Byx4sgLR88E?si=yLVkDMQkgcApCorH&t=3327)
+       - use `man <command>` to read command manual 
+- [`which` command, basically use to find executable file of commands,apps, etc](https://youtu.be/Byx4sgLR88E?si=niaLSZex-5dBjhcw)
+
+- [check server uptime, and how many users logged in](https://youtu.be/Byx4sgLR88E?si=w-1Bbmm9H_C7gZ8t&t=3597)
+
+- [record your activity on terminal in a file](https://youtu.be/Byx4sgLR88E?si=2y47n7s7wOC7-LNl&t=3697)
+
+- [how to create a shortcut of a long command using `alias`](https://youtu.be/Byx4sgLR88E?si=23xYWaVyh58kYy8V&t=3857)
+    - `alias <nameOfCommand> ="command"`
+
+- [zip and unzip files and folders](https://youtu.be/Byx4sgLR88E?si=Yu4z86WvB2G6ZILz&t=3967)
+    - zip is the compression version of file or folder, that can be faster transfer and save space
+    - compress file in linux : `gzip -k`(keep the original file also, make another compressed file) `file`
+    - decompress file - `gunzip file.gz`
+    - [compress folder in linux](https://youtu.be/Byx4sgLR88E?si=f4cpvMPy3gvPm1y-&t=4137)
+    - `tar(tape archive) -czf archiveName.tar.gz folderName`
+        - ***c***: compress, ***z***: gzip, ***f***: file
+    - decompress folder
+    - `tar -xzf archiveName.tar.gz`
+        - ***x***: extract, ***z***: gzip, ***f***: file
+
+    - [compress and uncompress multiple files](https://youtu.be/Byx4sgLR88E?si=ZvHsir7hZTULzy7H&t=4317)
+    - `unzip archiveName.zip ` 
+    - list those multiple files in zip -> `unzip -l archiveName.zip`
+- [download files in linux `wget` and `curl`](https://youtu.be/Byx4sgLR88E?si=cUr07RXZ0RKhbsTx&t=4477)
+    - `wget -O namefile.zip https://example.com/file.zip`
+    - [call api on linux](https://youtu.be/Byx4sgLR88E?si=Ax-YODJhwmQJA9si&t=4577)
+
+- [install an app in linux](https://youtu.be/Byx4sgLR88E?si=qmRpoTIcp86Hiu2S&t=4697)
+
+- [check app is installed or not](https://youtu.be/Byx4sgLR88E?si=ADKk8mqpV97GQfRL&t=4897)
+    - `which package` command: If the package is installed, it will return the full path to the executable. If not, there will be no output.
+    - `apt list --installed`: This command lists all installed packages in Debian-based systems
+    - `apt-cache policy package`: This command checks the installation status of a package in Debian-based systems.
+
+- check apps for installed in package managers: 
+        - `apt search package`
+        - `snap search package`
+
+- [how to start/stop service on linux](https://youtu.be/Byx4sgLR88E?si=A3eib70KbguyO4vq&t=5137)
+    - `systemctl start/stop service_name`
+    - list all services: `systemctl list-units --type=service --all`

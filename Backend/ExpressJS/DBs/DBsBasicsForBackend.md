@@ -6,4 +6,3 @@
     - Handle concurrent access by many users simultaneously
     - Protect information through access controls and authenticationc
 - A difference between db and dbms is that dbms is a collection of databases, while db is a specific single database
-

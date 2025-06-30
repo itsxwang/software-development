@@ -102,4 +102,7 @@ And this pipe way `|` can be used to combine multiple commands
 - [search word and show matching content(show line in which pattern is present) from a file](https://youtu.be/Byx4sgLR88E?si=f6yQUC1hCcfV5lQP&t=2307)
     - use `egrep` command, for more complex regex patterns, like for search multiple words in file
 
-- [use wild card in linux, basically * and ?, can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
+- [use wild card in linux, basically *, ?, {n..n} , can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
+    - `touch file{1..7}` create 7 files, 
+
+- [shuffle content of the file](https://youtu.be/Byx4sgLR88E?si=K5AQoMEJmHBqRB7-&t=2707)

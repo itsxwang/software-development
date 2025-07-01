@@ -24,6 +24,6 @@ app.use((req, res)=> {
 });
 
 
-app.listen(7001, () => {
-    console.log('Server started on port http://localhost:7001');
+app.listen(7000, () => {
+    console.log('Server started on port http://localhost:7000');
 });

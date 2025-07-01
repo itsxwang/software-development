@@ -1,4 +1,27 @@
 <%- include('../partials/head'); %>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        #favourites.animate-press {
+            transition: transform 0.4s ease, opacity 0.3s ease;
+            transform: scale(1.1);
+            opacity: 0.95;
+        }
+    </style>
     </head>
 
     <body class="min-h-screen flex flex-col bg-gray-50 text-gray-800 font-sans">
@@ -7,96 +30,72 @@
         <%- include('../partials/nav'); %>
 
             <!-- Main Content -->
-            <main class="flex flex-col max-w-4xl mx-auto p-6 mt-8">
+            <main class="max-w-5xl mx-auto p-6 mt-8 animate-fadeInUp">
+
+                <!-- Title -->
+                <h1
+                    class="text-4xl sm:text-5xl font-serif font-bold text-gray-800 drop-shadow-sm text-center sm:text-left">
+                    <%= home.name %>
+                </h1>
+
                 <!-- Home Image -->
-                <div class="w-full rounded-xl overflow-hidden shadow-lg">
-                    <img src="<%= home.homeImage %>" alt="<%= home.aboutHome %>"
-                        class="w-full h-[60vh] object-cover rounded-xl" />
+                <div class="w-full rounded-xl overflow-hidden shadow-lg mt-6">
+                    <img src="<%= home.image %>" alt="<%= home.name %>"
+                        class="w-full h-[50vh] sm:h-[60vh] object-cover rounded-xl" />
                 </div>
 
                 <!-- Home Details -->
-                <div class="mt-8 space-y-3">
-                    <h1 class="text-4xl font-serif font-bold text-gray-800 drop-shadow-sm">
-                        <%= home.aboutHome %>
-                    </h1>
+                <section class="mt-8 space-y-4 px-2">
+                    <p class="text-xl sm:text-2xl font-medium text-gray-700 leading-relaxed">
+                        <%= home.description %>
+                    </p>
+
                     <p class="text-gray-600 text-lg"><span class="font-semibold">Address:</span>
-                        <%= home.homeAddress %>
+                        <%= home.address %>
                     </p>
-                    <p class="text-gray-600 text-lg"><span class="font-semibold">Contact:</span>
-                        <%= home.contactinfo %>
-                    </p>
-                    <p class="text-2xl font-bold text-gray-800">$<%= home.homePrice %> / night</p>
-                </div>
+
+                    <p class="text-3xl font-bold text-gray-800">$<%= home.price %> <span
+                                class="text-lg font-medium text-gray-600">/ night</span></p>
+                </section>
 
                 <!-- Action Buttons -->
-                <div class="mt-8 flex space-x-4">
+                <div class="mt-10 flex flex-col sm:flex-row justify-center sm:justify-start gap-4 px-2">
                     <a href="/Bookings"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95">
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95 text-center">
                         Book Now
                     </a>
-                    <a id="favourites"
-                        data-id="<%= home.id %>"
-                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95">
+
+                    <a id="favourites" data-id="<%= home.id %>"
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 hover:cursor-pointer active:scale-95 text-center">
                         <%= favourites.includes(home.id) ? 'Added to Favourites' : 'Add to Favourites' %>
                     </a>
-
                 </div>
             </main>
 
-            <!-- Scripts for Animation -->
+            <!-- JavaScript -->
             <script>
                 const favButton = document.getElementById('favourites');
+
                 favButton.addEventListener('click', function (event) {
                     event.preventDefault();
-                    if (favButton.textContent.trim() === 'Add to Favourites') {
-                        favButton.classList.add('scale-105');
-                        favButton.textContent = 'Added to Favourites';
+                    const added = favButton.textContent.trim() === 'Add to Favourites';
+                    const newText = added ? 'Added to Favourites' : 'Add to Favourites';
+                    favButton.textContent = newText;
+                    favButton.classList.add('animate-press');
 
+                    fetch('/favourites', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: favButton.dataset.id })
+                    });
 
-                        fetch('/favourites', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: favButton.dataset.id,
-                            })
-                        })
-                        setTimeout(() => {
-                            favButton.classList.remove('scale-105');
-                        }, 600);
-                    } else {
-                        favButton.classList.add('scale-105');
-                        favButton.textContent = 'Add to Favourites';
-
-                        fetch('/favourites', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: favButton.dataset.id,
-                            })
-                        })
-
-                        setTimeout(() => {
-
-                            favButton.classList.remove('scale-105');
-
-                        }, 300);
-                    }
+                    setTimeout(() => {
+                        favButton.classList.remove('animate-press');
+                    }, 500);
                 });
             </script>
-
-            <!-- Tailwind-style animation class added via JS -->
-            <style>
-                #favourites.scale-105 {
-                    transition: transform 0.5s ease, opacity 0.3s ease;
-                    transform: scale(1.1);
-                    opacity: 0.9;
-                }
-            </style>
-
     </body>
 
     </html>

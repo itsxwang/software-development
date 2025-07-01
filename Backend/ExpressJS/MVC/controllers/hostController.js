@@ -15,7 +15,7 @@ exports.getaddHome = (req, res) => {
 };
 
 exports.postAddHome = (req, res) => {
-  const {  name, description, address, price   } = req.body;
+  const { name, description, address, price } = req.body;
   const image = req.file ? "/uploads/" + req.file.filename : "";
   const home = new Home(
     name,
@@ -30,7 +30,7 @@ exports.postAddHome = (req, res) => {
 };
 
 exports.gethostHomes = (req, res) => {
-  Home.fetchAll().then(homes => {
+  Home.fetchAll().then(([homes]) => {
     res.render(path.join("host", "host-homes"), {
       homes: homes,
       currentPage: "hostHomes",
@@ -41,7 +41,8 @@ exports.gethostHomes = (req, res) => {
 
 exports.geteditHome = (req, res) => {
   const editing = true;
-  Home.findById(req.params.id).then(home => {
+  Home.findById(req.params.id).then(([rows]) => {
+    const home = rows[0];
     if (!home) {
       return res.redirect("/host/host-homes");
     }
@@ -56,7 +57,8 @@ exports.geteditHome = (req, res) => {
 
 exports.posteditHome = (req, res) => {
   const id = req.params.id;
-  Home.findById(id).then(existingHome => {
+  Home.findById(id).then(([rows]) => {
+    const existingHome = rows[0];
     if (!existingHome) {
       return res.redirect("/host/host-homes");
     }
@@ -79,7 +81,7 @@ exports.posteditHome = (req, res) => {
         });
       }
     }
-    const { name, address,description, price } = req.body;
+    const { name, address, description, price } = req.body;
     // Save updated home
     const home = new Home(
       name,

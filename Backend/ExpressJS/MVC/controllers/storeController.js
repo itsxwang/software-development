@@ -6,7 +6,7 @@ const Favourite = require("../models/favourites");
 
 
 exports.getIndex = (req, res) => {
-  Home.fetchAll().then((homes) => {
+  Home.fetchAll().then(([homes]) => {
     Favourite.getFavourites((favourites) => {
       res.render(path.join("store", "home-list"), {
         homes,
@@ -20,17 +20,17 @@ exports.getIndex = (req, res) => {
 
 
 exports.getHomeDetails = (req, res) => {
-  Home.findById(req.params.homeId).then(home => {
+  Home.findById(req.params.homeId).then(([rows]) => {
+    const home = rows[0];
     Favourite.getFavourites((favourites) => {
       if (!home) {
         return res.redirect("/");
       }
-
       res.render(path.join("store", "home-details"), {
         home,
         favourites,
         currentPage: "homeDetails",
-        pageTitle: home.name,
+        pageTitle: home ? home.name : "Home Details",
       });
     });
   });
@@ -44,11 +44,11 @@ exports.getAbout = (req, res) => {
 };
 
 exports.getfavourites = (req, res) => {
-  Home.fetchAll().then(homes => {
+  Home.fetchAll().then(([homes]) => {
     Favourite.getFavourites((favourites) => {
       const favHomes = homes.filter((home) => {
         return favourites.includes(home.id);
-      })
+      });
       res.render(path.join("store", "favourites"), {
         favHomes,
         favourites,

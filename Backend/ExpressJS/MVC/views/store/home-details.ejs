@@ -1,101 +1,109 @@
 <%- include('../partials/head'); %>
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out both;
+  }
 
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out both;
-        }
+  #favourites.animate-press {
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    transform: scale(1.1);
+    opacity: 0.95;
+  }
+</style>
+</head>
 
-        #favourites.animate-press {
-            transition: transform 0.4s ease, opacity 0.3s ease;
-            transform: scale(1.1);
-            opacity: 0.95;
-        }
-    </style>
-    </head>
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-800 font-sans">
 
-    <body class="min-h-screen flex flex-col bg-gray-50 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <%- include('../partials/nav'); %>
 
-        <!-- Navbar -->
-        <%- include('../partials/nav'); %>
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto p-6 mt-10 animate-fadeInUp space-y-10">
 
-            <!-- Main Content -->
-            <main class="max-w-5xl mx-auto p-6 mt-8 animate-fadeInUp">
+    <!-- Title -->
+    <h1 class="text-4xl sm:text-5xl font-bold font-serif text-center sm:text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 drop-shadow">
+      <%= home.name %>
+    </h1>
 
-                <!-- Title -->
-                <h1
-                    class="text-4xl sm:text-5xl font-serif font-bold text-gray-800 drop-shadow-sm text-center sm:text-left">
-                    <%= home.name %>
-                </h1>
+    <!-- Home Image -->
+    <div class="w-full rounded-xl overflow-hidden shadow-lg">
+      <img src="<%= home.image %>" alt="<%= home.name %>"
+        class="w-full h-[50vh] sm:h-[60vh] object-cover rounded-xl" />
+    </div>
 
-                <!-- Home Image -->
-                <div class="w-full rounded-xl overflow-hidden shadow-lg mt-6">
-                    <img src="<%= home.image %>" alt="<%= home.name %>"
-                        class="w-full h-[50vh] sm:h-[60vh] object-cover rounded-xl" />
-                </div>
+    <!-- Home Details -->
+    <section class="space-y-4 px-2 text-gray-800">
 
-                <!-- Home Details -->
-                <section class="mt-8 space-y-4 px-2">
-                    <p class="text-xl sm:text-2xl font-medium text-gray-700 leading-relaxed">
-                        <%= home.description %>
-                    </p>
+      <!-- Price -->
+      <p class="text-3xl font-bold">
+        <span class="text-gray-600 text-lg font-semibold">Price:</span>
+        $<%= home.price %> 
+        <span class="text-lg text-gray-500 font-medium">/ night</span>
+      </p>
 
-                    <p class="text-gray-600 text-lg"><span class="font-semibold">Address:</span>
-                        <%= home.address %>
-                    </p>
+      <!-- Address -->
+      <p class="text-lg">
+        <span class="font-semibold text-gray-700">Address:</span>
+        <%= home.address %>
+      </p>
 
-                    <p class="text-3xl font-bold text-gray-800">$<%= home.price %> <span
-                                class="text-lg font-medium text-gray-600">/ night</span></p>
-                </section>
+      <!-- Description -->
+      <div class="mt-4">
+        <p class="text-lg font-semibold text-gray-700 mb-1">Description:</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-700">
+          <%= home.description %>
+        </p>
+      </div>
+    </section>
 
-                <!-- Action Buttons -->
-                <div class="mt-10 flex flex-col sm:flex-row justify-center sm:justify-start gap-4 px-2">
-                    <a href="/Bookings"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95 text-center">
-                        Book Now
-                    </a>
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-4 px-2">
+      <a href="/Bookings"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 active:scale-95 text-center">
+        Book Now
+      </a>
 
-                    <a id="favourites" data-id="<%= home.id %>"
-                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 hover:cursor-pointer active:scale-95 text-center">
-                        <%= favourites.includes(home.id) ? 'Added to Favourites' : 'Add to Favourites' %>
-                    </a>
-                </div>
-            </main>
+      <a id="favourites" data-id="<%= home.id %>"
+        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow transition transform hover:scale-105 hover:cursor-pointer active:scale-95 text-center">
+        <%= favourites.includes(home.id) ? 'Added to Favourites' : 'Add to Favourites' %>
+      </a>
+    </div>
 
-            <!-- JavaScript -->
-            <script>
-                const favButton = document.getElementById('favourites');
+  </main>
 
-                favButton.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const added = favButton.textContent.trim() === 'Add to Favourites';
-                    const newText = added ? 'Added to Favourites' : 'Add to Favourites';
-                    favButton.textContent = newText;
-                    favButton.classList.add('animate-press');
+  <!-- JavaScript -->
+  <script>
+    const favButton = document.getElementById('favourites');
 
-                    fetch('/favourites', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ id: favButton.dataset.id })
-                    });
+    favButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      const added = favButton.textContent.trim() === 'Add to Favourites';
+      favButton.textContent = added ? 'Added to Favourites' : 'Add to Favourites';
+      favButton.classList.add('animate-press');
 
-                    setTimeout(() => {
-                        favButton.classList.remove('animate-press');
-                    }, 500);
-                });
-            </script>
-    </body>
+      fetch('/favourites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: favButton.dataset.id })
+      });
 
-    </html>
+      setTimeout(() => {
+        favButton.classList.remove('animate-press');
+      }, 500);
+    });
+  </script>
+</body>
+</html>

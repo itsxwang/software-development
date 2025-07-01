@@ -183,3 +183,25 @@ And this pipe way `|` can be used to combine multiple commands
 
 - [display specify number of characters of all line](https://youtu.be/Byx4sgLR88E?si=87PzQPudwhMMYcYj&t=6067)
   - `cut -c1-10 <filename.txt>` : will display first 10 characters of all line 
+
+- [display a specific line from a file](https://youtu.be/Byx4sgLR88E?si=3JTec27v3GFZ_DlF&t=6157)
+    - `sed -n '5p' filename.txt` : will display 5th line of file 
+
+- [replace specific word in a file](https://youtu.be/Byx4sgLR88E?si=zGBjk_aN2lcHPxgE&t=6227)
+    - `sed  's/oldWord/newWord/g' filename.txt`
+- [convert content to uppercase from lowercase and vice versa and  etc, with `tr`(translate characters) command](https://youtu.be/Byx4sgLR88E?si=6fajw5rEbXTVFpDw&t=6337)
+    - `tr '[:lower:]' '[:upper:]' < filename.txt`
+    - to save changes: `tr '[:lower:]' '[:upper:]' < filename.txt > upper.txt`
+    - delete specific word from file : `tr -d 'word' < filename.txt`
+    - change specific word from file : `tr 'word' 'newWord' < filename.txt`
+- [extend or shrink size of the file](https://youtu.be/Byx4sgLR88E?si=FIZZo9nCBEC_kESm&t=6487)
+
+- [ fold command `fold -w<n>` ](https://youtu.be/Byx4sgLR88E?si=rvdZMxcECTngZ_gM&t=6617) 
+    - this command used generally with other commands like echo 
+        - `echo "hello world" | fold -w5 ` will display 5 character per line
+
+- [How to change user or login as different user in linux](https://youtu.be/Byx4sgLR88E?si=7lx1-g3LuIaOsIZd&t=6667)
+    - `su <root_passwd>` this command only works if root account password is set `sudo passwd root` then set new root password (Note:  enabling the root account can make your system more vulnerable if misused.)
+    - and you can simply still use sudo to run root commands like installing packages`sudo apt install <packageName>`
+
+- [close termianl and switch between user using `ctrl+D`(for switching) and exit (for both)](https://youtu.be/Byx4sgLR88E?si=YGFXLpeJ2oxqY-E3&t=6727)

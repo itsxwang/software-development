@@ -7,7 +7,6 @@ const { rootDir } = require("../utils/pathUtil");
 
 exports.getaddHome = (req, res) => {
   const editing = false;
-
   res.render(path.join("host", "edit-home"), {
     editing,
     currentPage: "addHome",
@@ -16,23 +15,22 @@ exports.getaddHome = (req, res) => {
 };
 
 exports.postAddHome = (req, res) => {
-  const { aboutHome, homeAddress, contactinfo, homePrice } = req.body;
-  const homeImage = req.file ? "/uploads/" + req.file.filename : "";
-  const HomeModel = require("../models/homes");
-  const home = new HomeModel(
-    aboutHome,
-    homeAddress,
-    contactinfo,
-    homePrice,
-    homeImage
+  const {  name, description, address, price   } = req.body;
+  const image = req.file ? "/uploads/" + req.file.filename : "";
+  const home = new Home(
+    name,
+    description,
+    address,
+    price,
+    image
   );
-  home.save(() => {
+  home.save().then(() => {
     res.redirect("/host/host-homes");
   });
 };
 
 exports.gethostHomes = (req, res) => {
-  Home.fetchAll((homes) => {
+  Home.fetchAll().then(homes => {
     res.render(path.join("host", "host-homes"), {
       homes: homes,
       currentPage: "hostHomes",
@@ -43,7 +41,7 @@ exports.gethostHomes = (req, res) => {
 
 exports.geteditHome = (req, res) => {
   const editing = true;
-  Home.findById(req.params.id, (home) => {
+  Home.findById(req.params.id).then(home => {
     if (!home) {
       return res.redirect("/host/host-homes");
     }
@@ -58,40 +56,40 @@ exports.geteditHome = (req, res) => {
 
 exports.posteditHome = (req, res) => {
   const id = req.params.id;
-  Home.findById(id, (existingHome) => {
+  Home.findById(id).then(existingHome => {
     if (!existingHome) {
       return res.redirect("/host/host-homes");
     }
-    let homeImage = existingHome.homeImage;
+    let image = existingHome.image;
     // If a new file is uploaded, update image and delete old one
     if (req.file) {
-      homeImage = "/uploads/" + req.file.filename;
+      image = "/uploads/" + req.file.filename;
       // Only delete if the old image exists and is not empty
       if (
-        existingHome.homeImage &&
-        existingHome.homeImage.startsWith("/uploads/")
+        existingHome.image &&
+        existingHome.image.startsWith("/uploads/")
       ) {
         const oldImagePath = path.join(
           rootDir,
           "public",
-          existingHome.homeImage
+          existingHome.image
         );
         fs.unlink(oldImagePath, (err) => {
           if (err) console.error("Failed to delete old image:", err);
         });
       }
     }
-    const { aboutHome, homeAddress, contactinfo, homePrice } = req.body;
+    const { name, address,description, price } = req.body;
     // Save updated home
     const home = new Home(
-      aboutHome,
-      homeAddress,
-      contactinfo,
-      homePrice,
-      homeImage,
+      name,
+      description,
+      address,
+      price,
+      image,
       id
     );
-    home.save(() => {
+    home.save().then(() => {
       res.redirect("/host/host-homes");
     });
   });
@@ -107,7 +105,7 @@ exports.deleteListingConfirmation = (req, res) => {
 
 exports.deleteHome = (req, res) => {
   
-  Home.deleteById(req.params.id, () => {
+  Home.deleteById(req.params.id).then(() => {
     
     Favourite.deleteFromFavourites(req.params.id, () => {
       res.redirect("/host/host-homes");

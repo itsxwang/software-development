@@ -22,7 +22,7 @@ const upload = multer({ storage: storage });
 // handle host routes
 router.get('/add-home', getaddHome);
 
-router.post('/add-home', upload.single("homeImage") , postAddHome);
+router.post('/add-home', upload.single("image") , postAddHome);
 
 router.get('/host-homes', (req, res) => {
     gethostHomes(req, res);
@@ -32,7 +32,7 @@ router.get('/edit-home/:id', (req, res) => {
     geteditHome(req, res);
 })
 
-router.post('/edit-home/:id',upload.single("homeImage"), posteditHome)
+router.post('/edit-home/:id',upload.single("image"), posteditHome)
 
 router.get('/delete-home-confirmation/:id', deleteListingConfirmation)
 

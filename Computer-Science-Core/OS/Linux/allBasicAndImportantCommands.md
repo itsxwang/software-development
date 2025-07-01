@@ -143,8 +143,10 @@ And this pipe way `|` can be used to combine multiple commands
         - ***x***: extract, ***z***: gzip, ***f***: file
 
     - [compress and uncompress multiple files](https://youtu.be/Byx4sgLR88E?si=ZvHsir7hZTULzy7H&t=4317)
+    - `zip archiveName.zip file1.txt file2.txt`
     - `unzip archiveName.zip ` 
     - list those multiple files in zip -> `unzip -l archiveName.zip`
+
 - [download files in linux `wget` and `curl`](https://youtu.be/Byx4sgLR88E?si=cUr07RXZ0RKhbsTx&t=4477)
     - `wget -O namefile.zip https://example.com/file.zip`
     - [call api on linux](https://youtu.be/Byx4sgLR88E?si=Ax-YODJhwmQJA9si&t=4577)
@@ -160,6 +162,24 @@ And this pipe way `|` can be used to combine multiple commands
         - `apt search package`
         - `snap search package`
 
-- [how to start/stop service on linux](https://youtu.be/Byx4sgLR88E?si=A3eib70KbguyO4vq&t=5137)
+- [how to start/stop/list service on linux](https://youtu.be/Byx4sgLR88E?si=A3eib70KbguyO4vq&t=5137)
     - `systemctl start/stop service_name`
     - list all services: `systemctl list-units --type=service --all`
+- [how to list all environement variables in linux](https://youtu.be/Byx4sgLR88E?si=un8qbRruFPyZV9M1&t=5357)
+    - `printenv` or `env`
+
+- [how to add new environement variable in linux](https://youtu.be/Byx4sgLR88E?si=x18ongUoANNlF59P&t=5467)
+    - `export <nameOfVariable>=<valueOfVariable>`
+- [add a new environemnt variable permanently on linux](https://youtu.be/Byx4sgLR88E?si=_2hY_bs5VADlCHxo&t=5677)
+    - simply add environemnt variable in ```~/.bashrc``` or ```~/.zshrc``` file, or what ever terminal you are using
+        ```bash
+        export <nameOfVariable>=<valueOfVariable>
+        ```
+        ```source ~/.bashrc``` and
+      check: `printenv | grep <nameOfVariable>`
+
+- [print specific column from csv file](https://youtu.be/Byx4sgLR88E?si=8ma_p9WMu9BlITf4&t=5877)
+    ```awk -F , '{print $2}' <filename.csv>```
+
+- [display specify number of characters of all line](https://youtu.be/Byx4sgLR88E?si=87PzQPudwhMMYcYj&t=6067)
+  - `cut -c1-10 <filename.txt>` : will display first 10 characters of all line 

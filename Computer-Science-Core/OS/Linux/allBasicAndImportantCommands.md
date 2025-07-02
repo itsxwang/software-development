@@ -205,3 +205,6 @@ And this pipe way `|` can be used to combine multiple commands
     - and you can simply still use sudo to run root commands like installing packages`sudo apt install <packageName>`
 
 - [close termianl and switch between user using `ctrl+D`(for switching) and exit (for both)](https://youtu.be/Byx4sgLR88E?si=YGFXLpeJ2oxqY-E3&t=6727)
+
+- [access remote servers](https://youtu.be/Byx4sgLR88E?si=xzcUhakzu52ja55J&t=6807)
+    - `ssh <username_of_remote_server>@<ip_address_of_remote_server>`

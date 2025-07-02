@@ -1,0 +1,1 @@
+- [differen types of commands in sql](https://youtu.be/SSKVgrwhzus?si=8HS3RHP7QI0o6LoF&t=1097)

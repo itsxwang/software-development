@@ -222,7 +222,6 @@ And this pipe way `|` can be used to combine multiple commands
     - `chmod a+rwx <filename.txt>` : will add read, write and execute permission to file for all users (user, group and others)
     - `chmod u+rwx <filename.txt>` : will add read, write and execute permission to file user 
     - `chmod g+rwx <filename.txt>` : will add read, write and execute permission to file group
-    - `chmod o+rwx <filename.txt>` : will add read, write and execute permission to file others
     - `chmod o+rwx <filename.txt>` : will add read, write and execute permission to file for other users that not comes in user and group
    -  `-` instead of `+` can be use to remove permission from user or group or others or all (using `a`)
 
@@ -239,3 +238,5 @@ And this pipe way `|` can be used to combine multiple commands
     - `free` : will show memory info
     - `free -h` : will show memory info in human readable format
     - `free -th` : will show total memory info in human readable format
+    - `free -m` : will show memory info in megabytes
+    - For understand `free` command more, read dedicated markdown on memory in linux

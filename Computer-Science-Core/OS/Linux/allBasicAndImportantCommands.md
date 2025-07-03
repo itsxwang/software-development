@@ -10,8 +10,8 @@
        - `-rw-r--r-- 1 x1 x1 2048 Jun 28 21:05 report.txt`
            - File type & permissions (`-rw-r--r--`)
            - Number of links (hard links) (usually 1 for regular files)  (For directories, it counts the number of subdirectories + the directory itself + its parent.)
-           - Owner (user) (`x1`)
-           - Group (`x1`) (Collection of users, a Unix group, user in group get the “group” permissions.)
+           - Owner (user of the resource) (`x1`)
+           - Group (group name which have group permission on the file) (Collection of users, a Unix group, user in group get the “group” permissions.)
            - File size (`2048` bytes)
            - Last modified date & time 
            - Filename 
@@ -110,6 +110,7 @@ And this pipe way `|` can be used to combine multiple commands
 - [shuffle content of the file](https://youtu.be/Byx4sgLR88E?si=K5AQoMEJmHBqRB7-&t=2707)
 
 - [Count no.of lines in file](https://youtu.be/Byx4sgLR88E?si=aCUSM6V5QliKBwMY&t=2747)
+    - `wc -l report.txt`
 
 - [Compare two files](https://youtu.be/Byx4sgLR88E?si=CSGdTZM_4eIEBoXM&t=2817)(identical or not, it answer like boolean): `cmp file1.txt file2.txt` 
    - `diff fileA fileB` or use `-u` flag also for unified diff 
@@ -117,6 +118,7 @@ And this pipe way `|` can be used to combine multiple commands
 - [find file in linux using `find` command](https://youtu.be/Byx4sgLR88E?si=cQr2CdxgDeY5aaL6&t=2957)
         `file /path/from/where/it/start/searching -type f  -name "*.md"` 
     - [find with `locate` command](https://youtu.be/Byx4sgLR88E?si=n0VUzEyrSMbkO0pY&t=3117)
+        - `locate <filename>`   
 
 - Utility commands
     - [history command](https://youtu.be/Byx4sgLR88E?si=LGcLDEV4c-0LD5DQ&t=3247)
@@ -208,3 +210,32 @@ And this pipe way `|` can be used to combine multiple commands
 
 - [access remote servers](https://youtu.be/Byx4sgLR88E?si=xzcUhakzu52ja55J&t=6807)
     - `ssh <username_of_remote_server>@<ip_address_of_remote_server>`
+
+- [How to copy a file to remote linux server, and from local to remote](https://youtu.be/Byx4sgLR88E?si=d7PerFPOpQUt7i1O&t=6947)
+    - `scp /path/where/file/is/located user@hostname:/tmp/` -> from local to remote
+
+    - `scp user@hostname:/path/where/file/is/located /tmp/` -> from remote to local
+
+- [Working with permissions in linux](https://youtu.be/Byx4sgLR88E?si=cB_QiMJlBFnD43E6&t=7107)
+
+- [Change resouce(file/folder/etc) permission with `chmod`](https://youtu.be/Byx4sgLR88E?si=h4tuU5rIJIQMCZ_W&t=7387)
+    - `chmod a+rwx <filename.txt>` : will add read, write and execute permission to file for all users (user, group and others)
+    - `chmod u+rwx <filename.txt>` : will add read, write and execute permission to file user 
+    - `chmod g+rwx <filename.txt>` : will add read, write and execute permission to file group
+    - `chmod o+rwx <filename.txt>` : will add read, write and execute permission to file others
+    - `chmod o+rwx <filename.txt>` : will add read, write and execute permission to file for other users that not comes in user and group
+   -  `-` instead of `+` can be use to remove permission from user or group or others or all (using `a`)
+
+- [how to change ownership of the resource(`chown`)](https://youtu.be/Byx4sgLR88E?si=tItGWQDcTAKxgfwg&t=7557)
+    - `chown <new_owner_username> <filename.txt>` : will change ownership of the file to new owner
+- [how to change group ownership of the resource(`chgrp`)](https://youtu.be/Byx4sgLR88E?si=2bqQ8WlNXjBnqpjN&t=7627)
+    -  `chgrp <group_name> <filename.txt>`: anyone in the `<group_name>` will get group level access to the resource
+
+- [Memory info commands in linux](https://youtu.be/Byx4sgLR88E?si=Hx0MoZediIfkz-34&t=7657)
+    - Check free RAM space: The full form of RAM is **Random Access Memory**.
+ It is a type of computer memory that provides temporary storage for the operating system, software programs, and data in current use, allowing them to be quickly accessed by the computer's processor.
+ RAM is volatile, meaning it retains data only as long as the computer is powered on.
+    
+    - `free` : will show memory info
+    - `free -h` : will show memory info in human readable format
+    - `free -th` : will show total memory info in human readable format

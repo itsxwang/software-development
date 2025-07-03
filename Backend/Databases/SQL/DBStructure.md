@@ -11,5 +11,5 @@ It also used to combine table with other table, means it work as foerign key in 
     - `INT`, `DECIMAL`, `DOUBLE` 
     - `VARCHAR`, `CHAR`, `TEXT`, `LONGTEXT` (Max size = 4 GB 4,294,967,295 bytes, used only when you have to store like full html pages or full blog posts)
 
-         (char vs varchar difference: char is of fixed length means if you define char(7) then it will take store only 7 characters, varchar is more dynamic length)
-    - `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`
+         (char vs varchar difference: char is of fixed length means if you define `char(7)` then it will store only 7 characters(if more truncated, if less filled with space), varchar is more of dynamic length)
+    - `DATE`, `TIME`, `DATETIME`, `TIMESTAMP` 

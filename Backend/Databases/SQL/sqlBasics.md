@@ -32,3 +32,6 @@
     - ***Realtional***:- Where data is store in relations (multiple tables. In tables we have rows(records) and columns(fields), and there some kind of relationship between those entities(1:1, 1:m, m:m). Ex: postgres, mysql, microsoft sql server.
     - ***Non Realtional***(NoSQL):- Where data is store in non relations. It can be in json format(key: value), graphs, columns(instead of rows), diagrams, documents etc. Ex: mongoDB, neo4j(graph based), appache cassandra(column based), redis(key value DB, work as a catching layer, store data in memory) etc.
 
+- [Why to learn SQL](https://youtu.be/SSKVgrwhzus?si=HnsNbYJbH31yUqq8&t=1237)
+
+- [SQL Vs MySQL](https://youtu.be/Hy3qbMAoEJk?si=XBBV5f-TFUpuY4BA&t=387)

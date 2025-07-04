@@ -20,23 +20,25 @@
   )
   ```
 
+- Create copy of a table:
 
--  Create copy of a table:
-    - Create copy of whole table `CREATE TABLE new_table AS SELECT * FROM old_table;`
-    - specific fields copy `CREATE TABLE new_table AS SELECT field1, field2 FROM old_table;`
-    - specific rows copy `CREATE TABLE new_table AS SELECT * FROM old_table WHERE field1 = value1;`
-
+  - Create copy of whole table `CREATE TABLE new_table AS SELECT * FROM old_table;`
+  - specific fields copy `CREATE TABLE new_table AS SELECT field1, field2 FROM old_table;`
+  - specific rows copy `CREATE TABLE new_table AS SELECT * FROM old_table WHERE field1 = value1;`
 
 - [Setting up default values](https://youtu.be/Hy3qbMAoEJk?si=ayA62s_zRBya7M2h&t=2857)
 
   ```sql
-  CREATE TABLE table_name (field1 int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-   field2 VARCHAR(100) NOT NULL DEFAULT 'value2');
+  CREATE TABLE table_name (
+    field1 int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    field2 VARCHAR(100) NOT NULL DEFAULT 'value2'
+   );
   ```
 
 - describe table `describe table_name;` (`desc` works) -> this will give you information about the table
 
 - Modify columns in a table
+
   - Add column `ALTER TABLE table_name ADD COLUMN field1 VARCHAR(100);`
   - Modify column `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100);`
   - Rename column `ALTER TABLE table_name RENAME COLUMN field1 TO field2;`
@@ -46,9 +48,8 @@
   - Remove primary key `ALTER TABLE table_name DROP PRIMARY KEY;`
 
   - Rename table `ALTER TABLE table_name RENAME TO new_table_name;`
-    - Second way `RENAME TABLE table_name1 TO new_table_name1, table_name2 TO new_table_name2;` this second way provides more flexiblility 
-  
-  
+    - Second way `RENAME TABLE table_name1 TO new_table_name1, table_name2 TO new_table_name2;` this second way provides more flexiblility
+
 - Adding data in table\
   if you wanna give values of fields in your own order
 
@@ -106,8 +107,6 @@
 
   - `UPDATE table_name SET field1 = value1 where id = 7;`
 
-
 - [Working with alias in SQL](https://youtu.be/Hy3qbMAoEJk?si=GTzt0dt_gKAYZxZz&t=4347)
 
-    - `SELECT field1 as f1, field2 as f2 FROM table_name;`
-
+  - `SELECT field1 as f1, field2 as f2 FROM table_name;`

@@ -240,3 +240,6 @@ And this pipe way `|` can be used to combine multiple commands
     - `free -th` : will show total memory info in human readable format
     - `free -m` : will show memory info in megabytes
     - For understand `free` command more, read dedicated markdown on memory in linux
+
+- change user password with `passwd <username>`(will ask for user previous password) , or just `sudo passwd <username>`(will not ask for user previous password) because `sudo` give us root privileges . 
+If just type `passwd` or `sudo passwd` it assumes you wanna change password for current logged user(the home directory of user you are in)

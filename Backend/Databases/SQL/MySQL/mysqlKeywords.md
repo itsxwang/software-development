@@ -1,0 +1,4 @@
+- [`DISTINCT`](https://youtu.be/Hy3qbMAoEJk?si=5bW4Bbc0Irg6VpeX&t=7757)
+    - used to get distinct values from a column
+    - `SELECT DISTINCT column_name FROM table_name;`, will only give distinct values of the column
+    - `SELECT DISTINCT column_name1, column_name2 FROM table_name;`, will only give distinct comnination of column_name1 and column_name2   

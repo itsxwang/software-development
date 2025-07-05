@@ -4,9 +4,14 @@
     - This is command useful to see groups membership of the user
     - `groups`: will show which group the log user memeber of
     - `groups <username>`: which groups the user is a member of 
+    - `id` also show which group user in + it also show the id of the user and the id of each group and name in which that user is.
 
 - ['/etc/group'](https://youtu.be/GnlgAD8-GhE?si=N31GYeDIfGMt2rNu&t=347): will show all the groups in the system
-    - most distros when on install, create group with the same name you give to first username,and put that first user in that group, and that is called to be **primary group** 
+    - On most distros: 
+        - The system creates a **user private group** (UPG) with the same name as the user (i.e., xwang).
+        - The user is set as the primary group member of that group.
+        - This primary group membership is stored in `/etc/passwd`, not `/etc/group`.
+ 
 
 - [add group](https://youtu.be/GnlgAD8-GhE?si=n8BpGD2dfGZs4Cte&t=577)
     
@@ -30,4 +35,4 @@
     - `sudo gpasswd -<a|d> <username> <group_name>` : `add` add user to group, `del` remove user from group
 
 - [more practical example of group management, for modify a openssh server](https://youtu.be/GnlgAD8-GhE?si=Q1a2I1lRJZ-ucbZZ&t=1117)
-
+    - for modify config file for ssh server `sudo <your_editor> /etc/ssh/sshd_config`

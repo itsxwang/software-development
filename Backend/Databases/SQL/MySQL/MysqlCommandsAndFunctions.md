@@ -110,3 +110,20 @@
 - [Working with alias in SQL](https://youtu.be/Hy3qbMAoEJk?si=GTzt0dt_gKAYZxZz&t=4347)
 
   - `SELECT field1 as f1, field2 as f2 FROM table_name;`
+
+- [count function in SQL](https://youtu.be/Hy3qbMAoEJk?si=YMeGp1L4k3W-cyQG&t=8527)
+    - help us to see total number of records
+    - `select count(*) from table_name;`- or any specific column in `count` to see number of non null values in that particular column
+    - use distinct with count: `select count(distinct column_name) from table_name;`: this will give us all unique values of `column_name`
+
+- [`MIN` and `MAX` functions](https://youtu.be/Hy3qbMAoEJk?si=jPsrIMzC7tBfE_qT&t=9687)
+  - find highest salary: `select MAX(salary) from employees;` 
+  - if used with string it will select max string based on the first character of the string
+
+- [use sub queries](https://youtu.be/Hy3qbMAoEJk?si=fWJFTToN5iRDEZUm&t=9817)
+  - For example we wanna find every field of a person who have highest salary
+  - `select * from employees  where salary=(select max(salary) from employees);`
+  - Note: The query that is most nested inside brackets will execute first
+  
+
+- [sum and average functions](https://youtu.be/Hy3qbMAoEJk?si=2zLnu7U-4jHblc8p&t=9997)

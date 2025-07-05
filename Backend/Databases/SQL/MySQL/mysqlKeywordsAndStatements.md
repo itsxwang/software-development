@@ -1,0 +1,22 @@
+- [`DISTINCT`](https://youtu.be/Hy3qbMAoEJk?si=5bW4Bbc0Irg6VpeX&t=7757)
+    - used to get distinct values from a column
+    - `SELECT DISTINCT column_name FROM table_name;`, will only give distinct values of the column
+    - `SELECT DISTINCT column_name1, column_name2 FROM table_name;`, will only give distinct comnination of column_name1 and column_name2   
+
+- [`order by` keyword](https://youtu.be/Hy3qbMAoEJk?si=C4knkAFqiF27QK8z&t=7917)
+    - use for sorting, `SELECT * FROM table_name ORDER BY column_name ASC/DESC;`
+    - you can also sort my multiple columns
+
+- [`LIKE` keyword in SQL](https://youtu.be/Hy3qbMAoEJk?si=9jigmlOnHyuuF0lU&t=8117)
+    - `SELECT * FROM table_name WHERE column_name LIKE '%letter%';`
+    - `%` for any number of characters
+    - `_` for any single character
+
+
+- [`LIMIT` keyowrd](https://youtu.be/Hy3qbMAoEJk?si=o9_ww8VEOLBBCpdF&t=8297)
+    - with this we can see range of records
+
+- [`group_by`](https://youtu.be/Hy3qbMAoEJk?si=nIWPtNP4eb2A2Vvs&t=9307)
+    - we can combine group by with `COUNT` and then it will count a values of a field of each group like this:
+    - `SELECT column_name, count(fieldName) FROM table_name GROUP BY column_name;`
+     

@@ -102,7 +102,8 @@ And this pipe way `|` can be used to combine multiple commands
 
 - [search word and show matching content(show line in which pattern is present) from a file](https://youtu.be/Byx4sgLR88E?si=f6yQUC1hCcfV5lQP&t=2307)
     - use `egrep` command, for more complex regex patterns, like for search multiple words in file
-
+    - We can also Use `egrep` (and `grep`)  without pipe , `egrep "pattern" <filename>`
+    
 - [use wild card in linux, basically *, ?, {n..n} , can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
     - `touch file{1..7}` create 7 files, 
     - ls x* show all folders/files start with `x`
@@ -241,5 +242,57 @@ And this pipe way `|` can be used to combine multiple commands
     - `free -m` : will show memory info in megabytes
     - For understand `free` command more, read dedicated markdown on memory in linux
 
+- [`top` command](https://youtu.be/Byx4sgLR88E?si=DnFhdUPfWdtTwFN7&t=7767)
+    - `top` command will check % memory and cpu utilization 
+
 - change user password with `passwd <username>`(will ask for user previous password) , or just `sudo passwd <username>`(will not ask for user previous password) because `sudo` give us root privileges . 
 If just type `passwd` or `sudo passwd` it assumes you wanna change password for current logged user(the home directory of user you are in)
+
+- [How to check disk utilization of folder/file using `du`(disk utilization) command](https://youtu.be/Byx4sgLR88E?si=X9yz-JgFIlkvGlpD&t=7817)
+    - `du <folder/file (you wanna check file utilization of)>`: 
+
+- [How to check file system available and disk space allocated](https://youtu.be/Byx4sgLR88E?si=jsKrMXZfjLUeSCYY&t=7887)
+
+- [How to check hostname(root) name of your linux server](https://youtu.be/Byx4sgLR88E?si=jsKrMXZfjLUeSCYY&t=7887)
+
+- [How to check cpu/core/thread info of your linux server, using `lscpu` command](https://youtu.be/Byx4sgLR88E?si=bkrRkUzE3TKWBYRU&t=8017)
+
+
+- [How to check architecture of linux server using `arch` command](https://youtu.be/Byx4sgLR88E?si=lT_mMWzQhzHTML9I&t=8051) 
+
+- [How to see list of storage devices, disk parition on a linux server, `lsblk` command](https://youtu.be/Byx4sgLR88E?si=rkRCOFny5vlOSTcf&t=8067)
+
+
+- see your os name with `uname -a`, wanna see more info about your os `cat /etc/os-release`
+- `hostnamectl` : will show os,system,firmware,hardware info
+
+- ## [***Process Management***](https://youtu.be/Byx4sgLR88E?si=vqVpdn6bV8cI40wD&t=8207)
+- How to check if some process is running or not 
+    - ps -ef | grep <process_name> (`-e`: show all process, `-f`: show full info, `grep`: search for process name)
+    - get pid of a process: `pgrep <process>`
+- [stop a process by process id](https://youtu.be/Byx4sgLR88E?si=G1zfGu6L9HA7O3-2&t=8507) 
+    - kill -p <process_id>
+    - stop a process by its name: `pkill <process_name>`
+
+- [see all active jobs](https://youtu.be/Byx4sgLR88E?si=G_CVmPyos0EBuuwP&t=8707)
+    - start process in the background: `process &`
+    - then resume a job in the background (after pausing using `CTRL+Z`) : `bg` for resume in the background
+    - resume in the foreground: `fg`
+        - if you have multiple jobs in the background, you can resume a specific number of jobs fot resume `fg/bg %n` 
+    - `kill -STOP <PID>` : to pause a process
+    - `kill -CONT <PID>` : to resume a process   
+
+
+- run any bash script : `bash script.sh &`
+
+- Networking commands:
+- `ip a` : ip can be found here , and `hostname -I` 
+- check if server or website is accesible or not : `ping <websiteOrIP>`
+
+- [how to check if ip port is accesible and open or not](https://youtu.be/Byx4sgLR88E?si=o3TV06eBWSODj9wv&t=9157) 
+    - `telnet IP PORT`
+
+- [How to check if port is open or not on our server](https://youtu.be/Byx4sgLR88E?si=tTNP8M6679mexje5&t=9207)
+    - `netstat -putan | grep <port_you_wanna_check_open_or_not>`
+
+- [Check all hubs in network to reach a website](https://youtu.be/Byx4sgLR88E?si=R-l5MwkSbg3F7yAh&t=9317)

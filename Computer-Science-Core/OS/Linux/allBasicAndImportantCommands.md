@@ -1,7 +1,24 @@
+## Some useful shortcuts
+
+- `!!` repeat previous command
+- `!$` last argument of previous command
+- `Ctrl+C` to stop current command
+- `Ctrl+Z` to pause current command
+- `Ctrl+D` to signal end of input (EOF)
+- `Ctrl+R` to search command history
+
+- Use | to pipe commands: `command1 | command2`
+- Chain commands with &&: `cmd1 && cmd2` (run cmd2 only if cmd1 succeeds)
+
+## Commands start
 - `whoami` : Shows the current user name.
 - ```who```: Lists all currently logged in users.
 - ```w```: Lists all currently logged in users, including those logged in from other terminals.
 
+- Redirect any command output in file : `command > file.txt`
+    - ex: `ls > file.txt` or `ls -l > file.txt`
+    - `>` this will write the output of the command to the file
+    - `>>` this will append the output of the command to the file, in new line
 
 - see [date and time commands](https://youtu.be/Byx4sgLR88E?si=vYF4d-VmfXLq7B8T&t=207)  
 
@@ -125,6 +142,8 @@ And this pipe way `|` can be used to combine multiple commands
     - [history command](https://youtu.be/Byx4sgLR88E?si=LGcLDEV4c-0LD5DQ&t=3247)
     - [see syntax and options for command](https://youtu.be/Byx4sgLR88E?si=yLVkDMQkgcApCorH&t=3327)
        - use `man <command>` to read command manual 
+       - use `whatis <command>` to read what command does
+
 - [`which` command, basically use to find executable file of commands,apps, etc](https://youtu.be/Byx4sgLR88E?si=niaLSZex-5dBjhcw)
 
 - [check server uptime, and how many users logged in](https://youtu.be/Byx4sgLR88E?si=w-1Bbmm9H_C7gZ8t&t=3597)
@@ -255,12 +274,12 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
 
 - [How to check hostname(root) name of your linux server](https://youtu.be/Byx4sgLR88E?si=jsKrMXZfjLUeSCYY&t=7887)
 
-- [How to check cpu/core/thread info of your linux server, using `lscpu` command](https://youtu.be/Byx4sgLR88E?si=bkrRkUzE3TKWBYRU&t=8017)
+- [How to check cpu/core/thread info of your linux server, using `lscpu` command, it will give cpu information](https://youtu.be/Byx4sgLR88E?si=bkrRkUzE3TKWBYRU&t=8017)
 
 
 - [How to check architecture of linux server using `arch` command](https://youtu.be/Byx4sgLR88E?si=lT_mMWzQhzHTML9I&t=8051) 
 
-- [How to see list of storage devices, disk parition on a linux server, `lsblk` command](https://youtu.be/Byx4sgLR88E?si=rkRCOFny5vlOSTcf&t=8067)
+- [How to see list of storage devices, disk parition on a linux server, `lsblk` command, Block device information](https://youtu.be/Byx4sgLR88E?si=rkRCOFny5vlOSTcf&t=8067)
 
 
 - see your os name with `uname -a`, wanna see more info about your os `cat /etc/os-release`
@@ -294,5 +313,14 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
 
 - [How to check if port is open or not on our server](https://youtu.be/Byx4sgLR88E?si=tTNP8M6679mexje5&t=9207)
     - `netstat -putan | grep <port_you_wanna_check_open_or_not>`
+    - `netstat -tuln` : List listening ports
+
 
 - [Check all hubs in network to reach a website](https://youtu.be/Byx4sgLR88E?si=R-l5MwkSbg3F7yAh&t=9317)
+
+- `reboot`: for restart linux server
+- `shutdown`: for shutdown linux server
+ 
+- [How to shedule a script to run on a particular date/time, using `at` or `crontab`](https://youtu.be/Byx4sgLR88E?si=YhBFKIHbr1lEsE0J&t=9887)
+
+    - `at <time>` 

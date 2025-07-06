@@ -17,6 +17,7 @@
     - with this we can see range of records
 
 - [`group_by`](https://youtu.be/Hy3qbMAoEJk?si=nIWPtNP4eb2A2Vvs&t=9307)
-    - we can combine group by with `COUNT` and then it will count a values of a field of each group like this:
+    - we can combine group by with `COUNT` and then it will count a values of a field of each group(means how many values of a particular field goes in the particular group) like this:
     - `SELECT column_name, count(fieldName) FROM table_name GROUP BY column_name;`
-     
+    - Group by multiple columns: `SELECT column_name1, column_name2, count(fieldName) FROM table_name GROUP BY column_name1, column_name2;`
+        - this will only put those data points on same row(group) the data points which have same values combinely of both fields `column_name1` and `column_name2`     

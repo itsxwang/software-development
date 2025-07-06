@@ -127,3 +127,27 @@
   
 
 - [sum and average functions](https://youtu.be/Hy3qbMAoEJk?si=2zLnu7U-4jHblc8p&t=9997)
+
+- [Date time functions, `CURDATE`, `CURTIME` and `NOW`](https://youtu.be/Hy3qbMAoEJk?si=BSr-Mb117_BwrhNv&t=11497)
+    - `CURDATE()`: `YYYY-MM-DD`
+    - `CURTIME()`: `HH:MM:SS`
+    - `NOW()`: `YYYY-MM-DD HH:MM:SS`
+
+    - `DAYNAME(YYYY-MM-DD)`: DayName
+    - `DAYOFMONTH(YYYY-MM-DD)`: Day
+    - `DAYOFWEEK(YYYY-MM-DD)`: DayOfWeek
+    - `DAYOFYEAR(YYYY-MM-DD)`: DayOfYear
+
+    - `MONTHNAME(YYYY-MM-DD)`: MonthName
+    - `MONTH(YYYY-MM-DD)`: Month
+    - `QUARTER(YYYY-MM-DD)`: Quarter
+    - `WEEK(YYYY-MM-DD)`: Week
+    - `YEAR(YYYY-MM-DD)`: Year
+
+- [Date Format](https://youtu.be/Hy3qbMAoEJk?si=Jvejj3HBRywBMVK3&t=12297)
+  - `DATE_FORMAT(YYYY-MM-DD, '%Y/%m/%d')`: `YYYY/MM/DD` 
+
+- [Date Maths in MySQL - `Date_Diff`, `Date_Add`, `Date_Sub`, `TimeDiff`](https://youtu.be/Hy3qbMAoEJk?si=0eckbGMqOhP7mlxj&t=12717)
+
+- [`DEFAULT` and `ON UPDATE TIMESTAMP`](https://youtu.be/Hy3qbMAoEJk?si=Z-pBhbS6BUXnwecz&t=13187)
+  - `ON UPDATE` , only set value of row when that particular row is updated

@@ -13,8 +13,12 @@
     And genrally id greater than `1000` and `1000`  given to user accounts(accounts that use by humans), uids below `1000` are considered system accounts, and `useradd` command by default normal user accounts
 
 - [adding users, with `useradd` command](https://youtu.be/19WOD84JFxA?si=baP_1tjktzZnJSiN&t=477)
+    - `id <username>`: to check user, its id, and its groups and their id
+    
     - by default this command may not create home directory for new user in some distributions, so it recommend to be explicit, and run this command with `-m` flag `sudo useradd -m username`
-
+    
+    - `su <username>`: to switch between users
+    
 - [Default user accounts](https://youtu.be/19WOD84JFxA?si=L5n-ye0dzJBNBkIH&t=607)
     - `cat /etc/default/useradd` - default user accounts are stored in this file
 

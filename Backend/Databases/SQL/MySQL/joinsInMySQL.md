@@ -1,0 +1,8 @@
+- [Joins in MySQL](https://youtu.be/Hy3qbMAoEJk?si=gbDmuiZXcBMPNikY&t=18627)
+    - join operation is used to combine rows from 2 or more tables based on a related column between them.
+- [Types of joins in MySQL](https://youtu.be/Hy3qbMAoEJk?si=HSb2CeTmFX7tAd2K&t=18807)
+    - Cross join
+        - Every row from one table is combined with every row from another table.   
+    - Inner join
+    - Left join
+    - Right join

@@ -46,10 +46,9 @@
                     <!-- Description -->
                     <div>
                         <label for="description" class="block text-sm font-medium mb-1 text-gray-700">Home Description</label>
-                        <input type="text" id="description" name="description"
-                            value="<%= editing ? home.description : '' %>"
-                            class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            placeholder="e.g., This is the home that can create last longer memories..." required>
+                        <textarea type="text" id="description" name="description"
+                        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="e.g., This is the home that can create last longer memories..." required><%= editing ? home.description : '' %></textarea>
                     </div>
 
                     <!-- Address -->

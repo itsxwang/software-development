@@ -2,6 +2,8 @@
 
 - `!!` repeat previous command
 - `!$` last argument of previous command
+- `$?` is a special variable that holds the return value of the last command(or we can say the exit code of the last command) 
+    - command that not produce 0 is an error, and any command with exit code 0 is success
 - `Ctrl+C` to stop current command
 - `Ctrl+Z` to pause current command
 - `Ctrl+D` to signal end of input (EOF)
@@ -9,6 +11,8 @@
 
 - Use | to pipe commands: `command1 | command2`
 - Chain commands with &&: `cmd1 && cmd2` (run cmd2 only if cmd1 succeeds)
+
+
 
 ## Commands start
 - `whoami` : Shows the current user name.
@@ -19,6 +23,11 @@
     - ex: `ls > file.txt` or `ls -l > file.txt`
     - `>` this will write the output of the command to the file
     - `>>` this will append the output of the command to the file, in new line
+
+- change shell : `chsh -s /bin/<shell_name>`
+- list all available shells : `cat /etc/shells`
+- show current shell : `echo $SHELL`
+
 
 - see [date and time commands](https://youtu.be/Byx4sgLR88E?si=vYF4d-VmfXLq7B8T&t=207)  
 
@@ -118,6 +127,7 @@ And this pipe way `|` can be used to combine multiple commands
 - [split file in linux](https://youtu.be/Byx4sgLR88E?si=we5MHjGmEtMjbGBc&t=2207)
 
 - [search word and show matching content(show line in which pattern is present) from a file](https://youtu.be/Byx4sgLR88E?si=f6yQUC1hCcfV5lQP&t=2307)
+    - `grep -v "pattern" <filename>`: will show lines in which pattern is not present
     - use `egrep` command, for more complex regex patterns, like for search multiple words in file
     - We can also Use `egrep` (and `grep`)  without pipe , `egrep "pattern" <filename>`
     
@@ -181,12 +191,15 @@ And this pipe way `|` can be used to combine multiple commands
     - `apt-cache policy package`: This command checks the installation status of a package in Debian-based systems.
 
 - check apps for installed in package managers: 
-        - `apt search package`
+        - `apt search package`: will list all packages by the name of the package, and also tell which packages are installed 
         - `snap search package`
 
 - [how to start/stop/list service on linux](https://youtu.be/Byx4sgLR88E?si=A3eib70KbguyO4vq&t=5137)
-    - `systemctl start/stop service_name`
-    - list all services: `systemctl list-units --type=service --all`
+    - `systemctl start/stop/restart/enable/disable service_name`
+    - `service service_name start/stop/restart/enable//disable`
+    - list all services: `systemctl li/restart/enable/disablest-units --type=service --all`
+    - check service status: `systemctl status service_name` or `service <service_name> status`
+
 - [how to list all environement variables in linux](https://youtu.be/Byx4sgLR88E?si=un8qbRruFPyZV9M1&t=5357)
     - `printenv` or `env`
 
@@ -223,6 +236,10 @@ And this pipe way `|` can be used to combine multiple commands
         - `echo "hello world" | fold -w5 ` will display 5 character per line
 
 - [How to change user or login as different user in linux](https://youtu.be/Byx4sgLR88E?si=7lx1-g3LuIaOsIZd&t=6667)
+    - `sudo su -` : to go to root account, `sudo -i` can also be used
+    - `sudo su - <username>` : to go to other user account
+
+
     - `su <root_passwd>` this command only works if root account password is set `sudo passwd root` then set new root password (Note:  enabling the root account can make your system more vulnerable if misused.)
     - and you can simply still use sudo to run root commands like installing packages`sudo apt install <packageName>`
 
@@ -298,9 +315,9 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
     - then resume a job in the background (after pausing using `CTRL+Z`) : `bg` for resume in the background
     - resume in the foreground: `fg`
         - if you have multiple jobs in the background, you can resume a specific number of jobs fot resume `fg/bg %n` 
+    - `kill %<job_number>`: to kill a job
     - `kill -STOP <PID>` : to pause a process
     - `kill -CONT <PID>` : to resume a process   
-
 
 - run any bash script : `bash script.sh &`
 
@@ -321,6 +338,5 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
 - `reboot`: for restart linux server
 - `shutdown`: for shutdown linux server
  
-- [How to shedule a script to run on a particular date/time, using `at` or `crontab`](https://youtu.be/Byx4sgLR88E?si=YhBFKIHbr1lEsE0J&t=9887)
-
+- at command for scheduling task
     - `at <time>` 

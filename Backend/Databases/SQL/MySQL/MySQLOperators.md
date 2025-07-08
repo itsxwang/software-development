@@ -5,6 +5,3 @@
     - `''`, `0`, `false` are falsy values
     - AND - OR - NOT
     - ex: `select NOT FALSE;` -> `1` 
-
-
-- [`IN` and `NOT IN`](https://youtu.be/Hy3qbMAoEJk?si=QJPbEsUweqHOBipC&t=14657)

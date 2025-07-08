@@ -151,3 +151,6 @@
 
 - [`DEFAULT` and `ON UPDATE TIMESTAMP`](https://youtu.be/Hy3qbMAoEJk?si=Z-pBhbS6BUXnwecz&t=13187)
   - `ON UPDATE` , only set value of row when that particular row is updated
+
+- `group_concat()`  is a aggregate function that is used to concatenate values that goes on same group .
+    - ex: `select team, group_concat(member_name) as members from table_name group by team;` : It concatenates(with `,`) all members of each team in a individual rows in `members` column 

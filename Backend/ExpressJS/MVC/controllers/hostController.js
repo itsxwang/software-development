@@ -107,8 +107,17 @@ exports.deleteListingConfirmation = (req, res) => {
 
 exports.deleteHome = (req, res) => {
   
+
+  Home.findById(req.params.id).then(([rows]) => {
+    // Delete home image if it exists
+    const imagePath = path.join(rootDir, "public", rows[0].image);
+      fs.unlink(imagePath, (err) => {
+        if (err) console.error("Failed to delete image:", err);
+      });
+  })
+
   Home.deleteById(req.params.id).then(() => {
-    
+
     Favourite.deleteFromFavourites(req.params.id, () => {
       res.redirect("/host/host-homes");
     });

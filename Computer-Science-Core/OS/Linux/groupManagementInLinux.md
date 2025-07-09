@@ -36,3 +36,7 @@
 
 - [more practical example of group management, for modify a openssh server](https://youtu.be/GnlgAD8-GhE?si=Q1a2I1lRJZ-ucbZZ&t=1117)
     - for modify config file for ssh server `sudo <your_editor> /etc/ssh/sshd_config`
+
+- create system group: `sudo groupadd -r <group_name>`
+
+- create group with specific gid `sudo groupadd -g 1007 <group_name>` 

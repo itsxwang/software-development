@@ -38,3 +38,6 @@
 - IS NULL : `SELECT * FROM table_name WHERE column_name IS NULL;`
 - IS NOT NULL : `SELECT * FROM table_name WHERE column_name IS NOT NULL;` 
 
+
+- [`ON DELETE CASCADE`](https://youtu.be/Hy3qbMAoEJk?si=VwCQgXSUnjxrdw-O&t=19857)
+    - This helps in deleting data in one table when we delete data in other table

@@ -1,18 +1,42 @@
-### ***SSH***(Secure Shell) connection is used to access linux based server remotely, in that we can do configuration on remote machine without physical connection and can do many more things.
+### [***SSH***(Secure Shell)](https://youtu.be/YS5Zh7KExvE?si=a4wIoawCQOeaWhoe&t=267) connection is used to access linux based server remotely, in that we can do configuration on remote machine without physical connection and can do many more things.
 
+- open shh by default use port 22
+- the package is: `openssh-client`, which you have to install, because this requires ssh client
 - There are various ways to access linux based server remotely.
+- you can use `apt search openssh-client` : it will list all packages by name `openssh-client` and also tell if installed or not
+
+- [`know_hosts` file in ~/.ssh folder](https://youtu.be/YS5Zh7KExvE?si=Mssnq_uuNmE6Aieu&t=867)
+
+  - this file stores the fingerprints of all known hosts
+  - this file helps to avoid man-in-the middle attack, where a third party can intercept the communication between client and server
+
+- `/var/log/auth.log`: this file stores all the authentication logs, and update when someone normal login or ssh into server  
 
 - [From windows to centos(community version of Red hat enterprise linux), using putty terminal](https://youtu.be/5q6_w5Dk4UE?si=eNtwsgo5sn3McZjB&t=67)
 
 - [From windows to ubuntu(debian based), using putty terminal](https://youtu.be/5q6_w5Dk4UE?si=2w-sRVKh4zAKSVto&t=327)
 
-- [Access using cmd or linux terminal](https://youtu.be/5q6_w5Dk4UE?si=fYGGEiRo4ZFu282Y&t=527)
+- [Access using cmd or linux terminal](https://youtu.be/YS5Zh7KExvE?si=YTP7uMRe9xSic6sk&t=757)
 
-    - first: `systemctl start ssh` this will start the ssh server on your machine
-        - Your system is now ready to accept incoming SSH connections (like from another machine).
-        - This is not a client-side SSH connection — it's a service/daemon that listens on port 22.
+    - [Configuring the OpenSSH client with config file](https://youtu.be/YS5Zh7KExvE?si=u4dMY-6-v80EQ4Y-&t=1297)
+  - ~/.ssh/config
+    ```
+    Host myserver
+        HostName 237.84.2.178
+        Port 22 -- by default port is 22
+        User root
+    ```
+     - you have to do to in ssh client, so whenever you write `ssh myserver` the client will connect to server `237.84.2.178` as root user at specified PORT
 
-    - second: `ssh username@ipaddress`
+ 
+  - `ssh root@<machine_ip>`: means we ssh into linux server that has ip `<machine_ip>`, as root user, use `-v` flag if you wanna all see all info about ssh connection
+---
+
+- First: `systemctl start ssh` this will start the ssh server on your machine
+    - Your system is now ready to accept incoming SSH connections (like from another machine).
+    - This is not a client-side SSH connection — it's a service/daemon that listens on port 22.
+
+- Second: `ssh username@ipaddress`
     - then to check if it is connected you can use `w` or `who` command 
       - this Shows who is logged in and from where.
     - You should see your current SSH session in the output with the IP of machine you are connected to.
@@ -37,7 +61,7 @@
                 `- ps` means "process status".\
                 `- a` means show processes for all users.\
                 `- u`  show process owner/user and other details. \
-                 `- x` include processes not attached to a terminal (like background daemons or SSH).\
+                `- x` include processes not attached to a terminal (like background daemons or SSH).\
                  `- |` pipe: takes the output of `ps aux` and sends it as input to the next command.\
                 `- grep ssh`  filters the output to only show lines containing "ssh".
                 
@@ -79,7 +103,7 @@ After disconnecting, your prompt will switch back to your local machine's termin
 - [Through mobaXterm multitab terminal](https://youtu.be/5q6_w5Dk4UE?si=45Y0-SUo0vfSNt07&t=617)
 
 ---
-To connect via SSH or use scp(secure copy protocol) without entering a password every time.
+[To connect via SSH or use scp(secure copy protocol) without entering a password every time, and using keys which is more secure](https://youtu.be/YS5Zh7KExvE?si=6hKHVWtHyTYnzFED&t=1867).
 This is achieved using SSH key-based authentication.
 
 ## ✅ 1. `ssh-keygen -t ed25519`
@@ -124,17 +148,25 @@ Enter passphrase (optional): [Press Enter or type one]
     - So if you enter a passphrase, you should remember it. As it will ask everytime you will do ssh or scp. You can use `ssh-agent` to cache the passphrase, ask gpt how to do that. 
 
 ## ✅ 2. `ssh-copy-id username@remoteMachineIp`
-This command installs your public key on the remote machine (192.168.29.75) under the xion user. Only if you have ssh access to the remote machine. And that's why you should always secure your username and password, so only trusted users can use `ssh-copy-id`.
+- [Another way of `ssh copy id` using `-i`(input file) flag](https://youtu.be/YS5Zh7KExvE?si=yZR5PpTEJyX6IiOU&t=2587)
+    ```ssh-copy-id -i ~/.ssh/<idYouWannaCopyToremoteMachine.pub> username@remoteMachineIp```
+    - This allows to copy specific public key to remote server, which is recommended if you have multiple public keys on your machine.
+
+- This command installs your public key on the remote machine under the `<username>` user. Only if you have ssh access to the remote machine. And that's why you should always secure your username and password, so only trusted users can use `ssh-copy-id`.
+
 
 What it does:
-- Copies your public key (`~/.ssh/id_ed25519.pub)` to the remote machine.
-- Adds it to `~xion/.ssh/authorized_keys` on the remote system.
+- Copies your public key (`~/.ssh/id_ed25519.pub)` to the remote machine in `authorized_keys` folder.
+- Adds it to `~<UserYouSSHAs>/.ssh/authorized_keys` on the remote system.
 - This means the remote SSH server now trusts your private key to log in.
 
-What happens on the remote machine:
+What happens on the remote machine when you do `ssh-copy-id`?:
 ```bash
-cat ~/.ssh/id_ed25519.pub >> /home/xion/.ssh/authorized_keys
-```
+scp ~/.ssh/id_ed25519.pub username@remoteMachineIp:/home/user/.ssh/authorized_keys
+``` 
+Although this is not the same as `ssh-copy-id`, it's the same thing. As it write to file, but in actual `ssh-copy-id` append public key to `authorized_keys` file not write, so it use some other command.
+
+
 ✅ Now what?
 After this setup:
 
@@ -146,7 +178,7 @@ ssh username@remoteMachineIp
 
 - The remote machine verifies it using the authorized public key.
 
-- If it matches, you're in — no password needed!
+- If it matches, you're in — no password needed otherwise it will ask for password(but you can stop this password auth behaviour by disabling password authentication)!
 
 ### 🧠 How It Works Internally (Simplified)
 1. SSH client tries to connect to ex: 192.168.29.75.
@@ -160,3 +192,7 @@ ssh username@remoteMachineIp
 5. If valid → access granted. ✅
 
 `authorized_keys` -> Is a file in `~/.ssh/` on the remote machine, that lists trusted public keys(one public key per line)(when you use `ssh-copy-id` command you add your public key to this file in remote machine). 
+
+- [Manage ssh keys](https://youtu.be/YS5Zh7KExvE?si=E1LvNllS1D24GixG&t=2737)
+    - Add comment to the key: `ssh-keygen -t ed25519 -C "Comment"`
+        - it automatically add default comment to be your username and machine name.

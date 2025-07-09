@@ -28,7 +28,7 @@
         - WIth alter:  `ALTER TABLE table_name ADD FOREIGN KEY (column_name) REFERENCES table_name2 (column_name2);`
 
     - Drop foreign key: `ALTER TABLE table_name DROP FOREIGN KEY constraint_name;`
-        - `constraint_name` is the name of the foreign key constraint you want to remove. If you not know the constraint name, you can use `SHOW CREATE TABLE table_name;` to see the table definition, this definition is used to create table.
+        - `constraint_name` is the name of the foreign key constraint you want to remove. If you not know the constraint name, you can use `SHOW CREATE TABLE table_name;` to see the table definition, this definition was used to create table.
 
 ---
 ## Show key related details

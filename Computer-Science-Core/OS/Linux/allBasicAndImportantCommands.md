@@ -1,7 +1,7 @@
 ## Some useful shortcuts
 
 - `!!` repeat previous command
-- `!$` last argument of previous command
+- `!$` last argument of previous command, if not called with any argument then that command itself
 - `$?` is a special variable that holds the return value of the last command(or we can say the exit code of the last command) 
     - command that not produce 0 is an error, and any command with exit code 0 is success
 - `Ctrl+C` to stop current command
@@ -318,6 +318,10 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
     - `kill %<job_number>`: to kill a job
     - `kill -STOP <PID>` : to pause a process
     - `kill -CONT <PID>` : to resume a process   
+    - jobs -l : list all jobs with their `pid`
+        - `jobs -l | awk '{print $3}' `: list all jobs with their `pid` only
+        - `jobs -l | awk '{print $3}' | xargs kill (-9 for force kill)`
+
 
 - run any bash script : `bash script.sh &`
 

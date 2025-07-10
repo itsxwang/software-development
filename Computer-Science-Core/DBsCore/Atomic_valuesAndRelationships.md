@@ -33,7 +33,7 @@ In databases, relationships describe how tables are connected to each other base
 - **Occurrence**: Most common.
 - **✅ Example**: One customer can place many orders, but 1 order can only be placed by one customer.
 - [Designing 1:N relationships](https://youtu.be/ztHopE5Wnpc?si=AaA-n7JmoGLOUoOe&t=8027)
-
+- In SQL we can implement this using joins(cross, inner, left, right join)
 
 #### 📌 Example Table of 1 to many relationships:
 **Customers Table**:
@@ -68,7 +68,7 @@ This is a One-to-Many relationship.
 - **Definition**: Rows in Table A can relate to many in Table B, and vice versa too (both ways).
 - **Implementation**: Achieved using a junction table.
 - **✅ Example**: Students enroll in many courses, and each course has many students. 
-
+- [MySQL Example of Many-to-Many (M:N) relationship](https://youtu.be/Hy3qbMAoEJk?si=6a8ux_2JLNtDD_p-&t=20777)
 - Note:  **Many-to-Many (M:N)** relationships do work in relational databases — but not directly.
 Relational databases do not support **M:N** relationships natively.
 Instead, you implement them indirectly using an intermediate ***(junction/bridge)*** table.

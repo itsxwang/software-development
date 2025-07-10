@@ -37,6 +37,7 @@
     - This is not a client-side SSH connection — it's a service/daemon that listens on port 22.
 
 - Second: `ssh username@ipaddress`
+    - To connect to remote machine using specific private key that corresponds to public key you copy to that remote machine, you wanna connect: `ssh -i ~/.ssh/<privateKeyCorrespondingToPublicKey> username@remoteMachineIp` 
     - then to check if it is connected you can use `w` or `who` command 
       - this Shows who is logged in and from where.
     - You should see your current SSH session in the output with the IP of machine you are connected to.
@@ -60,7 +61,7 @@
                 ```
                 `- ps` means "process status".\
                 `- a` means show processes for all users.\
-                `- u`  show process owner/user and other details. \
+                `- u`  output in resource usage format. \
                 `- x` include processes not attached to a terminal (like background daemons or SSH).\
                  `- |` pipe: takes the output of `ps aux` and sends it as input to the next command.\
                 `- grep ssh`  filters the output to only show lines containing "ssh".
@@ -149,7 +150,7 @@ Enter passphrase (optional): [Press Enter or type one]
 
 ## ✅ 2. `ssh-copy-id username@remoteMachineIp`
 - [Another way of `ssh copy id` using `-i`(input file) flag](https://youtu.be/YS5Zh7KExvE?si=yZR5PpTEJyX6IiOU&t=2587)
-    ```ssh-copy-id -i ~/.ssh/<idYouWannaCopyToremoteMachine.pub> username@remoteMachineIp```
+    ```ssh-copy-id -i ~/.ssh/<PublicKeyYouWannaCopyToremoteMachine.pub> username@remoteMachineIp```
     - This allows to copy specific public key to remote server, which is recommended if you have multiple public keys on your machine.
 
 - This command installs your public key on the remote machine under the `<username>` user. Only if you have ssh access to the remote machine. And that's why you should always secure your username and password, so only trusted users can use `ssh-copy-id`.
@@ -195,4 +196,39 @@ ssh username@remoteMachineIp
 
 - [Manage ssh keys](https://youtu.be/YS5Zh7KExvE?si=E1LvNllS1D24GixG&t=2737)
     - Add comment to the key: `ssh-keygen -t ed25519 -C "Comment"`
-        - it automatically add default comment to be your username and machine name.
+        - by default it add comment to be your username and machine name.
+
+---
+##  [Usign ssh agent, to cache the key in memory](https://youtu.be/YS5Zh7KExvE?si=XRdclOgtQw-iac02&t=3357)
+
+- ssh agent is a mechanism to cache your private key in memory until the termianl is close
+    - activate the ssh agent manually if it is not (like bastion host, means linux server without GUI): `eval "$(ssh-agent)"` 
+    - `ssh-add </path/to/Privatekey>`
+        - it unlocks the private key and store it in the memory in the ssh agent
+
+---
+
+- [Configuring server component of openssh](https://youtu.be/YS5Zh7KExvE?si=z6mwyZed61D_hJVK&t=3657)
+     - sshd(ssh daemon, is the service that runs in the background that accepts connections) binary represents the server component of openssh. Note: In some debian distrubutions this service is rename to just `ssh`.
+    - Note: Stopping ssh service (`systemctl start ssh`) will not terminate existing connections, it will stop more ssh connections to come in.
+
+- [`/etc/ssh` directory](https://youtu.be/YS5Zh7KExvE?si=aDCU6KuPvLwzbvGN&t=3837)
+    - this directory containes host keys and other configuration files, these host keys are used to identify the server by the ssh.
+    - this directory contains two configuration files:
+        - `ssh_config`: this file is used to configure the ssh client. This is for global client configuration settings across entire distribution.
+        - `sshd_config`: this file is used to configure the ssh server service(basically the serivce that listening for connections).
+        - You can set `Port`
+            - then if you change port number and save those settings, you have to use this command to ssh to specific port, and changing port number from default port 22 helps to increase security(but not much), as hacker may find difficulty to find correct port number(but he can find ultimately) : `ssh -p <newPortNumber> <username>@<IP>`
+        - You can change `PermitRootLogin`, `PasswordAuthentication` from yes to no 
+        - After all changes, restart ssh service: `systemctl restart ssh`
+
+- Most important security tweak  on linux server: Use ssh keys authentication instead of password authentication. 
+
+---
+## [Troubleshooting openssh](https://youtu.be/YS5Zh7KExvE?si=EHwDho1DE8tG5M7c&t=4417)
+
+- [Giving right permission to  `.ssh` folder and its content, to `ssh` to work](https://youtu.be/YS5Zh7KExvE?si=kzPaM5UmoBfqK8H2&t=4717)
+
+- [Take look into log files](https://youtu.be/YS5Zh7KExvE?si=l13bBNHL9v1cUCrv&t=4897)
+    - `/var/log/auth.log`: this file stores all the authentication logs, and update when someone normal login or ssh into server
+    - `journalctl -u ssh` if systemd is installed, you can use this command to see all the logs of ssh service, `-f` flag for if you wanna see latest logs like `tail` command does . 

@@ -12,6 +12,11 @@
 - Use | to pipe commands: `command1 | command2`
 - Chain commands with &&: `cmd1 && cmd2` (run cmd2 only if cmd1 succeeds)
 
+- Run any command after n number of seconds: using `(sleep n; command)&`
+    - example: ```(sleep 1; echo "hello") &```\
+    ✅ This will execute echo "hello" after 1 second, asynchronously in the background.
+
+
 
 
 ## Commands start
@@ -32,6 +37,7 @@
 - see [date and time commands](https://youtu.be/Byx4sgLR88E?si=vYF4d-VmfXLq7B8T&t=207)  
 
 - [`ls -lt` and `-r`, `-h`](https://youtu.be/Byx4sgLR88E?si=D6GVwo7dkL0NmX7w&t=277)
+    - ls stands for list storage
     - `-l`: Lists files in long format, which includes:
        - `-rw-r--r-- 1 x1 x1 2048 Jun 28 21:05 report.txt`
            - File type & permissions (`-rw-r--r--`)
@@ -343,4 +349,21 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
 - `shutdown`: for shutdown linux server
  
 - at command for scheduling task
-    - `at <time>` 
+    - `at <time>`: run a command at a specific time
+    - You need to pass the command via standard input, like this:
+        `echo "echo 'Hello World!'" | at 10:00 PM`
+
+        ✅ OR, interactively:
+        ```at 10:00 AM```
+        (It will open a prompt where you type your command)
+
+        `echo "Hello World!"`(or any other command, you wanna execute) 
+        Then press `Ctrl+D` to finish.
+
+    -  run command after certain minutes or hour, using `at` command:        
+      - examples:
+        ```bash
+        echo "hello" | at now + 1 minute
+        echo "hello" | at now + 2 hours
+        echo "hello" | at now + 1 day  
+        ```

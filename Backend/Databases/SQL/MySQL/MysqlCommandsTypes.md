@@ -1,6 +1,6 @@
 # [Different types of commands in SQL](https://youtu.be/SSKVgrwhzus?si=8HS3RHP7QI0o6LoF&t=1097)
 
-- [DDL (Data Definition Language)](https://youtu.be/SSKVgrwhzus?si=yOpTSnlEnut9PX0j&t=1107) are a type fo commands in SQL that are used to create, modify(alter), and delete database objects such as tables, views, indexes, and constraints.
+- [DDL (Data Definition Language)](https://youtu.be/SSKVgrwhzus?si=yOpTSnlEnut9PX0j&t=1107) are a type fo commands in SQL that are used to create, modify(alter), and delete(drop) database objects such as tables, views, indexes, and constraints.
     - `CREATE` for create something new
     - `ALTER` for modify something
     - `DROP` for delete something

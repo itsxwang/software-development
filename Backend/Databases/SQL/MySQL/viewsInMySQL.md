@@ -1,0 +1,2 @@
+- [Views in SQL](https://youtu.be/Hy3qbMAoEJk?si=ofez3q_cykCNGw1k&t=21437)
+    - Views are stored queries that when invoked produce a reult set . A view act as a virtual table.

@@ -48,7 +48,7 @@
   - Remove primary key `ALTER TABLE table_name DROP PRIMARY KEY;`
 
   - Rename table `ALTER TABLE table_name RENAME TO new_table_name;`
-    - Second way `RENAME TABLE table_name1 TO new_table_name1, table_name2 TO new_table_name2;` this second way provides more flexiblility
+    - Second way `RENAME TABLES table_name1 TO new_table_name1, table_name2 TO new_table_name2;` this second way provides more flexiblility
 
 - Adding data in table\
   if you wanna give values of fields in your own order

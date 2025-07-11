@@ -41,3 +41,11 @@
 
 - [`ON DELETE CASCADE`](https://youtu.be/Hy3qbMAoEJk?si=VwCQgXSUnjxrdw-O&t=19857)
     - This helps in deleting data in one table when we delete data in other table
+
+- [Having a roll up with clause](https://youtu.be/Hy3qbMAoEJk?si=D-b8b5xWHWYT-B8K&t=21687)
+    - ```SELECT column_name, count(fieldName) FROM table_name GROUP BY column_name HAVING count(fieldName) > 1;```: Its a substitute of where clause when using `group by`
+
+- [`group by rollup`](https://youtu.be/Hy3qbMAoEJk?si=fNEt1S3JGiU-W7Wr&t=21877)
+    - used with `group by` clause: give total of values of all numeric columns 
+    - ```
+        SELECT column_name1, count(fieldName) FROM table_name GROUP BY column_name1 WITH ROLLUP; 

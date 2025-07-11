@@ -168,6 +168,8 @@ And this pipe way `|` can be used to combine multiple commands
 
 - [how to create a shortcut of a long command using `alias`](https://youtu.be/Byx4sgLR88E?si=23xYWaVyh58kYy8V&t=3857)
     - `alias <nameOfCommand> ="command"`
+    - `unalias <nameOfCommand>` : for remove alias
+    - [Some helpful aliases](https://youtu.be/ehKAIWJWI8Y?si=FbuhhWdWyF7Cvxa0&t=107)
 
 - [zip and unzip files and folders](https://youtu.be/Byx4sgLR88E?si=Yu4z86WvB2G6ZILz&t=3967)
     - zip is the compression version of file or folder, that can be faster transfer and save space
@@ -259,7 +261,7 @@ And this pipe way `|` can be used to combine multiple commands
 
     - `scp user@hostname:/path/where/file/is/located /tmp/` -> from remote to local
 
-- [Working with permissions in linux](https://youtu.be/Byx4sgLR88E?si=cB_QiMJlBFnD43E6&t=7107)
+- [permissions in linux demestified](https://youtu.be/T269zebUSj8?si=zav0xpAy04iRhuCf&t=57)
 
 - [Change resouce(file/folder/etc) permission with `chmod`](https://youtu.be/Byx4sgLR88E?si=h4tuU5rIJIQMCZ_W&t=7387)
     - `chmod a+rwx <filename.txt>` : will add read, write and execute permission to file for all users (user, group and others)

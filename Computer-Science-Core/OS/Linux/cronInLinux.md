@@ -33,4 +33,4 @@
     - [crontab.guru](https://crontab.guru/)
     - [crontab-generator.org](https://crontab-generator.org)
 
-- ecexcute cron job in silent mode: `* * * * * **/script.sh >/dev/null 2>&1`
+- execute cron job in silent mode: `* * * * * **/script.sh >/dev/null 2>&1`

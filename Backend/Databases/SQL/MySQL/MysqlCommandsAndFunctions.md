@@ -14,6 +14,7 @@
 
 
 
+
 - Creating tables(Collection of related data held in table format held within a DB) ->
 
   ```sql
@@ -23,6 +24,9 @@
       ... (means you can insert a 100 characters in field2)
   )
   ```
+- auto_increment: means that the field will automatically increment its value by 1 each time a new row is inserted into the table.
+   - change auto increment value of table to 7 `ALTER TABLE table_name AUTO_INCREMENT = 7;` , now it will auto increment from 7
+
 
 - Create copy of a table:
 
@@ -45,6 +49,10 @@
 
   - Add column `ALTER TABLE table_name ADD COLUMN field1 VARCHAR(100);`
   - Modify column `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100);`
+  - Change position of column 
+      - `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100) FIRST;`
+      - `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100) AFTER field2;`
+
   - Rename column `ALTER TABLE table_name RENAME COLUMN field1 TO field2;`
   - Delete column `ALTER TABLE table_name DROP COLUMN field1;`
 
@@ -154,7 +162,7 @@
 - [Date Maths in MySQL - `Date_Diff`, `Date_Add`, `Date_Sub`, `TimeDiff`](https://youtu.be/Hy3qbMAoEJk?si=0eckbGMqOhP7mlxj&t=12717)
 
 - [`DEFAULT` and `ON UPDATE TIMESTAMP`](https://youtu.be/Hy3qbMAoEJk?si=Z-pBhbS6BUXnwecz&t=13187)
-  - `ON UPDATE` , only set value of row when that particular row is updated
+  - `ON UPDATE` , only set value of column of particular row when that row is updated
 
 - `group_concat()`  is a aggregate function that is used to concatenate values that goes on same group .
     - ex: `select team, group_concat(member_name) as members from table_name group by team;` : It concatenates(with `,`) all members of each team in a individual rows in `members` column 

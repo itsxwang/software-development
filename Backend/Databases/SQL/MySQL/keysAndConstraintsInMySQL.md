@@ -8,6 +8,8 @@
 
 - [`check` constraint in table](https://youtu.be/Hy3qbMAoEJk?si=-JApzaONB12_P5g_&t=16377)
     - ex: `create table table_name (column_name INT CHECK (LENGTH(column_name) >= 7));`
+    - `AlTER TABLE table_name ADD CHECK (condition);`
+    - remove check constraint: `ALTER TABLE table_name DROP CHECK constraint_name;`
 
 - [Named Constraint](https://youtu.be/Hy3qbMAoEJk?si=3aFVaCdXHBUmgYvW&t=16647)
     - `CONSTRAINT constraint_name CHECK (condition);`
@@ -58,3 +60,8 @@ WHERE table_name = 'orders';
 
 
 - Note: There are more fields in `information_schema.key_column_usage`, like `referenced_column_name` and `ordinal_position`(which is the position of the column in the table), you can see more my describing this table.
+
+
+- default constraint:
+    - ```CREATE TABLE table_name (column_name INT DEFAULT 0);```
+    -  `ALTER TABLE table_name alter column_name set default 0;` 

@@ -74,7 +74,7 @@
     - window functions are functions that operate on a window of rows. 
     - Defined with `OVER()` clause, we can also `order by`  and `partition by` clause with `OVER()` clause.
 
-    - ex: ```SELECT course_name,fees,sum(fees) OVER(order by  course_name) as total_till_now from courses;``` 
+    - ex: ```SELECT course_name,fees,sum(fees) OVER(order by course_name) as total_till_now from courses;``` 
 
     - [More window functions that can be used with window functions](https://youtu.be/Hy3qbMAoEJk?si=MJxu4bZM-pKGntz0&t=24527)
 

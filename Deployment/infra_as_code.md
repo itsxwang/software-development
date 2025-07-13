@@ -1,0 +1,7 @@
+Infrastructure as Code (**IaC**) is the process of managing and provisioning computer data center resources through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
+ It allows IT infrastructure, including both physical equipment and virtual machines, to be managed using code, which can be stored in version control systems.
+ This approach enables automation, consistency, and repeatability in infrastructure management, reducing manual effort and the risk of human error.
+
+IaC can be implemented using either declarative(example  [**terraform**](https://youtu.be/tomUWcQ0P3k?si=5cKoK7fGmlLcTN_5&t=87)) or imperative approaches. The declarative approach focuses on defining the desired state of the infrastructure, while the imperative approach specifies the exact steps to achieve that state.
+ Tools like Terraform(*IAC* tool that can provision resources in the cloud from simple declarative code), AWS CloudFormation, and Pulumi are commonly used to implement IaC, allowing teams to define infrastructure in configuration files that can be versioned, reused, and shared.
+ This practice is integral to DevOps, enabling faster deployments, improved collaboration, and better scalability.

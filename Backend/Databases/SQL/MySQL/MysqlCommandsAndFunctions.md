@@ -10,6 +10,10 @@
 
 - To see which database you are using: `select database();` (or `select schema();`)
 
+- Db to read only: `ALTER DATABASE database_name READ ONLY=1;`
+
+
+
 - Creating tables(Collection of related data held in table format held within a DB) ->
 
   ```sql

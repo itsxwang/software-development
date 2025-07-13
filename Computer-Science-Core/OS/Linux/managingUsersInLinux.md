@@ -14,24 +14,25 @@
 
 - [adding users, with `useradd` command](https://youtu.be/19WOD84JFxA?si=baP_1tjktzZnJSiN&t=477)
     - `id <username>`: to check user, its id, and its groups and their id
+    - `id -u <username>`: to check only user id
     
     - by default this command may not create home directory for new user in some distributions, so it recommend to be explicit, and run this command with `-m` flag `sudo useradd -m username`
     
     - `su <username>`: to switch between users
     
 - [Default user accounts](https://youtu.be/19WOD84JFxA?si=L5n-ye0dzJBNBkIH&t=607)
-    - `cat /etc/default/useradd` - default user accounts are stored in this file
+    - `cat /etc/default/useradd` - this file sets the default values for the `useradd` command
 
 - [removing user with `userdel` command](https://youtu.be/19WOD84JFxA?si=3LFr_xxvPe2ZSVqW&t=797)
     - NOTE: if user has home directory it will not be removed by `userdel` command by default: so to remove home directory use `-r` flag
     `sudo userdel -r username`
 
 - [adding password for user that you created, with `passwd` command](https://youtu.be/19WOD84JFxA?si=k_ZD_nA_rHCup1yO&t=1047)
-    - `sudo passwd username`(not ask for user previous paasswor) or just `passwd username`(will ask for user previous password)
+    - `sudo passwd username`(not ask for user previous paassword) or just `passwd username`(will ask for user previous password)
 
 
 - [creating system user, and why in first place](https://youtu.be/19WOD84JFxA?si=Tv1PDB5zCmrqVgXK&t=1247)
-    - system user is useful when you have some sort of task that you wanna run in the background, shedule tas   ks/processes (like for automation)
-    - `sudo useradd -m system_user`     
+    - system user is useful when you have some sort of task that you wanna run in the background, shedule tasks/processes (like for automation)
+    - `sudo useradd -r system_user`: for creating system user     
 
 - [etsy shadow file '/etc/shadow' file](https://youtu.be/19WOD84JFxA?si=papv8V_2XhE4xX9F&t=1687)

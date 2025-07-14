@@ -5,7 +5,6 @@
 - [how much disk space actually used and how much is free, using `df`(disk free)](https://youtu.be/kyt1xAlXITE?si=5LVnw8UxDlBjXuJm&t=297)
 
 - [see number of inodes available, `df -i`, and what are inodes](https://youtu.be/kyt1xAlXITE?si=SJ8pNsy88iMreP2l&t=417)
-    - inodes are the maximum number of files that can be stored in a file system
 
 - [htop](https://youtu.be/kyt1xAlXITE?si=XKfJv2OgsOHXWmGy&t=577)
 

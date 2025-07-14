@@ -15,5 +15,7 @@
     - Right join
         - Return all rows from the right table and the matching rows from the left table.
         - `select * from table1 right join table2 on table1.id = table2.id;`
-
-
+    - [Self join](https://youtu.be/5OdVJbNCSso?si=S7OStBIFFX5rQOFT&t=6517)
+        - just join another copy of a table to itself
+        - used to compare rows of the same table
+        - helps to display hierarchy of the data

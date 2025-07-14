@@ -1,7 +1,7 @@
 ## Views
 
-- [Views in SQL](https://youtu.be/Hy3qbMAoEJk?si=ofez3q_cykCNGw1k&t=21437)
-  - Views are stored queries that when invoked produce a reult set . A view act as a virtual table.
+- [Views in SQL](https://youtu.be/5OdVJbNCSso?si=CQFfHNUFSg9iY9yn&t=7097)
+  - Views are stored queries that when invoked produce a reult set . A view act as a virtual table. A fields in Virtual table are field from one or more real tables in DB. If real tables data is changed then view also changes.
   - Basically we create a virtual table that points to another real table.
 - Example:
   - Create a view

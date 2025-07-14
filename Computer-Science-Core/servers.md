@@ -32,7 +32,7 @@ Then RAID will rebuild data in new hard drive.
     - Using tools like wireshark we can see all the  network packets sent and received.  
 
 - [Web Servers](https://youtu.be/VXmvM2QtuMU?si=6Wu_zh4OOLwV_gxH&t=277)
-    - Like game servers web severs are also programs running on some system. NGINX and Apache are just programs implementing web servers. So You can use client like browser to access data from web servers.
+    - Like game servers, web severs are also programs running on some system. NGINX and Apache are just programs implementing web servers. So You can use client like browser to access data from web servers.
 
 - [A server is just a program](https://youtu.be/VXmvM2QtuMU?si=FnELvhpCFHZTHuG8&t=310)
 
@@ -46,3 +46,4 @@ Then RAID will rebuild data in new hard drive.
 
 - [Related terms that almost describe the same concept](https://youtu.be/VXmvM2QtuMU?si=MrnKLoHnPTgdRlAz&t=847)
     - [Master and slave or Server or Client or etc...](https://youtu.be/VXmvM2QtuMU?si=6yYBLkRtUjV9kdC0&t=857): Describe roles where one component controls another
+

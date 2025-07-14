@@ -6,6 +6,7 @@
 - [`order by` keyword](https://youtu.be/Hy3qbMAoEJk?si=C4knkAFqiF27QK8z&t=7917)
     - use for sorting, `SELECT * FROM table_name ORDER BY column_name ASC/DESC;`
     - you can also sort my multiple columns
+    - `SELECT * FROM table_name ORDER BY column_name1 ASC, column_name2 DESC;`
 
 - [`LIKE` keyword in SQL](https://youtu.be/Hy3qbMAoEJk?si=9jigmlOnHyuuF0lU&t=8117)
 
@@ -20,6 +21,8 @@
 
 - [`LIMIT` keyowrd](https://youtu.be/Hy3qbMAoEJk?si=o9_ww8VEOLBBCpdF&t=8297)
     - with this we can see range of records
+    - you can also add offset 
+    - `SELECT * FROM table_name LIMIT 2,2 ;` : this will give 2 records starting from 3rd record
 
 - [`GROUP_BY`](https://youtu.be/Hy3qbMAoEJk?si=nIWPtNP4eb2A2Vvs&t=9307)
     - we can combine group by with `COUNT` and then it will count a values of a field of each group(means how many values of a particular field goes in the particular group) like this:

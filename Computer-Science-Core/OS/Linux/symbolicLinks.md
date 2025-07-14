@@ -1,0 +1,2 @@
+- [symbolic links](https://youtu.be/zfSa-PEU3h4?si=GDqhYicNCs7uKqsZ&t=37)
+    - Symbolic links is basically a way that we can link one object to another

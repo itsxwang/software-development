@@ -5,3 +5,8 @@
     - `''`, `0`, `false` are falsy values
     - AND - OR - NOT
     - ex: `select NOT FALSE;` -> `1` 
+
+- [`UNION` operator](https://youtu.be/5OdVJbNCSso?si=b_3PrmcsySQN-1e5&t=6277)
+    - Used to join two or more SELECT statements together
+    - In order to join them, all tables should have same number of columns
+    - `UNION ALL` : Does not remove duplicate rows

@@ -6,7 +6,8 @@ In Linux, there are seven standard file types. Each type helps identify the natu
     Contain any kind of data, such as text, images, or programs.
 
 2. **Directories**  
-    Contain references to other files and directories.
+    Contain references to other files and directories.\
+A directory is a special type of file that contains a list of filenames and their corresponding inode numbers. Each entry in a directory maps a filename to an inode, allowing the filesystem to locate the file's metadata and data blocks.
 
 3. **Symbolic links**  
     Special files that point to other files or directories.

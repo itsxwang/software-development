@@ -231,4 +231,4 @@ ssh username@remoteMachineIp
 
 - [Take look into log files](https://youtu.be/YS5Zh7KExvE?si=l13bBNHL9v1cUCrv&t=4897)
     - `/var/log/auth.log`: this file stores all the authentication logs, and update when someone normal login or ssh into server
-    - `journalctl -u ssh` if systemd is installed, you can use this command to see all the logs of ssh service, `-f` flag for if you wanna see latest logs like `tail` command does . 
+    - `journalctl -u ssh` if systemd is installed, you can use this command to see all the logs of ssh service, `-f` follow mode, basically it automatically scrolls down as new logs are added. 

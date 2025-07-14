@@ -41,7 +41,7 @@
     - `-l`: Lists files in long format, which includes:
        - `-rw-r--r-- 1 x1 x1 2048 Jun 28 21:05 report.txt`
            - File type & permissions (`-rw-r--r--`)
-           - Number of links (hard links) (usually 1 for regular files)  (For directories, it counts the number of subdirectories + the directory itself + its parent.)
+           - Number of links (hard links(means how many time the file or directory is being referenced in a file system)) (usually 1 for regular files)  (For directories, it counts the number of subdirectories + the directory itself + its parent.)
            - Owner (user of the resource) (`x1`)
            - Group (group name which have group permission on the file) (Collection of users, a Unix group, user in group get the “group” permissions.)
            - File size (`2048` bytes)
@@ -118,6 +118,8 @@
    - more: read file one page at a time.
    - `cd -` : go to previous directory (from where you last time use cd) , its same as `cd $OLDPWD`
    - `cd<enter>`: go to home directory
+
+- stat command: `stat <filename>` : will show file size, last modified time, and other info about the file, you will mainly want to use it for seeing when file is created(Birth) or access last time.
 
 - cp: copy file, or make copy of file, like `cp report.txt report_copy.txt`
 - mv: move file (used for cut-paste, rename file/folder, move dir(also comes in cut-paste))

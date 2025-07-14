@@ -25,5 +25,5 @@ command used to view log files produced by the system processes and services. It
     - ```journalctl --since="2025-01-21 00:00:00"``` :  logs from 2025-01-01 00:00:00
 
 - [shrinking log size with `vacuum`](https://youtu.be/0dG3vUYt7Uk?si=MFnXfhjtTDj9IaJh&t=1017)
-    - this can be used to make journal entries to take the size we specified  
+    - this can be used to make journal entries to take the size we specified, but it will delete the entiries to achieve that size  
     - `journalctl --vacuum-size=100M` : shrink log size to 100MB

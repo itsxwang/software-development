@@ -36,6 +36,8 @@
 
 - see [date and time commands](https://youtu.be/Byx4sgLR88E?si=vYF4d-VmfXLq7B8T&t=207)  
 
+- `mkdir -p <folder_name>`: create a folder, `-p` will create parent directories if they do not exist
+
 - [`ls -lt` and `-r`, `-h`](https://youtu.be/Byx4sgLR88E?si=D6GVwo7dkL0NmX7w&t=277)
     - ls stands for list storage
     - `-l`: Lists files in long format, which includes:
@@ -52,66 +54,7 @@
         - Sorts files by modification time, with the most recently modified files first. (`-r` to reverse the sort order)
     combined `ls -lt` : Lists files in long format, sorted by time, newest first. `-h` can be used fpr human-readable sizes.
         
-    - Now let’s break down the permission string, we get through `-l` flag
-    Example: This `drwxrwxr-x` means:
-         ```
-         [ d ][ rwx ][ rwx ][ r-x ]
-        │     │     │     └───► Others (everyone else) permission
-        │     │     └─────────► Group permission
-        │     └───────────────► Owner (user) permission
-        └─────────────────────► File type
-        ```
-        r: read, w: write, x: execute
-        - ✅ 1. First character: (here : `d`) 
-            - `d` : Directory
-            - `-` : regular File
-            - `l` : symlink
-            - `c`, `b`, etc. : special device files
-        - ✅ 2. Next 9 characters: permissions, grouped in triplets for:
-            - Owner
-            - Group
-            - Others (everyone else)
-              - 🔑 Who are Owner, Group, and Others?
-            - 👤 Owner
-                 - The user who owns the file/directory.
-
-                 - Usually the one who created it.
-
-            - 👥 Group
-                - A Unix group — a collection of users.
-
-                - The file belongs to one group.
-
-                - Any user in this group gets the “group” permissions.
-
-            - 🌐 Others
-                - All other users who are not the owner and not in the group.
-
-        ## 📁 Different permission explained?
-        It depends on what kind of item you’re dealing with — a file or a directory.
-        - 📁 On a file        
-            - `r` - You can view the content of the file (e.g., `cat`, `less`, `nano`)
-            - `x` (execute) -  You can run it as a program or script (e.g., `./my_script.sh`)
-
-            - ✅ Example:
-                - `--x` → You cannot view and neither write its contents, but can execute it (like a compiled binary or secret script).
-
-        - 📁 On a directory
-            - r : You can list the contents of the directory (ls folder/)
-            - x: 	You can enter the directory (cd folder/) and access files inside, if you know the names
-            - w: You can create/delete/rename files inside (but only if you also have x)
-
-            - ✅ Example:
-              - `r--` → You can list the files, but can’t cd into it or open files.
-              - `--x` → You can enter the directory and open files only if you already know the names, but can’t list them.
-              - `r-x` →  You can list and enter it. ✅ Common for shared folders.
-              - `rw-` → You can list and write, but not enter = practically useless alone.
-
-
-        - 🧠 Think of it this way:
-            - r = See what's inside
-            - x = Go inside
-            - w = Make changes inside
+    
 
 - working with file system
    - Less: open editor to read file content and search things, basically use vim commands. 
@@ -239,7 +182,41 @@ And this pipe way `|` can be used to combine multiple commands
     - to save changes: `tr '[:lower:]' '[:upper:]' < filename.txt > upper.txt`
     - delete specific word from file : `tr -d 'word' < filename.txt`
     - change specific word from file : `tr 'word' 'newWord' < filename.txt`
-- [extend or shrink size of the file](https://youtu.be/Byx4sgLR88E?si=FIZZo9nCBEC_kESm&t=6487)
+
+
+- [**`truncate` command**](https://youtu.be/Byx4sgLR88E?si=FIZZo9nCBEC_kESm&t=6487): Used to shrink or extend the size of a file.
+
+    - **Syntax**:  
+      `truncate -s <size> filename.txt`
+
+    - **`-s <size>`**: Set or adjust the file size by specfied bytes.  
+      `<size>` can be:
+        - **Exact size**: `1000` (bytes)
+        - **With units**: `10K`, `5M`, `1G`
+        - **Relative**:  
+            - `+10K`: increase by 10 kilobytes  
+            - `-5M`: decrease by 5 megabytes
+
+    - **Examples**:
+        - `truncate -s 10M filename.txt`  
+          Set the file size to 10MB. If the file is smaller, it will be extended with null bytes; if larger, it will be shrunk.
+        - `truncate -s -5M filename.txt`  
+          Shrink the file by 5MB.
+        - `truncate -s +5M filename.txt`  
+          Extend the file by 5MB.
+
+    ✅ Bonus Options
+    | Option | Description                                   |
+    | ------ | --------------------------------------------- |
+    | `-r`   | Use size of a **reference  file**              |
+    | `-c`   | **Don't create** the file if it doesn't exist |
+    Example: 
+    ```shell
+    truncate -r reference.txt myfile.txt
+    ```
+    This makes  `myfile.txt` the same size as `reference.txt.`
+
+
 
 - [ fold command `fold -w<n>` ](https://youtu.be/Byx4sgLR88E?si=rvdZMxcECTngZ_gM&t=6617) 
     - this command used generally with other commands like echo 

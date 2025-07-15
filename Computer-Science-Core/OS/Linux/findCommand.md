@@ -51,3 +51,10 @@
         | Efficiency       | Slow on large numbers of files | Fast, fewer process calls          |
         | Limitation       | None, but slow                 | Limited by OS's max command length (ARG_MAX)|
 
+
+- [using `chmod` with `find` command to change permissions on all files inside directory at once](https://youtu.be/skTiK_6DdqU?si=Cb_VIRIhG1gN2bBd&t=1007)
+    - using a `find` command to correct permissions is a good practice.
+
+- [`find` for clear log files](https://youtu.be/skTiK_6DdqU?si=C8A_W0nONnpzZTle&t=1267)
+    - Example: `find /var/log -type f -name "*.log" -exec truncate -s 0 {} +;` will clear all `.log` files in the `/var/log` directory.
+    - This is useful for managing log files without deleting them.

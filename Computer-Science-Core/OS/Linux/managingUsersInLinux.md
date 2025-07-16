@@ -17,8 +17,16 @@
     - `id -u <username>`: to check only user id
     
     - by default this command may not create home directory for new user in some distributions, so it recommend to be explicit, and run this command with `-m` flag `sudo useradd -m username`
+
+    - `sudo useradd -u 1001 user`: for creating user with specific user id, here `1001` is the user id
     
+- [there is also `adduser` command](https://youtu.be/DmdyxEJdt3k?si=O1iSl7YJaU4tRAOK&t=497)
+    - `adduser` is a more user-friendly command for adding users, it prompts for additional information like password, full name, etc.
+
     - `su <username>`: to switch between users
+        - `logout` : to log out from the current user session
+        - `exit` : same, to exit the current shell session
+        - `CTRL + D` : same, to exit the current shell session
     
 - [Default user accounts](https://youtu.be/19WOD84JFxA?si=L5n-ye0dzJBNBkIH&t=607)
     - `cat /etc/default/useradd` - this file sets the default values for the `useradd` command
@@ -34,5 +42,6 @@
 - [creating system user, and why in first place](https://youtu.be/19WOD84JFxA?si=Tv1PDB5zCmrqVgXK&t=1247)
     - system user is useful when you have some sort of task that you wanna run in the background, shedule tasks/processes (like for automation)
     - `sudo useradd -r system_user`: for creating system user     
+    
 
 - [etsy shadow file '/etc/shadow' file](https://youtu.be/19WOD84JFxA?si=papv8V_2XhE4xX9F&t=1687)

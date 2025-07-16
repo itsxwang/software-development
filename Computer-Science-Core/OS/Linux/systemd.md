@@ -6,6 +6,9 @@ It is a common [Init system](https://youtu.be/Kzpm-rGAXos?si=W4h3EvkYXOxPEf0n&t=
 - when you start,reload,stop the process the request goes to init system and init system is what does the job of starting, stopping, reloading 
 
 
+- `sudo systemctl list-units --type=service -all`  
+    - this command will list all the services that are currently running on the system, and their status
+
 - [working with units](https://youtu.be/Kzpm-rGAXos?si=MST6WcLMwWkqlgoG&t=297)
     - units in systemd are resources that it's able to manage, includes services, timers, mounts, automounts
     - so units are something that systemd is able to manage, and service is a type of unit
@@ -24,7 +27,9 @@ It is a common [Init system](https://youtu.be/Kzpm-rGAXos?si=W4h3EvkYXOxPEf0n&t=
 
         - The systemd service files in Ubuntu/debain systems are located in several directories, each serving a specific purpose. The primary locations for system services are `/lib/systemd/system/` and `/etc/systemd/system/`.
  The `/lib/systemd/system/` directory contains the default unit files provided by system packages, while `/etc/systemd/system/` is used for user-defined or overridden service configurations
- `/run/systemd/system` : contains runtime systemd units
+ `/run/systemd/system` : contains runtime systemd units, runtime units means units that are created at runtime and not persistent across reboots, these units are created by systemd itself or by other processes during system operation(like cron jobs).
+ 
+
 - [Units Directory Priority](https://youtu.be/Kzpm-rGAXos?si=fkPI-hezP4lE-kiH&t=1247), means any directory that will be on top the systemd will give that directory more priority
  1. `/etc/systemd/system/`
  2. `/run/systemd/system/`
@@ -33,7 +38,6 @@ It is a common [Init system](https://youtu.be/Kzpm-rGAXos?si=W4h3EvkYXOxPEf0n&t=
  
     - Again difference between unit files and services files(specific), service files are part of unit files, unit file can be of extension `.service` or `.socket` or `.scope` or `.target` or `.mount` or `.automount` or `.path` or `timer` but service files are just have `.service` extension 
 
-    ls -l /lib/systemd/system | grep .swap | awk '{print $9}' | xargs -I{} cat /lib/systemd/system/{}
 
     - [why we have several different directories in which these unit file are stored: the reason they server different purposes](https://youtu.be/Kzpm-rGAXos?si=60ACk0zzpcWNliRL&t=1147)
 
@@ -44,7 +48,7 @@ It is a common [Init system](https://youtu.be/Kzpm-rGAXos?si=W4h3EvkYXOxPEf0n&t=
     - [Service section](https://youtu.be/Kzpm-rGAXos?si=icey4Rv6rnfGTxZo&t=1701)
 
 - [what is reload and how it differs from restart in systemd service units](https://youtu.be/Kzpm-rGAXos?si=QXkW-g_ghP2DDPwk&t=1827) 
-    - relaod is similar to restart but not similar to fully re start the service
+    - reload is similar to restart but not similar to fully re start the service
     - reoload will cause the process to reload its configuration files which enables new setting to take effect without user getting disconnected. 
     - But not every configuration change supports reload over restart
 

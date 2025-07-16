@@ -27,3 +27,9 @@ command used to view log files produced by the system processes and services. It
 - [shrinking log size with `vacuum`](https://youtu.be/0dG3vUYt7Uk?si=MFnXfhjtTDj9IaJh&t=1017)
     - this can be used to make journal entries to take the size we specified, but it will delete the entiries to achieve that size  
     - `journalctl --vacuum-size=100M` : shrink log size to 100MB
+
+---
+- [`/var/log` and `/var/log/syslog`](https://youtu.be/Ei276TjyxCA?si=QX3McGj-z2rOU5gQ&t=67)
+    - `/var/log` includes all kind of logging information, about your system, services, applications, etc.
+
+- low level information like related to kernel, hardware, etc. are stored in `/var/log/dmesg` or `/var/log/kern.log`.

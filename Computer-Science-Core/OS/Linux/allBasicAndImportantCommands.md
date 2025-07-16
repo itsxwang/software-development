@@ -12,12 +12,13 @@
 - Use | to pipe commands: `command1 | command2`
 - Chain commands with &&: `cmd1 && cmd2` (run cmd2 only if cmd1 succeeds)
 
+- root can do anything, so use `sudo` to run command as root, like `sudo apt install <package_name>`
+
 - Run any command after n number of seconds: using `(sleep n; command)&`
     - example: ```(sleep 1; echo "hello") &```\
     ✅ This will execute echo "hello" after 1 second, asynchronously in the background.
 
-
-
+- `command -v <command_name>`: Check if a command exists and show its path.
 
 ## Commands start
 - `whoami` : Shows the current user name.
@@ -68,6 +69,8 @@
 - mv: move file (used for cut-paste, rename file/folder, move dir(also comes in cut-paste))
 
 - head and tail: read first and last few lines of file, ex: `head -7 report.txt` will print first 7 lines of file, `tail -n 7 report.txt` will print last 7 lines of file
+
+- [tail follow mode](https://youtu.be/Ei276TjyxCA?si=eJS3zhLYiaLeEZAi&t=367) : `tail -f report.txt` will print last few lines of file and keep printing new lines as they are added to the file, like a live log file.To exit from tail follow mode, use `Ctrl+C`
 
 - [sort the content of the file](https://youtu.be/Byx4sgLR88E?si=uLBZKnLyetvd_9nY&t=1997)
 

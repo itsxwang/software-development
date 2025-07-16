@@ -3,6 +3,7 @@
     - The `find` command is very powerful and flexible, allowing you to perform complex searches.
 
 - `find  /path/to/search  -name "filename" -type f` is used to search for files by name.
+    - default path is the current directory (`.`).
     - Example: `find /home/user -name "file.txt"` will search for `file.txt` in the `/home/user` directory and its subdirectories.
 
 - [exclude some patterns using grep](https://youtu.be/skTiK_6DdqU?si=-9iZork6ZykRXmjA&t=287)
@@ -58,3 +59,7 @@
 - [`find` for clear log files](https://youtu.be/skTiK_6DdqU?si=C8A_W0nONnpzZTle&t=1267)
     - Example: `find /var/log -type f -name "*.log" -exec truncate -s 0 {} +;` will clear all `.log` files in the `/var/log` directory.
     - This is useful for managing log files without deleting them.
+
+- [find file that modified certain amount of time ago](https://youtu.be/zmlNuMKJSkc?si=lTlFgjn9tj58oOSk&t=567)
+    - Example: `find /path/to/search -mtime +7` will find files modified more than 7 days ago.
+    - `-mtime` can be used with `+` (more than) or `-` (less than) to specify the time range.

@@ -37,7 +37,8 @@ What is this AFTER and BEFORE means in triggers?
   FOR EACH ROW
   INSERT INTO audit_log (...) VALUES (...);
   ``` 
-✅ When to use, BEFORE vs AFTER triggers?:
+
+## ✅ When to use, BEFORE vs AFTER triggers?:
 | Use Case                                         | Trigger Type |
 | ------------------------------------------------ | ------------ |
 | Modify inserted/updated data                     | **BEFORE**   |
@@ -46,7 +47,41 @@ What is this AFTER and BEFORE means in triggers?
 | Cascading operations (insert into another table) | **AFTER**    |
 
 
+## ✅ Behavior by Trigger Type:
 
+| Trigger Type      | `NEW.column`         | `OLD.column`    |
+| ----------------- | -------------------- | --------------- |
+| **BEFORE INSERT** | value being inserted | ❌ Not available |
+| **AFTER INSERT**  | value inserted       | ❌ Not available |
+| **BEFORE UPDATE** | new value            | old value       |
+| **AFTER UPDATE**  | new value            | old value       |
+| **BEFORE DELETE** | ❌ Not available      | old value       |
+| **AFTER DELETE**  | ❌ Not available      | old value       |
+
+Note on After Triggers, you cannot do this: 
+You cannot modify `NEW.field1` in an AFTER trigger — MySQL will throw an error if you try.
+```sql
+CREATE TRIGGER sampl
+AFTER INSERT ON sam
+FOR EACH ROW
+SET NEW.field1 = 'override_val?'; -- ❌ Error: not allowed
+```
+✅ In AFTER triggers, the row is already inserted into the table, so:
+
+`NEW.field1` is read-only
+
+- You can use it to:
+  - Log
+  - Insert into audit tables
+  - Notify systems
+- But you cannot change its value post-insert( overhead and Risk recursion if not carefully managed (but MySQL prevents infinite **recursion** by default)).
+
+- Btw you can change indirectly using `update` statement, but Updating the same table in an AFTER trigger can: 
+  -  cause performance overhead  
+  -  risk of recursion if not carefully managed (but MySQL prevents infinite **recursion** by default).
+
+
+---
 
 
 - Show triggers: 
@@ -69,5 +104,4 @@ What is this AFTER and BEFORE means in triggers?
       END IF;
   END;
   ```
-  - `SQLSTATE '45000'` is a SQL error code that indicates a client-side error.
-  
+  - `SQLSTATE '45000'` is a SQL error code that indicates a client-side error. This also prevents the insert operation if the condition is not met.

@@ -59,7 +59,7 @@
         DETERMINISTIC -- to tell that this function is deterministic
         BEGIN
             DECLARE x type;
-            SELECT * FROM table_name WHERE column_name = p_1;
+            SELECT field1 INTO x FROM table_name WHERE column_name = p_1;
             RETURN x;
         END$$
         DELIMITER ;
@@ -69,6 +69,8 @@
           ```sql
              SHOW FUNCTION STATUS;
           ``` 
+          call function: `SELECT function_name(p_1);`
+      - Drop function: `DROP FUNCTION function_name;`
 
 - [sql window functions](https://youtu.be/Hy3qbMAoEJk?si=AkMweWLRkCnrMtRx&t=24057)
     - window functions are functions that operate on a window of rows. 

@@ -66,7 +66,7 @@ Note: If you want to execute a script, and without `x` permission, you can still
         - `w` = 2
         - `x` = 1
     - Example: `rwxr-xr--` → Owner: 7 (4+2+1), Group: 5 (4+0+1), Others: 4 (4+0+0) → `755`
-       - rwx(only user) = 7 (4+2+1) = 700(7*100), we multiply by 100 because user is in the 100s place.
+       - rwx(only user) = 7 (4+2+1) for user, 0 for group and others, that becomes `700`
 
     - **Octal Representation**: Permissions can also be represented in octal (base 8) format, where each triplet of permissions corresponds to a single digit.
         - `rwx` = 7
@@ -94,3 +94,10 @@ Note: If you want to execute a script, and without `x` permission, you can still
         - Example: `chown john:developers project.txt`: this changes the owner of `project.txt` to `john` and the group to `developers`.
     - To change ownership recursively, use `-R`:
         - Example: `chown -R user:group my_directory/` : this itself change ownership of `my_directory` and all files and directories inside it.
+
+- `chgrp`(`chown` can also did work of `chgrp`) : to change the group ownership of files and directories.
+    - Example: `chgrp group file.txt`
+        - Changes the group of `file.txt` to `group`.
+        - Example: `chgrp developers project.txt`: this changes the group of `project.txt` to `developers`.
+    - To change group ownership recursively, use `-R`:
+        - Example: `chgrp -R group my_directory/`: this changes the group of `my_directory` and all files and directories inside it.

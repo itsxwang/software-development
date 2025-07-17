@@ -19,7 +19,11 @@
     - by default this command may not create home directory for new user in some distributions, so it recommend to be explicit, and run this command with `-m` flag `sudo useradd -m username`
 
     - `sudo useradd -u 1001 user`: for creating user with specific user id, here `1001` is the user id
-    
+    - `sudo -i -u username`: to switch to the user, this will give you a root shell as that user, example `sudo -i -u john`. Same as `su username` 
+        - `-u`: run command or edit file as a specific user
+        - `-i`: Open an interactive login shell as `username`, which means it will load the user's environment variables and run the user's shell profile scripts. 
+    - `sudo -u username <command>`: Run a single command as `username`.
+
 - [there is also `adduser` command](https://youtu.be/DmdyxEJdt3k?si=O1iSl7YJaU4tRAOK&t=497)
     - `adduser` is a more user-friendly command for adding users, it prompts for additional information like password, full name, etc.
 

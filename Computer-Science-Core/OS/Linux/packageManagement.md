@@ -30,6 +30,7 @@
 
 - after updating repo index, we can install packages and update existing packages if update is available
     - ```sudo apt install package_name```
+    - `-yes` flag can be used to automatically answer "yes" to prompts during installation
     - ```sudo apt upgrade```: for updating existing packages, that not require any packages to install or remove
     - ```sudo apt dist-upgrade```: for updating existing packages, that also require packages to install or remove
     - ```apt full-upgrade```: same as `dist-upgrade`, but more user-friendly and recommended for most users.

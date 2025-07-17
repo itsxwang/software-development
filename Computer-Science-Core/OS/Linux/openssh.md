@@ -37,6 +37,8 @@
     - This is not a client-side SSH connection — it's a service/daemon that listens on port 22.
 
 - Second: `ssh username@ipaddress`
+    - you can omit username if you are using the same username on both machines, then it will automatically connect to the remote machine using the same username as your local machine.
+
     - To connect to remote machine using specific private key that corresponds to public key you copy to that remote machine, you wanna connect: `ssh -i ~/.ssh/<privateKeyCorrespondingToPublicKey> username@remoteMachineIp` 
     - then to check if it is connected you can use `w` or `who` command 
       - this Shows who is logged in and from where.
@@ -157,7 +159,7 @@ Enter passphrase (optional): [Press Enter or type one]
 
 
 What it does:
-- Copies your public key (`~/.ssh/id_ed25519.pub)` to the remote machine in `authorized_keys` folder.
+- Copies your public key `~/.ssh/id_ed25519.pub` to the remote machine in `authorized_keys` folder.
 - Adds it to `~<UserYouSSHAs>/.ssh/authorized_keys` on the remote system.
 - This means the remote SSH server now trusts your private key to log in.
 

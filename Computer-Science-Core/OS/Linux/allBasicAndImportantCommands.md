@@ -242,6 +242,14 @@ And this pipe way `|` can be used to combine multiple commands
     - `scp /path/where/file/is/located user@hostname:/tmp/` -> from local to remote
 
     - `scp user@hostname:/path/where/file/is/located /tmp/` -> from remote to local
+    - `-r if its a directory`: `scp -r /path/to/local/dir user@hostname:/path/to/remote/dir`
+    - `-P <port>`: if ssh is running on a different port, use `-P <port_number>` to specify the port.
+    -  `-i <path_to_private_key>`: if you are using a private key for authentication, use `-i <path_to_private_key>` to specify the key file. 
+    - `-p`: preserve file attributes like timestamps and permissions.
+    - `-C`: enable compression during transfer.Basically it zips the data during transfer to save bandwidth.
+    - if you omit the username, it will use the current logged-in user(the user you are logged in on your local machine) to connect to the remote server.
+    - if you do not specify a remote path, it will default to the home directory of the user on the remote server.
+
 
 - [permissions in linux demestified](https://youtu.be/T269zebUSj8?si=zav0xpAy04iRhuCf&t=57)
 
@@ -318,6 +326,7 @@ If just type `passwd` or `sudo passwd` it assumes you wanna change password for 
 - Networking commands:
 - `ip a` : ip can be found here , and `hostname -I` 
 - check if server or website is accesible or not : `ping <websiteOrIP>`
+- specific numbers of ping: `ping -c 5 <websiteOrIP>` (ping 5 times) 
 
 - [how to check if ip port is accesible and open or not](https://youtu.be/Byx4sgLR88E?si=o3TV06eBWSODj9wv&t=9157) 
     - `telnet IP PORT`

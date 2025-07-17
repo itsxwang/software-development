@@ -61,5 +61,7 @@
     - This is useful for managing log files without deleting them.
 
 - [find file that modified certain amount of time ago](https://youtu.be/zmlNuMKJSkc?si=lTlFgjn9tj58oOSk&t=567)
-    - Example: `find /path/to/search -mtime +7` will find files modified more than 7 days ago.
+    - Example: `find /path/to/search -name "filename" -mtime +7` will find files modified more than 7 days ago.
     - `-mtime` can be used with `+` (more than) or `-` (less than) to specify the time range.
+    example: `-mtime -7` will find files modified in the last 7 days.
+    `+7` will find files modified more than 7 days ago.

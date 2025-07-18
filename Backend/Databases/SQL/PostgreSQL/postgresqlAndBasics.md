@@ -76,17 +76,6 @@ An organized collection of data that can be easily accessed, managed, and update
   \dt
   ```
 
-- **Show all tables in all schemas:**
-
-  ```
-  \dt *
-  ```
-
-- **Show all views in the current database:**
-
-  ```
-  \dv
-  ```
 
 - **Show all users:**
 
@@ -98,11 +87,6 @@ An organized collection of data that can be easily accessed, managed, and update
 
 ### SQL Queries
 
-- **Show all tables in the `public` schema:**
-
-  ```sql
-  SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';
-  ```
 
 - **Show all tables in a specific schema:**
 

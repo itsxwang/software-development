@@ -15,7 +15,7 @@
 Example: If you wanna only see 2 and 5th line
    -  `sed -n -e '2p' -e '5p' file_name`
 
-- How to see next 4 lines from 2nd line?
+- How to see next 4 lines from more after 2nd line?
     - `sed -n '2,+4p' file_name` : print 5 lines including the 2nd line.
 
 
@@ -54,7 +54,7 @@ Example: If you wanna only see 2 and 5th line
 - How to add new line before a given string, so it will add text before Paul?
     - `sed '/Paul/ i new_text' file_name` : it basically like opposite of `a`. Add new_text above all line contain pattern `Paul`.
 
-- How to edit existing line instead of adding new line?
+- How to edit existing line instead of ad ding new line?
     - `sed '5 c new_text' file_name`: and existing line will be replaced.
 
 - How to read content from a file and use in our command?

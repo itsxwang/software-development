@@ -3,6 +3,8 @@
 - `!!` repeat previous command
 - `!$` last argument of previous command, if not called with any argument then that command itself
 - `$?` is a special variable that holds the return value of the last command(or we can say the exit code of the last command) 
+- `$0`: name of the current shell script(if running any shell script), if you're in an interactive shell(and not running any shell script) (like zsh or bash), then it give shell name 
+
     - command that not produce 0 is an error, and any command with exit code 0 is success
 - `Ctrl+C` to stop current command
 - `Ctrl+Z` to pause current command
@@ -33,7 +35,7 @@
     - `>>` this will append the output of the command to the file, in new line
     - `<` : The `<` operator is a stdin redirection. `< file` 	Redirect file contents as stdin to the command
 
-- change shell : `chsh -s /bin/<shell_name>`
+- change shell : `chsh -s /bin/<shell_name>`: `-s` specify new login shell
 - list all available shells : `cat /etc/shells`
 - show current shell : `echo $SHELL`
 
@@ -66,7 +68,7 @@
    - `cd -` : go to previous directory (from where you last time use cd) , its same as `cd $OLDPWD`
    - `cd<enter>`: go to home directory
 
-- stat command: `stat <filename>` : will show file size, last modified time, and other info about the file, you will mainly want to use it for seeing when file is created(Birth) or access last time.
+- `stat` command: `stat <filename>` : will show file size, last modified time, and other info about the file, you will mainly want to use it for seeing when file is created(Birth) or access last time.
 
 - cp: copy file, or make copy of file, like `cp report.txt report_copy.txt`
 - mv: move file (used for cut-paste, rename file/folder, move dir(also comes in cut-paste))
@@ -79,16 +81,19 @@
 
 - only unique lines: `uniq report.txt` or `sort -u report.txt` or using this command [`sort(or any file read command) report.txt | uniq`](https://youtu.be/Byx4sgLR88E?si=9bZ3JO12zyJm-lZg&t=2137)
 The pipe way explanation: the output of the `sort` command is piped to the `uniq` command, means become input for `uniq` command.
-And this pipe way `|` can be used to combine multiple commands
+And this pipe way `|` can be used to combine multiple commands. But only those command support this piping which can takes stdin, some commands only take command line arguments.  
 
 - [split file in linux](https://youtu.be/Byx4sgLR88E?si=we5MHjGmEtMjbGBc&t=2207)
+    `split -l 7 filename`: split the file into multiple files put 7 lines in each file 
 
 - [search word and show matching content(show line in which pattern is present) from a file](https://youtu.be/Byx4sgLR88E?si=f6yQUC1hCcfV5lQP&t=2307)
     - `grep -v "pattern" <filename>`: will show lines in which pattern is not present
     - use `egrep` command, for more complex regex patterns, like for search multiple words in file
+        - egrep 'pattern1|pattern2...' filename
     - We can also Use `egrep` (and `grep`)  without pipe , `egrep "pattern" <filename>`
     
 - [`tee` command](https://youtu.be/uF7hFCThf4g?si=Snf_OpbpQAZ2-8xB&t=707): takes stdin and copies it to both stdout and a file
+    - `tee filename.txt`
 
 - [xargs](https://youtu.be/uF7hFCThf4g?si=vBbqLCJBkNXJo3Ld&t=897): takes stdin as command line arguments and passes it to a command
 

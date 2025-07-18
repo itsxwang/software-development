@@ -60,6 +60,8 @@
         - Sorts files by modification time, with the most recently modified files first. (`-r` to reverse the sort order)
     combined `ls -lt` : Lists files in long format, sorted by time, newest first. `-h` can be used fpr human-readable sizes.
         
+
+see how much time take by command: `time <command>`
     
 
 - working with file system
@@ -93,13 +95,14 @@ And this pipe way `|` can be used to combine multiple commands. But only those c
     - We can also Use `egrep` (and `grep`)  without pipe , `egrep "pattern" <filename>`
     
 - [`tee` command](https://youtu.be/uF7hFCThf4g?si=Snf_OpbpQAZ2-8xB&t=707): takes stdin and copies it to both stdout and a file
-    - `tee filename.txt`
+    - `cat filename.txt | tee output.txt` will copy content of file to output.txt and also print it to stdout
 
 - [xargs](https://youtu.be/uF7hFCThf4g?si=vBbqLCJBkNXJo3Ld&t=897): takes stdin as command line arguments and passes it to a command
 
 - [use wild card in linux, basically *, ?, {n..n} , can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
-    - `touch file{1..7}` create 7 files, 
-    - ls x* show all folders/files start with `x`
+    - `touch file{1..7}` create 7 files, with name `file1`, `file2`...`file7` . 
+    
+    - `ls x*` show all folders/files start with `x`
 
 - [shuffle content of the file](https://youtu.be/Byx4sgLR88E?si=K5AQoMEJmHBqRB7-&t=2707)
 

@@ -10,6 +10,8 @@
 - `Ctrl+R` to search command history
 
 - Use | to pipe commands: `command1 | command2`
+    - [More about piping](https://youtu.be/uF7hFCThf4g?si=36NnDEwXDdHET949&t=47)
+
 - Chain commands with &&: `cmd1 && cmd2` (run cmd2 only if cmd1 succeeds)
 
 - root can do anything, so use `sudo` to run command as root, like `sudo apt install <package_name>`
@@ -29,6 +31,7 @@
     - ex: `ls > file.txt` or `ls -l > file.txt`
     - `>` this will write the output of the command to the file
     - `>>` this will append the output of the command to the file, in new line
+    - `<` : The `<` operator is a stdin redirection. `< file` 	Redirect file contents as stdin to the command
 
 - change shell : `chsh -s /bin/<shell_name>`
 - list all available shells : `cat /etc/shells`
@@ -85,6 +88,10 @@ And this pipe way `|` can be used to combine multiple commands
     - use `egrep` command, for more complex regex patterns, like for search multiple words in file
     - We can also Use `egrep` (and `grep`)  without pipe , `egrep "pattern" <filename>`
     
+- [`tee` command](https://youtu.be/uF7hFCThf4g?si=Snf_OpbpQAZ2-8xB&t=707): takes stdin and copies it to both stdout and a file
+
+- [xargs](https://youtu.be/uF7hFCThf4g?si=vBbqLCJBkNXJo3Ld&t=897): takes stdin as command line arguments and passes it to a command
+
 - [use wild card in linux, basically *, ?, {n..n} , can with ls, touch, cp, mv, and etc command](https://youtu.be/Byx4sgLR88E?si=WbSRwjPqPPjC5c2B&t=2517)
     - `touch file{1..7}` create 7 files, 
     - ls x* show all folders/files start with `x`

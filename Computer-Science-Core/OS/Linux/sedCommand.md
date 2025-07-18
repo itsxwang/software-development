@@ -1,4 +1,5 @@
 - How to show only a given line or range of lines?
+
     - `sed -n '1p' file_name`
     - `sed -n '1,5p' file_name`
     - `sed -n '$p' file_name` # show last line
@@ -48,5 +49,58 @@ Example: If you wanna only see 2 and 5th line
 
 - append data after ceratin line
     - `sed '7 a Hello' file_name`: this will append "Hello" after the 7th line in file_name.
-    - after pattern `sed '/pattern/ a Hello' file_name`: this will append "Hello" after the first line that matches the pattern.
+    - after pattern `sed '/pattern/ a Hello' file_name`: this will append "Hello" after a line where the pattern will be found.
 
+- How to add new line before a given string, so it will add text before Paul?
+    - `sed '/Paul/ i new_text' file_name` : it basically like opposite of `a`. Add new_text above all line contain pattern `Paul`.
+
+- How to edit existing line instead of adding new line?
+    - `sed '5 c new_text' file_name`: and existing line will be replaced.
+
+- How to read content from a file and use in our command?
+   - `sed '3 r externalfile' file_name`: this will read the content of externalfile and put the content of that after 3rd line in file_name.
+
+- How to see the hidden characters?
+    - `sed -n 'l' file_name`: this will show the hidden characters like end of the `$` for end of the line .
+
+
+- How to wrap your file content with given no. of characters?
+    - `sed 'w7' file_name`: 7 characters per line
+
+- How to stop execution of sed command as soon as first occurance found or in given line?
+    - `sed ‘/India/ q’ file_name`: stop execution as soon as India found
+    - `sed ‘5 q’ file_name`  (stop execution at line 5)
+
+
+- put specific command output on certain line 
+    - `sed '7 e command' file_name` : this will put command output on 7th line.(if anything present on 7th line will go above)
+
+
+
+- How to see the line number in file?
+    - `sed '=' file_name`
+
+- [regex in sed](https://youtu.be/ETF6CapGAvc?si=15WXsPLQH34xrcvc&t=1947)
+    - ^   start of line
+    - $   end of line
+    - .   single character
+    - []  match character set
+    - [^] exclusive Set 
+    - \*   zero or more occurance
+    
+    - give every line where pattern found in start of the line
+        - `sed -n '/^pat/p' file_name`  
+        - `sed -n '/[AG]/p' file_name`  : match any lines start with A and G
+        - - `sed -n '/[A-G]/p' file_name`: match any lines start with A to G
+        
+    - give every line where pattern found in end of the line
+        - `sed -n '/pat$/p' file_name`
+        
+- POSIX Classes
+    - `sed -n  '/[[:digit:]]/p' file_name` : match any digit
+    - `sed -n  '/[[:alpha:]]/p' file_name` : match any alphabet
+    - `sed -n  '/[[:alnum:]]/p' file_name` : match any alphabet or digit
+    - `sed -n  '/[[:lower:]]/p' file_name` : match any lowercase letter
+    - `sed -n  '/[[:upper:]]/p' file_name` : match any uppercase letter
+    - `sed -n  '/[[:punct:]]/p' file_name` : match any punctuation symbol
+    - `sed -n  '/[[:space:]]/p' file_name` : match any whitespace character    

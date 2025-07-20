@@ -27,6 +27,8 @@ Example: If you wanna only see 2 and 5th line
 
 - How to replace a word in a file and show?
    - `sed 's/<string_to_change>/<new_string>/g' file_name`: if you exclude `g`, it will only replace the first occurrence in each line.
+   - `/` is here the delimeter, but any character that follow `s` becomes delimeter.
+
 
 - How to replace a word in a file and show except a given line or only in given line?
    - `sed '5 s/<string_to_change>/<new_string>/g' file_name`: replace in 5th line only.
@@ -104,3 +106,77 @@ Example: If you wanna only see 2 and 5th line
     - `sed -n  '/[[:upper:]]/p' file_name` : match any uppercase letter
     - `sed -n  '/[[:punct:]]/p' file_name` : match any punctuation symbol
     - `sed -n  '/[[:space:]]/p' file_name` : match any whitespace character    
+
+---
+In GNU `sed`, these transformations exist:
+| Code | Meaning                                                |
+| ---- | ------------------------------------------------------ |
+| `\U` | Start converting following characters to **uppercase** |
+| `\u` | Convert **next character** to uppercase                |
+| `\L` | Start converting following characters to **lowercase** |
+| `\l` | Convert **next character** to lowercase.            &  |
+| `\E` | End case conversion                                    |
+
+`&` → refers to the matched character, means the character that is matched by the regular expression.
+
+### Examples
+
+**To uppercase:**
+```bash
+sed 's/[a-z]/\U&/g' file
+```
+
+**To lowercase:**
+```bash
+sed 's/[A-Z]/\L&/g' file
+```
+
+### Full line examples
+
+**Uppercase full line:**
+```bash
+sed 's/.*/\U&/' file
+```
+same will happen as first 
+
+**Lowercase full line:**
+```bash
+sed 's/.*/\L&/' file
+```
+same will happen as second 
+
+`\u` — Uppercase the next character
+```bash
+sed 's/hello/\u&/' temp
+```
+Effect: Capitalizes only the first letter of the match:
+
+```
+Hello world
+```
+
+
+`\l` — Lowercase the next character
+```bash
+sed 's/WORLD/\l&/' temp
+```
+Effect: Lowercases only the first character of the match:
+
+```
+hello wORLD
+```
+
+`\E` — End case conversion
+```bash
+sed 's/hello/\U&\E world/' temp
+```
+Effect: Converts the match only to uppercase and the rest to lowercase:
+```
+HELLO world
+```
+
+---
+
+sed can take stdin
+- ex: `echo "hello world" | sed 's/hello/\U&/'`
+it will print `HELLO world`

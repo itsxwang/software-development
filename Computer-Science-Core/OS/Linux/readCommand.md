@@ -160,7 +160,7 @@ Waits 5 seconds; if no input, prints "Timed out".
 - **Subshell Issue:** When using pipes (`|`), `read` runs in a subshell, so variables may not persist in the parent shell. Workaround:
 
     ```bash
-    read name age < <(echo "Alice 25")
+    read name age <<(echo "Alice 25")
     ```
 
 - **Use `-r`:** Prevents issues with backslashes (e.g., `read -r` treats `\n` as literal `\n`).

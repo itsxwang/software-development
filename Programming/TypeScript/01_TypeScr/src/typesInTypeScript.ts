@@ -210,6 +210,7 @@ enum Color {
     c       // Auto-increments to 3
 }
 let myColor: Color = 2; // so myColor can only contain 1,2,3 
+let me = Color[2]
 
 // Unknown Type
 // ------------------------------------------------------------

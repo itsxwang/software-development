@@ -46,6 +46,7 @@ interface User {
   // Type Aliases can define primitives, tuples, unions, and function types:
   type ID = string | number; // ✅ Works with union types
   type Coordinates = [number, number]; // ✅ Works with tuples
+ 
   
   // Interfaces cannot do this.
   

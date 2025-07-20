@@ -32,7 +32,7 @@ else if (typeof unknownType === "function") {
     unknownType();
 }
 
-// or can do this also 
+// or can do this also, basically type assertion
 (unknownType as string).toUpperCase();
 (unknownType as number).toFixed();
 (unknownType as Function)();

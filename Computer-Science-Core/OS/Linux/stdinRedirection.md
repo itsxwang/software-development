@@ -60,3 +60,22 @@ Output: `banana apple cherry`
 
 - If a command expects stdin but doesn’t receive it (e.g., no file or pipe provided), it may wait indefinitely for keyboard input unless designed to exit.
 - Some commands (like `echo`) don’t read from stdin, so redirection to them has no effect.
+
+---
+
+### Difference Between `command < filename` and `command filename`
+
+The difference lies in how input is provided to the command:
+
+| Aspect                | `command filename`                        | `command < filename`                  |
+|-----------------------|-------------------------------------------|---------------------------------------|
+| How input is given    | Filename is passed as an argument         | File content is redirected to stdin   |
+| Command requirement   | Must accept and open file arguments       | Must read from standard input (stdin) |
+| Example               | `cat file.txt`                            | `cat < file.txt`                      |
+| Output differences    | May include filename in output (e.g., `wc file.txt` shows counts + filename) | Usually omits filename (e.g., `wc < file.txt` shows counts only) |
+
+**Summary:**
+- `command filename` passes the filename as an argument; the command must handle file arguments.
+- `command < filename` redirects the file's content to the command's standard input; the command reads from stdin.
+
+For many commands (like `cat` or `sort`), both forms produce the same result. However, some commands (like `wc`) may display different output depending on whether a filename is provided as an argument.

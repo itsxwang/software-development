@@ -168,7 +168,7 @@ And this pipe way `|` can be used to combine multiple commands. But only those c
 - [how to start/stop/list service on linux](https://youtu.be/Byx4sgLR88E?si=A3eib70KbguyO4vq&t=5137)
     - `systemctl start/stop/restart/enable/disable service_name`
     - `service service_name start/stop/restart/enable//disable`
-    - list all services: `systemctl li/restart/enable/disablest-units --type=service --all`
+    - list all services: `systemctl list-units --type=service --all`
     - check service status: `systemctl status service_name` or `service <service_name> status`
 
 - [how to list all environement variables in linux](https://youtu.be/Byx4sgLR88E?si=un8qbRruFPyZV9M1&t=5357)
@@ -185,7 +185,7 @@ And this pipe way `|` can be used to combine multiple commands. But only those c
       check: `printenv | grep <nameOfVariable>`
 
 - [print specific column from csv file](https://youtu.be/Byx4sgLR88E?si=8ma_p9WMu9BlITf4&t=5877)
-    ```awk -F , '{print $2}' <filename.csv>```
+    ```awk -F , '{print $2}' <filename.csv>```: `-F` define input field separator by extended regex
 
 - [display specify number of characters of all line](https://youtu.be/Byx4sgLR88E?si=87PzQPudwhMMYcYj&t=6067)
   - `cut -c1-10 <filename.txt>` : will display first 10 characters of all line 
@@ -279,6 +279,7 @@ And this pipe way `|` can be used to combine multiple commands. But only those c
     - `chown <new_owner_username> <filename.txt>` : will change ownership of the file to new owner
 - [how to change group ownership of the resource(`chgrp`)](https://youtu.be/Byx4sgLR88E?si=2bqQ8WlNXjBnqpjN&t=7627)
     -  `chgrp <group_name> <filename.txt>`: anyone in the `<group_name>` will get group level access to the resource
+        - `chown` can also change group: `chown user:group filename`
 
 - [Memory info commands in linux](https://youtu.be/Byx4sgLR88E?si=Hx0MoZediIfkz-34&t=7657)
     - Check free RAM space: The full form of RAM is **Random Access Memory**.

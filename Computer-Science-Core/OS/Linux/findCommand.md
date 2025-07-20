@@ -64,4 +64,4 @@
     - Example: `find /path/to/search -name "filename" -mtime +7` will find files modified more than 7 days ago.
     - `-mtime` can be used with `+` (more than) or `-` (less than) to specify the time range.
     example: `-mtime -7` will find files modified in the last 7 days.
-    `+7` will find files modified more than 7 days ago.
+   

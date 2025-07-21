@@ -39,6 +39,8 @@
 - list all available shells : `cat /etc/shells`
 - show current shell : `echo $SHELL`
 
+- [a-z] [A-Z] [0-9] [A-Za-z0-9]: when unquoted, used for globbing(filenam-matching) in shell 
+   - example: `ls [a-z]*` will list all files starting with any lowercase letter, `*` means one or more occurrences of any character after the first lowercase letter 
 
 - see [date and time commands](https://youtu.be/Byx4sgLR88E?si=vYF4d-VmfXLq7B8T&t=207)  
 

@@ -1,0 +1,2 @@
+- [`lsof`(list open files) command](https://youtu.be/n9nZ1ellaV0?si=Q6mcBLNor5BPIqrQ&t=47)
+    - use to list all open files and the processes that opened them

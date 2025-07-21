@@ -83,6 +83,12 @@ An organized collection of data that can be easily accessed, managed, and update
   \du
   ```
 
+- describe a table:
+
+  ```
+  \d table_name
+  ```
+
 ---
 
 ### SQL Queries

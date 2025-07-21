@@ -51,7 +51,7 @@
   - Modify column `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100);`
   - Wanna change column name also at the same time `ALTER TABLE table_name CHANGE oldname newname VARCHAR(100);`
 
-    - Note: `CHANGE` is used to change both name and type of column, if you just want to change type use `MODIFY COLUMN`
+    - Note: `CHANGE COLUMN` is used to change both name and type of column, if you just want to change type use `MODIFY COLUMN`
   - Change position of column 
       - `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100) FIRST;`
       - `ALTER TABLE table_name MODIFY COLUMN field1 VARCHAR(100) AFTER field2;`

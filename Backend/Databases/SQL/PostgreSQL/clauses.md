@@ -74,3 +74,5 @@ where clause:
     ```sql
     SELECT * FROM employees ORDER BY salary LIMIT 10 OFFSET 20; -- skips the first 20 records and returns the next 10
     ```
+
+

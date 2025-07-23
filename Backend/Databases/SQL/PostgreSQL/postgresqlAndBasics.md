@@ -12,13 +12,11 @@ An organized collection of data that can be easily accessed, managed, and update
 - **RDBMS (Relational Database Management System):** A type of DBMS that stores data in a structured format using rows and columns. It uses SQL (Structured Query Language) for managing and querying data.  
   _Examples: PostgreSQL, MySQL, SQLite, etc._
 
-
 ## DB vs Schema vs Table
 
 - **DB (Database):** A collection of related data.
 - **Schema:** A logical container within a database that holds tables, views, and other database objects. It helps organize and manage database objects.
 - **Table:** A structured format within a schema that holds data in rows and columns.
-
 
 ---
 
@@ -76,7 +74,6 @@ An organized collection of data that can be easily accessed, managed, and update
   \dt
   ```
 
-
 - **Show all users:**
 
   ```
@@ -92,7 +89,6 @@ An organized collection of data that can be easily accessed, managed, and update
 ---
 
 ### SQL Queries
-
 
 - **Show all tables in a specific schema:**
 
@@ -144,4 +140,49 @@ An organized collection of data that can be easily accessed, managed, and update
 
   ```sql
   CREATE DATABASE new_database;
+  ```
+
+- if else in postgresql:
+
+  ```sql
+  DO $$ -- defines a an anonymous code block
+  BEGIN
+      IF true THEN -- condition
+           RAISE NOTICE 'Hello, World!'; -- to prints a message to the console, from an anonymous code block
+      END IF;
+      -- else if condition
+      IF false THEN
+           RAISE NOTICE 'This will not be printed.';
+      ELSE
+           RAISE NOTICE 'This is the else block.';
+      END IF;
+  END $$;
+  ```
+
+- case when in postgresql:
+
+  ```sql
+  SELECT
+      CASE
+          WHEN condition1 THEN result1
+          WHEN condition2 THEN result2
+          ELSE default_result
+      END AS alias_name
+  FROM table_name;
+  ```
+
+  Example:
+
+  ```sql
+  SELECT
+    COUNT(emp_id) ,
+    CASE
+      WHEN salary >= 1000000 THEN 'Very High'
+      ELSE 'High'
+    END AS sal_category
+  FROM
+    employees
+  GROUP BY
+    sal_category
+  ;
   ```

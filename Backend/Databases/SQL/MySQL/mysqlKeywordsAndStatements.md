@@ -77,6 +77,6 @@
 - [`rollup`](https://youtu.be/5OdVJbNCSso?si=6yeUG6ueRwHXdaYM&t=8597)
   - rollup is a extension of `group by` clause, it gives total of values(grand total(super aggregate value)) of all numeric columns.
   - used with `group by` clause: give total of values of all numeric columns
-  - ```
-      SELECT column_name1, count(fieldName) FROM table_name GROUP BY column_name1 WITH ROLLUP;
-    ```
+    ```sql
+    SELECT column_name1, count(fieldName) FROM table_name GROUP BY column_name1 WITH ROLLUP;
+      ```

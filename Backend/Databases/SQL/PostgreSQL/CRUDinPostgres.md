@@ -34,6 +34,12 @@ CREATE TABLE example_table (
 );
 
 
+- rename the table
+
+```sql
+ALTER TABLE users RENAME TO new_users;
+```
+
 - unique constraint can be added to a column to ensure that all values in the column are different.
 
     ```sql
@@ -49,7 +55,8 @@ ALTER TABLE table_name ALTER COLUMN col_name SET DEFAULT nextval('users_id_seq')
 add not null to the column if you want to ensure that it cannot be null.
 
 ```sql
-ALTER TABLE users ALTER COLUMN col_name SET NOT NULL DEFAULT 'default_value';
+ALTER TABLE users ALTER COLUMN col_name SET NOT NULL,
+ALTER COLUMN col_name SET DEFAULT 'default_value';
 ```
 
 Alter multiple columns
@@ -57,6 +64,20 @@ Alter multiple columns
 ```sql
 ALTER TABLE table_name ALTER COLUMN column_name1 TYPE new_data_type, ALTER COLUMN column_name2 TYPE new_data_type;
 ```
+
+Add and drop columns
+
+```sql
+ALTER TABLE table_name ADD COLUMN new_column_name data_type;
+ALTER TABLE table_name DROP COLUMN column_name;
+```
+
+Rename a column
+
+```sql
+ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+```
+
 
 change the default value of a column after the table has been created:
 
@@ -96,6 +117,9 @@ Selecting data from the table
 
 ```sql
 SELECT * FROM users;
+-- or
+SELECT * from users e; -- alias now we can write e.field, `as` is optional
+
 ```
 
 ```sql

@@ -31,3 +31,26 @@ Constraint: rules in postgres that apply to the column.
 
 - [auto increment](https://youtu.be/cnzka7kF5Zk?si=gPOq5joaxn4nyJQq&t=3597)
 
+- [check constraint](https://youtu.be/cnzka7kF5Zk?si=pZbWaZdbTp81y-II&t=9067) 
+    - two ways to add check constraint:
+        - at the time of table creation
+        ```sql
+        CREATE TABLE employees (
+            employee_id SERIAL PRIMARY KEY,
+            name VARCHAR(100),
+            salary NUMERIC(10, 2) CHECK (salary > 0)
+            -- or 
+            CONSTRAINT salary_positive CHECK (salary > 0)
+        );
+        ```
+        - after table creation
+        ```sql
+        ALTER TABLE employees ADD CONSTRAINT salary_positive CHECK (salary > 0);
+        ```
+
+    - Drop check constraint:
+        ```sql
+        ALTER TABLE employees DROP CONSTRAINT salary_positive;
+        ```
+        `\d table_name;` -- to see the constraints of the table
+            

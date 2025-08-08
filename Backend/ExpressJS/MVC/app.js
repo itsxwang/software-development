@@ -1,9 +1,11 @@
 const path = require('path'); 
+// const mongoose = require('mongoose');
 
 const express = require('express');
 
 const hostRouter = require('./routes/hostRouter');
 const storeRouter = require('./routes/storeRouter');
+const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -23,7 +25,8 @@ app.use((req, res)=> {
     res.status(404).render('404', {pageTitle: 'Page Not Found'});
 });
 
+mongoose.connect("")
 
 app.listen(7000, () => {
-    console.log('Server started on port http://localhost:7000');
+    console.log('Server started on port http://localhost:7000'); 
 });

@@ -14,6 +14,11 @@
   .animate-fade-in-menu {
     animation: fade-in-menu 0.3s ease-out;
   }
+  /* @media (max-width: 695px) {
+      #menu {
+        margin-inline: 0;
+      }
+  } */
 </style>
 
 <nav class="bg-white shadow sticky top-0 z-10 animate-slide-down">
@@ -30,7 +35,7 @@
 
     <!-- Navigation Links -->
     <ul id="menu"
-      class="sm:flex sm:space-x-4 hidden flex-col sm:flex-row absolute sm:static top-16 left-0 w-full sm:w-auto bg-white sm:bg-transparent p-4 sm:p-0 space-y-3 sm:space-y-0 sm:items-center">
+      class="sm:flex sm:space-x-1 md:space-x-4  hidden flex-col sm:flex-row absolute sm:static top-16 left-0 w-full sm:w-auto bg-white sm:bg-transparent p-4 sm:p-0 space-y-3 sm:space-y-0 sm:items-center whitespace-nowrap ">
       <li>
         <a href="/"
           class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'home' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Home</a>

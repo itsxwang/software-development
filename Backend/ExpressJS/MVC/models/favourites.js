@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const { rootDir } = require("../utils/pathUtil");
+const mongoose = require("mongoose");
 
 const favouriteDataPath = path.join(rootDir, "data", "favourites.json");
+
 
 module.exports = class Favourite {
   constructor(homeId) {

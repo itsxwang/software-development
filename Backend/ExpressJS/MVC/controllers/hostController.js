@@ -6,15 +6,22 @@ const fs = require("fs");
 const { rootDir } = require("../utils/pathUtil");
 
 exports.getaddHome = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   const editing = false;
   res.render(path.join("host", "edit-home"), {
     editing,
     currentPage: "addHome",
     pageTitle: "Add Home",
+    isLoggedIn : req.session.isLoggedIn
   });
 };
 
 exports.postAddHome = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   const { name, description, address, price } = req.body;
   const image = req.file ? "/uploads/" + req.file.filename : "";
   const home = new Home({
@@ -30,16 +37,23 @@ exports.postAddHome = (req, res) => {
 };
 
 exports.gethostHomes = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   Home.find().then((homes) => {
     res.render(path.join("host", "host-homes"), {
       homes: homes,
       currentPage: "hostHomes",
       pageTitle: "Host Homes",
+      isLoggedIn : req.session.isLoggedIn
     });
   });
 };
 
 exports.geteditHome = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   const editing = true;
   Home.findById(req.params.id).then((home) => {
     if (!home) {
@@ -50,11 +64,15 @@ exports.geteditHome = (req, res) => {
       editing,
       currentPage: "editHome",
       pageTitle: "Edit Home",
+      isLoggedIn : req.session.isLoggedIn
     });
   });
 };
 
 exports.posteditHome = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   const id = req.params.id;
   Home.findById(id).then((home) => {
     if (!home) {
@@ -89,14 +107,21 @@ exports.posteditHome = (req, res) => {
 };
 
 exports.deleteListingConfirmation = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   res.render(path.join("host", "delete-home-confirmation"), {
     id: req.params.id,
     currentPage: "deleteHome",
     pageTitle: "Delete Home",
+    isLoggedIn : req.session.isLoggedIn
   });
 };
 
 exports.deleteHome = (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/auth/login");
+  }
   Home.findByIdAndDelete(req.params.id).then((home) => {
     // Delete home image if it exists
     const imagePath = path.join(rootDir, "public", home.image);

@@ -34,6 +34,5 @@ router.get("/bookings", (req, res) => {
 });
 
 
-
-
+https://www.knowledgegate.ai/courses/...
 module.exports = router;

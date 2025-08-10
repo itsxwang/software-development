@@ -4,7 +4,6 @@
       opacity: 0;
       transform: translateY(-10px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
@@ -14,55 +13,87 @@
   .animate-fade-in-menu {
     animation: fade-in-menu 0.3s ease-out;
   }
-  /* @media (max-width: 695px) {
-      #menu {
-        margin-inline: 0;
-      }
-  } */
+
+  /* Hamburger to X animation */
+  .hamburger span {
+    transition: all 0.3s ease;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+        width: 1.9rem;
+
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+    width: 1.8rem;
+  }
 </style>
 
-<nav class="bg-white shadow sticky top-0 z-10 animate-slide-down">
-  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+<nav class="bg-white shadow-md sticky top-0 z-20">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
     <!-- Logo -->
-    <a href="/" class="text-2xl font-bold text-blue-600">MyStay</a>
+    <a href="/" class="text-2xl font-bold text-blue-600 tracking-tight">MyStay</a>
 
-    <!-- Hamburger Button (visible below sm) -->
-    <button id="menu-toggle" class="sm:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none">
-      <span class="block w-6 h-0.5 bg-gray-800"></span>
-      <span class="block w-6 h-0.5 bg-gray-800"></span>
-      <span class="block w-6 h-0.5 bg-gray-800"></span>
+    <!-- Hamburger Button (Mobile) -->
+    <button id="menu-toggle" class="hamburger sm:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none">
+      <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
+      <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
+      <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
     </button>
 
     <!-- Navigation Links -->
     <ul id="menu"
-      class="sm:flex sm:space-x-1 md:space-x-4  hidden flex-col sm:flex-row absolute sm:static top-16 left-0 w-full sm:w-auto bg-white sm:bg-transparent p-4 sm:p-0 space-y-3 sm:space-y-0 sm:items-center whitespace-nowrap ">
+      class="sm:flex sm:space-x-1 md:space-x-4 hidden flex-col sm:flex-row absolute sm:static top-16 left-0 w-full sm:w-auto bg-white sm:bg-transparent p-5 sm:p-0 space-y-3 sm:space-y-0 sm:items-center shadow-lg sm:shadow-none rounded-b-lg">
       <li>
         <a href="/"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'home' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Home</a>
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'home' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Home</a>
       </li>
+       <% if (isLoggedIn) { %>
       <li>
         <a href="/favourites"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'favourites' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Favourites</a>
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'favourites' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Favourites</a>
       </li>
       <li>
-        <a href="/Bookings"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'bookings' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Bookings</a>
+        <a href="/bookings"
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'bookings' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Bookings</a>
       </li>
       <li>
         <a href="/host/host-homes"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'hostHomes' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Host
-          Homes</a>
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'hostHomes' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Host Homes</a>
       </li>
       <li>
         <a href="/host/add-home"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'addHome' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Add
-          Home</a>
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'addHome' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Add Home</a>
       </li>
+
+      <% } %>
       <li>
         <a href="/about"
-          class="text-blue-600 p-2 rounded font-medium <%= currentPage === 'about' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">About</a>
+          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'about' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">About</a>
+      </li>
+      <li class="sm:hidden">
+        <a href="/auth/login" class="block text-center bg-blue-600 text-white rounded-md py-2 font-medium hover:bg-blue-700 transition-colors">
+          Log in / Sign up
+        </a>
       </li>
     </ul>
+    
+    <!-- Desktop Login Button -->
+    <div class="hidden sm:flex">
+      <% if (!isLoggedIn) { %>
+      <a href="/auth/login" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
+         Log in / Sign up
+      </a>
+      <% } else { %> 
+      <form action="/auth/logout" method="POST" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
+        <button type="submit">Logout</button>
+      </form>
+      <% } %>
+
+    </div>
   </div>
 </nav>
 
@@ -72,11 +103,10 @@
     const menu = document.getElementById("menu");
 
     menuButton.addEventListener("click", () => {
+      menuButton.classList.toggle("active");
       if (menu.classList.contains("hidden")) {
         menu.classList.remove("hidden");
         menu.classList.add("animate-fade-in-menu");
-
-        // Remove the animation class after it's done
         setTimeout(() => {
           menu.classList.remove("animate-fade-in-menu");
         }, 300);

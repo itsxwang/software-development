@@ -1,17 +1,43 @@
 const { check, validationResult } = require("express-validator");
 const path = require("path");
 const User = require("../models/user");
+const bcrypt = require("bcryptjs");
 
 exports.getLogin = (req, res) => {
   res.render(path.join("auth", "login"), {
     currentPage: "login",
     pageTitle: "Login",
     isLoggedIn: req.session.isLoggedIn,
+    errors: [],
+    oldInput: {},
   });
 };
 
-exports.postLogin = (req, res) => {
+exports.postLogin = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+
+  const isValid = await bcrypt.compare(password, user.password);
+  console.log("user", user);
+  let error = [];
+  if (!user) {
+    error = "Account does not exist.";
+  } else if (!isValid) {
+    error = "Password is incorrect.";
+  }
+
+  if (!user || !isValid) {
+    return res.status(422).render(path.join("auth", "login"), {
+      currentPage: "login",
+      pageTitle: "Login",
+      isLoggedIn: req.session.isLoggedIn,
+      errors: [error],
+      oldInput: { email },
+    });
+  }
+  console.log("Below code ---, Hii looged in");
   req.session.isLoggedIn = true;
+  req.session.user = user;
   res.redirect("/");
 };
 
@@ -88,34 +114,37 @@ exports.postSignup = [
         },
       });
     }
-    const user = new User({
-      username,
-      email,
-      password,
-      userType,
-    });
-    user
-      .save()
-      .then(() => {
-        res.redirect("/auth/login");
-      })
-      .catch((err) => {
-        let error = err;
-        if (err.code === 11000) {
-            error = new Error("This email address is already registered.");
-          };
-        
-        return res.status(422).render(path.join("auth", "signup"), {
-          currentPage: "signup",
-          pageTitle: "Signup",
-          errors: [error],
-          isLoggedIn: req.session.isLoggedIn,
-          oldInput: {
-            username,
-            email,
-            userType,
-          },
-        });
+
+    bcrypt.hash(password, 12).then((hashedPassword) => {
+      const user = new User({
+        username,
+        email,
+        password: hashedPassword,
+        userType,
       });
+      user
+        .save()
+        .then(() => {
+          res.redirect("/auth/login");
+        })
+        .catch((err) => {
+          let error = err;
+          if (err.code === 11000) {
+            error = new Error("This email address is already registered.");
+          }
+
+          return res.status(422).render(path.join("auth", "signup"), {
+            currentPage: "signup",
+            pageTitle: "Signup",
+            errors: [error],
+            isLoggedIn: req.session.isLoggedIn,
+            oldInput: {
+              username,
+              email,
+              userType,
+            },
+          });
+        });
+    });
   },
 ];

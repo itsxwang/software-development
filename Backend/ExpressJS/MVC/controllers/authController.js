@@ -1,6 +1,7 @@
 const { check, validationResult } = require("express-validator");
 const path = require("path");
 const User = require("../models/user");
+const Home = require("../models/homes");
 const bcrypt = require("bcryptjs");
 
 exports.getLogin = (req, res) => {
@@ -10,34 +11,37 @@ exports.getLogin = (req, res) => {
     isLoggedIn: req.session.isLoggedIn,
     errors: [],
     oldInput: {},
+    userType: req.session.user ? req.session.user.userType : null,
   });
 };
 
 exports.postLogin = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: email.trim() });
 
-  const isValid = await bcrypt.compare(password, user.password);
-  console.log("user", user);
   let error = [];
   if (!user) {
     error = "Account does not exist.";
-  } else if (!isValid) {
+  } else {
     error = "Password is incorrect.";
   }
 
-  if (!user || !isValid) {
+  if (!user) {
     return res.status(422).render(path.join("auth", "login"), {
       currentPage: "login",
       pageTitle: "Login",
       isLoggedIn: req.session.isLoggedIn,
       errors: [error],
       oldInput: { email },
+      userType: req.session.user ? req.session.user.userType : null,
     });
   }
-  console.log("Below code ---, Hii looged in");
+
+
+  
   req.session.isLoggedIn = true;
   req.session.user = user;
+  // await req.session.save();
   res.redirect("/");
 };
 
@@ -53,6 +57,7 @@ exports.getSignup = (req, res) => {
     isLoggedIn: req.session.isLoggedIn,
     errors: [],
     oldInput: { username: "", email: "", userType: "" },
+    userType: req.session.user ? req.session.user.userType : null,
   });
 };
 
@@ -112,6 +117,7 @@ exports.postSignup = [
           email,
           userType,
         },
+        userType: req.session.user ? req.session.user.userType : null,
       });
     }
 
@@ -143,6 +149,7 @@ exports.postSignup = [
               email,
               userType,
             },
+            userType: req.session.user ? req.session.user.userType : null,
           });
         });
     });

@@ -52,7 +52,6 @@ app.use((req, res) => {
 mongoose
   .connect(process.env.DB_PATH)
   .then(() => {
-    console.log("Connected to database");
     app.listen(7001, () => {
       console.log("Server started on port http://localhost:7001");
     });

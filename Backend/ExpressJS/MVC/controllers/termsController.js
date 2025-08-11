@@ -5,5 +5,6 @@ exports.getTerms = (req, res) => {
         currentPage: "terms",
         pageTitle: "Terms",
         isLoggedIn: req.session.isLoggedIn,
+        userType: req.session.user ? req.session.user.userType : null
     });
 };

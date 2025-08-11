@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -17,7 +17,19 @@ const userSchema = new mongoose.Schema({
   userType: {
     type: String,
     required: true,
-  }
+  },
+  favourites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Home",
+    }
+  ],
+  hostedHomes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Home",
+    }
+  ]
 });
 
 module.exports = mongoose.model("User", userSchema);

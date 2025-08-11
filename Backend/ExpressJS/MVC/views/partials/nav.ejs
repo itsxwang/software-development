@@ -4,6 +4,7 @@
       opacity: 0;
       transform: translateY(-10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -18,14 +19,17 @@
   .hamburger span {
     transition: all 0.3s ease;
   }
+
   .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translateY(8px);
-        width: 1.9rem;
+    width: 1.9rem;
 
   }
+
   .hamburger.active span:nth-child(2) {
     opacity: 0;
   }
+
   .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translateY(-8px);
     width: 1.8rem;
@@ -38,7 +42,8 @@
     <a href="/" class="text-2xl font-bold text-blue-600 tracking-tight">MyStay</a>
 
     <!-- Hamburger Button (Mobile) -->
-    <button id="menu-toggle" class="hamburger sm:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none">
+    <button id="menu-toggle"
+      class="hamburger sm:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none">
       <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
       <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
       <span class="block w-6 h-0.5 bg-gray-800 rounded"></span>
@@ -51,49 +56,61 @@
         <a href="/"
           class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'home' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Home</a>
       </li>
-       <% if (isLoggedIn) { %>
-      <li>
-        <a href="/favourites"
-          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'favourites' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Favourites</a>
-      </li>
-      <li>
-        <a href="/bookings"
-          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'bookings' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Bookings</a>
-      </li>
-      <li>
-        <a href="/host/host-homes"
-          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'hostHomes' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Host Homes</a>
-      </li>
-      <li>
-        <a href="/host/add-home"
-          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'addHome' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Add Home</a>
-      </li>
+      <% if (isLoggedIn) { %>
+        <li>
+          <a href="/favourites"
+            class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'favourites' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Favourites</a>
+        </li>
+        <li>
+          <a href="/bookings"
+            class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'bookings' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Bookings</a>
+        </li>
+        <li>
+          <% if (userType==='host' ) { %>
+            <a href="/host/host-homes"
+              class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'hostHomes' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Host
+              Homes</a>
+        </li>
+        <li>
+          <a href="/host/add-home"
+            class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'addHome' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">Add
+            Home</a>
+        </li>
+        <% } %>
 
-      <% } %>
-      <li>
-        <a href="/about"
-          class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'about' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">About</a>
-      </li>
-      <li class="sm:hidden">
-        <a href="/auth/login" class="block text-center bg-blue-600 text-white rounded-md py-2 font-medium hover:bg-blue-700 transition-colors">
-          Log in / Sign up
-        </a>
-      </li>
+          <% } %>
+            <li>
+              <a href="/about"
+                class="transition-colors duration-200 text-blue-600 p-2 rounded font-medium <%= currentPage === 'about' ? 'bg-blue-100' : 'hover:bg-blue-100' %>">About</a>
+            </li>
+            <li class="sm:hidden cursor-pointer">
+              <%  if (!isLoggedIn) {  %>
+              <a href="/auth/login"
+                class="block text-center bg-blue-600 text-white rounded-md py-2 font-medium hover:bg-blue-700 transition-colors">
+                  Log in / Sign up
+              </a>
+              <% } else { %>
+                <form action="/auth/logout" method="POST"
+                  class="block text-center bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors">
+                  <button class=" px-4 py-2 " type="submit">Logout</button>
+                </form>
+                <% } %>
+            </li>
     </ul>
-    
-    <!-- Desktop Login Button -->
-    <div class="hidden sm:flex">
-      <% if (!isLoggedIn) { %>
-      <a href="/auth/login" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
-         Log in / Sign up
-      </a>
-      <% } else { %> 
-      <form action="/auth/logout" method="POST" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
-        <button type="submit">Logout</button>
-      </form>
-      <% } %>
 
-    </div>
+    <!-- Desktop Login Button -->
+    <% if (!isLoggedIn) { %>
+      <a href="/auth/login"
+        class=" hidden sm:block bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
+        Log in / Sign up
+      </a>
+      <% } else { %>
+        <form action="/auth/logout" method="POST"
+          class="hidden  sm:block  bg-blue-600 text-white  rounded-md font-medium hover:bg-blue-700 transition-colors">
+          <button class="px-4 py-2" type="submit">Logout</button>
+        </form>
+        <% } %>
+
   </div>
 </nav>
 

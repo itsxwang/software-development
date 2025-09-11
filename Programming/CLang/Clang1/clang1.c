@@ -32,7 +32,7 @@ int main()
     // - So you're effectively printing the integer value of 'a'(to be precise ASCII value), which is 97.
 
 
-    // and more thing about format specifiers, that if you want to print a float value, and use %d, you will get data loss
+    // and one more thing about format specifiers, that if you want to print a float value, and use %d, you will get data loss
 
     return 0; // return 0 typically indicates that the program has executed successfully
 }
@@ -40,7 +40,7 @@ int main()
 // some reserved keywords in c -> https://youtu.be/aZb0iu4uGwA?si=5e7dnu_P4xXhkpfo&t=3207
 
 // ----- run the file ------
-// to run the file g++(or any compiler you using) filename -o executable_name
+// to run the file gcc(or any compiler you using) filename -o executable_name
 // so compiler do compilation
 // And compilation is a process of converting high level source code to machine code
 // Machine code consist of binary instructions specific to a computer's architecture.

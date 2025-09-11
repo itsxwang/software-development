@@ -11,12 +11,11 @@ exports.getIndex = async (req, res) => {
 
     // homes id cleanup from favourites list, that are deleted from the homes database
     Home.find().then((homes) => {
-      user.favourites = user.favourites.filter(homeId => {
+      user.favourites = user.favourites.filter((homeId) => {
         return homes.find((home) => home._id.toString() == homeId);
       });
       user.save();
     });
-    
   } else {
     favourites = [];
   }

@@ -1,0 +1,1 @@
+- [what is token generation](https://youtu.be/3uRoSITqXRI?si=w0vyZ2aDIkw57Qwo&t=37)

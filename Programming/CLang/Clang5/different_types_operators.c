@@ -17,7 +17,15 @@
     // - https://youtu.be/8aFik6lPPaA?si=0xja8aE8TB-fMd7H&t=7 : left and right shift operators
 
 
-int factorial (int n) {
+// Conditional operators -> https://youtu.be/rULDbIbrXis?si=MUljbkzUItykzW5i&t=7
+
+// comma operator -> https://youtu.be/mhmnb80ZDBM?si=OyF33pUaH2Ecs62X&t=37
+
+// Precedence and Associativity -> https://youtu.be/8H9G621pQq0?si=F9tk7VOihLhVZBhL&t=7
+
+// in sizeof(i++), `i` will not increment because of c99 standard on sizeof operator -> https://youtu.be/HAKAhma7MQg?si=F6Q8fCTtXz38PJKH&t=187
+
+int factorial (unsigned int n) {
     if (n==0) return 1;
     return n*factorial(n-1);
 }
@@ -31,9 +39,10 @@ int main()
     printf("%d\n",a++ + ++b);
     printf("%d\n",255<<1); // = 510
     printf("%u\n",255>>1); // 127
+    
     //  general formula for left shift -> n*2^x, where n is the number and x is the number of shifts
     //  general formula for right shift -> n/2^x, where n is the number and x is the number of shifts
 
-    printf("%d\n",factorial(8)-(factorial(6)*factorial(3))); // 120
+    printf("%u\n",(factorial(8)/(factorial(3)*factorial(2))*factorial(5))/factorial(4)); // 120
     return 0;
 }

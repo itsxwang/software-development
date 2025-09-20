@@ -6,4 +6,10 @@
 
 - bss(block started by symbol) segment, if variables not being initialized then they store in this data segment, also called uninitialized data segment. 
 
-- `size <filename>`: displays the size of the file, of its text/code block and for its data block
+- `size <filename.exe>`: displays the size of the file, of its text/code block and for its data block
+
+- [Stack(and call stack) and heap](https://youtu.be/L53nqHCSSFY?si=nc-GsUDHhaWy01K7&t=47)
+    - [Stack](https://youtu.be/L53nqHCSSFY?si=LNco8YYO7roZo4Hi&t=107) is a container (or memory segment) which holds some data. 
+    - Data is retrieved in LIFO.
+    - function(that executing) not stored inside call stack instead its activation record maintained in call stack. 
+        - [Activation record means](https://youtu.be/L53nqHCSSFY?si=HyoduID37YeMxCFo&t=377)

@@ -48,6 +48,7 @@ int main()
 
     // Passing Array as an Argument to a Function: https://youtu.be/gNlmJ2WrZSY?si=Vn3se5UJM2B5S9a_&t=7
 
+    // How to declare pointers to an array : https://youtu.be/BRsv3ZXoHto?si=liCqzI8OP9pYwJrX&t=127 : type (*ptr)[col] = &arr;
 
     return 0;
 }

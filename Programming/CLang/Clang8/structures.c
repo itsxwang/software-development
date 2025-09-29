@@ -47,7 +47,5 @@ int main()
 
     // Structure Padding in C(how memory allocated to structured): https://youtu.be/aROgtACPjjg?si=k9qtC7vjgM51aVs2&t=7
     // Structure Packing in C: https://youtu.be/VZBLCpQYchs?si=AAVP5Iev1grdWuDE&t=7 , `#pragma pack(1)` (special purpose directive used to turn some features on or off) to remove `structure padding`
-
-
     return 0;
 }

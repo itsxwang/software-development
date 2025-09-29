@@ -2,10 +2,12 @@
 **/node_modules/
 **/.pnp
 **/.pnp.js
-**/yarn.lock
+**/*.rs.bk
+**/*.o
+**/*.bin
+**/*.lock
 
 # Production build files
-**/build/
 **/dist/
 **/out/
 

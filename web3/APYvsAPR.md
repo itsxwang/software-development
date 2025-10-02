@@ -1,0 +1,1 @@
+- [APR(Annual Percentage Rate) and APY(Annual Percentage Yield)](https://www.coinbase.com/en-in/learn/crypto-basics/apy-vs-apr-what-is-the-difference)

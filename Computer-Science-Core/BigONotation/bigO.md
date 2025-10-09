@@ -35,3 +35,12 @@ Examples:
 - [O(log n, iterative and non recursive and recursive)](https://youtu.be/Mo4vesaut8g?si=mH0GmYUqTaApNw7W&t=1597)
   - [Binary Search O(log n)](https://youtu.be/Mo4vesaut8g?si=EpquQNUO_vwMIJbb&t=2177)
   - [Binary Search O(n log n)](https://youtu.be/Mo4vesaut8g?si=WA1KCZJQUVrer3Vp&t=3497)
+  - [Merge sort and `O(n log n)`](https://youtu.be/Mo4vesaut8g?si=KJR8ASWaCrPq5Iom&t=3777)
+    - [Merge sort complexity deep dive](https://youtu.be/Mo4vesaut8g?si=reiIekVQmjrudMsa&t=4637)
+
+- [Fibonacci and exponential complexity](https://youtu.be/Mo4vesaut8g?si=MiWCEwxfcIua5Q25&t=5297)
+
+- [Factorial](https://youtu.be/Mo4vesaut8g?si=ohPNvYr7WI3WxOoy&t=5767)
+
+- [Space complexity and common mistakes](https://youtu.be/Mo4vesaut8g?si=KtVdpN7VYavC2ZEX&t=6447) 
+  - space complexity is about the amount of memory an algorithm uses in relation to the size of the input data.

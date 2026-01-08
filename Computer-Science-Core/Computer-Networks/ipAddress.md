@@ -16,6 +16,20 @@ There are two versions of IP addresses in use today: **IPv4** and **IPv6**. Let�
   - Each number is called an **octet** because it represents 8 bits (a byte) in binary. For instance, `192` in binary is `11000000`.
   - The total length of an IPv4 address is 32 bits (4 octets × 8 bits = 32 bits).
 - **Address Space**: IPv4 supports approximately **4.3 billion unique addresses** (2³² = 4,294,967,296). This might sound like a lot, but with the explosion of internet-connected devices (billions of smartphones, computers, IoT devices, etc.), this pool is nearly exhausted.
+         - We us 2³² possibilites logic because: 
+               1 bit → 2 possibilities
+               2 bits → 2 × 2 = 4 possibilities
+               3 bits → 2 × 2 × 2 = 8 possibilities 
+               ..., 32 bits = 2³² 
+
+
+- Note: Devices can be both on private and public network. And dependending of where they are determine what type of IP addresses they have: Private or Public  
+
+- A public address is used to identify the device on the Internet, whereas a private address is used to identify a device amongst other devices
+
+- Public address provide by ISPs, and any data sent to internet from these devices who use speicfic public IP, idenetified by that Public IP.  
+
+
 - **Example Breakdown**:
   - Take `192.168.1.1`:
     - `192` = `11000000` in binary.
@@ -207,7 +221,6 @@ IP addresses are critical for **packet-based communication**, where data is brok
 ### Summary
 An IP address is a cornerstone of computer networking, enabling devices to communicate by identifying and locating them. **IPv4** uses 32-bit addresses (e.g., `192.168.1.1`), limited by its 4.3 billion address cap, while **IPv6** uses 128-bit addresses (e.g., `2001:0db8::7334`) for a virtually unlimited pool. **Subnet masks** (e.g., `255.255.255.0`) divide IP addresses into network and host portions, with **CIDR** simplifying notation. **SLAAC** in IPv6 automates address assignment using router advertisements and interface identifiers. IP addresses can be **static** or **dynamic** (via DHCP), **private** or **public**, with special addresses like **loopback** (`127.0.0.1`) and **broadcast** (`255.255.255.255`). **NAT** and **IPsec** address IPv4 limitations and security, respectively.
 
-If you want to explore a specific part further (e.g., subnetting calculations, IPv6 transition mechanisms, or practical examples with tools), let me know, and I’ll go even deeper!
 
 
 ---

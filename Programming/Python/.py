@@ -3,7 +3,7 @@ This module provides a reference for understanding iterators and generators in P
 It explains how objects can be made iterable, how iteration works internally, and how `yield from` simplifies generator functions.
 """
 
-
+    
 # Custom Iterator Class
 class cu_type:
     def __init__(self, *args):
@@ -29,7 +29,7 @@ print(next(m1))  # Output: 1
 print(next(m1))  # Output: 2
 print(m1)        # Output: <3, 4>
 for i in m1:     # Iterating over remaining elements
-    print(i)     # Output: 3, 4
+    print(i)     # Output: 3, 4 
 
 """
 Understanding Iterables & Iterators:

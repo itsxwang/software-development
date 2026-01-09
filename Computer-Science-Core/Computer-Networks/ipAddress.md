@@ -71,8 +71,17 @@ An IP address is divided into two logical parts: the **network portion** and the
   - **CIDR Notation**: Stands for **Classless Inter-Domain Routing**. Instead of writing the subnet mask, you indicate the number of network bits with a slash. For example, `192.168.1.10/24` means the first 24 bits are the network portion, equivalent to a subnet mask of `255.255.255.0`.
   - **Subnetting**: Dividing a network into smaller subnetworks (subnets) to improve organization and security. For example:
     - Network: `192.168.1.0/24` (supports 256 addresses: 1 network, 1 broadcast, 254 hosts).
-    - Subnet it into two smaller networks: `192.168.1.0/25` and `192.168.1.128/25` (each with 128 addresses).
+    - Subnet it into two smaller networks: `192.168.1.0/25` and `192.168.1.128/25`  (each with 128 addresses).
     - Subnet masks allow precise control over how many devices can be in a subnet.
+
+      - Network Address: The first address in a subnet, used to identify the subnet itself (e.g., 
+      `192.168.1.0` in the subnet `192.168.1.0/24`).\
+       - Broadcast Address: The last address in a subnet, used to send data to all devices in the subnet (e.g., 
+      `192.168.1.255` in the subnet `192.168.1.0/24`).
+       - Default Gateway: The IP address of the router usually (basically any device that is capable of sending information to another network) that connects the subnet to other networks, can use any host address but usually 1st or last host address in a network(.1 or .254). Any data that needs to go a device that not on the same network will go to the default gateway device (e.g., 
+      `192.168.1.1` in the subnet `192.168.1.0/24`).  
+
+- [DHCP(Dynamic host configuration protocol)](https://youtu.be/csYtPidvvFQ?si=tGh4B3IZrQROJbAd&t=1437)
 
 #### 2. IPv6 Structure
 - **Network Portion**: Called the **network prefix**, typically the first 64 bits, assigned by an ISP or network administrator.

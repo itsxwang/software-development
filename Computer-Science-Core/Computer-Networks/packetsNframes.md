@@ -6,6 +6,9 @@
 * **Packet** → Data unit at the **Network Layer (Layer 3)**
 * **Frame** → Data unit at the **Data Link Layer (Layer 2)**
 
+
+[TCP in detailed](https://youtu.be/vzcLrE0SfiQ?si=w1Tl1n6_hjniHHdO&t=267)
+
 ---
 
 ## Think of it like this (Real-life analogy)
@@ -291,7 +294,7 @@ Payload: IP Packet
    ```
    Who has 192.168.1.1?
    ```
-4. Device replies:
+4. Device(router) replies:
 
    ```
    192.168.1.1 is at AA:BB:CC:DD:EE:FF

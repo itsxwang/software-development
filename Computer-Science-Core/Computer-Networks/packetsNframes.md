@@ -7,7 +7,8 @@
 * **Frame** → Data unit at the **Data Link Layer (Layer 2)**
 
 
-[TCP in detailed](https://youtu.be/vzcLrE0SfiQ?si=w1Tl1n6_hjniHHdO&t=267)
+[TCP/IP in detailed](https://youtu.be/vzcLrE0SfiQ?si=w1Tl1n6_hjniHHdO&t=267)\
+[UDP/IP in detailed](https://youtu.be/vzcLrE0SfiQ?si=Uu5E6LxoqW0aD7mf&t=777)
 
 ---
 

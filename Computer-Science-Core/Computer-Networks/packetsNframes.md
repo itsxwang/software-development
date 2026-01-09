@@ -119,13 +119,4 @@ At **every hop**:
 
 > **Packets move data across networks, frames move packets within a network.**
 
----
 
-If you want, next I can explain:
-
-* Packet vs Segment vs Frame
-* What exactly changes at every router hop
-* How ARP connects IP ↔ MAC
-* Real packet capture using `tcpdump` / `wireshark`
-
-Just tell me 👍

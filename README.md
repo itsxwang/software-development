@@ -17,11 +17,13 @@ Welcome to my Software Development knowledge hub! This repo is my structured app
 │-- 📂 Computer-Science-Core # Cover CS core and low level concepts
 │-- 📂 Frontend  # Covers UI development, frameworks, and best practices
 │-- 📂 Backend  # Server-side programming, APIs, databases
-│-- 📂 Deployment  # CI/CD, hosting, cloud, and DevOps
+│-- 📂 DevOPS  # CI/CD, hosting, cloud, and DevOps
+|-- 📂 Web3 # Includes content of Web3 like smart contracts, solana development and etc
+|-- 📂 Computer-Science-Core # Includes core concepts of CS like Networking, OS and etc     
 │-- 📂 Design-Patterns  # Common patterns and best coding practices
 │-- 📂 Algorithms-DS  # Data structures and algorithms for efficient coding
 │-- 📂 Resources  # Links to useful books, articles, and documentation
-│-- 📂 Programming - Languages , code , trendy/helpful syntactic sugar , library/modules/classes/functions/methods ..., etc.
+│-- 📂 Programming - Languages , code , trendy/helpful syntactic sugar , library/modules/classes/functions/methods ...,etc
 ```
 
 ## 🛠 Tech Stack & Tools

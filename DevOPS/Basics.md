@@ -17,4 +17,9 @@
 
 - [Nginx](https://youtu.be/sSRaakd95Nk?si=2eyPVnX74a5jvVX1&t=12497)
 
-- [what is proxy and forward & reverse proxy](https://youtu.be/sSRaakd95Nk?si=ZIGiR5ov1hJtiYTu&t=13187)
+- [what is proxy and forward & reverse proxy + starting the nginx process at port 80 that act as a reverse proxy to forward the requests to specific port based on domain name](lhttps://youtu.be/sSRaakd95Nk?si=ZIGiR5ov1hJtiYTu&t=13187)
+
+-[deploying frontent on AWS | Cloudfront & store Objects(in Object stores like S3)](https://youtu.be/sSRaakd95Nk?si=Qcl5X8hU1-K-o2Hq&t=15357)   
+    - [CDNs using cloudfront (CDNs creates point of presence around the globe)](https://youtu.be/sSRaakd95Nk?si=iM3_v559x4J9m5A1&t=15807)
+    - Object Stores (like S3) to store static files like images, videos, documents etc.
+    - CDNs (like cloudfront) to cache and deliver static files faster to users around the globe so for distributionhiy.

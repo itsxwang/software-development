@@ -6,8 +6,10 @@ Ice protocol
 - **NAT Traversal**: ICE overcomes NAT and firewall barriers by discovering multiple potential network paths (called *candidates*) and testing them for connectivity.
 - **Candidate Types**:
   - **Host candidates**: Local IP addresses and ports.
-  - **Reflexive candidates**: Public IP addresses and ports as seen through a NAT (discovered via **STUN**).
-  - **Relayed candidates**: Addresses assigned by a **TURN server** when direct connections fail.
+  - **Reflexive candidates**: Public IP addresses and ports as seen through a NAT (discovered via **STUN**). Basically, these are the addresses that other peers can use to reach the client. And these are obtained by sending requests to a STUN server which responds with the public IP and port where the request come from (same like you calling your friend(stun server) to ask your new phone number(public ip address)).
+
+  - **Relayed candidates**: Addresses assigned by a **TURN server** when direct connections fail, relayed means the traffic is forwarded through the TURN server.  
+
 - **Connectivity Checks**: ICE uses **STUN** and **TURN** protocols to test which candidate pairs can successfully exchange data, prioritizing the lowest-latency, most direct path.
 - **Protocol Standard**: The current standard is **RFC 8445**, which obsoletes the earlier RFC 5245. It is maintained by the **IETF** and is used across protocols like SIP, XMPP, and WebRTC.
 

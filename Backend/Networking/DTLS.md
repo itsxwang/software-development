@@ -23,15 +23,9 @@ Dtls
 | Latency | Higher (due to retransmissions) | Lower (optimized for speed) |
 | Use Cases | Websites, email, file transfer | VoIP, gaming, streaming, IoT |
 
-### Protocol Versions
-- **DTLS 1.0**: Based on TLS 1.1 (obsolete)
-- **DTLS 1.2**: Based on TLS 1.2 (RFC 6347)
-- **DTLS 1.3**: Based on TLS 1.3 (RFC 9147, April 2022) – modern, secure, and efficient
 
 ### Implementation Support
 Major libraries and platforms support DTLS:
 - **OpenSSL**, **mbed TLS**, **wolfSSL**, **GnuTLS**, **Java Secure Socket Extension**, **Schannel (Windows)**, **pion/dtls (Go)**, **F5**, **Cisco**, **Fortinet**, **Citrix**, **Zscaler**, **Cato Networks**
 
 > **Note**: DTLS does **not** fix the underlying UDP issues (like packet loss), but it ensures that **any data that arrives is secure and authenticated**. It is not a replacement for reliable transport, but a security layer *on top* of it.
-
-For developers, DTLS can be implemented using APIs similar to TLS, with `SOCK_DGRAM` sockets and support for **Connection ID** (in DTLS 1.2+) for better performance and scalability in high-volume environments.

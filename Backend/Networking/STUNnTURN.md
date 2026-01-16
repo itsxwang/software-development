@@ -5,9 +5,9 @@ STUN and TURN
 **TURN (Traversal Using Relays around NAT)** is a protocol that builds on STUN but goes a step further to enable communication between peers when direct peer-to-peer (P2P) connections aren't possible due to network restrictions like firewalls, symmetric NATs, or other traversal issues. While STUN helps peers discover their public IP and port mappings to attempt a direct connection, TURN kicks in as a fallback by providing a mediated path through a server.
 
 ### How TURN Works
-1. **Allocation Phase**: A client (one of the peers) connects to a TURN server (usually over UDP, TCP, or TLS) and requests an "allocation." This is essentially asking the server to reserve a public IP address and port on itself that can act as a relay point for the client.
+1. **Allocation Phase**: A client (one of the peers) connects to a TURN server (usually over UDP, TCP, or TLS) and requests an "allocation". This is essentially asking the server to reserve a public IP address and port of itself that can act as a relay point for the client.
 
-2. **Relay Address**: The TURN server responds with a relayed transport address (its own public IP and a dynamically assigned port). The client then shares this relay address with the other peer (often via a signaling server like in WebRTC setups).
+2. **Relay Address**: The TURN server responds with a relayed transport address (its own public IP and a dynamically assigned port). The client then shares this relay address with the other peer (often via a signaling server (for example a simple express server) like in WebRTC setups).
 
 3. **Data Relaying**: Instead of sending data directly to each other, the peers send their packets to the TURN server's relay address. The TURN server forwards (relays) the incoming data from one peer to the other, and vice versa. This creates an indirect connection, bypassing the NAT/firewall barriers.
 

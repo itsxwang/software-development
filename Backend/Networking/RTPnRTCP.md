@@ -13,7 +13,7 @@ RTP in CS Networking
 ### RTP and RTCP:
 RTP works closely with the **RTP Control Protocol (RTCP)**, which:
 - Monitors **quality of service (QoS)** and provides feedback on network performance.
-- Sends statistics like packet loss, jitter, and round-trip delay.
+- Sends statistics like packet loss, jitter, and round-trip delay which helps in adjusting the media stream accordingly.
 - Helps synchronize multiple media streams (e.g., audio and video).
 - Uses **consecutive ports**: RTP uses an **even-numbered port**, and RTCP uses the **next odd-numbered port**.
 

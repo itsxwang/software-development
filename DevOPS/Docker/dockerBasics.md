@@ -11,3 +11,7 @@
 
 - [Virtualization vs Containerization](https://youtu.be/RqTEHSBrYFw?si=1uj4Aiu6VyU3Wy2w&t=1227)
     
+
+---
+
+[Monolithic Architecture and micro](https://youtu.be/kTp5xUtcalw?si=VjZMSHwLGarLzSPt&t=367)

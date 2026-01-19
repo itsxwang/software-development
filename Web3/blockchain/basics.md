@@ -17,4 +17,17 @@ So solana PDA's are a type of key value store.
 
 Anchor -> Rust Framework to make solana programs
 
-[A simple programs/contracts using Rust Anchor framework](https://youtu.be/amAq-WHAFs8?si=_nYJJRURpuvC7ham&t=717)
+- [A simple programs/contracts using Rust Anchor framework](https://youtu.be/amAq-WHAFs8?si=_nYJJRURpuvC7ham&t=717) 
+    - `ANCHOR_DISCRIMINIATOR_SIZE` is a something that written to the every account on blockchain by anchor to identify the account type. 
+
+---
+
+[Accounts-> Are like files on solana network ledger, many types of accounts exist for various purposes but 1 purpose to store SOL ( solana native currency )](https://youtu.be/HavGDGUTmgs?si=EHKk5wgYy1spmGoJ&t=207)
+
+- lamports -> fractional SOL 
+
+- Secret key maps to public key, anyone can read account data with public key but private key is used to perform actions on those accounts 
+
+- JSON RPC(Remote procedure call) API-> all interactions with the solana network happens thorugh JSON RPC API
+
+- @solana/web3.js -> abstraction on top of JSON RPC API, allow to call solana methods as js functions. For example, to query the SOL balanace of any account

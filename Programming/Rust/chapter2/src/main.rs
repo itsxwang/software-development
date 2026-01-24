@@ -21,7 +21,7 @@ fn main() {
     let mut trys: u32 = 0;
     loop {
 
-        // print!("Random number is: {random_number}\n");
+        // print!("Random number is: {random_number} sn");
         println!("input your guess...");
 
         let mut guess = String::new();
@@ -51,7 +51,7 @@ fn main() {
 
         trys += 1;
 
-        match guess.cmp(&random_number) {
+        match guess.cmp(&random_number) {  
             Ordering::Less => {
                 println!("Too small!\n\n");
             }
@@ -59,7 +59,7 @@ fn main() {
                 println!("Too big!\n\n");
             }
             Ordering::Equal => {
-                println!("You win!\n\n in {trys} trys");
+                println!("You win! in {trys} trys");
                 break;
             }
         }
@@ -101,3 +101,5 @@ std::io::Stdin
 
 io::stdin() means give me a object that represents the standard input (Stdin)
  */
+
+

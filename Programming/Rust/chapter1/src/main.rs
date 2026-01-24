@@ -52,7 +52,7 @@ fn main() {
     // // same way can be used to destructure arrays
 
     // // we can anootate type on a value too
-    // println!("{}", 1_i8);
+    println!("{}", 1_i8); // 1_i8 means 1 of type i8, this is called a suffix type annotation means annotate type on a value
 
     // // In Rust, the `as` keyword is mainly used for explicit type conversion (casting), and sometimes for renaming imports.
     // let x: f64 = 1.10;

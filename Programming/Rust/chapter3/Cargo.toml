@@ -3,4 +3,6 @@ name = "chapter3"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[[bin]]
+name="feba"
+path="src/bin/febannoci.rs"

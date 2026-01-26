@@ -1,4 +1,4 @@
-use std::io::{self, Write}; 
+use std::io::{self, Write};          
 // Rust’s grouped (nested) import syntax
 /* 
 use path::to::thing;
@@ -65,8 +65,10 @@ Write is a trait.
 fn main() {
     // 1 1 2 3 5 8 13...
     'mainl: loop {
-        let mut a = 1;
+        let mut a = 0;
         let mut b = 1;
+        
+        
         print!("Write number: ");
         io::stdout().flush().unwrap(); // 🔥 IMPORTANT: “Send everything in the output buffer to the terminal right now” 
         /*         
@@ -77,26 +79,38 @@ fn main() {
 
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read!");
-        let user_in: i32 = match input.trim().parse() {
+        let mut user_in: i32 = match input.trim().parse() {
             Ok(num) => num,
             Err(_) => {
                 println!("Enter only valid number!");
                 continue;
             }
         };
-        if user_in == 0 {
-            println!("{} {}", a, b);
-            break;
-        };
         println!("-----------------------------");
+        fn abprint (a: i32, b: i32) {
+            println!("{} {}", a, b);
+        }
+        
+        if user_in == 0 {
+            println!("{}", user_in);
+            break 'mainl;            
+        }
         loop {
-            if b > user_in {
+            if  user_in-1 == 0 {
+                if a <1 {
+                    abprint(a, b);
+                }
                 break 'mainl;
             }
-            println!("{}", b);
+
+            if a <1 { 
+                abprint(a, b);
+            }                
             let c = a + b;
+            println!("{} ({}+{})", c, a, b);
             a = b;
             b = c;
+            user_in -= 1;
         }
     }
 }

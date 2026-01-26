@@ -43,12 +43,33 @@ fn main() {
     // The opposite of referencing by using `&` is dereferencing, which is accomplished with the dereference operator, *.
 
     let mut s = String::from("hello");
-    
-    let r1 = &mut s;
-    // let r2 = &mut s;
-    // println!("{r1}, {r2}");
-    // above code gives error because we can have only one mutable reference to a value at a time 
 
+    let r1 = &s;
+    // let r2 = &mut s;  // -> gives error because we can have only one mutable reference to a value at a time, until the 1st reference used somewhere alteast once
+    // let r2 = &s;  // -> also not possible because we can not have immutable and mutable reference to a value at a time, simultaneously 
+    /*
+        We can still use, {} to create multiple mutable references
+
+    {
+        let r1 = &mut s;
+    } // r1 goes out of scope here, so we can make a new reference with no problems.
+
+     */
+
+    println!("{r1}");
+    let r2 = &mut s; // valid because first mutable reference to a value( s ) used already 
+    println!("{r2}");
+
+    // Rust enforces a similar rule for combining mutable and immutable references. This code results in an error:
+    //     Code ----
+    //     let mut s = String::from("hello");
+
+    //     let r1 = &s; // no problem
+    //     let r2 = &s; // no problem
+    //     let r3 = &mut s; // BIG PROBLEM
+
+    //  println!("{r1}, {r2}, and {r3}");
+    //  ---------------------
 }
 
 fn calculate_length(s: String) -> (String, usize) {

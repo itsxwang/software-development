@@ -70,6 +70,21 @@ fn main() {
 
     //  println!("{r1}, {r2}, and {r3}");
     //  ---------------------
+
+    // Dangling references
+    // https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#dangling-references
+    // a pointer that references a location in memory that may have been given to someone else—by freeing some memory while preserving a pointer to that memory -> dangling pointer
+
+    // the rust compiler will ensure that the data will not go out of scope before the reference to the data does.
+
+    // At any given time, you can have either one mutable reference or any number of immutable references.
+    // References must always be valid.
+
+    // The Slice Type
+    // https://doc.rust-lang.org/book/ch04-03-slices.html
+    // Slices let you reference a contiguous sequence of elements in a collection. A slice is a kind of reference, so it does not have ownership.
+
+
 }
 
 fn calculate_length(s: String) -> (String, usize) {

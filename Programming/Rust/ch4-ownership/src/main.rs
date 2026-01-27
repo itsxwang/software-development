@@ -29,9 +29,9 @@ fn main() {
 
     let s1 = String::from("hello");
 
-    let (s2, len) = calculate_length(&s1[..]); // s1 goes out of scope as we soon it pass to calculatelength function 
+    let len = calculate_length(&s1[..]); // s1 goes out of scope as we soon it pass to calculatelength function 
     // (s2, len) is a tuple, means the value we pass to calculate_length function is
-    println!("The length of '{s2}' is {len}.");
+    println!("The length of '{s1}' is {len}.");
 
     //   References -- | --
     // https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
@@ -172,7 +172,7 @@ fn main() {
     | `dyn Trait` | `&dyn Trait`, `Box<dyn Trait>` | */
     // If a type’s size depends on runtime data, it must be borrowed or boxed in Rust.
 
-    // array slices also exist 
+    // array slices also exist
     // just we wanna refer to part of the string we also wanna refer to part of the array
     let a = [1, 2, 3, 4, 5];
     let slice = &a[1..3];
@@ -180,8 +180,7 @@ fn main() {
     // can use this kind of slice for all sorts of other collections
 }
 
-fn calculate_length(s: &str) -> (&str, usize) {
+fn calculate_length(s: &str) -> usize {
     let length = s.len(); // len() returns the length of a String
-
-    (s, length)
+    length
 }

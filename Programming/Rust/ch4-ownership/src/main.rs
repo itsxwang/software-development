@@ -176,8 +176,21 @@ fn main() {
     // just we wanna refer to part of the string we also wanna refer to part of the array
     let a = [1, 2, 3, 4, 5];
     let slice = &a[1..3];
+
     assert_eq!(slice, &[2, 3]);
     // can use this kind of slice for all sorts of other collections
+
+    // Note: In Rust, the assert_eq! macro (and the == operator) checks for Value Equality, not Address Equality.
+    //  When you compare two slices, Rust doesn't care if they point to the same spot in memory. It looks at:
+    // The length of both slices.
+    // The elements inside them, one by one.
+    // In Rust, unless you use a Vec, Box, or String, you aren't touching the heap at all!
+
+    /*     let a = [1, 2, 3, 4, 5]; -> is a fixed-size array stored on the stack.
+    &a[1..3] is a "slice" (a pointer + a length) -> pointing back to that stack memory.
+    &[2, 3] -> is a reference to a constant array, also usually stored in the stack or the binary's data segment. */
+    
+    
 }
 
 fn calculate_length(s: &str) -> usize {

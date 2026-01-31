@@ -45,8 +45,11 @@ fn main() {
     //     println!("the value is: {element}");
     // }
 
-    // machine code produce from for loops are much efficient because: 1- Compiler don't have to add a runtime code for make a checks to compare a index value with array len at every iteration
+    // machine code produce from for loops are much efficient/reliable because: 1- Compiler don't have to add a runtime code for make a checks to compare a index value with array len at every iteration
+    // 2- Using the for loop, you wouldn’t need to remember to change any other code if you changed the number of values in the array
     for number in (1..4).rev() {
         println!("{number}!");
     }
+
+    // https://doc.rust-lang.org/book/ch05-01-defining-structs.html#ownership-of-struct-data
 }

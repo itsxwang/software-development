@@ -107,4 +107,8 @@ fn main() {
     // https://doc.rust-lang.org/book/ch05-03-method-syntax.html#wheres-the---operator -> -> and . operator alternatives in rust
 
 
+    // https://doc.rust-lang.org/book/ch05-03-method-syntax.html#associated-functions -> Associated functions
+
+
+    // https://doc.rust-lang.org/book/ch05-03-method-syntax.html#multiple-impl-blocks -> Multiple impl Blocks
 }

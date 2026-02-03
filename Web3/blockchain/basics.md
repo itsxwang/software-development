@@ -31,3 +31,6 @@ Anchor -> Rust Framework to make solana programs
 - JSON RPC(Remote procedure call) API-> all interactions with the solana network happens thorugh JSON RPC API
 
 - @solana/web3.js -> abstraction on top of JSON RPC API, allow to call solana methods as js functions. For example, to query the SOL balanace of any account
+
+- [Hashing and encryption ( 2 types ) explain clearly](https://youtu.be/i1L8oHZO7i4?si=YBMDeK0qYbUFSj1h&t=4285)
+    - [Commonly we use asymmetric encryption in blockchain -> common algos](https://youtu.be/i1L8oHZO7i4?si=0nyeRc0PyFpq2N_l&t=4901)

@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    cout << "Zig and Rust are better" << endl; 
+    cout << "Rust, Zig & C are better" << endl; 
     
     // get one more char from the user (waits for user to press enter)
     // print input buffer 

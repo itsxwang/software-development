@@ -1,3 +1,5 @@
+#[allow(unused_variables)]
+#[allow(dead_code)]
 fn main() {
     // https://doc.rust-lang.org/book/ch06-00-enums.html#enums-and-pattern-matching
 
@@ -103,5 +105,93 @@ fn main() {
         }
     }
 
-    prg(Prg1::Langs((Langs::Rust)));
+    prg(Prg1::Langs(Langs::Rust));
+
+    // https://doc.rust-lang.org/book/ch06-02-match.html#the-optionte-match-pattern -> the-optiont-match-pattern
+
+    // https://doc.rust-lang.org/book/ch06-02-match.html#catch-all-patterns-and-the-_-placeholder
+
+    enum Dice {
+        One,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+    }
+
+    fn roll(dice: Dice) -> i32 {
+        match dice {
+            Dice::One => 1,
+            Dice::Six => 6,
+            _ => 0,
+        }
+    }
+
+    // https://doc.rust-lang.org/book/ch06-03-if-let.html#concise-control-flow-with-if-let-and-letelse -> concise-control-flow-with-if-let-and-letelse
+
+    // if let else
+    let dice1 = Dice::One;
+    if let Dice::One = dice1 {
+        println!("dice unlock")
+    } else {
+        println!("dice not unlock")
+    }
+
+    #[derive(Debug)]
+    enum UsState {
+        Alabama,
+        Alaska,
+    }
+
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter(UsState),
+    }
+
+    impl UsState {
+        fn existed_in(&self, year: u32) -> bool {
+            match self {
+                UsState::Alabama => year >= 1868,
+                UsState::Alaska => year >= 1959,
+            }
+        }
+    }
+
+    // if let else version
+    fn describe_state_quarter(coin: Coin) -> Option<String> {
+        let state = if let Coin::Quarter(state) = coin {
+            state
+        } else {
+            return None;
+        };
+        if state.existed_in(1900) {
+            Some(format!("{state:?} is pretty old, for America!"))
+        } else {
+            Some(format!("{state:?} is relatively new."))
+        }
+    }
+
+    // let...else
+    /*     fn describe_state_quarter(coin: Coin) -> Option<String> {
+        let Coin::Quarter(state) = coin else { // means if coin is Coin::Quarter then bind `state` variable with the value of `Coin::Quarter` variant
+            return None;
+        };
+        if state.existed_in(1900) {
+            Some(format!("{state:?} is pretty old, for America!"))
+        } else {
+            Some(format!("{state:?} is relatively new."))
+        }
+    } */
+
+    println!(
+        "{:#?}",
+        describe_state_quarter(Coin::Quarter(UsState::Alaska))
+    );
+
+    println!("{:#?}", describe_state_quarter(Coin::Nickel));
+
+    // https://doc.rust-lang.org/book/ch06-03-if-let.html#staying-on-the-happy-path-with-letelse -> let...else
 }

@@ -11,7 +11,7 @@
 
 - so basically notion of wallet in blockchain -> a wallet is just a private key with some solana in it. 
 
-- In solana, smart contacts can store additional data in PDA's (Program Derived Address), PDA address not made form public key instead they made from seeds, and seeds are basically a random string of characters that are used to generate the PDA address.\
+- In solana, smart contacts can store additional data in PDA's (Program Derived Address), PDA address not made from public key instead they made from seeds, and seeds are basically a random string of characters that are used to generate the PDA address.
 So solana PDA's are a type of key value store. 
 
 

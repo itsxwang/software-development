@@ -1,8 +1,10 @@
 use std::cmp::Ordering;
 use std::io::stdin; //does NOT import code like in Python or JS. Just Bring a name into scope // Ordering is an enum that has 3 variants: Less, Greater, Equal
+use rand::Rng;
+
 // std =  standard library = Automatically available in every Rust program is a crate
 
-use rand::Rng; // Rng is a trait that defines methods that random number generators implement
+ // Rng is a trait that defines methods that random number generators implement
 
 // Rust code is organized like this:
 /*

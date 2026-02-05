@@ -1,6 +1,6 @@
 use crate::garden::Garden;
 use ch7_code_organization::r3;
-use garden::veg::Asparagus;
+pub use garden::veg::Asparagus;
 pub mod garden;
 
 mod cu {
@@ -42,4 +42,17 @@ fn main() {
     // https://doc.rust-lang.org/book/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html#making-structs-and-enums-public
 
     // https://doc.rust-lang.org/book/ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#bringing-paths-into-scope-with-the-use-keyword.
+
+    // https://doc.rust-lang.org/book/ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#re-exporting-names-with-pub-use
+
+    // https://doc.rust-lang.org/book/ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#using-nested-paths-to-clean-up-use-lists
+
+    // https://doc.rust-lang.org/book/ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#importing-items-with-the-glob-operator
+
+    // https://doc.rust-lang.org/book/ch07-05-separating-modules-into-different-files.html#separating-modules-into-different-files
+
+    // `as` can also be for import renaming
+    //  use std::io::Result as IoResult; -> example
+    //  same pub rule with apply with as, reexport with `pub use` so other scopes like modules, can also refer to that item with that alias
+    // as exists only at compile time
 }

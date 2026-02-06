@@ -1,4 +1,7 @@
 use string::string_test;
+use hashmaps::hash_maps;
+
+mod hashmaps; 
 mod string;
 
 fn main() {
@@ -48,4 +51,6 @@ fn main() {
     ];
 
     string_test();
+
+    hash_maps();
 }

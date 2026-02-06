@@ -1,3 +1,6 @@
+use string::string_test;
+mod string;
+
 fn main() {
     println!("Hello, world!");
     let mut v: Vec<i32> = Vec::new();
@@ -31,7 +34,6 @@ fn main() {
 
     // https://doc.rust-lang.org/book/ch08-01-vectors.html#using-an-enum-to-store-multiple-types
 
-
     #[derive(Debug)]
     enum SpreadsheetCell {
         Int(i32),
@@ -45,5 +47,5 @@ fn main() {
         SpreadsheetCell::Float(10.12),
     ];
 
-    println!("{:?}", row);
+    string_test();
 }

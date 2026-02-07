@@ -1,13 +1,13 @@
 // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#creating-a-new-hash-map
 
-use std::collections::HashMap;
+use std::{clone, collections::HashMap};
 
 pub fn hash_maps() {
     let mut scores = HashMap::new();
     scores.insert(String::from("Blue"), 10);
     scores.insert(String::from("Yellow"), 50);
     scores.insert(String::from("Yellow"), 71); // update
-    let team_b = scores.get("Blue").copied().unwrap_or(0);
+    let team_b = scores.get("Blue").copied().unwrap_or(0); // and .cloned use for those types that not implement copy trait
     println!("{:?}", team_b);
 
     // iterate on key pair using for loop

@@ -15,7 +15,7 @@ fn read_from_file() -> Result<String, io::Error> {
     Ok(s)
 }
 
-fn main() -> Result<(), io::Error>{
+fn main() {
     // https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html
 
     // https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html#unwinding-the-stack-or-aborting-in-response-to-a-panic
@@ -55,11 +55,13 @@ fn main() -> Result<(), io::Error>{
     // https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#the--operator-shortcut
 
     // https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#where-to-use-the--operator
-    File::open("../Cargo.toml")?;
-    Ok(())
 
     // https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic
 
     // https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#examples-prototype-code-and-tests
+
+    // https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#when-you-have-more-information-than-the-compiler
+
+    let ip = "123.1.1.0".parse().expect("red");
     
 }

@@ -20,9 +20,9 @@ The OSI (Open Systems Interconnection) model is a conceptual framework used to u
 
 - [PDU (Protocol Data Units) -> smalles unit of info for specific layer of OSI model](https://youtu.be/PhjHXeMNpp8?si=k4K3lIvlkaAgMotc&t=2897)
 
-
 - [OSI Vs TCP/IP layer](https://youtu.be/PhjHXeMNpp8?si=7CWH0gDxEAa76vFC&t=3197)
-    - Some protocols work on different layers like IPSec (Ip security)  
+  - Some protocols work on different layers like IPSec (Ip security)
 
 - [Data Encapsulation & Decapsulation in the TCP/Ip model](https://youtu.be/PhjHXeMNpp8?si=XdhPXK1miXM8X6PU&t=3427)
-   - process of formatting data and adding some overhead at each layer & that overhead is called "header"
+  - process of formatting data and adding some overhead & removing (encapsulating and decapsulating respectively) at each layer & that overhead is called "header"
+

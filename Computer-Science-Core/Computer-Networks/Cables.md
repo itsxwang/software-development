@@ -1,0 +1,1 @@
+- [Copper, Fiber and Wireless, in ethernet especially](https://youtu.be/PhjHXeMNpp7?si=Cjh6n3i36VSphr5P&t=4037)

@@ -1,0 +1,1 @@
+[Network Interface Card](https://youtu.be/PhjHXeMNpp8?si=C_T5uFU6BqLBLvO_&t=4677)

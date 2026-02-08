@@ -34,4 +34,9 @@ pub fn hash_maps() {
 
     // https://doc.rust-lang.org/book/ch08-03-hash-maps.html#hashing-functions
 
+
+    // https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#guidelines-for-error-handling
+
+    // https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#custom-types-for-validation
+
 }

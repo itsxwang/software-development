@@ -21,7 +21,7 @@ pub fn string_test() {
     // https://doc.rust-lang.org/book/ch08-02-strings.html#slicing-strings
     let mut runt = String::new();
 
-/*     loop {
+    loop {
         std::io::stdin().read_line(&mut runt).unwrap();
         if runt.trim().is_empty() {
             println!("empty");
@@ -36,5 +36,9 @@ pub fn string_test() {
     // println!("{}", runt.replace("h", "H"));
     // println!("{}", runt.contains("h"));
 
-    
+    // ======================================================================================
+    // .parse demestify
+
+
+    // ======================================================================================
 }

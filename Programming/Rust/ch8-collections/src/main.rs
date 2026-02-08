@@ -4,8 +4,10 @@ use hashmaps::hash_maps;
 mod hashmaps; 
 mod string;
 
+
 fn main() {
     println!("Hello, world!");
+    
     let mut v: Vec<i32> = Vec::new();
     v.push(1);
     v.push(2);

@@ -23,7 +23,7 @@ IP (Internet Protocol) is a set of rules that govern how data is sent and receiv
   - [Throughput](https://youtu.be/PhjHXeMNpp8?si=QKUXozo96CgIOV6t&t=5887)
     - Actual amount of data that can be transmitted, due to overhead that add on each layer of TCP/IP or OSI model of networking
     - Oversubscription: When total processing throughput is lower than cumulative bandwidth of all ports
-
+    - Different throughput on different layers
   - [Latency & its diff types](https://youtu.be/PhjHXeMNpp8?si=1Rq3Kfs9nRsqn9_j&t=6397)
   - Latency -> One way delay, Data tranfer time from 1 device to another -
     - Queueing delay -> As Multiple Apps at same time can transmit packets at same time, queuing of data packets can happen - Processing delay

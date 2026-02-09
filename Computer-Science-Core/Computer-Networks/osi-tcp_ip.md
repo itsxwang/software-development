@@ -3,7 +3,7 @@
 The OSI (Open Systems Interconnection) model is a conceptual framework used to understand and implement network protocols in seven layers. Each layer serves a specific function and communicates with the layers directly above and below it. The seven layers of the OSI model are:
 
 1. **Physical Layer**: This is the lowest layer of the OSI model and is responsible for the physical connection between devices. It deals with the transmission and reception of raw bitstreams over a physical medium, such as cables or wireless signals. Examples include Ethernet cables, fiber optics, and radio waves.
-2. **Data Link Layer**: This layer is responsible for establishing a reliable link between two directly connected nodes(e.g., switches and routers). It handles error detection and correction, as well as framing of data packets into frames. Examples include MAC addresses and Ethernet protocols.
+2. **Data Link Layer**: This layer is responsible for establishing a reliable link between two directly connected nodes(e.g., switches and routers). It handles error detection and correction, as well as framing of data packets into frames. Examples include MAC addresses, Ethernet protocol, PPP(Point-to-Point Protocol), etc.
    - **MAC** = **Media Access Control**: Sublayer that use for physical addressing of devices on data link layer
    - **LLC** = **Logical Link Control**: Sublayer that use for communication with physical layer
 3. **Network Layer**: The network layer is responsible for routing data packets between different networks and managing logical addressing. It determines the best path for data to travel from the source to the destination. Examples include IP (Internet Protocol) and routers.

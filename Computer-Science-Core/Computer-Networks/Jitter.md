@@ -1,0 +1,2 @@
+- [Jitter: Time Variation in Packet Delay(Latency) over time](https://youtu.be/PhjHXeMNpp8?si=71xjIyFmvCsU01D5&t=7207)
+- [Packet Loss Rate](https://youtu.be/PhjHXeMNpp8?si=w_mmnErutO-fLTmJ&t=7467)

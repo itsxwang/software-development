@@ -1,3 +1,7 @@
+use traits::{User, summarize};
+
+mod traits;
+
 fn main() {
     // https://doc.rust-lang.org/book/ch10-00-generics.html#generic-types-traits-and-lifetimes
 
@@ -51,20 +55,53 @@ fn main() {
     let p1 = Point { x: 5.0, y: 10.0 };
     p1.distance_from_origin();
 
-
     let base = 2.0_f64;
-let result = base.powi(3); 
+    let result = base.powi(3);
 
-println!("x {base:?}")
+    println!("x {base:?}");
     // https://doc.rust-lang.org/book/ch10-01-syntax.html#in-enum-definitions
 
     // https://doc.rust-lang.org/book/ch10-01-syntax.html#in-struct-definitions
 
+    let us1 = User {
+        name: "John".to_string(),
+        post: "post".to_string(),
+    };
+    println!("{}", us1.summarize());
+    println!("{}", us1.summarize2()); // default method of traits are optional to impl -> impl traitname for typename {}
 
+    // we can implement a trait on a type only if either the trait or the type, or both, are local to our crate
 
-    // https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
-    
-    
-    
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#using-default-implementations
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#using-traits-as-parameters
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#trait-bound-syntax
+
+    // pub fn user_print<T: summarize>(user: &T) -> String { user.summarize() }() // user accepts any type that implements the summarize trait
+    // short
+    /*     pub fn user_print(user: &impl summarize) -> String {
+        user.summarize()
+    } */
+
+    // user accepts any type that implements the summarize trait
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#multiple-trait-bounds-with-the--syntax
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#clearer-trait-bounds-with-where-clauses
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#multiple-trait-bounds-with-the--syntax
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#clearer-trait-bounds-with-where-clauses
+
+    pub fn user_print<T: summarize>(user: &T) -> String
+    where
+        T: summarize,
+    {
+        user.summarize()
+    }
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
 }
-

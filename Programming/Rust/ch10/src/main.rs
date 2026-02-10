@@ -1,5 +1,7 @@
-use traits::{User, summarize};
+use traits::{User, Summarize};
+use lifetimes::lifet;
 
+mod lifetimes;
 mod traits;
 
 fn main() {
@@ -67,8 +69,8 @@ fn main() {
         name: "John".to_string(),
         post: "post".to_string(),
     };
-    println!("{}", us1.summarize());
-    println!("{}", us1.summarize2()); // default method of traits are optional to impl -> impl traitname for typename {}
+    println!("{}", us1.Summarize());
+    println!("{}", us1.Summarize2()); // default method of traits are optional to impl -> impl traitname for typename {}
 
     // we can implement a trait on a type only if either the trait or the type, or both, are local to our crate
 
@@ -78,13 +80,13 @@ fn main() {
 
     // https://doc.rust-lang.org/book/ch10-02-traits.html#trait-bound-syntax
 
-    // pub fn user_print<T: summarize>(user: &T) -> String { user.summarize() }() // user accepts any type that implements the summarize trait
+    // pub fn user_print<T: Summarize>(user: &T) -> String { user.Summarize() }() // user accepts any type that implements the Summarize trait
     // short
-    /*     pub fn user_print(user: &impl summarize) -> String {
-        user.summarize()
+    /*     pub fn user_print(user: &impl Summarize) -> String {
+        user.Summarize()
     } */
 
-    // user accepts any type that implements the summarize trait
+    // user accepts any type that implements the Summarize trait
 
     // https://doc.rust-lang.org/book/ch10-02-traits.html#multiple-trait-bounds-with-the--syntax
 
@@ -94,13 +96,13 @@ fn main() {
 
     // https://doc.rust-lang.org/book/ch10-02-traits.html#clearer-trait-bounds-with-where-clauses
 
-    pub fn user_print<T: summarize>(user: &T) -> String
+    pub fn user_print<T: Summarize>(user: &T) -> String
     where
-        T: summarize,
+        T: Summarize,
     {
-        user.summarize()
+        user.Summarize()
     }
-
+    lifet();
     // https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits
 
     // https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods

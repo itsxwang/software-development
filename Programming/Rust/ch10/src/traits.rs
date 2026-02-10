@@ -1,7 +1,7 @@
 // https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
-pub trait summarize {
-    fn summarize(&self) -> String;
-    fn summarize2(&self) -> String {
+pub trait Summarize {
+    fn Summarize(&self) -> String;
+    fn Summarize2(&self) -> String {
         String::from("default")
     }
 
@@ -14,8 +14,8 @@ pub struct User{
    pub post: String
 }
 
-impl summarize for User {
-    fn summarize(&self) -> String {
+impl Summarize for User {
+    fn Summarize(&self) -> String {
         format!("{}: {}", self.name, self.post)
     }
 }

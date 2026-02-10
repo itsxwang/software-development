@@ -1,5 +1,5 @@
-use traits::{User, Summarize};
-use lifetimes::lifet;
+use lifetimes::{lifet, longest};
+use traits::{Summarize, User};
 
 mod lifetimes;
 mod traits;
@@ -103,7 +103,20 @@ fn main() {
         user.Summarize()
     }
     lifet();
-    // https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits
+    let s1 = "hello";
 
+    let result2;
+    {
+        let s2 = "xw";
+        result2 = longest(s1, s2);
+    }
+    // println!("The longest string is -- {}", result2);   // gives error because return value of `longest` has shortest lifetime of both arguments (s2 here), although this case is not with  string slices becuase they have `'static` lifetime and baked into compile binary, and live forever until the program ends
+
+    // https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits
+    let mut result = String::from("really long string");
+    let n = &result;
+    println!("{}", n);
     // https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
+
+    // https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html#relationships 
 }

@@ -41,19 +41,16 @@ pub fn struct_ref() {
     }
 }
 
-
 // https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html#lifetime-elision
 // Lifetimes on function or method parameters are called input lifetimes, and lifetimes on return values are called output lifetimes.
-    // ======= compiler applies 3 rules for implicit inference of lifetimes on fn / method parameters and return values: =======
-    // 1- All parameters will get one separate lifetime 
-    // 2- The second rule is that, if there is exactly one input lifetime parameter, that lifetime is assigned to all output lifetime parameters:  
-    // 3- If there are multiple input lifetimes, but one of them is &self or &mut self, the lifetime of self is assigned to all output lifetimes.
-
-
-
+// ======= compiler applies 3 rules for implicit inference of lifetimes on fn / method parameters and return values: =======
+// 1- All parameters will get one separate lifetime
+// 2- The second rule is that, if there is exactly one input lifetime parameter, that lifetime is assigned to all output lifetime parameters:
+// 3- If there are multiple input lifetimes, but one of them is &self or &mut self, the lifetime of self is assigned to all output lifetimes.
 
 // https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html#in-method-definitions
 
 // https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html#the-static-lifetime
 
 // https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html#generic-type-parameters-trait-bounds-and-lifetimes
+//  :z

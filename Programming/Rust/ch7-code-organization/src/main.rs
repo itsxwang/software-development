@@ -55,4 +55,33 @@ fn main() {
     //  use std::io::Result as IoResult; -> example
     //  same pub rule with apply with as, reexport with `pub use` so other scopes like modules, can also refer to that item with that alias
     // as exists only at compile time
+
+    // Test the Restaurant struct
+    use ch7_code_organization::Restaurant;
+
+    let mut my_restaurant = Restaurant::new("Rusty Bites".to_string(), 50);
+    println!("Initial status: {}", my_restaurant.status());
+
+    my_restaurant.open();
+    println!("Status after opening: {}", my_restaurant.status());
+
+    match my_restaurant.admit_customers(30) {
+        Ok(_) => println!("Successfully admitted customers"),
+        Err(e) => println!("Error: {}", e),
+    }
+
+    println!("Status after admitting customers: {}", my_restaurant.status());
+
+    match my_restaurant.admit_customers(30) {
+        Ok(_) => println!("Successfully admitted customers"),
+        Err(e) => println!("Error: {}", e), // This should fail - not enough capacity
+    }
+
+    match my_restaurant.serve_customers(15) {
+        Ok(_) => println!("Successfully served customers"),
+        Err(e) => println!("Error: {}", e),
+    }
+
+    println!("Final status: {}", my_restaurant.status());
+    my_restaurant.close();
 }

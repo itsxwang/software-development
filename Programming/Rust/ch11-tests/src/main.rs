@@ -81,3 +81,10 @@ mod tests {
 // https://doc.rust-lang.org/book/ch11-01-writing-tests.html#checking-for-panics-with-should_panic
 
 // https://doc.rust-lang.org/book/ch11-01-writing-tests.html#using-resultt-e-in-tests
+
+
+// https://doc.rust-lang.org/book/ch11-02-running-tests.html#controlling-how-tests-are-run
+
+// https://doc.rust-lang.org/book/ch11-02-running-tests.html#running-tests-in-parallel-or-consecutively
+
+// https://doc.rust-lang.org/book/ch11-02-running-tests.html#showing-function-output

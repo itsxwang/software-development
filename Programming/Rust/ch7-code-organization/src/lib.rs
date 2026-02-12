@@ -1,3 +1,5 @@
+use std::arch::naked_asm;
+
 use crate::front_of_house::red;
 
 mod front_of_house;
@@ -61,7 +63,8 @@ impl Restaurant {
     }
 
     // Method to serve customers (reduces customer count)
-    pub fn serve_customers(&mut self, count: u32) -> Result<(), String> {
+ 
+     fn serve_customers(&mut self, count: u32) -> Result<(), String> {
         if count > self.current_customers {
             return Err("Not enough customers".to_string());
         }
@@ -71,6 +74,8 @@ impl Restaurant {
     }
 }
 
+// Define a struct to represent a Customer 
+// (Note: this is not a method of Restaurant) 
 pub fn r3() {
     println!("Hello from r3 inside lib!");
     red();

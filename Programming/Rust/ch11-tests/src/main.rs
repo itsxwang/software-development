@@ -59,6 +59,25 @@ mod tests {
         assert_eq!(factorial(0), 1);
         assert_eq!(factorial(1), 1);
         assert_eq!(factorial(5), 120);
+
+        assert_ne!(5, 121) // means if not equal -> pass
+    }
+
+    // assert example
+    fn add_two(a: i32) -> i32 {
+        a + 2
+    }
+    #[test]
+    fn it_adds_two() {
+        let result = add_two(2);
+        assert!(4 == add_two(2), "no, result is {}", result);
     }
 }
 
+// https://doc.rust-lang.org/book/ch11-01-writing-tests.html#testing-equality-with-assert_eq-and-assert_ne
+
+// https://doc.rust-lang.org/book/ch11-01-writing-tests.html#adding-custom-failure-messages
+
+// https://doc.rust-lang.org/book/ch11-01-writing-tests.html#checking-for-panics-with-should_panic
+
+// https://doc.rust-lang.org/book/ch11-01-writing-tests.html#using-resultt-e-in-tests

@@ -1,11 +1,11 @@
 /// Reverses a given string.
-fn reverse_string(s: &str) -> String {
+pub fn reverse_string(s: &str) -> String {
     s.chars().rev().collect()
 }
 
 /// Calculates the factorial of a non-negative integer.
 /// Returns 1 for 0! and panics for negative inputs (though the u64 type prevents this).
-fn factorial(n: u64) -> u64 {
+pub fn factorial(n: u64) -> u64 {
     if n == 0 {
         1
     } else {
@@ -17,20 +17,6 @@ fn factorial(n: u64) -> u64 {
     }
 }
 
-fn main() {
-    println!("Hello, world!");
-    // https://doc.rust-lang.org/book/ch11-01-writing-tests.html#how-to-write-tests
-    println!("Original string: 'hello'");
-    println!("Reversed string: '{}'", reverse_string("hello"));
-    println!("Factorial of 5: {}", factorial(5)); // Example usage
-
-    // https://doc.rust-lang.org/book/ch11-01-writing-tests.html#structuring-test-functions
-
-    // String example
-    let mut s = String::from("foo");
-    s.push_str("bar");
-    assert_eq!(s, "foobar");
-}
 
 #[cfg(test)]
 mod tests {
@@ -82,9 +68,29 @@ mod tests {
 
 // https://doc.rust-lang.org/book/ch11-01-writing-tests.html#using-resultt-e-in-tests
 
-
 // https://doc.rust-lang.org/book/ch11-02-running-tests.html#controlling-how-tests-are-run
 
 // https://doc.rust-lang.org/book/ch11-02-running-tests.html#running-tests-in-parallel-or-consecutively
 
-// https://doc.rust-lang.org/book/ch11-02-running-tests.html#showing-function-output
+// https://doc.rust-lang.org/book/ch11-02-running-tests.html#showing-function-output // -- --show-output
+
+// https://doc.rust-lang.org/book/ch11-02-running-tests.html#ignoring-tests-unless-specifically-requested
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#test-organization
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#unit-tests
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#private-function-tests
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
+
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-directory
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-directory
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#submodules-in-integration-tests
+
+// https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests-for-binary-crates

@@ -1,3 +1,4 @@
+
 // https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html#more-about-cargo-and-cratesio
 
 // https://doc.rust-lang.org/book/ch14-01-release-profiles.html#customizing-builds-with-release-profiles
@@ -7,6 +8,8 @@
 // https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#documentation-comments-as-tests
 
 // https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#contained-item-comments
+
+mod worspaces;
 
 //! # Add
 //!
@@ -50,3 +53,10 @@ pub fn add_two(x: i32) -> i32 {
 pub struct Color(pub i32, pub i32, pub i32);
 
 // https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#exporting-a-convenient-public-api
+
+// https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#setting-up-a-cratesio-account
+
+// https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#adding-metadata-to-a-new-crate
+
+// https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#publishing-a-new-version-of-an-existing-crate 
+

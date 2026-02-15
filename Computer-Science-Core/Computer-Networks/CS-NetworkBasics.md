@@ -19,7 +19,7 @@ IP (Internet Protocol) is a set of rules that govern how data is sent and receiv
   - More about IPs in separate file
 
 - [Bandwidth, Throughput, latency & Jitter](https://youtu.be/PhjHXeMNpp8?si=MnetNgD1_AOqiq8y&t=5597)
-  - Max amount of data that can be transmitted over link in the specific amount of time
+  - Max amount of data that can be transmitted over link (especially link which has lowest bandwidth among all links comes in b/w host and destination) in the specific amount of time
   - [Throughput](https://youtu.be/PhjHXeMNpp8?si=QKUXozo96CgIOV6t&t=5887)
     - Actual amount of data that can be transmitted, due to overhead that add on each layer of TCP/IP or OSI model of networking
     - Oversubscription: When total processing throughput is lower than cumulative bandwidth of all ports

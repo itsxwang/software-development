@@ -1,5 +1,8 @@
+use iterators::iterfn;
 use std::thread;
-use std::time::Duration;
+// use std::time::Duration;
+
+mod iterators;
 
 fn main() {
     // https://doc.rust-lang.org/book/ch13-00-functional-features.html#functional-language-features-iterators-and-closures
@@ -10,7 +13,7 @@ fn main() {
 
     let expensive_closure = |num: u32| -> u32 {
         println!("calculating slowly...");
-        thread::sleep(Duration::from_secs(2));
+        // thread::sleep(Duration::from_secs(2));
         num
     };
     expensive_closure(7);
@@ -23,4 +26,6 @@ fn main() {
         .unwrap();
 
     // https://doc.rust-lang.org/book/ch13-01-closures.html#moving-captured-values-out-of-closures
+    
+    iterfn();   
 }

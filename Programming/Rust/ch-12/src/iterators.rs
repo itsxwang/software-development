@@ -14,3 +14,4 @@ pub fn iterfn() {
     println!("{:?}", v1_iter);
 }
 
+// https://doc.rust-lang.org/book/ch13-04-performance.html#performance-in-loops-vs-iterators

@@ -45,3 +45,43 @@ arp -n
 ```
 
 This will display the list of IP addresses and their corresponding MAC addresses currently stored in your system's memory.
+
+- **Example table**
+
+```
+192.168.29.1 dev wlp0s20f3 lladdr 4c:22:f3:f3:75:70 REACHABLE
+
+192.168.29.33 dev wlp0s20f3 FAILED
+
+192.168.29.123 dev wlp0s20f3 lladdr c4:3a:35:f0:a3:d6 REACHABLE
+
+2405:201:402f:40bc::c0a8:1d01 dev wlp0s20f3 lladdr 4c:22:f3:f3:75:70 router REACHABLE
+
+fe80::4e22:f3ff:fef3:7570 dev wlp0s20f3 lladdr 4c:22:f3:f3:75:70 router REACHABLE
+```
+
+A list of all the other devices on your local network that your machine has recently "talked" to or identified.
+
+Since you're seeing entries like 192.168.29.x, you are currently on a private subnet, likely managed by a home or office router.
+
+### Breaking Down the Columns
+
+| Column | Meaning |
+| --- | --- |
+| **IP Address** | The Layer 3 address of the other device (e.g., `192.168.29.1`). |
+| **dev wlp0s20f3** | The name of **your** network interface. `wlp...` indicates you are connected via **Wi-Fi**. |
+| **lladdr** | Short for "Link Layer Address." This is the physical **MAC Address** of that device. |
+| **router** | (IPv6 only) Flags that this specific device is acting as the gateway for your internet traffic. |
+| **REACHABLE / FAILED** | The current status of the connection (see below). |
+
+---
+
+
+
+### Understanding the Results
+
+- **`192.168.29.1` (REACHABLE):** This is almost certainly your **Router/Gateway**. It has a MAC address ending in `75:70`. Because it's "REACHABLE," your computer has verified it’s still there within the last few seconds.
+- **`192.168.29.33` (FAILED):** Your computer tried to find the MAC address for this IP (likely via an ARP request) but got no response. This happens if a device recently disconnected or if you tried to ping an IP that doesn't exist on your network.
+- **`192.168.29.123` (REACHABLE):** Another active device on your Wi-Fi—possibly a phone, a smart TV, or another laptop.
+- **The long `2405:...` and `fe80:...` addresses:** These are **IPv6** addresses for your router. Notice they share the exact same `lladdr` (MAC address) as the `192.168.29.1` entry. This confirms it’s the same physical hardware talking over two different protocols (IPv4 and IPv6).
+

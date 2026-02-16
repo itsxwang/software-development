@@ -1,34 +1,35 @@
 ### What is an IP Address?
+
 An **IP address** (Internet Protocol address) is a unique numerical identifier assigned to every device (like computers, smartphones, servers, or even IoT devices like smart TVs) connected to a network that uses the **Internet Protocol (IP)** for communication. The Internet Protocol is a set of rules that governs how data is sent and received over networks, including the internet. Think of an IP address as a postal address for your device—it tells other devices where to send data and identifies your device on the network.
 
 The IP address serves two primary functions:
+
 1. **Host Identification**: It uniquely identifies a device on a network, like a name tag.
 2. **Location Addressing**: It specifies the device’s location in the network, enabling data to be routed to it.
 
 ---
 
 ### Types of IP Addresses: IPv4 and IPv6
+
 There are two versions of IP addresses in use today: **IPv4** and **IPv6**. Let’s break them down in detail.
 
 #### 1. IPv4 (Internet Protocol version 4)
+
 - **Definition**: IPv4 is the older and still widely used version of the IP addressing system, introduced in the early 1980s. It uses a **32-bit address** format.
 - **Format**: An IPv4 address is written as four numbers (each ranging from 0 to 255) separated by dots (periods). For example: `192.168.1.1`.
   - Each number is called an **octet** because it represents 8 bits (a byte) in binary. For instance, `192` in binary is `11000000`.
   - The total length of an IPv4 address is 32 bits (4 octets × 8 bits = 32 bits).
-- **Address Space**: IPv4 supports approximately **4.3 billion unique addresses** (2³² = 4,294,967,296). This might sound like a lot, but with the explosion of internet-connected devices (billions of smartphones, computers, IoT devices, etc.), this pool is nearly exhausted.
-         - We us 2³² possibilites logic because: 
-               1 bit → 2 possibilities
-               2 bits → 2 × 2 = 4 possibilities
-               3 bits → 2 × 2 × 2 = 8 possibilities 
-               ..., 32 bits = 2³² 
+- **Address Space**: IPv4 supports approximately **4.3 billion unique addresses** (2³² = 4,294,967,296). This might sound like a lot, but with the explosion of internet-connected devices (billions of smartphones, computers, IoT devices, etc.), this pool is nearly exhausted. - We us 2³² possibilites logic because:
+  1 bit → 2 possibilities
+  2 bits → 2 × 2 = 4 possibilities
+  3 bits → 2 × 2 × 2 = 8 possibilities
+  ..., 32 bits = 2³²
 
-
-- Note: Devices can be both on private and public network. And dependending of where they are determine what type of IP addresses they have: Private or Public  
+- Note: Devices can be both on private and public network. And dependending of where they are determine what type of IP addresses they have: Private or Public
 
 - A public address is used to identify the device on the Internet, whereas a private address is used to identify a device amongst other devices
 
-- Public address provide by ISPs, and any data sent to internet from these devices who use speicfic public IP, idenetified by that Public IP.  
-
+- Public address provide by ISPs, and any data sent to internet from these devices who use speicfic public IP, idenetified by that Public IP.
 
 - **Example Breakdown**:
   - Take `192.168.1.1`:
@@ -40,6 +41,7 @@ There are two versions of IP addresses in use today: **IPv4** and **IPv6**. Let�
 - **Limitations**: The limited address space of IPv4 has led to shortages, prompting techniques like **NAT (Network Address Translation)** (explained later) and the development of IPv6.
 
 #### 2. IPv6 (Internet Protocol version 6)
+
 - **Definition**: IPv6 is the newer version, designed to replace IPv4 and solve its address shortage. It uses a **128-bit address** format.
 - **Format**: An IPv6 address is written as eight groups of four **hexadecimal digits** (each group represents 16 bits), separated by colons. For example: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`.
   - **Hexadecimal**: Each digit in IPv6 can be 0–9 or a–f (representing 0–15 in decimal). For example, `2001` in hexadecimal is a single group of 16 bits.
@@ -55,9 +57,11 @@ There are two versions of IP addresses in use today: **IPv4** and **IPv6**. Let�
 ---
 
 ### Structure of an IP Address
+
 An IP address is divided into two logical parts: the **network portion** and the **host portion**. This division helps routers determine where to send data packets.
 
 #### 1. IPv4 Structure
+
 - **Network Portion**: Identifies the specific network a device is connected to (e.g., your home Wi-Fi network or an ISP’s network).
 - **Host Portion**: Identifies the specific device within that network.
 - **Subnet Mask**: A subnet mask is a 32-bit number that determines which part of the IP address is the network portion and which is the host portion. It’s written in the same format as an IPv4 address (e.g., `255.255.255.0`) or in **CIDR notation** (e.g., `/24`).
@@ -71,19 +75,21 @@ An IP address is divided into two logical parts: the **network portion** and the
   - **CIDR Notation**: Stands for **Classless Inter-Domain Routing**. Instead of writing the subnet mask, you indicate the number of network bits with a slash. For example, `192.168.1.10/24` means the first 24 bits are the network portion, equivalent to a subnet mask of `255.255.255.0`.
   - **Subnetting**: Dividing a network into smaller subnetworks (subnets) to improve organization and security. For example:
     - Network: `192.168.1.0/24` (supports 256 addresses: 1 network, 1 broadcast, 254 hosts).
-    - Subnet it into two smaller networks: `192.168.1.0/25` and `192.168.1.128/25`  (each with 128 addresses).
+    - Subnet it into two smaller networks: `192.168.1.0/25` and `192.168.1.128/25` (each with 128 addresses).
     - Subnet masks allow precise control over how many devices can be in a subnet.
+      - [Subnetting home network](https://youtu.be/mJ_5qeqGOaI?si=s9hYQjUKkd216W9L)
+      - [VLSM(Variable length Subnet Masking)](https://youtu.be/OD2vG5st4zI?si=opRxdamTwDnPRv7j&t=67)
+      - Network Address: The first address in a subnet, used to identify the subnet itself (e.g.,
+        `192.168.1.0` in the subnet `192.168.1.0/24`).\
+      - Broadcast Address: The last address in a subnet, used to send data to all devices in the subnet (e.g.,
+        `192.168.1.255` in the subnet `192.168.1.0/24`).
+      - Default Gateway: The IP address of the router usually (basically any device that is capable of sending information to another network) that connects the subnet to other networks, can use any host address but usually 1st or last host address in a network(.1 or .254). Any data that needs to go a device that not on the same network will go to the default gateway device (e.g.,
+        `192.168.1.1` in the subnet `192.168.1.0/24`).
 
-      - Network Address: The first address in a subnet, used to identify the subnet itself (e.g., 
-      `192.168.1.0` in the subnet `192.168.1.0/24`).\
-       - Broadcast Address: The last address in a subnet, used to send data to all devices in the subnet (e.g., 
-      `192.168.1.255` in the subnet `192.168.1.0/24`).
-       - Default Gateway: The IP address of the router usually (basically any device that is capable of sending information to another network) that connects the subnet to other networks, can use any host address but usually 1st or last host address in a network(.1 or .254). Any data that needs to go a device that not on the same network will go to the default gateway device (e.g., 
-      `192.168.1.1` in the subnet `192.168.1.0/24`).  
-
-- [DHCP(Dynamic host configuration protocol)](https://youtu.be/csYtPidvvFQ?si=tGh4B3IZrQROJbAd&t=1437)
+- [DHCP(Dynamic host configuration protocol)](https://youtu.be/csYtPidvvFQ?si=tGh4B3IZrQROJbAd&t=1437) -> Used to assign IP addresses and network parameters to devices on a network.
 
 #### 2. IPv6 Structure
+
 - **Network Portion**: Called the **network prefix**, typically the first 64 bits, assigned by an ISP or network administrator.
 - **Interface Identifier**: The remaining 64 bits, identifying the specific device on the network.
 - **Subnetting in IPv6**: Similar to IPv4, but the larger address space allows for more flexible subnetting. For example, a `/64` prefix means the first 64 bits are the network prefix, leaving 64 bits for hosts (enough for 2⁶⁴ devices per subnet).
@@ -104,6 +110,7 @@ An IP address is divided into two logical parts: the **network portion** and the
 ---
 
 ### Types of IP Address Allocation
+
 Devices can be assigned IP addresses in different ways, depending on the network’s needs.
 
 1. **Static IP Address**:
@@ -151,6 +158,7 @@ Devices can be assigned IP addresses in different ways, depending on the network
 ---
 
 ### Special IP Addresses
+
 Certain IP addresses have specific roles in networking:
 
 1. **Loopback Address**:
@@ -181,7 +189,9 @@ Certain IP addresses have specific roles in networking:
 ---
 
 ### How IP Addresses Work in Communication
+
 IP addresses are critical for **packet-based communication**, where data is broken into small chunks called **packets**. Here’s the process in detail:
+
 1. **Data Packet Creation**:
    - When you send data (e.g., loading a website), your device creates packets with a **header** and **payload**.
    - The header includes:
@@ -201,6 +211,7 @@ IP addresses are critical for **packet-based communication**, where data is brok
 ---
 
 ### Challenges and Security
+
 1. **IPv4 Address Exhaustion**:
    - The 4.3 billion IPv4 addresses are insufficient for the number of devices today.
    - **Solutions**:
@@ -219,6 +230,7 @@ IP addresses are critical for **packet-based communication**, where data is brok
 ---
 
 ### Tools for Working with IP Addresses
+
 1. **Ping**: Tests connectivity to an IP address by sending **ICMP (Internet Control Message Protocol)** echo request packets and waiting for a response. Example: `ping 8.8.8.8` (Google’s DNS server).
 2. **Traceroute (tracert on Windows)**: Shows the path packets take to a destination IP, listing each router hop.
 3. **ipconfig (Windows) / ifconfig or ip addr (Linux)**: Displays your device’s IP configuration, including IP address, subnet mask, and default gateway.
@@ -228,14 +240,13 @@ IP addresses are critical for **packet-based communication**, where data is brok
 ---
 
 ### Summary
+
 An IP address is a cornerstone of computer networking, enabling devices to communicate by identifying and locating them. **IPv4** uses 32-bit addresses (e.g., `192.168.1.1`), limited by its 4.3 billion address cap, while **IPv6** uses 128-bit addresses (e.g., `2001:0db8::7334`) for a virtually unlimited pool. **Subnet masks** (e.g., `255.255.255.0`) divide IP addresses into network and host portions, with **CIDR** simplifying notation. **SLAAC** in IPv6 automates address assignment using router advertisements and interface identifiers. IP addresses can be **static** or **dynamic** (via DHCP), **private** or **public**, with special addresses like **loopback** (`127.0.0.1`) and **broadcast** (`255.255.255.255`). **NAT** and **IPsec** address IPv4 limitations and security, respectively.
 
-
-
 ---
+
 - This will show the router ip address
 
 ```
 ip route show | grep -i 'default via' | awk '{print $3}'
 ```
-

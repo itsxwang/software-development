@@ -1,8 +1,9 @@
 Owasp zap
 
-**OWASP ZAP (Zed Attack Proxy)** is a free, open-source web application security scanner used to identify vu**OWASP ZAP (Zed Attack Proxy)** is a free, open-source web application security scanner used to identify vulnerabilities during development and testing. It acts as a proxy between your browser and web applications, intercepting and analyzing traffic to detect security issues like **SQL injection, cross-site scripting (XSS), insecure deserialization, and sensitive data exposure**.
+**OWASP ZAP (Zed Attack Proxy)** is a free, open-source web application security scanner used to identify vulnerabilities during development and testing. It acts as a proxy between your browser and web applications, intercepting and analyzing traffic to detect security issues like **SQL injection, cross-site scripting (XSS), insecure deserialization, and sensitive data exposure**.
 
 ### Key Features
+
 - **Proxy Mode**: Intercepts, inspects, and modifies HTTP/HTTPS traffic in real time.
 - **Spidering & Crawling**: Automatically discovers web application structure and endpoints using traditional or AJAX-based spiders.
 - **Active & Passive Scanning**:
@@ -13,6 +14,7 @@ Owasp zap
 - **Extensibility**: Supports plugins and custom scripts for advanced testing and integration.
 
 ### Installation & Usage
+
 - Available for **Windows, Linux, macOS**, and **Docker**.
 - Requires **Java 8 or higher** (except Docker version).
 - Can be installed via:
@@ -21,6 +23,7 @@ Owasp zap
   - GitHub: [https://github.com/zaproxy/zaproxy](https://github.com/zaproxy/zaproxy)
 
 ### Best Practices
+
 - Always obtain **permission** before scanning target applications.
 - Configure authentication (form-based, JSON, etc.) for protected areas.
 - Use **Scan Policies** to customize testing scope and strength.

@@ -29,13 +29,25 @@ A failure in any single device or connection can disrupt the entire network. \
 Data packets can travel at high speeds since they only move in one direction. \
 More cabling is required compared to bus topology.
 
+_(
+Mesh Topology:)_
+In a mesh topology, every device is directly connected to every other device on the network. This creates multiple redundant paths for data to travel. \
+Highly reliable and robust, as the failure of a single link does not affect the rest of the network. \
+Requires a significant amount of cabling and ports, making it expensive and complex to install and manage.
+
+_(
+Hybrid Topology:)_
+A hybrid topology is a combination of two or more different basic topologies (like star, bus, ring, or mesh). For example, connecting several star-configured networks to a central bus backbone creates a star-bus hybrid. \
+It combines the advantages of the different topologies it integrates, offering flexibility and scalability. \
+The complexity and cost depend on the specific topologies being combined.
+
 ---
 
 - What is `ROUTER`?
   A router is a networking device that forwards data packets between computer networks. It directs traffic on the internet by determining the best path for data to travel from the source to the destination. Routers connect different networks, such as a local area network (LAN) to a wide area network (WAN), and manage traffic within and between these networks. They use routing tables and protocols to make decisions about where to send data packets.
 
 - What is `SWITCH`?
-  A switch is a networking device that connects devices within a local area network (LAN) and uses MAC addresses to forward data to the correct destination. Unlike a hub, which broadcasts data to all connected devices, a switch intelligently directs data only to the device that needs it. This improves network efficiency and reduces collisions. Switches operate at the data link layer (Layer 2) of the OSI model and can alsooperate at the network layer (Layer 3) for routing capabilities.
+  A switch is a networking device that connects devices within a local area network (LAN) and uses MAC addresses to forward data to the correct destination. Unlike a hub, which broadcasts data to all connected devices, a switch intelligently directs data only to the device that needs it. This improves network efficiency and reduces collisions. Switches operate at the data link layer (Layer 2) of the OSI model and can also operate at the network layer (Layer 3) for routing capabilities.
 
 - What is `HUB`?
   A hub is a basic networking device that connects multiple devices in a local area network (LAN). It operates at the physical layer (Layer 1) of the OSI model and simply broadcasts incoming data packets to all connected devices, regardless of the intended recipient. This can lead to network inefficiencies and collisions, as all devices share the same bandwidth. Hubs are largely obsolete today, having been replaced by more intelligent devices like switches.

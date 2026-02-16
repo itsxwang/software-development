@@ -54,5 +54,33 @@ The complexity and cost depend on the specific topologies being combined.
 
 ---
 
+- What is `MODEM`?
+  A **Modem** (short for **Modulator-Demodulator**) is the device that connects your local network to the Internet Service Provider (ISP). Its primary job is to convert signals:
+  1.  **Modulation**: It converts the digital data from your network into an analog signal suitable for transmission over the ISP's infrastructure (e.g., cable, DSL, or fiber lines).
+  2.  **Demodulation**: It converts incoming analog signals from the ISP back into digital data that your devices can understand.
+      Essentially, it's the gateway between your private network and the public internet. Many modern devices from ISPs are combination units that include a modem, router, switch, and WAP in one box.
+
+- What is a `WAP` (Wireless Access Point)?
+  A **Wireless Access Point (WAP)** is a device that allows wireless-capable devices (like laptops, smartphones, and tablets) to connect to a wired network. It acts as a bridge, converting data from the wired Ethernet network into a wireless signal (e.g., Wi-Fi) and vice versa.
+  - **Key Function**: Its sole purpose is to provide wireless access to an existing network. It does not perform routing functions like a router does.
+  - **Use Case**: While most home routers have a built-in WAP, standalone WAPs are used in larger spaces like offices, schools, or coffee shops to extend Wi-Fi coverage. Multiple WAPs can be installed to create a large, seamless wireless network.
+
+---
+
+- What is a `FIREWALL`?
+  A **Firewall** is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It establishes a barrier between a trusted internal network and an untrusted external network, such as the Internet.
+  - **Primary Goal**: To allow legitimate traffic to pass through while blocking malicious or unauthorized traffic.
+  - **How it Works**: Firewalls analyze data packets and use a set of rules to determine whether to allow or block them. These rules can be based on IP addresses, port numbers, protocols, and even the content of the packets.
+
+  ### Categories of Firewalls:
+  1.  **Packet-Filtering Firewalls**: This is the most basic type. It inspects individual packets in isolation and checks them against a set of rules based on source/destination IP addresses and ports. It's fast but doesn't track the state of connections.
+  2.  **Stateful Inspection Firewalls**: These firewalls monitor the state of active connections (e.g., TCP handshakes) and use this context to make more intelligent decisions. They only allow traffic that is part of an established, legitimate connection.
+  3.  **Proxy Firewalls (Application-Level Gateway)**: Operating at the application layer, these firewalls act as an intermediary for traffic between two networks. They inspect the payload of packets, can understand application-specific commands (like HTTP or FTP), and offer more granular security, but can introduce latency.
+  4.  **Next-Generation Firewalls (NGFW)**: These combine traditional firewall capabilities with more advanced features, such as deep packet inspection (DPI), intrusion prevention systems (IPS), application awareness and control, and threat intelligence feeds.
+
+  Firewalls can be implemented as **software** (e.g., the one built into your operating system) or as a **hardware** appliance (a dedicated device, often integrated into a router).
+
+---
+
 **Subnetting**:
 Subnetting is the process of dividing a larger network into smaller, more manageable sub-networks, or subnets. This is done by borrowing bits from the host portion of an IP address(portion of an IP address is the part that identifies a specific device (host)) to create additional network addresses. Subnetting improves network performance and security by reducing broadcast traffic and isolating segments of the network.

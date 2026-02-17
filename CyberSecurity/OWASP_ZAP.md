@@ -28,3 +28,10 @@ Owasp zap
 - Configure authentication (form-based, JSON, etc.) for protected areas.
 - Use **Scan Policies** to customize testing scope and strength.
 - Integrate with CI/CD pipelines for automated security testing.
+
+[ZAP intoduce](https://www.zaproxy.org/intro-video/)
+
+
+[Install and Configure ZAP ](https://www.zaproxy.org/getting-started/#install-and-configure-zap)
+
+[ZAP UI](https://www.zaproxy.org/getting-started/#zap-desktop-ui)

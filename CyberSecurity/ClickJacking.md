@@ -1,0 +1,1 @@
+[Clickjacking](https://youtu.be/MYSiVEa29m0?si=jhQfUJLW6JlhnJ14) : Make Users click on unintended elements is called clickjacking.    

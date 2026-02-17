@@ -31,7 +31,7 @@ Owasp zap
 
 [ZAP intoduce](https://www.zaproxy.org/intro-video/)
 
-
 [Install and Configure ZAP ](https://www.zaproxy.org/getting-started/#install-and-configure-zap)
 
 [ZAP UI](https://www.zaproxy.org/getting-started/#zap-desktop-ui)
+[Manually exploring application](https://www.zaproxy.org/getting-started/#exploring-an-application-manually)

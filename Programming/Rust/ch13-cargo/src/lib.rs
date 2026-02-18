@@ -60,3 +60,6 @@ pub struct Color(pub i32, pub i32, pub i32);
 
 // https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#publishing-a-new-version-of-an-existing-crate 
 
+
+// https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html#adding-a-test-to-a-workspace
+    

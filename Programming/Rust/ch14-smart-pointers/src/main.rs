@@ -1,4 +1,7 @@
+use droptrait::drop_tr;
 use std::ops::{Deref, DerefMut};
+
+mod droptrait;
 
 fn main() {
     println!("Hello, world!");
@@ -73,4 +76,8 @@ fn main() {
     // https://doc.rust-lang.org/book/ch15-02-deref.html#using-deref-coercion-in-functions-and-methods
 
     // https://doc.rust-lang.org/book/ch15-02-deref.html#handling-deref-coercion-with-mutable-references
+
+    // https://doc.rust-lang.org/book/ch15-03-drop.html#running-code-on-cleanup-with-the-drop-trait
+
+    drop_tr();
 }

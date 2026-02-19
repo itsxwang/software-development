@@ -1,6 +1,10 @@
+use RcT::rc_t;
+use RefC::ref_c;
 use droptrait::drop_tr;
 use std::ops::{Deref, DerefMut};
 
+mod RcT;
+mod RefC;
 mod droptrait;
 
 fn main() {
@@ -30,10 +34,15 @@ fn main() {
     // let's perform indirection ( means storing value by storing pointer to that value ), so compiler can know the size List will take in at compile time
 
     enum List {
-        Cons(Box<List>, i32),
+        Cons(String, Box<List>),
         Nil,
     }
+    let mut list = Box::new(List::Cons(String::from("hello"), Box::new(List::Nil)));
 
+    // ref mut means give us mutable reference of the tuple first value (List::Cons is considered tuple by rust compiler)
+    if let List::Cons(ref mut value, _) = *list {
+        *value = String::from("world");
+    }
     // instead of storing List directly we boxed it, so the actual List will store on heap and its pointer on stack ( therefore is become of known sized by the compiler )
 
     // https://doc.rust-lang.org/book/ch15-02-deref.html#treating-smart-pointers-like-regular-references
@@ -80,4 +89,6 @@ fn main() {
     // https://doc.rust-lang.org/book/ch15-03-drop.html#running-code-on-cleanup-with-the-drop-trait
 
     drop_tr();
+    rc_t();
+    ref_c();
 }

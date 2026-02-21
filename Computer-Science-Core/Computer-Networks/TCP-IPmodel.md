@@ -1,1 +1,0 @@
-- [TCP/IP Model ](https://youtu.be/PhjHXeMNpp8?si=JNMlnV7MEYL4Wpum&t=1677)

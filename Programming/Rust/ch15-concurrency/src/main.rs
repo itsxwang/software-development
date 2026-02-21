@@ -2,6 +2,9 @@ use std::{
     sync::{Mutex, mpsc},
     thread,
 };
+
+use crate::share_st::incr;
+mod share_st;
 fn main() {
     // https://doc.rust-lang.org/book/ch16-01-threads.html#using-threads-to-run-code-simultaneously
 
@@ -68,6 +71,9 @@ fn main() {
 
     println!("m = {m:?}");
 
-
     // https://doc.rust-lang.org/book/ch16-03-shared-state.html#shared-access-to-mutext
+
+    incr();
+
+    // https://doc.rust-lang.org/book/ch16-03-shared-state.html#comparing-refcelltrct-and-mutextarct
 }

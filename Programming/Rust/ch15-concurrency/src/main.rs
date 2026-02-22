@@ -4,6 +4,7 @@ use std::{
 };
 
 use crate::share_st::incr;
+mod deadlock;
 mod share_st;
 fn main() {
     // https://doc.rust-lang.org/book/ch16-01-threads.html#using-threads-to-run-code-simultaneously
@@ -76,4 +77,9 @@ fn main() {
     incr();
 
     // https://doc.rust-lang.org/book/ch16-03-shared-state.html#comparing-refcelltrct-and-mutextarct
+    deadlock::deadlock_example();
+
+    // https://doc.rust-lang.org/book/ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-send-and-sync
+
+    // https://doc.rust-lang.org/book/ch16-04-extensible-concurrency-sync-and-send.html#transferring-ownership-between-threads
 }

@@ -1,5 +1,8 @@
 use trpl::{Either, Html};
 
+use crate::async_code::sendme;
+mod async_code;
+
 fn main() {
     // https://doc.rust-lang.org/book/ch17-00-async-await.html#fundamentals-of-asynchronous-programming-async-await-futures-and-streams
 
@@ -28,12 +31,13 @@ fn main() {
             Some(title) => println!("Its page title was: '{title}'"),
             None => println!("It had no title."),
         }
-    })
+    });
+    // async_code::asy();
+    sendme();
 }
 async fn page_title(url: &str) -> (&str, Option<String>) {
-    let response = trpl::get(url).await;
-    let response_text = response.text().await;
-    let title = Html::parse(&response_text)
+    let response = trpl::get(url).await.text().await;
+    let title = Html::parse(&response)
         .select_first("title")
         .map(|title| title.inner_html());
     (url, title)

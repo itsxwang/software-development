@@ -1,4 +1,4 @@
-use std::{thread, time::Duration};
+use std::{string, thread, time::Duration};
 
 pub fn asy() {
     // https://doc.rust-lang.org/book/ch17-02-concurrency-with-async.html#applying-concurrency-with-async
@@ -46,7 +46,7 @@ pub fn sendme() {
         let a = async {
             println!("'a' started.");
             slow("a", 30);
-            trpl::yield_now().await; 
+            trpl::yield_now().await;
             slow("a", 10);
             trpl::yield_now().await;
             slow("a", 20);
@@ -66,7 +66,6 @@ pub fn sendme() {
             println!("'b' finished.");
         };
 
-        trpl::select(a, b).await;
     });
 }
 
@@ -74,3 +73,7 @@ fn slow(name: &str, ms: u64) {
     thread::sleep(Duration::from_millis(ms));
     println!("'{name}' ran for {ms}ms");
 }
+
+// https://doc.rust-lang.org/book/ch17-04-streams.html#streams-futures-in-sequence
+
+// https://doc.rust-lang.org/book/ch17-06-futures-tasks-threads.html#putting-it-all-together-futures-tasks-and-threads

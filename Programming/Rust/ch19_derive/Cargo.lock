@@ -3,13 +3,6 @@
 version = 4
 
 [[package]]
-name = "ch19"
-version = "0.1.0"
-dependencies = [
- "ch19_derive",
-]
-
-[[package]]
 name = "ch19_derive"
 version = "0.1.0"
 dependencies = [

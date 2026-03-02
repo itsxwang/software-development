@@ -1,4 +1,20 @@
-use std::slice;
+use std::{slice, vec};
+
+// bring the procedural derive macro into scope
+use hello_macro_derive::HelloMacro;
+
+#[macro_export]
+macro_rules! myvec {
+        ( $( $x:expr ),* ) =>  {
+            {
+                let mut temp_vec = Vec::new();
+                $(
+                    temp_vec.push($x);
+                )*
+                temp_vec
+        }
+            }
+}
 
 static mut COUNTER: u32 = 7;
 const THRESHOLD: i32 = 10;
@@ -63,6 +79,22 @@ fn main() {
     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 
     // --- our default add Implementation, by imeplementing associative trait of + operator for our type --- //
+
+    // myvec
+    let v = myvec!(1, 2, 3);
+    println!("{:?}", v);
+
+
+    // sample struct and trait needed for the macro
+    pub trait HelloMacro {
+        fn hello_macro();
+    }
+
+    #[derive(HelloMacro)]
+    struct sample {
+        b : i32
+    }
+    sample::hello_macro();   
 }
 
 unsafe fn add_to_count(inc: u32) {
@@ -72,17 +104,21 @@ unsafe fn add_to_count(inc: u32) {
 }
 
 fn split_at_mut(values: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
+    struct bb {
+        i: i32,
+    }
+    let b = bb { i: 7 };
+
     let len = values.len();
     let ptr = values.as_mut_ptr();
     assert!(mid <= len);
+    let z = ToString::to_string("&self");
     unsafe {
         (
             slice::from_raw_parts_mut(ptr, mid),
             slice::from_raw_parts_mut(ptr.add(mid), len - mid),
         )
     }
-    
-    
 }
 
 // https://doc.rust-lang.org/book/ch20-01-unsafe-rust.html#accessing-or-modifying-a-mutable-static-variable
@@ -102,3 +138,7 @@ fn split_at_mut(values: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
 // https://doc.rust-lang.org/book/ch20-03-advanced-types.html#type-safety-and-abstraction-with-the-newtype-pattern
 
 // https://doc.rust-lang.org/book/ch20-03-advanced-types.html#type-synonyms-and-type-aliases
+
+// --------------------------
+
+// https://doc.rust-lang.org/book/ch20-05-macros.html#macros

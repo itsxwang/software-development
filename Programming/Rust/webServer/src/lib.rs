@@ -1,4 +1,15 @@
-pub struct ThreadPool;
+use std::{
+    sync::{Arc, Mutex, mpsc},
+    thread,
+};
+
+pub struct ThreadPool {
+    workers: Vec<Worker>,
+    sender: mpsc::Sender<Job>,
+}
+
+type Job = Box<dyn FnOnce() + Send + 'static>;
+
 impl ThreadPool {
     /// Create a new ThreadPool.
     ///
@@ -7,14 +18,56 @@ impl ThreadPool {
     /// # Panics
     ///
     /// The `new` function will panic if the size is zero.
-    pub fn new(size: usize) -> Self {
+    pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
-        ThreadPool
+
+        let (sender, receiver) = mpsc::channel();
+
+        let receiver = Arc::new(Mutex::new(receiver));
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id, Arc::clone(&receiver)));
+        }
+
+        ThreadPool { workers, sender }
     }
+
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,
     {
-        std::thread::spawn(f);
+        let job = Box::new(f);
+
+        self.sender.send(job).unwrap();
+    }
+}
+
+struct Worker {
+    id: usize,
+    thread: thread::JoinHandle<()>,
+}
+
+// --snip--
+
+impl Worker {
+    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
+        let thread = thread::spawn(move || {
+            loop {
+                let job = receiver.lock().unwrap().recv();
+               match job {
+                    Ok(job) => {
+                        println!("Worker {id} got a job; executing.");
+                        job();
+                    }
+                    Err(_) => {
+                        println!("Worker {id} shutting down.");
+                        break;
+                    }
+                }
+            }
+        });
+        Worker { id, thread }
     }
 }

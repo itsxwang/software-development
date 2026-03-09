@@ -1,0 +1,11 @@
+Terminal Emulator and Multiplexer
+
+A **terminal emulator** is a software application that mimics the behavior of a physical terminal, providing a text-based interface to interact with a command-line shell or other text-mode applications. It runs within a graphical desktop environment (like GNOME or KDE) and allows users to open multiple terminal windows or tabs to run separate shell sessions. Examples include `gnome-terminal`, `konsole`, and `Alacritty`.
+
+A **terminal multiplexer**, such as **tmux** or **GNU Screen**, is a program that runs *within* a terminal emulator and allows you to manage multiple independent terminal sessions (or windows) within a single terminal window. It enables features like:
+- **Splitting** the terminal screen into panes to run multiple programs side by side.
+- **Detaching** and **reattaching** sessions, so processes continue running even if the connection is lost (e.g., during SSH sessions).
+- **Switching** between different sessions using keyboard shortcuts.
+- **Persistent sessions** that survive disconnections, making it ideal for remote server management.
+
+While both tools help manage multiple terminal sessions, the key difference is that a terminal emulator *creates* new terminal instances, whereas a terminal multiplexer *manages* multiple sessions within one terminal, offering greater flexibility and persistence.

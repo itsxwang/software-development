@@ -8,4 +8,4 @@ A **terminal multiplexer**, such as **tmux** or **GNU Screen**, is a program tha
 - **Switching** between different sessions using keyboard shortcuts.
 - **Persistent sessions** that survive disconnections, making it ideal for remote server management.
 
-While both tools help manage multiple terminal sessions, the key difference is that a terminal emulator *creates* new terminal instances, whereas a terminal multiplexer *manages* multiple sessions within one terminal, offering greater flexibility and persistence.
+While both tools help manage multiple terminal sessions, the key difference is that a terminal emulator *creates* new terminal instances, whereas a terminal multiplexer *manages* multiple sessions within one terminal, offering greater flexibility and persistence
